@@ -40,13 +40,61 @@
     * `//`  单行注释
     * `/**/` 多行注释
 * 输出测试
-    * alert()
-    * console.log()
+    * alert()   弹窗输出
+    * console.log() 控制台输出
+    * 元素输出
+        * 表单：元素.value
+        * 双标签元素：元素.innerHTML = 值
+    * document.write()  输出到body
 
 ## 数据类型
 * String    字符串（**单引号**或**双引号**包含的数据）
 * Number    数字
     > 0-9
+    * NaN: Not a Number
 * Boolean   布尔值
     * true  对/是/1
     * false 错/否/0
+
+
+### 数据类型转换
+* 显性转换
+    * String -> Number : Number(字符串)
+    * Number -> String : String(数字)
+    * Number -> Boolean : Boolean(数字)
+* 隐式转换
+    > 如果运算不能进行下去，内部就会尝试进行数据类型的自动转换(支持隐式转换的运算：逻辑运算、关系运算、算术运算）
+
+## 运算
+### 算术运算
+> 针对数字类型
+
+* 加法：+
+    * 数字：加法运算
+    * 字符串：拼接
+* 减法：-
+* 乘法：*
+* 除法：/
+* 求余（求模）：%
+
+
+### 赋值运算
+* =
+* +=
+* -=
+* *=
+* /=
+* %=
+
+
+## 常用方法
+* parseInt()    取整
+* toFixed()     取小数点位数
+
+
+
+## 超前知识点
+* 获取元素：`document.getElementById()`
+    * 获取表单的值：`元素.value`  得到的数据为String
+    * 写入表单的值：`元素.value=值`
+* 事件绑定：`元素.onclick=function(){}`

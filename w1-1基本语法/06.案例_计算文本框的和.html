@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.案例_计算文本框的和</title>
+</head>
+<body>
+    <h1>06.案例_计算文本框的和</h1>
+    <input type="number" id="num1" /> ?
+    <input type="number" id="num2" /> = 
+    <input type="number" disabled id="result" />
+
+    <button id="btn">加</button>
+    <button id="btnJian">减</button>
+    <script type="text/javascript">
+    /**
+        06.案例_计算文本框的和
+            * 获取btn
+            * 给btn按钮添加点击事件
+     */
+ 
+    // 在 js中获取元素
+    var btn = document.getElementById('btn'); // btn 为一个元素
+    var btnJian = document.getElementById('btnJian'); // btn 为一个元素
+    var num1 = document.getElementById('num1'); // num1 为一个元素
+    var num2 = document.getElementById('num2'); // num2 为一个元素
+    var result = document.getElementById('result'); // 用于存放计算结果
+
+    // 点击按钮执行想要的操作
+    btn.onclick = function(){
+        // 这里的代码在btn元素被点击时执行
+
+        // 计算两个输入框值的和
+        var _num1 = Number(num1.value); // String->Number
+        var _num2 = Number(num2.value); // String->Number
+        var _result = _num1 + _num2;
+        console.log(_result)
+
+        // 把值写入result输入框
+        result.value = _result
+    }
+
+    // 减法
+    btnJian.onclick = function(){
+        // 减法操作，不需要进行数据类型转换，因为内部会进行隐式转换
+        // 内部操作：console.log(Number(num1.value) - Number(num2.value))
+        var _result = num1.value - num2.value
+        console.log(_result)
+
+        result.value = _result;
+    }
+    
+    </script>
+</body>
+</html>

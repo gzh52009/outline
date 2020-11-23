@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一个引号引发的公司倒闭</title>
+</head>
+<body>
+    <h1>一个引号引发的公司倒闭</h1>
+    <div id="result"></div>
+    <script>
+        
+        /**
+            一个引号引发的公司倒闭
+                
+         */
+        var result = document.getElementById('result');
+
+        var tiantian = 3200;
+        var laoxie  = '3200';
+        var xiaoxie = 320.0;
+        var lili  = 5800.0;
+        // 计算千锋每月所发工资
+        var total = tiantian + laoxie + xiaoxie + lili;
+        total = Number(total);
+
+        console.log(total); // 控制台输出
+        // alert(total);   // 弹窗输出
+        // document.write('计算千锋每月所发工资：'+total) // 输出到body元素（不推荐，可能会覆盖原有的内容）
+        // 输出到某个元素
+        result.innerHTML = '计算千锋每月所发工资：<strong style="color:#58bc58">' + total.toFixed(2) + '</strong>'
+    </script>
+</body>
+</html>
