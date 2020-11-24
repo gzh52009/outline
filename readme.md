@@ -1,5 +1,7 @@
 # Javascript基础语法
 
+# day1-1
+
 ## js历史
 * liveScript -> javascript
 * JScript
@@ -98,3 +100,107 @@
     * 获取表单的值：`元素.value`  得到的数据为String
     * 写入表单的值：`元素.value=值`
 * 事件绑定：`元素.onclick=function(){}`
+
+
+# day1-2
+
+## 复习
+* 变量声明
+    > var
+    ```js
+        var username; // 声明变量不复制，默认得到undefined
+        //username = 'tiantian'
+        
+        // 声明并赋值
+        var username = 'laoxie';
+
+        // 同时声明多个值
+        var username='laoxie',age=18,gender='male';
+        var username,age,gender;
+    ```
+* 数据类型
+    * 基本数据类型（值类型）
+        * String
+            > 带引号的数据
+        * Number
+            > 0-9
+            * NaN
+        * Boolean
+            * true
+            * false
+        * Null
+            * null          获取页面不存在的元素时得到null
+        * Undefined
+            * undefined     声明变量不赋值得到undefined
+    * 引用数据类型
+    * 数据类型的转换
+        * 显性转换（手动转换）
+        * 隐式转换（看不到）
+            * 当运算无法进行下去时，内部会尝试自动转换
+* 运算
+    * 算术运算
+        * +
+        * -
+        * *
+        * /
+        * %
+    * 赋值运算
+        * = 
+        * +=,-=,*=,/=,%=
+        ```js
+            var num = 10;
+            num +=5; // 等效于：num = num + 5
+        ```
+* 输出
+    * alert()
+    * document.write()
+    * console.log()
+    * 输出到元素
+        * 表单：xx.value
+        * 普通元素：xx.innerHTML
+
+## 学习方式
+1. 上课做好笔记
+2. 课后梳理
+3. 练习（敲代码：500行/天）
+    * 课堂案例
+    * 练习（强化训练）
+    * 作业
+        * 必做
+        * 选做
+4. 做项目
+> 注意：尽量少看视频，不要给自己留后路，不要自我否定
+
+## 知识点
+
+* 运算
+    * 算术运算
+    * 赋值运算
+    * 关系运算
+        * ==    等于
+        * ===   全等/恒等（要求数据类型与值都相等，不会进行隐式转换）
+        * !=    不等于
+        * !==   不全等/不恒等
+        * >     大于
+        * <     小于
+        * >=    大于等于
+        * <=    小于等于
+    * 逻辑运算
+* 程序的三大流程控制
+    * 顺序执行
+        > 代码从上往下逐行执行
+    * 选择执行
+        > 根据条件选择执行不同的代码
+* 条件判断
+    * if
+       ```js
+            if(条件){
+                // 这里的代码在条件符合时执行
+            }
+
+       ```
+
+
+
+## 超前知识点
+* Math.random()

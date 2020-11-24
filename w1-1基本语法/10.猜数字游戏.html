@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.猜数字游戏</title>
+    
+</head>
+<body>
+    <h1>10.猜数字游戏</h1>
+    <p>现在已生成一个1-100的数字，猜中有奖</p>
+    <input type="number" id="number" /> <button id="btn">确定</button>
+    <div id="result"></div>
+    <script>
+        
+        /**
+            10.猜数字游戏 
+                * 步骤
+                    1. 进入页面<随机>生成一个1-100的整数
+                        * Math.random() 得到0-1的随机小数
+                    2. 用户点击“确定”按钮
+                        * 获取用户输入的值
+                        * 输入值与随机数进行对比
+                        * 反馈给用户结果
+         */
+
+         // 这里的代码在页面打开（或刷新）时执行
+
+         // 随机生成1-100的随机整数
+         var randomNumber = parseInt(Math.random()*100+1);//1-100
+        //  console.log('randomNumber=',randomNumber);
+
+         // 获取页面元素
+         var btn = document.getElementById('btn');
+         var number = document.getElementById('number')
+         console.log('进入页面执行')
+        //  console.log('number=',number,btn);
+         btn.onclick = function(){
+             // 这里的代码在按钮被点击时执行
+             var _number = parseInt(number.value); // String
+            console.log('点击按钮时执行',_number)
+
+            // 输入值与随机数进行对比
+            // 如果两个值相等
+            if( _number === randomNumber){
+                alert('恭喜你，答对了')
+            }
+
+            if(_number > randomNumber){
+                alert('大了')
+            }
+
+            if(_number < randomNumber){
+                alert('小了')
+            }
+           
+         }
+        
+    </script>
+</body>
+</html>
