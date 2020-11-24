@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.案例-闰年判断</title>
+
+</head>
+
+<body>
+    <h1>11.案例-闰年判断</h1>
+    <input type="number" id="year" />
+    <button id="btn">判断</button>
+    <div id="result"></div>
+    <script>
+
+        /**
+            11.案例-闰年判断
+                1. 获取页面元素
+                2. 给按钮添加点击事件
+                    * 获取输入框的值
+                    * 判断输入的年份是否为闰年
+            * 闰年判断条件
+                * 能被4整除但不能被100整除
+                * 或者能被400整除的才叫闰年
+                    * 1900  不是闰年
+                    * 2000  是闰年
+         */
+
+        //  1. 获取页面元素
+        var year = document.getElementById('year');
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+        // 2. 给按钮添加点击事件
+        btn.onclick = function(){
+            // * 获取输入框的值
+            var _year = year.value;
+
+            // 判断输入的年份是否为闰年
+            if((_year%4===0 && _year%100!=0) || _year%400===0){
+                result.innerHTML = _year + '是闰年'
+            }else{
+                result.innerHTML = _year + '是平年'
+            }
+        }
+    </script>
+</body>
+
+</html>

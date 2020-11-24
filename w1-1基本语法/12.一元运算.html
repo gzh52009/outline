@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.一元运算</title>
+
+</head>
+
+<body>
+    <h1>12.一元运算</h1>
+    <input type="number" id="year" />
+    <button id="btn">判断</button>
+    <div id="result"></div>
+    <script>
+
+        /**
+            * 12.一元运算
+                * ++
+                * --
+                
+
+                * 变量：一元运算后，变量的值会+1
+                * 返回值
+                    * 后置: 返回变量的值(先返回后+1)
+                    * 前置：返回+1后的值(先+1后返回)
+         */
+
+         var num = 10;
+
+        //  var result = num++; // 等效于：num +=1 => num = num + 1
+        var result = ++num;
+
+        console.log('num=',num);// 11
+        console.log('result=',result);// 10, 11
+
+        // 案例：var k=0; 计算：k++ + ++k + k + k++的值
+        var k = 0; 
+        var result = k++ + ++k + k + k++;
+        //           0   + 2   + 2 + 2
+        // 结果：
+        // k的值: 3
+        // 运算结果：6
+
+        var j = 1
+        var result2 = j++ + j-- + ++j + j + j++ - --j;
+                //    1   + 2   + 2   + 2 + 2   - 2
+        // j的值: 2
+        // 运算结果：7
+    </script>
+</body>
+
+</html>
