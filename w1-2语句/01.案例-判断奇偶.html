@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断一个数是偶数还是奇数，并输出判断结果；</title>
+</head>
+
+<body>
+    <h1>判断一个数是偶数还是奇数，并输出判断结果</h1>
+    <input type="number" id="num" />
+    <button id="btn">判断奇偶</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 判断一个数是偶数还是奇数，并输出判断结果
+                1. 获取页面元素
+                2. 给按钮绑定事件
+                    * 获取用户输入的值
+                    * 判断输入的值是奇数还是偶数 
+         */
+
+        var num = document.getElementById('num');
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+        btn.onclick = function () {
+            // 获取用户输入的值
+            var _num = num.value;
+
+            //  if(_num%2===0){
+            //     result.innerHTML = _num + '是偶数';
+            //  }else{
+            //     result.innerHTML = _num + '是奇数';
+            //  }
+
+            // var type;
+            // if (_num % 2 === 0) {
+            //     type = '偶数'
+            // } else {
+            //     type = '奇数'
+            // }
+
+            var type = _num % 2 === 0 ? '偶数' : '奇数'
+            result.innerHTML = _num + '是' + type;
+        }
+    </script>
+</body>
+
+</html>
