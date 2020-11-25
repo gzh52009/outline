@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>温度转换</title>
+	<script>
+		/*
+			作业2：明要到美国旅游，可是那里的温度是以华氏度为单位记录的。它需要一个程序将华氏温度（80度）转换为摄氏度，并以华氏度和摄氏度为单位分别显示该温度。
+			提示：摄氏度与华氏度的转换公式为：摄氏度 = 5/9.0*(华氏度-32)
+
+		 */
+		var huaShiDu = 80;//华氏度
+
+		/*
+				@toFixed(小数位)
+				必须在number类型的数据上使用
+				参数为小数点位数
+				会自动四舍五入
+		 */
+		var sheShiDu = (5/9*(huaShiDu - 32)).toFixed(1);//摄氏度
+		document.write('美国当前气温为：'+huaShiDu + '华氏度/'+sheShiDu + '摄氏度');
+	</script>
+</head>
+<body>
+
+</body>
+</html>

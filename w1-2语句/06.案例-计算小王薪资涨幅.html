@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小王入职薪水10K，每年涨幅5%，10年后工资多少？
+        这10年小王赚了多少钱</title>
+</head>
+
+<body>
+    <h1>小王入职薪水10K，每年涨幅5%，10年后工资多少</h1>
+    <p>这10年小王赚了多少钱?</p>
+    <div id="result"></div>
+    <script>
+        /**
+            * 小王入职薪水10K，每年涨幅5%，10年后工资多少？
+                * 这10年小王赚了多少钱
+                
+                * 变量初始化：salary = 10000, year=2
+                * 条件: year<=10
+                * 变量更新: year++
+         */
+
+        var result = document.getElementById('result');
+
+        // 第一年月薪
+        var salary = 10000;
+
+        // 第一年薪资总额
+        var total = salary * 12;
+
+        for (var year = 2; year <= 10; year++) {
+            // 计算每一年的月薪
+            //  salary = salary + salary*0.05;
+            salary += salary * 0.05;
+
+            // 计算每一年薪资总额，并累加到total
+            //  total = total + salary*12;
+            total += salary * 12;
+
+        }
+        result.innerHTML = '十年后老王薪资为=' + salary.toFixed(2) + '<br/>这十年老王共赚了：' + total.toFixed(2);
+        console.log('十年后老王薪资为=', salary.toFixed(2));
+
+
+    </script>
+</body>
+
+</html>

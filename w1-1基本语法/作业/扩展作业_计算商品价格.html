@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>扩展作业:计算商品价格</title>
+	<style>
+		.price span{color:#f00;}
+		.price span::before{
+			content: '￥'
+		}
+		#qty{width:50px;}
+	</style>
+</head>
+<body>
+	<div class="goods">
+		<img src="img/ip7.jpg">
+		<p class="price">价格：<span id="price">4998</span></p>
+		<p class="qty">数量：<input type="number" id="qty"></p>
+		<p class="totalPrice price">总价：<span id="totalPrice"></span></p>
+	</div>
+	<script>
+		var price = document.getElementById('price');
+		var qty = document.getElementById('qty');
+		var totalPrice = document.getElementById('totalPrice');
+
+		qty.oninput = function(){
+			var _price = price.innerHTML;
+			var _qty = qty.value;
+
+			totalPrice.innerHTML = (_price * _qty).toFixed(2);
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>11闰年判断</title>
+	<style>
+		.red{color:#f00;}
+	</style>
+	<script>
+		/*
+			闰年判断
+			* 能被4整除但不能被100整除
+			* 或者能被400整除的才叫闰年
+
+			逻辑运算
+				* && : 逻辑与（要求&&符号两侧都为true，才返回true）
+					true && true => true
+					true && false => false
+					false && false => false
+				* ||: 逻辑或（要求||两侧只要有一个为true,就返回true）
+					true || true => true
+					true || false => true
+					false || true => true
+					false || false=> false 
+			写入标签内容
+				* innerHTML：支持html标签
+
+			报错信息
+				* syntaxError：语法错误
+				* 根据报错查找原因
+		 */
+		function check(){
+			// 获取输入的年份，进行判断是否为闰年
+			var _year = document.getElementById('year').value;
+			var output = document.getElementById('output');
+
+			// 2016: true && true => true
+			// 1900: true && false => false
+			// 2000: false || true => true
+			if((_year%4===0 && _year%100 !== 0) || _year%400 === 0){
+				// alert('闰年');
+				// document.write('闰年');
+				output.innerHTML = '<strong class="red">润年</strong>';
+			}else{
+				// alert('平年')
+				output.innerHTML = '平年';
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>闰年判断</h1>
+	<input type="text" id="year">
+	<button onclick="check()">闰年判断</button>
+	<div id="output"></div>
+</body>
+</html>

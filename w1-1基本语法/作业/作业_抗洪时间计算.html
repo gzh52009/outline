@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业1</title>
+	<script>
+		/*
+		作业1:为抵抗洪水，战士连续作战89小时，编程计算共多少天零多少小时？
+		思路：
+			1）先取余，得到小时
+			2）将89减去余数，再除以24
+
+			1）89/24得到天数，然后取整
+			2）取余，得到小时
+		 */
+		var hours = 89;
+		/*var leftHours = 89%24;
+		var day = (hours-leftHours)/24;
+		document.write('为抵抗洪水，战士连续作战89小时，编程计算共'+day+'天零'+leftHours+'小时');*/
+
+
+		var leftHours = 89%24;
+		var day = parseInt(hours/24);
+		document.write('为抵抗洪水，战士连续作战89小时，编程计算共'+day+'天零'+leftHours+'小时');
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

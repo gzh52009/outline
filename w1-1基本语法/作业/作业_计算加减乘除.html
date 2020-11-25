@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业</title>
+	
+</head>
+<body>
+	<input type="text" id="num1"> 
+	<select id="op">
+		<option value="add">+</option>
+		<option value="sub">-</option>
+		<option value="mul">&times;</option>
+		<option value="div">&div;</option>
+		<option value="rem">%</option>
+	</select>
+	<input type="text" id="num2">
+	<button onclick="calc()">计算</button>
+	<div id="output"></div>
+
+	<script>
+		/*
+		作业：计算两个文本框的加减乘除
+			一个函数实现加减乘除
+
+		 */
+		
+		// 获取页面元素
+		var num1 = document.getElementById('num1');
+		var num2 = document.getElementById('num2');
+		var op = document.getElementById('op');
+		var output = document.getElementById('output');
+		
+		// 加法减法乘法除法取余
+		function calc(){
+			var _num1 = Number(num1.value);
+			var _num2 = Number(num2.value);
+			var _op = op.value;
+
+			// 用于存放结果
+			var res;
+			if(_op === 'add'){
+				res = _num1 + _num2;
+			}else if(_op === 'sub'){
+				res = _num1 - _num2;
+			}else if(_op === 'mul'){
+				res = _num1 * _num2;
+			}else if(_op === 'div'){
+				res = _num1 / _num2;
+			}else if(_op === 'rem'){
+				res = _num1 % _num2;
+			}
+
+			// 把结果写入#output
+			output.innerHTML = '计算结果：' + res;
+
+		}
+
+		
+	</script>
+</body>
+</html>
