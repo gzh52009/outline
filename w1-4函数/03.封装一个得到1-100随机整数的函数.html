@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个得到1-100随机整数的函数</title>
+</head>
+<body>
+    <h1>封装一个得到1-100随机整数的函数</h1>
+    <button id="btn">获取随机整数</button>
+    <div id="result"></div>
+    <script>
+        
+        /**
+            封装一个得到1-100随机整数的函数
+                
+        */
+
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+       function randomNumber(){
+            var number = parseInt(Math.random()*100+1); // 1-100
+            result.innerHTML = number;
+       }
+
+       btn.onclick = randomNumber
+
+       randomNumber();// 50
+    //    randomNumber();// 15
+    //    randomNumber();// 89
+        
+    </script>
+</body>
+</html>

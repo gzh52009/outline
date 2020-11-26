@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岳父的套路</title>
+</head>
+<body>
+    <h1>岳父的套路</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            岳父的套路：
+				小王准要结婚了，面对彩礼的问题，小王很头疼，如今的彩礼都以10万计，什么"万紫千红一片绿"、20万、30万，甚至更高。小王的岳父对小王说，我不要20万、30万彩礼，我只要你在2月份第一天给我1分钱、第二天给2分，第三天给4分...依此类推（当天的钱是前一天的2倍）。小王满怀欢喜地打赢了。但如果你是小王，你回答应么？
+
+				思路：
+					1）遍历2月份的天数28天: 确定遍历次数
+					2）计算每一天要给的钱
+					3）把每一天的钱数相加
+        */
+
+        var result = document.getElementById('result');
+
+        var caili = 0.01;
+
+        // 总共要给的彩礼数
+        var total = caili;
+
+        for(var day=2;day<=28;day++){
+            // 计算每天要给的彩礼数
+            caili = caili*2;
+
+            // 把每天的彩礼累加
+            total += caili;
+        }
+
+        result.innerHTML = '小王总共要给的彩礼为：' + total;
+
+
+    </script>
+</body>
+</html>

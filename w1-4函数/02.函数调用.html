@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数调用</title>
+</head>
+<body>
+    <h1>函数调用</h1>
+    <button id="btn">点我有惊喜</button>
+    <script>
+        
+        /**
+            函数的调用
+                * 手动调用（主动）
+                * 事件驱动（被动）
+        */
+
+        var btn = document.getElementById('btn')
+
+        function sum(){
+            console.log('sum')
+        }
+
+        // 手动调用
+        // sum();
+
+        // 事件驱动
+        // btn.onclick = sum;
+        btn.onmouseover = sum;
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数的定义</title>
+</head>
+<body>
+    <h1>函数的定义</h1>
+    <script>
+        // 函数声明提前
+        // function sum(){
+        //     // 这里编写函数代码，代码默认不会执行
+        //     console.log('声明式');
+        // }
+        // 变量声明提前
+        // var show; // undefined
+
+        // var a ;
+        /**
+            函数的定义
+                * 声明式
+                * 赋值式
+                * 匿名函数：没有名字的函数
+
+            函数的调用
+                * 手动调用
+
+            声明提前
+                * 函数声明提前：函数声明会提前到所有代码之前，保证在代码执行前可用
+                * 变量声明提前：变量声明会提前到当前作用域所有代码之前，保证在代码执行前可用
+        */
+
+        sum(); // 声明式方式定义的函数，可以在函数定义前执行
+        // show(); // 报错
+
+        // 函数定义方式1：声明式 
+        function sum(){
+            // var b
+            // 这里编写函数代码，代码默认不会执行
+            console.log('声明式');
+
+            console.log('b=',b);
+
+            var b = 20;
+        }
+
+        // 函数定义方式2：赋值式
+        var show = function(){
+            console.log('赋值式');
+        }
+
+        // 函数调用方式1：手动调用
+        // sum();
+        // show();
+
+
+        console.log(a);
+
+        var a = 100;
+    </script>
+</body>
+</html>

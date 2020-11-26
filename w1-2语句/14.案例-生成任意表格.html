@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生成任意表格</title>
+    <style>
+        #result {
+            margin-top: 20px;
+        }
+
+        table {
+            border: 1px solid #999;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table td {
+            border: 1px solid #999;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>生成任意表格</h1>
+    <label for="row">行：</label><input type="number" id="row" />
+    <label for="col">列：</label><input type="number" id="col" />
+    <button id="btn">生成表格</button>
+    <div id="result">
+        <!-- <table>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+    <script>
+        /**
+            * 生成任意表格
+                * html结构拼接
+         */
+
+        var row = document.getElementById('row');
+        var col = document.getElementById('col');
+        var result = document.getElementById('result');
+        var btn = document.getElementById('btn');
+
+        // 给按钮添加点击事件
+        btn.onclick = function () {
+            // 获取输入的行/列
+            var _row = row.value;
+            var _col = col.value;
+
+            // table用于存放表格结构
+            var table = '<table><tbody>'
+
+            // 利用循环生成行
+            for (var i = 1; i <= _row; i++) {
+                table += '<tr>';
+
+                // 利用循环生成列
+                for (var j = 1; j <= _col; j++) {
+                    // 生成随机颜色
+                    var r = parseInt(Math.random() * 256)
+                    var g = parseInt(Math.random() * 256)
+                    var b = parseInt(Math.random() * 256)
+                    table += '<td style="background-color:rgb(' + r + ',' + g + ',' + b + ')">单元格' + i + j + '</td>'
+                }
+
+                // 闭合tr标签
+                table += '</tr>'
+
+            }
+
+            // 闭合tbody,table
+            table += '</tbody></table>'
+            result.innerHTML = table;
+        }
+
+        /**
+           talbe = <table><tbody>
+           for
+               第1次循环:
+               table = <table><tbody><tr>
+               for
+                   table = <table><tbody><tr><td>111</td>
+                   table = <table><tbody><tr><td>111</td><td>111</td>
+               table = <table><tbody><tr><td>111</td><td>111</td></tr>
+               第2次循环:
+               table = <table><tbody><tr><td>111</td><td>111</td></tr><tr>
+               for
+                   table = <table><tbody><tr><td>111</td><td>111</td></tr><tr><td>111</td>
+                   table = <table><tbody><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td>
+               table = <table><tbody><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr>
+               第3次循环:
+               ...
+               第4次循环:
+               ...
+               第5次循环:
+               table = <table><tbody><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr>
+
+               闭合tbody,table
+               table = <table><tbody><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr><tr><td>111</td><td>111</td></tr></tbody></table>
+
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+/*
+阶乘的思路1：
+ 5! = 5*4*3*2*1
+   = 5*4!
+       4! = 4*3!
+              3! = 3*2!
+              	     2! = 2*1!
+              	     		1! = 1;
+
+*/
+function jiecheng(n){
+	if(n<=1){
+		return 1;
+	}
+	return n*jiecheng(--n)
+}
+jiecheng(5);//120
+jiecheng(4);//24
+jiecheng(1);//1
+
+/*阶乘的思路2：
+jiecheng(5){
+	return 5*jiecheng(4){
+		return 4*jiecheng(3){
+			return 3*jiecheng(2){
+				return 2*jiecheng(1){
+					return 1;
+				}
+			}
+		}
+	}
+}
+*/
