@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印出1900年到现在所有的闰年，并以每行四个数的形式输出</title>
+</head>
+
+<body>
+    <h1>打印出1900年到现在所有的闰年，并以每行四个数的形式输出</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            * 打印出1900年到现在所有的闰年，并以每行四个数的形式输出
+         */
+
+        // 获取元素
+        var result = document.getElementById('result');
+
+        // 找出所有闰年
+        var str = '';
+
+        // qty用于存放闰年数量
+        var qty = 0;
+        for (var year = 1900; year <= 2020; year++) {
+            if (year % 4 === 0 && year % 100 != 0 || year % 400 === 0) {
+                str += year + ',';
+                qty++;
+                if (qty % 4 === 0) {
+                    str += '<br/>'
+                }
+
+            }
+
+        }
+        result.innerHTML = str;
+    </script>
+</body>
+
+</html>

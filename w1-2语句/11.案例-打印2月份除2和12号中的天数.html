@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印2月份除2和12号中的天数</title>
+</head>
+
+<body>
+    <h1>打印2月份除2和12号中的天数</h1>
+    <script>
+        /**
+            * 打印2月份除2和12号中的天数
+                * 循环跳转
+                    * break : 结束（跳出）当前循环
+                    * continue: 跳过本次循环，继续下一次循环
+         */
+
+        for(var day=1;day<=28;day++){
+            // if(day!=2 && day!=12){
+            //     document.write(day + ',')
+            // }
+
+            if(day===2 || day===12){
+                // break;
+                continue;
+            }
+
+            document.write(day + ',');
+
+        }
+
+        // for(var day=28;day>=1;day--){
+
+        // }
+        
+    </script>
+</body>
+
+</html>

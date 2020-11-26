@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找出所有的水仙花数，三位数，各位立方和等于该数本身</title>
+</head>
+
+<body>
+    <h1>找出所有的水仙花数，三位数，各位立方和等于该数本身</h1>
+    <script>
+        /**
+            * 找出所有的水仙花数，三位数，各位立方和等于该数本身
+                如: 153 = 1^3 + 5^3 + 3^3
+         */
+
+        for(var num=100;num<1000;num++){
+            // 获取个位数字：
+            var ge = num%10;
+
+            // 获取十位数字：
+            var shi = parseInt(num/10)%10;
+
+            // 获取百位数字:
+            var bai = parseInt(num/100);
+
+            if(ge*ge*ge + shi*shi*shi + bai*bai*bai === num){
+                document.write(num + ', ')
+            }
+        }
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算任意数的阶乘</title>
+</head>
+
+<body>
+    <h1>计算任意数的阶乘</h1>
+    <input type="number" id="num" />
+    <button id="btn">计算阶乘</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 计算任意数的阶乘
+                * 5! = 1*2*3*4*5
+         */
+
+        // 获取元素
+        var num = document.getElementById('num');
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+        btn.onclick = function(){
+            var _num = num.value;
+
+            var res = 1;
+            for(var n=2;n<=_num;n++){
+                // res *= n;
+                res = res * n;
+                // 第1次：res = 1 * 2
+                // 第2次：res = 2 * 3
+                // 第3次：res = 6 * 4
+                // 第4次：res = 24 * 5
+            }
+
+            result.innerHTML = _num + '的阶乘为：'+res;
+        }
+    </script>
+</body>
+
+</html>

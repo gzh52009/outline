@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.练习-成绩判定</title>
+</head>
+
+<body>
+    <h1>07.练习-成绩判定</h1>
+    <input type="number" id="num" />
+    <button id="btn">成绩判定</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 07.练习-成绩判定
+                * 大于85 优秀
+                * 大于等于75小于等于85 良好
+                * 大于等于60小于75 及格
+                * 小于60 不及格
+         */
+
+        // 获取元素
+        var num = document.getElementById('num');
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+        // 给按钮添加点击事件
+        btn.onclick = function () {
+            // 获取输入的值
+            var _num = num.value * 1;
+
+            // if语句
+            // if (_num < 0 || _num > 100) {
+            //     result.innerHTML = '<strong style="color:#f00">输入的成绩不合法</strong>';
+            // } else if (_num > 85) {
+            //     result.innerHTML = '您的成绩很优秀';
+            // } else if (_num >= 75 && _num <= 85) {
+            //     result.innerHTML = '成绩良好';
+            // } else if (_num >= 60 && _num < 75) {
+            //     result.innerHTML = '刚刚好';
+            // } else {
+            //     result.innerHTML = 'are you ok?';
+            // }
+
+            switch (true) {
+                case _num > 85 && _num <= 100:
+                    result.innerHTML = '您的成绩很优秀';
+                    break;
+                case _num >= 75 && _num <= 85:
+                    result.innerHTML = '成绩良好';
+                    break;
+                case _num >= 60 && _num < 75:
+                    result.innerHTML = '刚刚好';
+                    break;
+                case _num < 60 && _num >= 0:
+                    result.innerHTML = 'are you ok?';
+                    break;
+                default:
+                    result.innerHTML = '<strong style="color:#f00">输入的成绩不合法</strong>';
+            }
+        }
+    </script>
+</body>
+
+</html>
