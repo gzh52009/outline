@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嵌套循环</title>
+</head>
+
+<body>
+    <h1>嵌套循环</h1>
+    <script>
+        /**
+            * 嵌套循环
+                
+            * 给循环添加标识
+         */
+
+         wai:for(var n=1;n<=5;n++){
+            
+                if(n==2){
+                    break;
+                }
+            nei:for(m=1;m<=5;m++){
+                console.log(666);
+
+                // break wai; // 跳出外层循环
+            }
+        }
+
+        /**
+            n=1
+                m=1
+                m=2
+                m=3
+                m=4
+                m=5
+            n=2
+               break; 
+        */
+        
+    </script>
+</body>
+
+</html>

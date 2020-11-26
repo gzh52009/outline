@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印99乘法表</title>
+    <style>
+        #result span{display: inline-block;margin:5px;width:80px;height:40px;line-height:40px;text-align: center;background-color: #ccc;}
+    </style>
+</head>
+
+<body>
+    <h1>打印99乘法表</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            * 打印99乘法表
+                * 内层循环受限于外层循环
+                * 字符串拼接
+         */
+
+         var result = document.getElementById('result');
+
+        // 用于存放99乘法表内容
+        var str = '';
+        // 外层循环控制行
+         for(var n=1;n<=9;n++){
+            // 内层循环控制列
+             for(var m=1;m<=n;m++){
+                //  console.log(m +'x' + n +'=' + m*n);
+                str = str + '<span>' + m +'&times;' + n +'=' + m*n + '</span>'; // <span>1x1=1</span>, <span>1x2=2</span>, 2x2=4
+             }
+
+             // 添加换行
+             str += '<br/>'
+         }
+         
+         result.innerHTML = str;
+    </script>
+</body>
+
+</html>
