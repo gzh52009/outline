@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编写生成4位数字验证码的函数，并显示在页面，点击重新生成验证码</title>
+    <style>
+        #success{display: none;color:#58bc58}
+    </style>
+</head>
+
+<body>
+    <h1>编写生成4位数字验证码的函数，并显示在页面，点击重新生成验证码</h1>
+    <div class="form" id="form">
+        <div class="form-item">
+            <label for="username">用户名：</label>
+            <input type="text" id="username">
+        </div>
+        <div class="form-item">
+            <label for="password">密码</label>
+            <input type="password" id="password">
+        </div>
+        <div class="form-item">
+            <label for="yzm">验证码：</label>
+            <input type="text" id="yzm">
+            <span id="code">1234</span>
+        </div>
+
+        <button id="btn">登录</button>
+    </div>
+    <div id="success">
+        登录成功，广州欢迎你，来了就是广州人
+    </div>
+    <script>
+        /**
+            * 编写生成4位数字验证码的函数，并显示在页面，点击重新生成验证码
+                * 思路
+                    1. 获取页面元素
+                    2. 进入页面生成4为数字的随机验证码，并写入#code元素
+                        * 点击#code重新生成验证码
+                    3. 点击登录，对比验证码与用户输入的是否一致
+                        * 一致则登录
+                        * 否则拒绝登录
+         */
+
+         var yzm = document.getElementById('yzm');
+         var code = document.getElementById('code');
+         var btn = document.getElementById('btn');
+         var form = document.getElementById('form');
+         var success = document.getElementById('success');
+
+         // 用于存放随机验证码
+         var randomNumber;
+
+         // 进入页面生成4为数字的随机验证码，并写入#code元素
+         create();
+         
+        
+        btn.onclick = function(){
+            var _yzm = yzm.value;
+            if(_yzm == randomNumber){
+                form.style.display = 'none';
+                success.style.display = 'block';
+            }else{
+                alert('验证码错误')
+            }
+        }
+
+        // 点击#code重新生成验证码
+        code.onclick = create;
+
+
+        function create(){
+            // 1000-9999
+            randomNumber = parseInt(Math.random()*(10000-1000)+1000);
+
+            // 把随机数写入页面
+            code.innerHTML = randomNumber;
+         }
+    </script>
+
+</body>
+
+</html>

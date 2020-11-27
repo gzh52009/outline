@@ -485,3 +485,99 @@
     * 调用
         * 手动调用： `函数名()`
     * 声明提前
+
+
+## day1-5
+
+### 复习
+* 嵌套循环
+    * 循环标识：给循环语句起名
+* 循环跳转
+    * break
+    * continue
+
+```js
+    var height = 5;
+    var qty = 0; // 记录篮球弹跳次数
+    while(true){
+        height *= 0.3;
+        qty++
+        if(height<0.1){
+            break;
+        }
+    }
+```
+* 函数
+    * 定义
+        * 声明式
+        * 赋值式
+        * 匿名函数
+    * 调用
+        * 手动调用（主动）： `函数名()`
+        * 事件驱动（被动）：`元素.事件=函数`
+    * 声明提前
+        * 变量声明提前：变量声明提前到当前作用域最开始的地方
+        * 函数声明提前：
+
+### 知识点
+* 作用域：变量使用使用范围
+     * 全局作用域：
+        > 在全局作用域下声明的变量称为**全局变量**
+     * 局部作用域（函数作用域）
+        > 在函数作用域下声明的变量称为**局部变量**
+* 变量访问规则：在作用域链中查找(就近原则)
+    * 先从当前函数查找，有变量a则使用并停止查找，无则进入第2步;
+    * 往父级函数查找，找到则使用并停止查找，无则进入第3步;
+    * 继续往上一层函数查找，依此类推，直到全局作用域，如果在全局作用域还是没找到，则报`a not defined`错误;
+    ```js
+        // 全局变量
+        var num = 10;
+
+        function sum(){
+            // 局部变量
+            var age = 18;
+
+            //console.log(num);// 10
+            //console.log(age);// 18
+
+            function test(){
+                var num = 20;
+                //console.log(num);//10
+                //console.log(age);//18
+                var show = function(){
+                    var num = 30;
+                    console.log(num);//10->20->30
+                }
+            }
+        }
+
+        function getData(){
+            console.log(num);//num
+        }
+
+        console.log(num); // 10
+        console.log(age); // 报错：age is not defined
+    ```
+
+    ```js
+        // 面试题：输出什么:20,undefined,10
+        var a = 10;
+        function test(){
+            // var a
+            console.log(a);
+            var a=20;
+        }
+        test();
+    ```
+    ```html
+        <script>
+            console.log(a);//报错
+        </script>
+        <script>
+            var a = 100;
+        </script>
+        <script>
+            console.log(a);// undefined,100,报错
+        </script>
+    ```
+* 在js中修改html元素的样式

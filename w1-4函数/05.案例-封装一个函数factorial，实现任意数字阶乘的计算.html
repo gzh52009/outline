@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个函数factorial，实现任意数字阶乘的计算</title>
+</head>
+<body>
+    <h1>封装一个函数factorial，实现任意数字阶乘的计算</h1>
+    <input type="number" id="num" />
+    <button id="btn">计算阶乘</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 封装一个函数factorial，实现任意数字阶乘的计算
+         */
+
+         // 获取元素
+         var num = document.getElementById('num');
+         var btn = document.getElementById('btn');
+         var result = document.getElementById('result');
+
+         btn.onclick = function(){
+            //  获取输入的值
+            var _num = num.value;
+            var _result = 1;
+            for(var i=2;i<=_num;i++){
+                _result *= i;
+            }
+
+            result.innerHTML = _num + '!=' + _result;
+         }
+    </script>
+    
+</body>
+</html>

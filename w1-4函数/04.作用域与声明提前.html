@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.作用域与声明提前</title>
+</head>
+<body>
+    <h1>04.作用域与声明提前</h1>
+    <!-- <script>
+        console.log(a); // undefined
+        var a = 100;
+        console.log(a); // 100
+    </script> -->
+    <script>
+        console.log('1=',a); // a is not defined
+    </script>
+    <script>
+        // 变量生命提前只能提前到当前script标签最顶部
+        var a = 100;
+    </script>
+    <script>
+        console.log('3=',a);// 100
+    </script>
+    
+</body>
+</html>

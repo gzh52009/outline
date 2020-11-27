@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个显示隐藏页面元素的函数</title>
+    <style>
+        #preview img{
+            width:200px;height:200px;border:5px solid #ccc;padding:5px;margin:5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>封装一个显示隐藏页面元素的函数</h1>
+    <div id="preview">
+        <img src="img/m5.jpg" />
+        <img src="img/m0.jpg" />
+        <img src="img/m1.jpg" />
+        <img src="img/m2.jpg" />
+        <img src="img/m3.jpg" />
+        <img src="img/m4.jpg" />
+    </div>
+    <button id="btn">隐藏</button>
+    <script>
+        /**
+            * 封装一个显示隐藏页面元素的函数
+         */
+
+        // 获取元素
+        var btn = document.getElementById('btn');
+        var preview = document.getElementById('preview');
+
+        // 用于控制#preview元素的显示和隐藏（默认显示：true）
+        var visibility = true;
+
+        // 给按钮添加点击事件
+        btn.onclick = function () {
+            if (visibility) {
+                preview.style.display = 'none';
+                visibility = false;
+                btn.innerHTML = '显示';
+            } else {
+                preview.style.display = 'block';
+                visibility = true;
+                btn.innerHTML = '隐藏'
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
