@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>计算1-20每个数的阶乘之和</title>
+	<script>
+		/*
+			1!+2!+3!+4!+5!…20!
+		 */
+		/*var sum = 0;
+		for(var i=1;i<=20;i++){
+
+			var fac = 1;
+			for(var j=1;j<=i;j++){
+				fac *= j;
+			}
+
+			sum += fac;
+		}
+		console.log(sum);*/
+
+		var sum = 0;
+		var fac = 1;
+		for(var i=1;i<=20;i++){
+			fac *= i;
+			sum += fac;
+		}
+		console.log(sum);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

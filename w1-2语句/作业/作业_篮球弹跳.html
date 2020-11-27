@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业day03_篮球弹跳</title>
+	<script>
+		/*
+			篮球从5米高的地方掉下来，每次弹起的高度是原来的30%，经过几次弹起，篮球的高度是0.1米
+		 */
+		
+		// 篮球开始的高度
+		var height = 5;
+
+		// 篮球弹跳次数
+		var times = 0;
+		while(height>0.1){
+			// 每次弹跳后的高度为原来的30%;
+			height *= 0.3;
+			times++;
+		}
+
+		console.log(times,height);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

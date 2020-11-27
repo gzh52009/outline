@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>小和尚挑水</title>
+
+</head>
+
+<body>
+    <h1>山上有一口缸可以装50升水，现在有15升水。老和尚叫小和尚下山挑水，每次可以挑5升。问：小和尚要挑几次水才可以把水缸挑满？通过编程解决这个问题。</h1>
+    <div id="output"></div>
+
+    <script>
+        /*
+            山上有一口缸可以装50升水，现在有15升水。老和尚叫小和尚下山挑水，每次可以挑5升。问：小和尚要挑几次水才可以把水缸挑满？通过编程解决这个问题。
+         */
+        
+       var qty = 0;
+       var water = 15;
+
+       while(water<50){
+            water += 5;
+            qty++;
+       }
+       console.log(water)
+
+        document.getElementById('output').innerHTML = '小和尚要挑'+ qty +'次水才可以把水缸挑满';
+    </script>
+</body>
+
+</html>

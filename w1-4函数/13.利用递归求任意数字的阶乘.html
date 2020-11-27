@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13.利用递归求任意数字的阶乘</title>
+</head>
+<body>
+    <h1>13.利用递归求任意数字的阶乘</h1>
+    <script>
+        /**
+            * 13.利用递归求任意数字的阶乘
+
+                5!=5*4*3*2*1      
+                  =5*4!
+                     =4*3!
+                        =3*2!
+                           =2*1!
+
+            推导公式：fac(5) = 5*fac(4) => fac(num) = num*fac(num-1)
+         */
+        function factorial(num){
+            // var result = 1;
+            // for(var i=2;i<=num;i++){
+            //     result *= i;
+            // }
+
+            // 递归结束条件
+            if(num===1){
+                return 1;
+            }
+
+            return num*factorial(num-1);
+        }
+
+        factorial(5);// 120
+    </script>
+</body>
+</html>

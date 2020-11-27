@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>叠数求和</title>
+	<script>
+		/*
+			输入两个数n，a，如n=3， a=2；
+			输出 2 + 22 + 222 的值。（不用输出式子）
+			如: n=4， a=3；
+			输出 3 + 33 + 333 + 3333的值。
+			提示: 
+			    + n = 3,相加三次,每次相加比前一次相加的数,多一位
+			    + 每次多的这个位数的值为`a,  3, 3*10+3, 33*10+3`
+		 */
+		
+		// 叠数数字
+		var num = 2;
+
+		// 叠数次数
+		var times = 3;
+
+		// 相加结果
+		var sum = 0;
+
+		for(var i=0;i<times;i++){
+			console.log(num);
+			sum += num;
+			num = num*10 + num%10;
+		}
+
+		console.log(sum);
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

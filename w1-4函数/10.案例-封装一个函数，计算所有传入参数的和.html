@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个函数，计算所有传入参数的和</title>
+</head>
+<body>
+    <h1>封装一个函数，计算所有传入参数的和</h1>
+    <script>
+        function sum(){
+            // console.log('arguments=',arguments)
+            // var a=10,b=20,c => 10+20+undefined
+            // var a=10,b=20,c=30;
+            // var res = a+b+c;
+            // console.log('res=',res);
+            // return res;
+            var total = 0;
+            for(var i=0;i<arguments.length;i++){
+               total += arguments[i];
+            }
+            // console.log(total);
+            return total;
+        }
+        
+        var num1 = sum(1,2);//3
+        var num2 = sum(10,20);//30
+        var num3 = sum(10,20,30);//30
+        var num4 = sum(10,20,30,40,50,60,70,80,90);//30
+    </script>
+</body>
+</html>

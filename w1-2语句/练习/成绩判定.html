@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>10成绩判定</title>
+	
+</head>
+<body>
+	<input type="text" id="score">
+	<button onclick="check()">判定</button>
+	<div id="output"></div>
+
+	<script>
+		/*
+			输入成绩，进行成绩判定(要求用if和switch两种写法)
+			* 大于85 优秀
+			* 大于等于75小于等于85 良好
+			* 大于等于60小于75 及格
+			* 小于60 不及格
+		 */
+		
+		// 获取元素
+		var score = document.getElementById('score');
+		var output = document.getElementById('output');
+
+		function check(){
+			// 获取输入的成绩
+			var _scroe = score.value;
+
+			var con = '';
+			switch(true){
+				case _scroe > 85 && _scroe<=100:
+					con = '优秀';
+					break;
+				case _scroe >= 75 && _scroe<=85:
+					con = '良好';
+					break;
+				case _scroe >= 60 && _scroe<75:
+					con = '及格';
+					break;
+				case _scroe < 60 && _scroe>=0:
+					con = '不及格';
+					break;
+				default:
+					con = '请输入正确的数字';
+			}
+
+			output.innerHTML = con;
+		}
+	</script>
+</body>
+</html>

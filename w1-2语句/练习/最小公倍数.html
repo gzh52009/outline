@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>求两个数的最大公约数</title>
+    <script>
+        /*
+            输入两个数，求两个数的最小公倍数
+            1)先找出两个数中的最大数
+            2)最大数不断递增，找出能整除两个数的数，然后退出循环
+
+            如: 9和6的最小公倍数是18
+         */
+        function lcm(){
+            // 获取输入的值
+            var num1 = document.getElementById('num1').value;
+            var num2 = document.getElementById('num2').value;
+            var output = document.getElementById('output');
+
+            // 1）先找出两个数中的最大数
+            var max = num1>num2 ? num1 : num2;
+
+            for(var i=max;i>=1;i++){
+                if(i%num1===0 && i%num2===0){
+                   output.innerHTML = num1 + '，' + num2 + '的最小公倍数为：' + i;
+                    break;
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>求两个数的最小公倍数</h1>
+    <input type="text" id="num1">
+    <input type="text" id="num2">
+    <button onclick="lcm()">最小公倍数</button>
+    <div id="output"></div>
+</body>
+
+</html>

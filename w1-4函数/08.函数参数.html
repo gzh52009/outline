@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08.函数参数</title>
+</head>
+<body>
+    <h1>08.函数参数</h1>
+    <script>
+        /**
+            * 封装一个加法运算函数
+                * 参数
+                    * 形参：定义函数时的参数
+                    * 实参：函数执行时的参数
+                    
+                    执行函数时，把实参赋值给形参
+         */
+        function sum(a,b){
+            // a,b为形参，等效于在函数内部定义局部变量：
+            // var a=10; var b=20;
+            // var a=100; var b=200;
+            console.log(a + b);
+        }
+
+        sum(10,20);// 30
+        sum(100,200);// 300
+
+
+    </script>
+</body>
+</html>

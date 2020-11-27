@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数递归</title>
+</head>
+<body>
+    <h1>函数递归</h1>
+    <script>
+        var qty = 0;
+        function rec(){
+            qty++;
+            console.log('qty=',qty);
+            
+            // 有条件地return 
+            if(qty>=10){
+                return;
+            }
+
+            // 递归调用
+            rec();
+        }
+
+        rec();
+    </script>
+</body>
+</html>

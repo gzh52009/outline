@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，调用函数求1+1/3+...+1/n</title>
+</head>
+
+<body>
+    <h1>编写一个函数，输入n为偶数时，调用函数求1/2+1/4+...+1/n,当输入n为奇数时，调用函数求1+1/3+...+1/n</h1>
+    <script>
+        function jiou(num) {
+            // var num
+            var result = 0;
+
+            // if(num%2===0){
+            //     for(var i=2;i<=num;i+=2){
+            //         result += 1/i;
+            //     }
+            // }else{
+            //     for(var i=1;i<=num;i+=2){
+            //         result += 1/i;
+            //     }
+            // }
+
+            // var i = num%2===0 ? 2 : 1
+            for (var i = num % 2 === 0 ? 2 : 1; i <= num; i += 2) {
+                result += 1 / i;
+            }
+
+            return result;
+        }
+
+        var res1 = jiou(6); // 计算：1/2+1/4+1/6
+        var res2 = jiou(7); // 计算：1/1+1/3+1/5+1/7
+        console.log('res1=', res1)
+        console.log('res2=', res2)
+    </script>
+</body>
+
+</html>

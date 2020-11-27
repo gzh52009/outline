@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>求出1-1/2+1/3-1/4…..1/100的和</title>
+
+</head>
+
+<body>
+    <h1>求出1-1/2+1/3-1/4…..1/100的和</h1>
+    <div id="output"></div>
+
+    <script>
+        /*
+            求出1-1/2+1/3-1/4…..1/100的和
+         */
+        
+        var sum = 0;
+        for(var num=1;num<=100;num++){
+            if(num%2===0){
+                sum -= 1/num;
+            }else{
+                sum += 1/num
+            }
+        }
+
+        document.getElementById('output').innerHTML = '结果：' + sum;
+    </script>
+</body>
+
+</html>

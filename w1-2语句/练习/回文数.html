@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03回文数</title>
+	<script>
+		for(var i=10000;i<99999;i++){
+			var g = i%10;
+			var s = parseInt(i/10)%10;
+			var b = parseInt(i/100)%10;
+			var q = parseInt(i/1000)%10;
+			var w = parseInt(i/10000);
+
+			if(g===w && s===q && b===s+1 && s===g+1){
+				console.log(i);
+			}
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

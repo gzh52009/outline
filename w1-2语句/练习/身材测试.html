@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05身材测试</title>
+	
+</head>
+<body>
+	<h1>完美身材测试程序</h1>
+	<div><label for="high">身高：</label><input type="text" id="high"></div>
+	<div><label for="weight">体重：</label><input type="text" id="weight"></div>
+	<button id="btn">测试</button>
+	<div id="output"></div>
+
+	<script>
+		/*
+			开发一款软件，根据公式（身高-108）*2=体重，可以有10斤左右的浮动。来观察测试者体重是否合适
+				1）获取页面元素
+				2）给按钮添加点击事件
+					* 获取输入的身高和体重
+					* 根据公式计算标准体重
+					* 输出结果到#output
+		 */
+		
+		// 1）获取页面元素
+		var high = document.getElementById('high');
+		var weight = document.getElementById('weight');
+		var btn = document.getElementById('btn');
+		var output = document.getElementById('output');
+
+
+		// 2）给按钮添加点击事件
+		// 匿名函数：没有名字的函数
+		btn.onclick = function(){
+			// * 获取输入的身高和体重
+			var _high = high.value;
+			var _weight = weight.value;
+
+			// 计算标准体重
+			var bz_weight = (_high-108)*2;
+
+			// 完美身材
+			if(_weight == bz_weight){
+				output.innerHTML = '完美身材，你可以当健身教练了';
+			}
+
+			// 标准身材
+			else if(_weight >= bz_weight-10 && _weight <= bz_weight+10){
+				output.innerHTML = '你的身材还行，继续保持';
+			}
+
+			// 超重
+			else if(_weight > bz_weight+10){
+				output.innerHTML = '胖纸，你能不能少吃点';
+			}
+
+			// 超瘦
+			else if(_weight < bz_weight-10){
+				output.innerHTML = '你太瘦了，多吃肉';
+			}
+
+		}
+
+	</script>
+</body>
+</html>

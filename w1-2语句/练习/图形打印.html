@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>图形打印</title>
+    <script>
+    /*
+        [案例]图形打印
+        *
+        **　
+        ***
+        ****
+        *****
+     */
+    for(var i=0;i<6;i++){
+        for(var j=0;j<=i;j++){
+            document.write('*');
+        }
+        document.write('<br>');
+    }
+
+    /*
+        [案例]图形打印
+            *
+           **　
+          ***
+         ****
+        *****
+     */
+    for(var i=1;i<6;i++){
+        for(var j=1;j<6;j++){
+            if(j>=6-i){
+                document.write('*');
+            }else{
+                document.write('&nbsp;');
+            }
+        }
+        document.write('<br>');
+    }
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
