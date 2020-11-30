@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.基本数据类型与引用数据类型</title>
+</head>
+
+<body>
+    <h1>07.基本数据类型与引用数据类型</h1>
+    <script>
+        /**
+            07.基本数据类型与引用数据类型
+                * 两种数据类型在内存中的状态
+
+         */
+        var username = 'tiantian'
+        var age = 28;
+        var hobby = ['B6','8号技师','维多利亚的秘密','足球宝贝'];
+        
+        // 复制基本数据类型（成功）
+        var nickname = username;
+        var nianling = age;
+        nianling++;
+
+        // 复制引用数据类型(失败)
+        // 只是复制了<引用地址>
+        var aihao = hobby;
+        aihao[1] = '6号技师';// aihao和hobby都被修改
+
+
+        // 复制引用数据类型(在堆内存中创建一个一模一样的数据)
+        // var aihao = [];
+        // for(var i=0;i<hobby.length;i++){
+        //     aihao[i] = hobby[i];
+        // }
+        var aihao = hobby.slice(0);
+    </script>
+</body>
+
+</html>

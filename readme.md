@@ -707,3 +707,46 @@ function fib(month){
     
     return fib(month-1)+fib(month-2);
 }
+
+## 知识点
+* 数组定义
+* 数组操作
+    > 索引值和length
+    * 添加  增
+    * 删除  删
+    * 修改  改
+    * 读取  查
+* 数组常用方法
+    * 添加
+        * push()
+        * unshift()
+    * 删除
+        * pop()
+        * shift()
+    * 添加/删除/替换：splice(start,deleteNum,...)
+        * 添加：arr.splice(1,0,10,20)
+        * 删除：arr.splice(0,1)
+        * 替换：arr.splice(0,1,10)
+    * join()：将所有数组元素用分隔符连接成一个字符串
+    
+* 数据类型
+    * 基本数据类型（值类型）
+        * String
+            > 引号引起来的数据
+        * Number
+            > 0-9
+        * Boolean
+            * true
+            * false
+        * Undefined
+            * undefined
+        * Null
+            * null
+    * 引用数据类型
+        * Object
+            * Array         数组
+            * Function      函数
+
+    ```js
+        var num = '10'
+    ```

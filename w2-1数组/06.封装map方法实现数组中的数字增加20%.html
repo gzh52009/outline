@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>封装一个map(arr)函数，把数组中的每一个数字都增加20%，并返回新的数组</title>
+</head>
+
+<body>
+    <h1>封装一个map(arr)函数，把数组中的每一个数字都增加20%，并返回新的数组</h1>
+    <script>
+        /**
+            封装一个map(arr)函数，把数组中的每一个数字都增加20%，并返回新的数组
+               [10,15,2,32,5,4,20,8,48,54,6]
+
+         */
+        var arr = [10, 15, 2, 32, 5, 4, 20, 8, 48, 54, 6];
+
+        function map(a,beishu) {
+            // var a=xx,beishu
+            if(beishu === undefined){
+                beishu = 1;
+            }
+            
+            var result = [];
+            for(var i=0;i<a.length;i++){
+                result[i] = a[i]*beishu
+            }
+            return result;
+        }
+
+
+        map(arr,1.2);// [12,18,2.4....]
+        map(arr);// [10, 15, 2, 32, 5, 4, 20, 8, 48, 54, 6];
+    </script>
+</body>
+
+</html>
