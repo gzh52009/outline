@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的定义</title>
+</head>
+<body>
+    <h1>数组的定义</h1>
+    <script>
+        /**
+            * 数组定义方式
+                * 字面量(推荐)
+                * 使用构造函数创建
+            * 数组读取
+                * 索引值： 0~length-1
+                * length
+            * 数组的写入
+                * 
+         */
+
+        // 字面量(推荐)
+         var arr0 = []; // 空数组
+         var arr1 = [10,20,30];
+        
+        //  使用构造函数创建
+         var arr2 = new Array();// 空数组
+         var arr3 = new Array(10,20,30);
+
+        // 数组读取与写入
+        var userlist = ['laoxie','xiaoxie','tiantian','lili'];
+
+        userlist[0];//laoxie
+        userlist[2];// tiantian
+        userlist[userlist.length-1];// lili
+
+        // 添加：
+        userlist[4] = '王一博';
+
+        // 修改：修改已存在的数组元素
+        userlist[3] = '丁真';
+
+        console.log('userlist=',userlist);
+
+        // 遍历
+        for(var i=0;i<userlist.length;i++){
+            console.log(i,userlist[i])
+        }
+    </script>
+</body>
+</html>

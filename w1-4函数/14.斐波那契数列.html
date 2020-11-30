@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14.斐波那契数列</title>
+</head>
+
+<body>
+    <h1>14.斐波那契数列</h1>
+    <script>
+        /**
+                * 斐波那契数列（兔子数列）
+                月份：  1   2   3   4   5   6   7   8   9   10  11  12  13
+                数量：  1   1   2   3   5   8   13  21  34  55  89  144 
+    
+                推导公式：fib(13) = fib(12) + fib(11)
+         */
+
+
+        function fib(month) {
+            // 递归退出条件
+            if (month <=2 ) {
+                return 1;
+            }
+
+            return fib(month - 1) + fib(month - 2);
+        }
+        
+        for(var i=1;i<=12;i++){
+            console.log(i + '月=',fib(i));
+        }
+    </script>
+</body>
+
+</html>

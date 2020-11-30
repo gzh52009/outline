@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建一个包含50个三位数的随机数组</title>
+    <style>
+        #result{
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h1>创建一个包含50个三位数的随机数组</h1>
+    <div id="result"></div>
+    <script src="../utils.js"></script>
+    <script>
+        /**
+            创建一个包含50个三位数的随机数组
+            [123,312,342,123,127,....]
+
+            join(分隔符): 把数组元素利用分隔符（默认逗号）拼接成一个字符串
+         */
+
+         var result = document.getElementById('result');
+
+         var arr = [];
+         
+         // 利用for循环实现随机数组
+         for(var i=0;i<50;i++){
+             arr[i] = randomNumber(100,999);
+         }
+
+
+         console.log('arr=',arr);
+
+         result.innerHTML = arr.join('|');
+        
+    </script>
+</body>
+</html>

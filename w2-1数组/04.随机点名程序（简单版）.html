@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机点名程序（简单版）</title>
+    <style>
+
+        #result {
+            color:#f00;font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>03.随机点名程序（简单版）</h1>
+    <div id="userlist"></div>
+    <button id="btn">随机点名</button>
+    <div id="result"></div>
+    <script src="../utils.js"></script>
+    <script>
+        /**
+            03.随机点名程序（简单版）
+               * 思路
+                1. 把所有名字写入页面
+                2. 点击按钮随机获取一个人名
+                    * 生成随机索引值
+                    * 通过索引值获取对应认名
+                    * 
+                * 把点击结果显示到#userlist中并高亮显示
+         */
+        var userlist = document.getElementById('userlist');
+        var result = document.getElementById('result');
+        var btn = document.getElementById('btn');
+
+        var namelist  = ['郭琪龙','罗稀金','李健豪','黄海','黄国昌','靳思娴','韦尚彬','罗跃','梁昊阳','吴晓蓉','高桂宁','龙飞天','王业亮','黄健鹏','王翠萍','林炜堂','刘冲','史厚成','雷海棠','黄春丽','陈锦华','黄富','杨贵兴','柯舒仁','张森辉','林明敏','罗嘉敏','陈芳林','黄业聪','杨丽颖','邹洋','刘广铭','林佳源','秦瑶','陆成旦','罗梓胜','潘光通','郭子铭','林丽纯','丘子森','杨丽军','吴彤博','邓智钊','黄治武','胡鑫','郭飞','覃现华','张地长','刘传深','朱文豪','钟健','吴之赛','夏梓键','蹇旭','杨辉','杨才钦','李粤','兰善林','林洋','许婷'];
+
+        // 1. 把所有名字写入页面
+        userlist.innerHTML = namelist.join(' + ')
+
+        btn.onclick = function(){
+            var index = parseInt(Math.random()*namelist.length);
+
+            result.innerHTML = '中奖名单：'+ namelist[index];
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的常用方法</title>
+</head>
+
+<body>
+    <h1>03.数组的常用方法</h1>
+    <script src="../utils.js"></script>
+    <script>
+        /**
+            03.数组的常用方法
+                * 添加：返回添加后的数组长度
+                    * 后面添加: push()
+                    * 前面添加: unshift()
+                * 删除：返回删除的元素
+                    * 删除最后一个：pop()
+                    * 删除第一个：shift()
+                * 添加/删除/替换：splice(start,deleteNum,...item) 返回被删除的元素组成的数组
+                    * 删除：arr.splice(1,2) // 从索引值1开始，删除2个数组元素
+                    * 添加：arr.splice(1,0,'html5','css3')
+                    * 替换：arr.splice(1,1,'photoshop')
+                * join(分隔符): 把数组元素利用分隔符（默认逗号）拼接成一个字符串
+                
+                * 方法的返回值
+         */
+        var arr = ['html', 'css', 'javascript'];
+
+        console.log('初始值=',arr);
+
+        // 在前面添加
+        var res1 = arr.unshift('markdown','PS');
+        console.log('res1=',res1);
+
+        // 在后面添加
+        var res2 = arr.push('php','mysql');
+        console.log('res2=',res2);
+
+        console.log('添加=', arr);
+
+        // 删第一个
+        var res3 = arr.shift();
+        console.log('res3=',res3);
+
+        // 删除最后一个
+        var res4 = arr.pop();
+        console.log('res4=',res4);
+
+        console.log('删除=', arr);
+
+        // 删除/添加替换
+        // 删除
+        var res5 = arr.splice(1,2);
+        console.log('splice(1,2)=',arr);
+        console.log('splice删除返回值=',res5);
+
+        // 添加
+        var res6 = arr.splice(1,0,'html5','css3')
+        console.log('splice(1,0)=',arr);
+        console.log('splice添加返回值=',res6);
+
+        // 替换:先删除，后添加
+        var res7 = arr.splice(0,1,'photoshop');
+        console.log('arr.splice(0,1)',arr);
+        console.log('splice替换返回值=',res7);
+    </script>
+</body>
+
+</html>
