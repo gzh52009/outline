@@ -785,3 +785,41 @@ function fib(month){
 * 数组排序
     > 专业术语：升序，降序
     * 冒泡排序
+
+* 对象
+    * 对象的定义
+    * 对象操作( CRUD )
+        > 方括号，点语法
+        * 增
+        * 删
+        * 改
+        * 查
+* ES5的数组方法
+    > ECMAScript 5 在2009年推出
+    * Array.isArray()
+    ```js
+        // 判断数据类型 typeof
+        typeof 12; // numnber
+        typeof 'abc'; // string
+        typeof true; // boolean
+        typeof undefined; // undefined
+        typeof null; // object
+        typeof []; // object
+        typeof {}; // object
+
+        var arr = [10,20,30]
+    ```
+    * 索引方法
+        * indexOf()
+        * lastIndexOf()
+    * 迭代方法
+        * forEach(fn)
+        * map(fn)
+        * filter(fn)
+        * some(fn)
+        * every(fn)
+        > fn(item,index,array){}
+    * 归并方法
+        * reduce(fn,initVal)
+        * reduceRight(fn,initVal)
+        > fn(prev,item,index,array){}

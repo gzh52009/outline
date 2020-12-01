@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分别计算出以上数组的最大值，最小值和平均值，并输出他们的索</title>
+</head>
+
+<body>
+    <h1>分别计算出以上数组的最大值，最小值和平均值，并输出他们的索</h1>
+    <script>
+        /**
+            * 分别计算出以上数组的最大值，最小值和平均值，并输出他们的索引值
+                * 假设第一个是最大值，遍历数组，对比看还有没有比它更大的数
+                    * 有：替换假设的值，并记录索引值
+                * 假设第一个是最小值，遍历数组，对比看是否还有比它更小的值
+                    * 有：替换假设的值，并记录索引值
+         */
+        var arr = [10,8,32,55,18,9,11,2,30,16,19,20];
+
+        // 假设第一个是最大值
+        var maxIdx = 0
+        var max = arr[maxIdx];
+
+        // 假设第一个是最小值
+        var minIdx = 0;
+        var min = arr[minIdx]
+         
+        // for(var i=0;i<arr.length;i++){
+
+        // }
+
+        arr.forEach(function(item,idx){
+            if(item>max){
+                max = item;
+                maxIdx = idx;
+            }
+
+            if(item<min){
+                min = item;
+                minIdx = idx;
+            }
+        });
+
+        console.log('最大值=',max,'索引值=',maxIdx)
+        console.log('最小值=',min,'索引值=',minIdx)
+
+        var total = arr.reduce(function(prev,item){
+            return prev+item;
+        },0);
+
+        console.log('平均值=',(total/arr.length).toFixed(2))
+
+    </script>
+</body>
+
+</html>

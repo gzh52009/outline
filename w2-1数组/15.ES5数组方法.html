@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15.ES5数组方法</title>
+</head>
+
+<body>
+    <h1>15.ES5数组方法</h1>
+    <script>
+
+        /**
+            * 15.ES5数组方法
+                * Array.isArray()   判断是否为数组，返回Boolean
+                * indexOf(keyword,start)/lastIndexOf()
+                    * start 查询起始索引值，默认为0
+                * 迭代（遍历）方法
+                    * forEach()     没有返回值
+                    * map()         返回数组
+                    * filter()      返回数组
+                    * some()        返回Boolean
+                    * every()       返回Boolean
+                * 归并方法
+                    * reduce(fn,initVal)/reduceRight(fn,initVal)
+         */
+
+        var arr = [10, 20, 30, '60', 20];
+
+        Array.isArray(arr);// true;
+
+        arr.indexOf(20);// 1
+        arr.indexOf(60);// -1
+
+        function has(arr, val) {
+            // var arr
+            // for(var i=0;i<arr.length;i++){
+            //     if(arr[i] === val){
+            //         return true;
+            //     }else{
+            //         return false;
+            //     }
+            // }
+            // var result = false;
+
+            // for(var i=0;i<arr.length;i++){
+            //     if(arr[i] === val){
+            //         result = true;
+            //     }
+            // }
+
+            // return result;
+            return arr.indexOf(val) >= 0
+        }
+        has(arr, 20);//false
+        has(arr, 10);//true
+
+        var data = [{
+            id: '001',
+            name: 'iphone7 plugs',
+            imgurl: 'img/m0.jpg',
+            price: 5899.00,
+            sale: 5888.00,
+            color: '土豪金',
+            sales: 180
+        }, {
+            id: '002',
+            name: 'Note7',
+            imgurl: 'img/m1.jpg',
+            price: 3899.00,
+            sale: 998.00,
+            color: '黑色',
+            sales: 15
+        }, {
+            id: '003',
+            name: '荣耀7',
+            imgurl: 'img/m2.jpg',
+            price: 1999.00,
+            sale: 1899.00,
+            color: '白色',
+            sales: 10803
+        }, {
+            id: '004',
+            name: '耗子尾汁',
+            imgurl: 'img/m3.jpg',
+            price: 19.00,
+            sale: 3.50,
+            color: '黑色',
+            sales: 280
+        }, {
+            id: '005',
+            name: '螺蛳粉',
+            imgurl: 'img/m4.jpg',
+            price: 18.00,
+            sale: 8.00,
+            color: '白色',
+            sales: 21290
+        }, {
+            id: '006',
+            name: '隆江猪脚饭',
+            imgurl: 'img/m5.jpg',
+            price: 12.00,
+            sale: 10.00,
+            color: '棕色',
+            sales: 12920
+        }];
+
+        // forEach(fn): 遍历，可以用来替代for循环
+        var res1 = data.forEach(function(item,index,array){
+            // console.log('item=',item)
+            // console.log('index=',index)
+            console.log('array=',array)
+        });
+        console.log('forEach返回值=',res1);
+
+        // map()：映射成另一个新数组，数组元素取决于函数的返回值
+        var res2 = data.map(function(item){
+            return item.name;
+        });
+        console.log('map返回值=',res2);
+
+        // filter(fn): 过滤，返回一个新数组
+        // 过滤哪些数据，取决于函数的返回值
+        // 返回true: 保留
+        // 返回false: 删除
+        var res3 = data.filter(function(item){
+            // 过滤价格>=3000
+            return item.price<=20;
+        });
+
+        console.log('filter返回值=',res3);
+
+        // some(fn): 如果该函数中任何一项返回 true，则返回true
+        var res4 = data.some(function(item){
+            console.log(item)
+            return item.name === '耗子尾汁';
+        });
+
+        console.log('some返回值',res4);
+
+        // every(fn): 如果该函数对每一项都返回 true，则返回true
+        var res5 = data.every(function(item){
+            console.log(item)
+            return item.name === '耗子尾汁';
+        });
+
+        console.log('every返回值',res5);
+
+        // 归并方法
+        // reduce(fn,initVal)
+        // 计算所有商品的价格总和
+        var total = data.reduce(function(prev,item){
+            // prev: 前一次迭代的返回值（第一次时为初始值）
+            console.log('prev=',prev,item.price)
+            return prev+item.price;
+        },0);
+
+        console.log('商品总价=',total);
+
+    </script>
+</body>
+
+</html>
