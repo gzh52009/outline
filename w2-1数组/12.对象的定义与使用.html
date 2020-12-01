@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.对象的定义与使用</title>
+</head>
+
+<body>
+    <h1>12.对象的定义与使用</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            12.对象Object的定义与使用
+         */
+
+         var arr = [10,20,30];
+         arr[1];//20;
+
+         var obj = {
+            //  属性:属性值
+            username:'xiaoxie',
+            age:32,
+            gender:'女'
+         }
+
+         /**
+            * 对象的操作
+                * 方括号
+                * 点语法
+          */ 
+        // 增：添加属性
+        obj.password = 'xx123';
+        obj['nickname'] = '冬鸽';
+
+        // 删：删除属性
+        delete obj.gender;
+        // delete obj['gender'];
+
+        // 改：修改现有属性
+        obj.age = 33;
+
+        // 查：读取属性值
+        var key = 'username';
+        obj[key];
+        console.log('方括号=',obj['username']); // xiaoxie
+        console.log('点语法=',obj.username);
+
+        console.log('obj=',obj);
+
+
+        // 遍历对象：for...in
+        for(var key in obj){
+            // 遍历过程中，不断把属性名赋值给key变量
+             console.log('key=',key,typeof key)
+
+            
+             console.log('value=',obj[key])
+         }
+        
+    </script>
+</body>
+
+</html>

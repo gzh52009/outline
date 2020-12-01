@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13.案例-显示最新输入的新闻信息</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        .news-list {
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .news-list h4 {
+            margin: 0 0 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .news-list ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            line-height: 2;
+        }
+
+        .form {
+            margin: 100px auto 0;
+            width: 600px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .form input {
+            float: left;
+            width: 480px;
+            height: 50px;
+            box-sizing: border-box;
+            padding: 10px;
+        }
+
+        .form button {
+            float: left;
+            width: 120px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>13.案例-显示最新输入的新闻信息</h1>
+    <div class="news-list">
+        <h4>最新消息</h4>
+        <ul id="newsList">
+
+        </ul>
+    </div>
+
+    <div class="form">
+        <input type="text" id="news"><button id="btnAdd">添加</button>
+    </div>
+    <script>
+        /**
+            * 显示最新输入的新闻信息
+                1. 把现有消息写入#newList
+                    * 遍历数组，拼接html代码
+                2. 点击添加
+                    * 获取输入框信息
+                    * 把信息写入newslist数组：unshift
+         */
+        var btnAdd = document.getElementById('btnAdd');
+        var newsList = document.getElementById('newsList');
+        var news = document.getElementById('news');
+
+        var newslist = [
+            '小明由于调戏女老师再次被滚粗教室',
+            'iPhone10发布,屏幕高度亮瞎了所有小伙伴',
+            '为了弘扬乐于助人的精神，中国人大开会决定授予老王“中国好邻居”称号'
+        ];
+
+        render();
+
+        // 点击按钮添加新消息
+        btnAdd.onclick = function () {
+            var _news = news.value;
+            newslist.unshift(_news);
+
+            render();
+        }
+
+        function render(){
+            var html_list = ''
+
+            for (var i = 0; i < newslist.length; i++) {
+                html_list += '<li><a href="#">' + (i + 1) + '. ' + newslist[i] + '</a></li>'
+            }
+
+            newsList.innerHTML = html_list;
+
+            // 清空输入框
+            news.value = '';
+
+            // 自动获得焦点
+            news.focus();
+        }
+    </script>
+</body>
+
+</html>

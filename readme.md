@@ -728,6 +728,7 @@ function fib(month){
         * 删除：arr.splice(0,1)
         * 替换：arr.splice(0,1,10)
     * join()：将所有数组元素用分隔符连接成一个字符串
+    * slice()
     
 * 数据类型
     * 基本数据类型（值类型）
@@ -750,3 +751,37 @@ function fib(month){
     ```js
         var num = '10'
     ```
+
+## day2-2
+
+### 复习
+* 定义
+    * 字面量
+    * 构造函数
+* 操作
+    > 索引值：0到length-1，lenght:数组长度
+    * 增
+        arr[arr.length] = 11
+    * 删：arr.length = 0
+    * 改：
+    * 查
+* 常用方法
+    * 增加: 返回值为添加后的数组长度
+        * push()
+        * unshift()
+    * 删除: 返回被删除的元素
+        * pop()
+        * shift()
+    * 添加/删除/替换：splice(start,deleteNum,...items)
+    * 拼接数组元素：join(分隔符)
+    * 截取：slice(start,end), 支持负数
+        * 复制数组：arr.slice(0)
+
+* 了解一个函数/方法的**参数**和**返回值**
+
+* 引用数据类型与基本数据类型的区别
+
+### 知识点
+* 数组排序
+    > 专业术语：升序，降序
+    * 冒泡排序

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09.冒泡排序</title>
+</head>
+
+<body>
+    <h1>09.冒泡排序</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            09.冒泡排序
+              * 当前元素跟下一个元素对比, 把大的逐个往后排列
+              * 一次循环只能把最大的往后排列，要排完所有的数据，则需要多次循环
+         */
+
+        var price = [29, 9, 299, 19, 198, 998, 598, 69];
+
+        document.write('<span style="color:#58bc58">' + price + '</span><br/>')
+
+        for (var j = 0; j < price.length; j++) {
+            for (var i = 0; i < price.length - 1 - j; i++) {
+                console.log('times')
+                if (price[i] > price[i + 1]) {
+                    // 如果当前元素比下个元素大，则互换位置
+                    var temp = price[i]; // 先保存当前值到变量
+                    price[i] = price[i + 1];
+                    price[i + 1] = temp;
+                }
+            }
+            document.write(price + '<br/>')
+
+        }
+        document.write('<span style="color:#f00">' + price + '</span><br/>')
+        document.write('<span style="color:#f00">' + price.reverse() + '</span><br/>')
+
+
+    </script>
+</body>
+
+</html>

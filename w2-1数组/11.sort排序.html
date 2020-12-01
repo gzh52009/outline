@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.选择排序</title>
+</head>
+
+<body>
+    <h1>11.sort排序</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            11.sort排序
+              sort(): 默认以字符串排序
+              fort(fn)：以函数作为参数，以函数的返回值作为排序规则
+                * 返回正数
+                * 返回0
+                * 返回负数
+         */
+
+        var price = [9, 29, 299, 19, 198, 6, 998, 598, 69];
+        document.write('<span style="color:#58bc58">' + price + '</span><br/>')
+        // price.sort();
+        price.sort(function(a,b){
+            // sort函数内部分别对比数组当前值与下一个值
+            console.log(a,b);
+            // if(a>b){
+            //     return 1;
+            // }else if(a===b){
+            //     return 0
+            // }else{
+            //     return -1;
+            // }
+            return a-b;
+        });
+
+        document.write('<span style="color:#f00">' + price + '</span><br/>')
+    </script>
+</body>
+
+</html>

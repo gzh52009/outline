@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.选择排序</title>
+</head>
+
+<body>
+    <h1>10.选择排序</h1>
+    <div id="result"></div>
+    <script>
+        /**
+            10.选择排序
+              * 把假设最小的元素分别跟后面的元素对比, 把小的逐个往前排列
+         */
+
+        var price = [29, 9, 299, 19, 198, 6, 998, 598, 69];
+        // [6, 9, 299, 19, 198, 29, 998, 598, 69];
+
+
+        document.write('<span style="color:#58bc58">' + price + '</span><br/>')
+        for (var i = 0; i < price.length; i++) {
+            // 假设第一个最小
+            var minIdx = i;
+            for (var j = i+1; j < price.length; j++) {
+                // 把最小值与后面的值进行对比
+                // 如果还有比它更小的，则修改minIdx的值
+                if (price[j] < price[minIdx]) {
+                    minIdx = j;
+                }
+            }
+
+            // 找到最小值后，逐个往前排列（与当前值互换位置）
+            if (minIdx != i) {
+                var temp = price[i];
+                price[i] = price[minIdx]
+                price[minIdx] = temp;
+            }
+            document.write(price + '<br/>')
+        }
+
+        document.write('<span style="color:#f00">' + price + '</span><br/>')
+
+
+    </script>
+</body>
+
+</html>
