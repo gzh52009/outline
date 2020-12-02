@@ -897,3 +897,53 @@ function fib(month){
         var str3 = 'I\'m laoxie'
     ```
     * length属性
+
+
+* 正则表达式
+    * 定义
+        * 字面量
+        * 构造函数
+        ```js
+            // 字面量
+            var reg = /laoxie/ 
+
+            var username = 'laoxie'
+            var reg = new RegExp(username)
+        ```
+    * 参数
+        * i ： 忽略大小写
+        * g ： 全部匹配
+        ```js
+            var reg = /laoxie/ig
+
+            var reg = new RegExp('laoxie','ig')
+        ```
+
+* 编码与字符集
+    * 二进制(01)
+        > 8个二进制位表示一个字节
+        ```js
+            string      ASCII       二进制(2^8=256)
+            a       ->  97          ->  01100001
+            A       ->  65          ->  1000001
+
+            甜      ->   GB2312     ->  01110101 01110101
+            甜      ->   GBK        ->  01110101 01110101 01110101
+            繁体    ->   BIG5       ->  01110101 01110101 01110101
+
+            世界文字 ->  unicode  -> 01110101 01110101 01110101 01110101
+                        utf-8        用1-4个字节表示一个字符
+
+
+        ```
+    * 乱码的根源：字符编码无法识别文字
+    * 计算机容量单位：
+        * T
+        * G
+        * M
+        * K     1024Byte
+        * Byte  字节（一个英文字符大小为一个字节）
+    * 编码转换
+        * 字符->编码：str.charCodeAt(idx)
+        * 编码->字符：String.fromCharCode(code)
+    * 加密与解密

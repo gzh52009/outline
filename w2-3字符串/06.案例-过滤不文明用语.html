@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.案例-过滤不文明用语</title>
+    <style>
+        .container{width:600px;margin:0 auto;}
+        textarea{display: block;margin:10px 0;width:100%;}
+        ul{list-style:none;padding:0;margin:0;}
+        #msglist li{padding:10px;border-bottom:1px dotted #999;margin-bottom:10px;}
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>06.案例-过滤不文明用语</h1>
+        <ul id="msglist">
+        </ul>
+        <textarea id="msg"></textarea>
+        <button id="btn">提交</button>
+    </div>
+    <script>
+        /**
+            * 06.案例-过滤不文明用语
+                * 发布信息功能
+                    * 用一个变量存放所有消息
+                    * 点击按钮把输入框的消息写入数组
+                    * 把消息渲染到页面
+                * 过滤不文明用语
+                    * 把不文明用语替换成*
+                        * replace(regExp)
+            
+                    * 正则表达式
+                        * 定义
+                            * 字面量
+                            * 构造函数
+                        * 参数
+                            * i
+                            * g
+
+
+         */
+
+         // 获取元素
+         var msglist = document.getElementById('msglist')
+         var msg = document.getElementById('msg')
+         var btn = document.getElementById('btn')
+
+         // 用一个变量来存放需要过滤的不文明用语
+         var bwm = ['shit','fuck','操','傻逼','SB','六合彩','法轮功'];
+
+        //  用一个变量存放所有消息
+         var data = [];
+        
+        //  点击按钮把输入框的消息写入数组
+        btn.onclick = function(){
+            // 获取输入的消息
+            var _msg = msg.value;
+
+            // 过滤不文明用语
+            bwm.forEach(function(item){
+                // _msg = _msg.replace(item,'**'); // 数量和大小写问题
+                var reg = new RegExp(item,'ig');
+                // _msg = _msg.replace(reg,'**');
+                _msg = _msg.replace(reg,function(item){
+                    if(item.length === 1){
+                        return '*';
+                    }else if(item.length>=2){
+                        return '**'
+                    }
+                });
+            })
+
+
+            data.push(_msg);
+
+            // 把消息渲染到页面
+            render();
+
+            // 清空并自动获得焦点
+            msg.value = '';
+            msg.focus();
+        }
+
+        function render(){
+            msglist.innerHTML = data.map(function(item,idx){
+                return '<li>'+ (idx+1) + '. ' +item+'</li>'
+            }).join('');// ['<li>xxx</li>','<li>xxx</li>'...]
+        }
+    </script>
+</body>
+</html>

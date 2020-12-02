@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对密码进行加密和解密</title>
+</head>
+<body>
+    <div class="container">
+
+        <h1>对密码进行加密和解密</h1>
+        <p>
+            <label for="username">用户名：</label><input type="text" id="username"/>
+
+        </p>
+        <p>
+            <label for="password">密码：</label><input type="text" id="password"/>
+
+        </p>
+        <button id="btn">提交</button>
+        <button id="btnDecode">解密</button>
+    </div>
+    <script>
+        /**
+            * 对密码进行加密和解密
+                * 加密（加密算法）
+                    1. 转成ascii
+                    2. +10,*2,-5
+                * 解密
+                    1. +5，/2，-10
+                    2. 转成字符
+         */
+
+         var password = document.getElementById('password')
+         var btn = document.getElementById('btn')
+         var btnDecode = document.getElementById('btnDecode')
+
+         var encode;
+        var deccode;
+         btn.onclick = function(){
+            var _psw = password.value;
+            encode = [];
+            for(var i=0;i<_psw.length;i++){
+                var code = _psw[i].charCodeAt()
+                code += 10;
+                code *=2;
+                code -= 5;
+                encode.push(code);
+            }
+            console.log('encode=',encode)
+         }
+
+         // 解密
+         btnDecode.onclick = function(){
+             decode = [];
+            for(var i=0;i<encode.length;i++){
+                var code = encode[i];
+                code +=5;
+                code /= 2;
+                code -=10;
+                code =  String.fromCharCode(code);
+                decode.push(code);
+            }
+
+            console.log('decode=',decode.join(''));
+         }
+    </script>
+</body>
+</html>

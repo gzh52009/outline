@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05案例-获取url参数</title>
+</head>
+<body id="body">
+    <h1>05案例-获取url参数</h1>
+    <button id="btn">随机背景色</button>
+    <script>
+        /**
+            * 05案例-获取url参数
+                * indexOf() 索引
+                * slice()   截取
+                * split(分隔符):拆分字符串成数组
+         */
+        var url = 'https://www.baidu.com/s?username=laoxie&password=123456&age=18&sex=male&'
+        // {username:'laoxie',password:123456,age:18,sex:male}
+
+        // 获取?所在索引值
+        var idx = url.indexOf('?');
+        // 截取url参数
+        var search = url.slice(idx+1,-1); // username=laoxie&password=123456&age=18&sex=male
+        console.log('search=',search);
+
+        // 把字符串拆分成数组
+        var params = search.split('&'); // ["username=laoxie", "password=123456", "age=18", "sex=male"]
+        console.log('params=',params);
+
+        // 把url参数变成对象
+        var data = {}
+
+        // 数组变成：{username:'laoxie',password:123456,age:18,sex:male}
+        params.forEach(function(item){
+            // 拆分属性名和属性值
+            var arr = item.split('='); //['username','laoxie'],['password','123456']
+
+            // 把键值对写入对象
+            var key = arr[0];
+            var value = arr[1]
+            data[key] = value;
+        });
+
+        console.log('data=',data);
+    </script>
+</body>
+</html>
