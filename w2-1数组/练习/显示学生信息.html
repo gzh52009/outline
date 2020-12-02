@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>显示学生信息</title>
+	<script>
+		/*
+			创建一个对象，用于存储一个学生的信息，该对象包含名字、学号、身份证、年龄、性别、所学专业等属性信息，同时该对象包含一个自我介绍的方法，用来输出该对象的所有信息
+		 */
+
+		 var student = {
+		 	id:9527,
+		 	name:'laoxie',
+		 	identity:'450721199906012851',
+		 	age:18,
+		 	gender:'男',
+		 	specialty:'挖掘机',
+		 	introduce:function(){
+		 		document.write('hello, 大家好，我叫' + this.name + '，' + this.gender + '，今年' + this.age + '岁，编号' + this.id + '，专业' + this.specialty + (this.age-10) + '年');
+		 	}
+		 }
+
+		 student.introduce();
+		
+
+	</script>
+</head>
+<body>
+	<h1>创建一个对象，用于存储一个学生的信息，该对象包含学号、身份证、年龄、性别、所学专业等属性信息，同时该对象包含一个自我介绍的方法，用来输出该对象的所有信息</h1>
+	
+</body>
+</html>

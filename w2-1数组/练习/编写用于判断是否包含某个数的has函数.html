@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>编写一个has(arr,60)函数，判断arr数组中是否包含60这个数</title>
+	<script>
+		function has(arr,item){
+			// 创建一个用于保存结果的函数
+			// 默认值：false
+			var res = false;
+
+			for(var i=0;i<arr.length;i++){
+				if(arr[i] === item){
+					res = true;
+
+					// 如果已经找到一个与item相等的元素，则循环没必要继续执行下去
+					break;
+				}
+			}
+
+			return res;
+		}
+
+		has([10,20,30],60);//false
+		has([40,50,60],60);//true
+	</script>
+</head>
+<body>
+	<h1>编写一个has(arr,60)函数，判断arr数组中是否包含60这个数</h1>
+	
+</body>
+</html>

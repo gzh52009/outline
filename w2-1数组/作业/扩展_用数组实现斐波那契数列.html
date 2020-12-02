@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用数组实现斐波那契数列</title>
+	<script>
+		window.onload = function(){
+			// 获取页面元素
+			var month = document.getElementById('month');
+			var btn = document.getElementById('btn');
+			var output = document.getElementById('output');
+
+			btn.onclick = function(){
+				// 用于存放斐波那契数列
+				var res = [];
+
+				// 获取输入的月份
+				var _month = month.value;
+
+				// 遍历输入月份前的所有月份
+				// 并写入每个月份对应的数列值
+				for(var i=0;i<_month;i++){
+					// 小于第三个月，直接输入1
+					if(i<2){
+						res.push(1);
+					}else{
+						// 正常情况等于上个月+上上个月的数量和
+						res.push(res[i-1] + res[i-2]);
+					}
+				}
+				console.log(res)
+
+				output.innerHTML = _month + '月份前的斐波那契数列：' + res.join();
+			}
+		}
+	</script>
+</head>
+<body>
+	<h1>用数组实现斐波那契数列</h1>
+	<input type="text" id="month"><button id="btn">生成斐波那契数列</button>
+	<div id="output"></div>
+</body>
+</html>

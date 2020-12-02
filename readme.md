@@ -823,3 +823,77 @@ function fib(month){
         * reduce(fn,initVal)
         * reduceRight(fn,initVal)
         > fn(prev,item,index,array){}
+
+## day2-3
+
+### 复习
+* 数组排序
+    * 冒泡排序
+    * 选择排序
+    * 快速排序
+    * sort方法排序
+        * 默认字符串排序
+        * sort(fn)
+* 对象
+* ES5数组方法
+* 回调函数callback
+    * 回调函数传参
+    * 回调函数返回值
+    ```js
+        function show(fn){
+            // var fn = function(){}
+            var res = fn(10,20);
+        }
+        // show(10,20)
+        show(function(a,b){
+            // var a=10,b=20
+            console.log(666);
+            return 100
+        })
+
+        var arr = [10,20,30,40]
+        arr.forEach(function(item,index,arr){
+
+        })
+
+        // 模拟forEach
+        function forEach(callback){
+            for(var i=0;i<arr.length;i++){
+                callback(arr[i],i,arr)
+            }
+        }
+
+        forEach(function(item,idx,a){
+
+        })
+
+        // 模拟map()
+        var res1 = arr.map(function(item,idx,arr){
+            return item*2;
+        }); // res1=[20,40,60,80]
+
+        function map(callback){
+            var newArr = [];
+
+            for(var i=0;i<arr.length;i++){
+                newArr[i] = callback(arr[i],i,arr);
+            }
+
+            return newArr;
+        }
+        var res2 = map(function(item,idx,a){
+            return item*3
+        });// [30,60,90,120]
+
+    ```
+
+### 知识点
+
+* 字符串：单引/双引号
+    * 转义符 `\`
+    ```js
+        var str1 = 'laoxie'
+        var str2 = "tiantian"
+        var str3 = 'I\'m laoxie'
+    ```
+    * length属性

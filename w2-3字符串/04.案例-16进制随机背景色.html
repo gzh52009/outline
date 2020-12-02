@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16进制随机背景色</title>
+</head>
+<body id="body">
+    <h1>16进制随机背景色</h1>
+    <button id="btn">随机背景色</button>
+    <script>
+        /**
+            * 16进制随机背景色
+                *  #ff0000
+                * Math.random()
+         */
+        var btn = document.getElementById('btn');
+         
+         
+         randomColor()
+
+         btn.onclick = randomColor;
+
+         function randomColor(){
+            var str = '0123456789abcdef';
+            var color = '#';
+            for(var i=0;i<6;i++){
+                // 获取随机索引值
+                var idx = parseInt(Math.random()*str.length);
+
+                color += str[idx]; // str.charAt(idx)
+            }
+
+            //  document.getElementById('body').style.backgroundColor = color;
+            document.body.style.backgroundColor = color;
+         }
+        
+
+    </script>
+</body>
+</html>

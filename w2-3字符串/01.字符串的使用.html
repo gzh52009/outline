@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.字符串的使用</title>
+</head>
+<body>
+    <h1>01.字符串的使用</h1>
+    <script>
+        /**
+         * 01.字符串的使用
+            * 增：添加某个字符串
+                * 拼接
+                * replace()
+            * 删：删除某个字符串
+                * replace
+            * 改：替换
+                * replace(keyword,替换的值) 返回一个新的字符串（不会修改原字符串）
+            * 查：获取某个字符
+                * 查索引值对应的字符
+                    * 方括号
+                    * charAt()
+                * 查字符对应的索引值
+                    * indexOf()/lastIndexOf()
+                    * search()
+                    * match()
+         */
+        var str = '年轻人不讲武德，耗子尾汁'; 
+
+        // 只读
+        str[0];// 年
+        str.charAt(0);//  年
+        // str[0] = 'nian';// 不能修改
+
+        // 改：替换
+        var res1 = str.replace('耗子','好自');
+        console.log('res1=',res1);
+        
+        // 删：删除某个字符
+        var res2 = str.replace('不','');
+        console.log('res2=',res2);
+
+        var res3 = str.replace('不','不是很')
+        console.log('res3=',res3);
+
+        var res4 = str.replace('耗子',function(keyword,idx,str){
+            console.log('arguments=',arguments);
+            // 为所欲为
+
+            return keyword + keyword + keyword+ keyword + keyword;
+        })
+        console.log('res4=',res4);
+    </script>
+</body>
+</html>

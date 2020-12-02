@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业2</title>
+	<script>
+		/*
+			某个公司采用公用电话传递数据，数据是四位的整数，在传递过程中是加密的，加密规则如下：每位数字都加上5,然后用除以10的余数代替该数字，再将第一位和第四位交换，第二位和第三位交换，请编写一个函数，传入原文，输出密文
+		 */
+		
+		function encrypt(num){
+
+			// 个位数
+			var a = num%10;
+
+			// 十位数
+			var b = parseInt(num/10)%10;
+			
+			// 百位数
+			var c = parseInt(num/100)%10;
+
+			// 千位数
+			var d = parseInt(num/1000);
+
+			// 加密规则
+
+			// 1.每位数字都加上5,然后用除以10的余数代替该数字
+			a = (a + 5)%10;
+			b = (b + 5)%10;
+			c = (c + 5)%10;
+			d = (d + 5)%10;
+
+			// 将第一位和第四位交换，第二位和第三位交换
+			var res = '' + a + b + c + d
+
+			console.log(res);
+		}
+
+		function decrypt(num){
+			// 个位数
+			var a = num%10;
+
+			// 十位数
+			var b = parseInt(num/10)%10;
+			
+			// 百位数
+			var c = parseInt(num/100)%10;
+
+			// 千位数
+			var d = parseInt(num/1000);
+
+			// 0 => 5
+			// 1 => 6
+			// ...
+			// 5 => 0
+			// 6 => 1
+			// ...
+			// 9 => 4
+
+			a = (a>5 ? a : a+10) - 5;
+			b = (b>5 ? b : b+10) - 5;
+			c = (c>5 ? c : c+10) - 5;
+			d = (d>5 ? d : d+10) - 5;
+
+			// 重新组合
+			var res = '' + a + b + c + d;
+
+			return Number(res);
+		}
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

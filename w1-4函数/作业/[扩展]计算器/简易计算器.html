@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>简易计算器</title>
+<style type="text/css">
+
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #940032; }
+
+#counter { width: 500px; height: 420px; background:#939; margin: 50px auto 0; position: relative; }
+#counter h2 { line-height: 42px; padding-left: 15px; font-size: 14px; font-family: arial; color: #ff3333; }
+#counter a { font-weight: normal; text-decoration: none; color: #ff3333; }
+#counter a:hover { text-decoration: underline; }
+#bg { width: 280px; height: 200px; border: 3px solid #680023; background: #990033; filter: alpha(opacity=80); opacity: 0.8; position: absolute; left: 50%; top: 115px; margin-left: -141px; }
+#counter_content { width: 250px; position: absolute; top: 130px; left: 130px; z-index: 1; }
+#counter_content h3 { margin-bottom: 10px; }
+#temp input { border: none; width: 223px; height: 30px; line-height: 30px; padding: 0 10px; background: url(images/ico.png) no-repeat; text-align: right; color: #333; font-size: 14px; font-weight: bold; }
+#counter_content div { width: 250px; }
+#buttons input { width: 60px; height: 30px; line-height: 30px; float: left; background: url(images/ico.png) no-repeat -303px 0; text-align: center; color: #fff; cursor: pointer; margin: 0 1px 4px 0; border:0; }
+#counter_content .active { background: url(images/ico.png) no-repeat -243px 0; }
+#counter p { width: 500px; position: absolute; bottom: 20px; left: 0; color: #ff3333; text-align: center; font-size: 12px; }
+</style>
+</head>
+<script type="text/javascript">
+	window.onload = function(){
+            var result = document.getElementById('result');
+            var buttons = document.getElementById('buttons');
+            // buttons = buttons.getElemetnsByTagName('input');
+
+            /*for(var i=0;i<buttons.length;i++){
+
+            }*/
+            // 计算后的值
+            var sum = 0;
+
+            // 输入状态
+            var inputStatus = true;
+
+            // 保存运算符
+            var operator;
+
+            buttons.onclick = function(e){
+                  var self = e.target;
+                  if(self.tagName.toLowerCase() != 'input') return;
+                  switch(self.value){
+                        case '0':
+                        case '1':
+                        case '2':
+                        case '3':
+                        case '4':
+                        case '5':
+                        case '6':
+                        case '7':
+                        case '8':
+                        case '9':
+                              // 输入
+                              input(self.value);
+                              break;
+
+                        case '+':
+                        case '-':
+                        case '*':
+                        case '/':
+                              setOperator(self.value);
+                              break;
+
+                        case '=':
+                              getResult();
+                              break;
+
+                        case 'C':
+                              init(0);
+                              break;
+                  }
+            }
+
+
+            // 输入数字
+            function input(num){
+                  if(inputStatus && result.value != 0){
+                        result.value += num;
+                  }else{
+                        result.value = num;
+                  }
+                  inputStatus = true;
+            }
+
+            // 计算结果
+            function calc(){
+                  // 如果operator没值，则为第一次计算，直接把输入框的值赋给sum;
+                  if(!operator && sum == 0) return sum = Number(result.value);
+                  switch(operator){
+                        case '+':
+                              sum += Number(result.value);
+                              break;
+                        case '-':
+                              sum -= result.value;
+                              break;
+                        case '*':
+                              sum *= result.value;
+                              break;
+                        case '/':
+                              sum /= result.value;
+                              break;
+                  }
+            }
+
+            // 设置运算符
+            function setOperator(op){
+                  inputStatus = false;
+                  // 每次按下运算符，则先运算之前的结果
+                  calc();
+
+                  result.value = sum;
+
+                  // 运算完结果，更新当前按下的运算符
+                  operator = op;
+
+            }
+
+            // 得到结果
+            function getResult(){
+                  calc();
+                  init(sum);
+            }
+
+            // 初始化
+            // 初始化时设置输入框的值
+            function init(val){
+                  result.value = val;
+                  operator = '';
+                  inputStatus = false;
+                  sum = 0;
+            }
+      }
+</script>
+</head>
+
+<body>
+
+<div id="counter">
+	<h2>简易计算</h2>
+	<div id="counter_content">
+		<h3 id="temp"><input id="result" type="text" value="0" /></h3>
+		<div id="buttons">
+			<input type="button" value="7" />
+                  <input type="button" value="8" />
+                  <input type="button" value="9" />
+                  <input type="button" value="+" />
+                  <input type="button" value="4" />
+                  <input type="button" value="5" />
+                  <input type="button" value="6" />
+                  <input type="button" value="-" />
+                  <input type="button" value="1" />
+                  <input type="button" value="2" />
+                  <input type="button" value="3" />
+                  <input type="button" value="*" />
+                  <input type="button" value="0" />
+                  <input type="button" value="C" />
+                  <input type="button" value="=" />
+                  <input type="button" value="/" />
+		</div>
+	</div>
+</div>
+</body>
+</html>

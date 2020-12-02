@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>任意参数排列大小</title>
+	<script>
+		function sort(){
+			for(var i=0;i<arguments.length;i++){
+	            for(var j=0;j<arguments.length;j++){
+	                if(arguments[j] > arguments[j+1]){
+	                    var max = arguments[j];
+	                    arguments[j] = arguments[j+1];
+	                    arguments[j+1] = max;
+	                }
+	            }
+	        }
+	        console.log(arguments)
+		}
+
+		sort(2,8,3,10,25,1,8);//==>2,3,8
+	</script>
+</head>
+<body>
+	<h1>任意参数排列大小</h1>
+</body>
+</html>

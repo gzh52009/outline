@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.字符串的截取</title>
+</head>
+<body>
+    <h1>02.字符串的截取</h1>
+    <script>
+        /**
+            * 02.字符串的截取
+                * substring(start[,end])：不包括end所在字符，end省略表示截取到最后
+                * substr(start[,len])：支持负数，len为截取的数量
+                * slice(start[,end]) ：截取start到end(不包括end)的字符串，支持负数
+         */
+
+         var str = 'hello thankyou are you ok';
+
+        str.slice(0,5); // hello
+
+        str.substring(0,5); // 与slice的区别：不支持负数
+
+        str.substr(2,5);// 从索引值2开始截取5位字符
+
+        // 以下达到的效果一样
+        str.slice(0);
+        str.substr(0);
+        str.substring(0);
+    </script>
+</body>
+</html>

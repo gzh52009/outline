@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>[案例] 有一个从小到大排序的数组。现输入一个数，要求按原来的规律将它插入数组中，并打印出新的数组</title>
+	<script>
+		window.onload = function(){
+			/*
+				[案例] 有一个从小到大排序的数组。现输入一个数，要求按原来的规律将它插入数组中，并打印出新的数组
+				思路：
+					1）获取页面元素
+					2）给按钮绑定点击事件
+						把输入的数字插入到数组相应的位置
+					3）把数组输出到#output
+			 */
+			var arr = [2,5,8,12,20,50,82,99];//71
+
+			// 1）获取页面元素
+			var number = document.getElementById('number');
+			var btnInsert = document.getElementById('btnInsert');
+			var output = document.getElementById('output');
+
+			output.innerHTML = '[' + arr.join() + ']';
+
+			// 2）给按钮绑定点击事件
+			btnInsert.onclick = function(){
+				// 获取输入的值
+				var _num = Number(number.value);
+
+				// 把输入的数字插入到数组相应的位置
+				for(var i=0;i<arr.length;i++){
+					// 如果_num <= arr[i];
+					if(_num <= arr[i]){
+						arr.splice(i,0,_num);
+						break;
+					}
+				}
+				if(i==arr.length){
+					arr.push(_num);
+				}
+				// 3）把数组输出到#output
+				output.innerHTML = '[' + arr.join() + ']';
+			}
+		}
+		
+
+	</script>
+</head>
+<body>
+	<input type="text" id="number"><button id="btnInsert">插入数字</button>
+	<div id="output"></div>
+</body>
+</html>
