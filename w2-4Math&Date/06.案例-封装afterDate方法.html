@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06.案例-封装afterDate方法</title>
+</head>
+
+<body>
+    <h1>封装一个函数afterDate(n)，得到当前日期n天后的日期</h1>
+    <input type="number" id="day"  />
+    <button id="btn">计算日期</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 封装一个函数afterDate(n)，得到当前日期n天后的日期
+                * 设置日期
+         */
+
+        var day = document.getElementById('day');
+        var btn = document.getElementById('btn');
+        var result = document.getElementById('result');
+
+        btn.onclick = function(){
+            var _day = day.value;
+
+            afterDate(_day);
+        }
+
+        function afterDate(day){
+            // 当前毫秒数+day对应的毫秒数
+            // var now = Date.now();
+            // var targetTime = now + day*24*60*60*1000;
+            // var target = new Date(targetTime);
+            // result.innerHTML = target.toLocaleDateString();
+
+            // 获取当前时间
+            var now = new Date();
+
+            var date = now.getDate(); //3 
+
+            // 把当前时间的日期改成day天后的日期
+            now.setDate(date+day*1);
+
+            result.innerHTML = now.toLocaleDateString();
+        }
+    </script>
+</body>
+
+</html>

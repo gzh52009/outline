@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>判断两个日期相差的天数</title>
+</head>
+
+<body>
+    <h1>判断两个日期相差的天数</h1>
+    <input type="date" id="start" value="2020-11-11" />
+    <input type="date" id="end" value="2020-12-12" />
+    <button id="btn">计算相差天数</button>
+    <div id="result"></div>
+    <script>
+        /**
+            * 判断两个日期相差的天数
+                1. 获取开始时间和结束时间并转成毫秒数
+                2. 计算开始与结束的时间差
+                3. 把时间差转成天数，并输出到#result
+         */
+
+         // 获取元素
+         var start = document.getElementById('start');
+         var end = document.getElementById('end');
+         var btn = document.getElementById('btn');
+         var result = document.getElementById('result');
+
+        
+        btn.onclick = function(){
+            var _start = start.value;
+            var _end = end.value;
+
+            // 计算时间差
+            // 把时间字符串转成毫秒
+            // var startTime = new Date(_start).getTime();
+            // var endTime = new Date(_end).getTime();
+
+            // var offset = endTime - startTime;
+
+            // console.log('time=',startTime,endTime);
+            // console.log('offset=',offset);
+
+            // ES5写法
+            var offset = Date.parse(_end) - Date.parse(_start);
+
+            // 把时间差转成天数
+            var day = Math.ceil(offset/1000/60/60/24);
+
+            result.innerHTML = _start + '到' + _end + ' 相差' + day + '天';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>封装一个统计字符串中每个字符个数的函数</title>
+	<script>
+		/*
+			封装一个统计字符串中每个字符个数的函数
+		 */
+		
+		function showChar(str){
+			// 利用对象来保存字符个数
+			var obj = {};
+
+			for(var i=0;i<str.length;i++){
+				// 如果当前字符对应的属性不存在（值为undefined），则为第一次出现（数量为1）
+				if(obj[str[i]] === undefined){
+					obj[str[i]] = 1;
+				}else{
+					// 否则数量+1
+					obj[str[i]]++;
+				}
+			}
+
+			// 输出结果
+			var res = '';
+			for(var char in obj){
+				res += char + '出现：' + obj[char] + '次, '
+			}
+
+			return res.slice(0,-1);
+		}
+	</script>
+</head>
+<body>
+	<h1>封装一个统计字符串中每个字符个数的函数</h1>
+</body>
+</html>

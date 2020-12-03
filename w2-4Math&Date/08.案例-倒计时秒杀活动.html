@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08.案例-倒计时秒杀活动</title>
+    <style>
+        .btn {
+            position: relative;
+        }
+
+        #countDown {
+            position: absolute;
+            left: 55px;
+            top: 50%;
+            transform: translate(0, -58%);
+        }
+    </style>
+</head>
+
+<body>
+    <h1>08.案例-倒计时秒杀活动</h1>
+    <div class="goods">
+        <img src="img/g1.jpg" id="goods">
+        <h4>今年过节不收礼，收礼只收黑妹子</h4>
+        <p class="price">价格：<span>9.8W</span></p>
+        <div class="btn">
+            <div id="countDown"></div>
+            <img src="img/btn_buy0.jpg" id="btnBuy">
+        </div>
+    </div>
+    <script>
+        /*
+            倒计时思路
+                1）指定结束时间
+                2）不断拿当前时间跟结束时间对比，计算差值
+                3）把差值转换成《剩余时间》
+                4）拼接时间格式，写入页面
+                5）倒计时结束时
+                    * 停止定时器
+                    * 替换购买按钮
+                    * 隐藏倒计时
+        */
+
+        var countDown = document.getElementById('countDown');
+        var btnBuy = document.getElementById('btnBuy');
+
+        // 1）指定结束时间
+        var endDate = '2020-12-3 15:40:10';
+        var endTime = Date.parse(endDate);
+
+        showTime();
+
+        //    2）不断拿当前时间跟结束时间对比，计算差值
+        var timer = setInterval(showTime, 1000);
+
+        function showTime(){
+            var nowTime = Date.now();
+
+            // 计算差值
+            var offset = Math.ceil((endTime - nowTime)/1000);
+
+            // 倒计时结束后操作
+            if(offset<=0){
+                // 停止定时器
+                clearInterval(timer);
+
+                goods.src = 'img/g3.jpg';
+
+                // 替换购买按钮
+                btnBuy.src = 'img/btn_buy.jpg';
+
+                // 隐藏倒计时
+                countDown.style.display = 'none';
+
+                return;
+            }
+
+            // 3610 -> 1时0分10秒
+            // 100s -> 0时1分40秒
+            // 50   -> 0时0分50秒
+
+            // 计算剩余秒数
+            var secLeft = offset%60;
+
+            // 计算剩余分钟数
+            var minLeft = Math.floor(offset/60)%60;
+
+            // 计算剩余小时数
+            var hourLeft = Math.floor(offset/60/60)
+
+            // 4）拼接时间格式，写入页面
+            countDown.innerHTML = hourLeft + '时' + minLeft + '分' + secLeft + '秒后开始'
+        }
+    </script>
+</body>
+
+</html>

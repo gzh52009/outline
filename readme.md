@@ -1008,11 +1008,22 @@ function fib(month){
         * g: 全部匹配
 ## 知识点
 * Math
+    * 属性
+        * Math.PI
     * 常用方法
         * 取整
+            * Math.round()
+            * Math.ceil()
+            * Math.floor()
+        * Math.max()
+        * Math.min()
+        * Math.sqrt()
     * 三角函数
-        > 弧度 = 
+        > 弧度 = 角度*Math.PI/180
         * Math.sin(radian)
+        * Math.cos(radian)
+        * Math.tan(radian)
+    * 勾股定律
         
 * Date
     * 时间知识
@@ -1021,3 +1032,13 @@ function fib(month){
             // 获取当前时间(运行代码时的时间)
             var now = new Date();
         ```
+    * 常用方法
+        * getFullYear()
+        * getMonth()
+        * getDate()
+        * getHours()
+        * getMinutes()
+        * getSeconds()
+        * getDay()
+    * 定时器
+        > setInterval(fn,duration);

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用定时器实现进度条效果</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        #bar {
+            position: relative;
+            height: 5px;
+            width: 0;
+            background-color: #58bc58;
+        }
+
+        #percent {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translate(-50%, 0);
+            padding: 5px;
+            font-size: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>使用定时器实现进度条效果</h1>
+    <div id="bar"><span id="percent"></span></div>
+    <script>
+        /**
+            * 使用定时器实现进度条效果
+                * 不断改变#bar宽度：setInterval()
+                * 清除定时器：clearInterval()
+                * 获取窗口宽高：
+                    * window.innerWidth
+                    * window.innerHeight
+         */
+
+        // 获取元素
+        var bar = document.getElementById('bar');
+        var percent = document.getElementById('percent');
+
+        // 进度条初始宽度
+        var width = 0;
+        var target = window.innerWidth;
+        var timer = setInterval(function () {
+            // 每隔30毫秒执行这里的代码
+            width += 3;
+            if(width >=target){
+                clearInterval(timer);
+                width = target;
+            }
+
+            // 计算百分比
+            var _percent = (width*100/target).toFixed(1);
+            percent.innerHTML = _percent + '%';
+            bar.style.width = width + 'px';
+            
+        }, 30);
+
+        console.log('timer=', timer);
+    </script>
+</body>
+
+</html>

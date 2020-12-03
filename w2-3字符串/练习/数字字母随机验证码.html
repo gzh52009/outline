@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>09随机验证码</title>
+	<style>
+		body{padding:50px;}
+		#vcode{padding:10px;border:1px solid #ddd;background: #efefef;font-size:30px;}
+	</style>
+	<script>
+	window.onload = function(){
+		/*
+			1)获取元素
+			2）给#btnRandom绑定点击事件
+				* 随机生成一个4为验证码
+				* 把验证码写入#vcode
+		 */
+		
+		// 1)获取元素
+		var vcode = document.getElementById('vcode');
+		var btnRandom = document.getElementById('btnRandom');
+
+		var str = 'abcdefghijklmnopqrstuvwxyz0123456789';//str[35]
+
+
+		btnRandom.onclick = function(){
+			randomCode();
+		}
+
+		randomCode();
+
+
+		// 封装函数
+		function randomCode(){
+			// 随机生成一个4位验证码（包含字母）
+			var _code = '';
+			for(var i=0;i<4;i++){
+				var index = parseInt(Math.random()*str.length) //不可能大于36
+				_code += str[index]
+			}
+			vcode.innerHTML = _code.toUpperCase();
+		}
+
+		
+	}
+
+	</script>
+</head>
+<body>
+	<span id="vcode">1998</span>
+	<button id="btnRandom">重新获取</button>
+</body>
+</html>
