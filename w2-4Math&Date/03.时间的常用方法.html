@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.时间的常用方法</title>
+</head>
+<body>
+    <h1>03.时间的常用方法</h1>
+    <script>
+        /**
+         * 03.时间的常用方法
+            * var date = new Date()
+            * date是一个时间对象，包含了年月日、时分秒、毫秒、星期、时区等信息
+            
+            * 常用方法
+                * 获取年月日
+                    * getFullYear()/setFullYear(year)
+                    * getMonth()/setMonth(month)
+                        注意：得到的月份是从0开始的(0-11)
+                    * getDate()/setDate(date)
+                * 获取时分秒
+                    * getHours()/setHours(hour)
+                    * getMinutes()/setMinutes(min)
+                    * getSeconds()/setSeconds(sec)
+                * 获取星期
+                    * getDay() 0-6:星期天-星期六
+         */
+
+         var d = new Date();
+
+        var year = d.getFullYear();// 2020;
+        var month = d.getMonth()+1;//11
+        var date = d.getDate();//3
+
+        var hour = d.getHours();
+        var min = d.getMinutes();
+        var sec = d.getSeconds();
+        var msec = d.getMilliseconds()
+
+        // 星期
+        var week = d.getDay(); // 0-6
+        
+        console.log(year,month,date);
+        console.log(hour,min,sec,msec);
+        console.log(week);
+    </script>
+</body>
+</html>

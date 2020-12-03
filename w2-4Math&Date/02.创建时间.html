@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.创建时间</title>
+</head>
+<body>
+    <h1>02.创建时间</h1>
+    <script>
+        /**
+         * 02.创建时间
+            * var date = new Date()
+            * date是一个时间对象，包含了年月日、时分秒、毫秒、星期、时区等信息
+         */
+
+         var now = new Date();
+         console.log('now=',now);
+
+         // 指定日期创建时间
+         var date1 = new Date('2020-12-2');
+         console.log('date1=',date1);
+
+         // 指定毫秒数创建时间（距离1970年1月1日0时的毫秒数）
+         var date2 = new Date(1328471238129);
+         console.log('date2=',date2);
+
+        // 指定年月日，时分秒
+         var date3 = new Date(2016,11,2,13,50,56);
+         console.log('date3=',date3);
+    </script>
+</body>
+</html>

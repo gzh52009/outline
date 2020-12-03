@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math对象</title>
+</head>
+<body>
+    <h1>Math对象</h1>
+    <script>
+        /**
+            * Math
+                * 属性
+                    * PI
+                * 方法
+                    * 取整
+                        * Math.round()   四舍五入取整
+                        * Math.ceil() : 向上取整（得到一个比当前数字大的最小整数）
+                        * Math.floor() : 向下取整（得到一个比当前数小的最大整数）
+         */
+
+        // 取整（进制转换，字符串转数字，提取数字）
+        parseInt('2.3abc');//2
+        parseInt(2.99);//2
+        parseFloat('2.3');//2.3
+
+        // 四舍五入取整
+        Math.round(2.3);//2
+        Math.round(2.6);//3
+
+         // 向下取整
+         Math.floor(2.3);//2;
+         Math.floor(-2.3);//-3
+
+        //  向上取整
+        Math.ceil(2.3);// 3
+        Math.ceil(-2.3);// -2
+    </script>
+</body>
+</html>

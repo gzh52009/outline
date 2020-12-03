@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.案例-格式化时间</title>
+</head>
+
+<body>
+    <h1>04.案例-格式化时间</h1>
+    <div id="time"></div>
+    <script>
+        /**
+         * 将当前日期格式化输出为 “2015年08月24 星期五”格式
+         */
+
+        var time = document.getElementById('time');
+
+        showTime();
+
+        // 定时器
+        setInterval(showTime, 1000);
+
+        function showTime() {
+            //  获取当前时间
+            var now = new Date();
+
+            var year = now.getFullYear();
+            var month = now.getMonth() + 1;
+            var date = now.getDate();
+
+            var hour = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+
+            // 补0操作
+            hour = hour < 10 ? '0' + hour : hour;
+            min = min < 10 ? '0' + min : min;
+            sec = sec < 10 ? '0' + sec : sec;
+
+            var week = now.getDay();
+
+            var arr = '日一二三四五六'.split('')
+
+            time.innerHTML = '当前时间：' + year + '年' + month + '月' + date + '日 ' + hour + ':' + min + ':' + sec + ' 星期' + arr[week];
+        }
+
+
+    </script>
+</body>
+
+</html>

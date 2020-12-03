@@ -947,3 +947,77 @@ function fib(month){
         * 字符->编码：str.charCodeAt(idx)
         * 编码->字符：String.fromCharCode(code)
     * 加密与解密
+
+##  day2-4
+
+### 复习
+* 字符串
+    * 定义
+    * 属性
+        * length
+    * 操作
+        * 查：读取
+            * 读取索引对应的字符
+                * 方括号
+                * charAt()
+            * 查找字符对应的索引
+                * indexOf()/lastIndexOf()
+                * search()
+                * match()
+        * 增：
+        * 删：
+        * 改：
+        * 替换
+            * replace()
+        * 拆分
+            * splice()
+        * 截取
+            * slice(start,end)
+            * substring(start,end)
+            * substr(start,length)
+        * 转换大小写
+            * toUpperCase()
+            * toLowerCase()
+            ```js
+                var str = 'hello my name is tiantian';
+                str = str.split(' ').map(function(item){
+                    return item[0].toUpperCase()+item.slice(1)
+                }).join(' ')
+            ```
+    * 字符编码
+        * ASCII
+        * GB2312
+        * GBK
+        * Big5
+        * unicode
+        * utf-8
+        ```js
+            a   97  
+            A   65
+        ```
+* 正则表达式
+    * 定义
+        * 字面量
+        * 构造函数
+        ```js
+            var reg=/tt/
+            var reg = new RegExp('tt')
+        ```
+    * 参数
+        * i: 忽略大小写
+        * g: 全部匹配
+## 知识点
+* Math
+    * 常用方法
+        * 取整
+    * 三角函数
+        > 弧度 = 
+        * Math.sin(radian)
+        
+* Date
+    * 时间知识
+    * 创建时间
+        ```js
+            // 获取当前时间(运行代码时的时间)
+            var now = new Date();
+        ```
