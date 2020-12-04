@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时</title>
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<style>
+		html{height:100%;}
+		body{margin:0;height:100%;background:url(img/bg.jpg) repeat center;background-size:cover;}
+		.container{padding:30px;width:100%;height:100%;display:flex; flex-direction: column;align-items: center; text-align:center;background-color: rgba(0,0,0,.3);color:#fff;}
+		.container .mainIcon{flex:1;display:inline-flex;justify-content:center;align-items:center;width:2rem;font-size:1rem;}
+		.container .mainIcon:hover{color:#fc0;cursor: pointer;}
+		.container h1{margin:0;height:1.5rem;line-height:1.5rem;color:#fff;font-size:1rem;font-weight:normal;}
+		.countDown{height:3.6rem;width:9rem;background-color: rgba(0,0,0,.5);font-size:2rem;line-height: 3.6rem;}
+		.canvas{flex:1.5;}
+
+		.copyright{flex:0.2;margin:0;font-size:0.15rem;}
+
+		.playing{
+			animation: rotateIcon 10s linear infinite;color:#fc0;
+		}
+
+		@keyframes rotateIcon {
+			0%{transform:rotate(0deg);}
+			100%{transform:rotate(360deg);}
+		}
+	</style>
+	<script>
+		// 自适应rem布局
+		document.documentElement.style.fontSize = parseInt(window.innerHeight/10) + 'px';
+		
+		window.onload = function(){
+			var countDown = document.querySelector('.countDown');
+			var mainIcon = document.querySelector('.mainIcon');
+
+			var audio = new Audio();
+			audio.src = 'media/hhsz.mp3';
+
+			
+			// 重复前奏
+			audio.ontimeupdate = function(){
+				// 34开始唱歌
+				if(audio.currentTime>30){
+					audio.currentTime = 1;
+				}
+			}
+
+			audio.onplay = function(){
+				mainIcon.classList.add('playing');
+			}
+
+			audio.onpause = function(){
+				mainIcon.classList.remove('playing');
+			}
+		    
+
+			var timer;
+			mainIcon.onclick = function(){
+				if(timer){
+					if(confirm('倒计时已经开始，想重来么？')){
+						clearInterval(timer);
+						audio.currentTime = 0;
+					}else{
+						return;
+					}
+				}
+				var sec = 1;
+
+				var end = new Date();
+				end.setMinutes(end.getMinutes()+3);
+				countDown.innerHTML = '03 : 00';
+				audio.play();
+				timer = setInterval(function(){
+					// 随机秒数
+					sec += parseInt(Math.random()*11+1);
+
+					var now = new Date();
+					now.setSeconds(now.getSeconds()+sec);
+
+					var times = (Date.parse(end) - Date.parse(now))/1000;//得到总秒数
+					if(times < 0){
+						clearInterval(timer);
+						audio.pause();
+						countDown.innerHTML = '00 : 00';
+						return;
+					}
+					var mins = parseInt(times/60);//得到总分数
+					var hours = parseInt(times/60/60);//总的小时数
+					var days = parseInt(times/60/60/24);//总的天数
+
+					var secLeft = times % 60;//剩余多少秒
+					var minLeft = mins % 60;//剩余多少分
+					var hourLeft = hours % 24;//剩余多少小时
+
+
+					// 补0操作
+					secLeft = (secLeft<10 ? '0' : '') + secLeft;
+					minLeft = (minLeft<10 ? '0' : '') + minLeft;
+					hourLeft = (hourLeft<10 ? '0' : '') + hourLeft;
+					
+					countDown.innerHTML =minLeft + ' : ' + secLeft;
+
+					
+
+					// timer = setTimeout(arguments.callee,duration);
+				},1000);
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<i class="glyphicon glyphicon-time mainIcon" title="点击开始倒计时"></i>
+		<h1>倒 &bull; 计 &bull; 时</h1>
+		<div class="countDown">
+			<!-- <div class="btn-group btn-group-lg"> -->
+				<!-- <button type="button" class="btn btn-default btn-lg">02分</button>
+				<button type="button" class="btn btn-default btn-lg">20秒</button> -->
+			<!-- </div> -->
+		</div>
+		<canvas class="canvas"></canvas>
+		<p class="copyright">&copy; 千锋教育 &bull; 广州</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>轮播图</title>
+	<style>
+		/*#pic{height:600px;}*/
+	</style>
+	<script>
+	/*
+		[案例]轮播图制作
+	 */
+	window.onload = function(){
+		var pic = document.getElementById('pic');
+		var btnStop = document.getElementById('btnStop');
+
+		//默认显示第一张图片
+		var index = 1;
+
+		//设置定时器，每个2秒执行一次
+		var timer = setInterval(function(){
+			// 进入定时器后，更新index索引
+			index++;
+
+			// 当图片到达最后一张后，回到第一张继续播放
+			if(index > 5){
+				index = 1;
+			}
+
+			// 通过索引值改变图片路径
+			pic.src = 'img/g'+index+'.jpg';
+		},2000);
+		
+		// 给按钮绑定点击事件
+		btnStop.onclick = function(){
+			// 通过innerHTML的值动态执行停止和播放操作；
+			if(btnStop.innerHTML == '停止播放'){
+				clearInterval(timer);
+				btnStop.innerHTML = '继续播放';
+			}else{
+				timer = setInterval(function(){
+					index++;
+					if(index > 5){
+						index = 1;
+					}
+					pic.src = 'img/g'+index+'.jpg';
+				},2000);
+				btnStop.innerHTML = '停止播放';
+			}
+			
+		}
+	}
+	</script>		
+</head>
+<body>
+	<button id="btnStop">停止播放</button>
+	<div class="box"><img src="img/g1.jpg" id="pic"></div>
+</body>
+</html>

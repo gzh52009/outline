@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09.案例-实现居中弹窗</title>
+   <style>
+       #popover{display:none;position:absolute;width:600px;height:300px;border:3px solid #999;}
+       #popover .title{padding:5px 10px;border-bottom:2px solid #ddd;}
+       #popover .content{padding:10px;}
+       #btnClose{position: absolute;right:5px;top:0;padding:5px;}
+       #btnClose:hover{background-color: #f00;color:#fff;}
+   </style>
+</head>
+
+<body>
+    <h1>09.案例-实现居中弹窗</h1>
+    <button id="btn">居中弹窗</button>
+    <div id="popover">
+        <div class="title">弹窗标题</div>
+        <div class="content">弹窗内容</div>
+        <div id="btnClose">&times;</div>
+    </div>
+    <script>
+        /**
+            * 09.案例-实现居中弹窗
+                * 获取元素宽高
+                    > 注意：元素一定要显示在页面才能获取它的宽高
+                    * 元素.offsetWidth：包括（border+padding+width）
+                    * 元素.offsetHeight: 包括（border+padding+width）
+         */
+
+         var btn = document.getElementById('btn')
+         var popover = document.getElementById('popover')
+         var btnClose = document.getElementById('btnClose')
+
+        btn.onclick = function(){
+            popover.style.display = 'block';
+            // 实现居中
+            // left = (窗口宽度-弹窗宽度)/2
+            autoCenter()
+        }
+        btnClose.onclick = function(){
+            popover.style.display = 'none';
+        }
+
+        // 窗口大小改变时触发
+        window.onresize = function(){
+            autoCenter();
+        }
+
+        function autoCenter(){
+            popover.style.left = (window.innerWidth-popover.offsetWidth)/2 + 'px';
+            popover.style.top = (window.innerHeight-popover.offsetHeight)/2 + 'px';
+        }
+    </script>
+</body>
+
+</html>

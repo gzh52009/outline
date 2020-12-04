@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.location</title>
+    
+</head>
+<body>
+    <h1>07.location</h1>
+    <button id="btnRefresh">刷新</button>
+    <button id="btnRefresh2">清缓存并刷新</button>
+    <script>
+       /**
+            * 07.location
+               
+        */
+       var btnRefresh = document.getElementById('btnRefresh');
+       var btnRefresh2 = document.getElementById('btnRefresh2');
+
+        btnRefresh.onclick = function(){
+            location.reload()
+        }
+
+        btnRefresh2.onclick = function(){
+            // 不适用缓存并刷新
+            location.reload(true);
+        }
+       
+    </script>
+</body>
+</html>

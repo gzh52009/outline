@@ -1086,3 +1086,9 @@ function fib(month){
 
         window.document.getElementById()
     ```
+    * 属性
+    * 方法
+    * 属性对象
+    * 事件
+        * onscroll
+        * onload

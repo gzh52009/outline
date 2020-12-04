@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.页面关闭事件</title>
+</head>
+
+<body>
+    <h1>10.页面关闭事件</h1>
+    <script>
+        /**
+            * 10.页面关闭事件
+                * onbeforeunload
+                    * 在页面关闭时执行
+         */
+
+         window.onbeforeunload = function(){
+             console.log('关闭');
+
+             return '你真的忍心离我而去吗？'
+         }
+
+    </script>
+</body>
+
+</html>

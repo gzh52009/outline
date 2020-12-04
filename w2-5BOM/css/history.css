@@ -1,0 +1,19 @@
+html{height:100%;}
+body{margin:0;height:100%;}
+ul{list-style: none;margin:0;padding:0;}
+a{text-decoration:none;}
+
+.container{display:flex;flex-direction:column;height:100%;}
+
+header{display:flex;justify-content: space-between;align-items:center;padding:0 15px;height:60px;background:#5cb85c;}
+header button{height:30px;width:30px;}
+header h1{margin:0;font-size:26px;font-weight:normal;color:#fff;}
+
+.main{flex:1;}
+
+footer{height:50px;line-height:50px;background:#5cb85c;text-align:center;}
+footer a{display:block;color:#fff;}
+footer a:hover{background-color:rgba(255,255,255,0.1);}
+footer ul{display: flex;height:100%;}
+footer ul li{flex:1;border-right:1px solid #4cae4c;}
+footer ul li:last-child{border:none;}

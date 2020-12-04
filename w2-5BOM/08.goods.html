@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=`, initial-scale=1.0">
+    <title>商品详情</title>
+</head>
+<body>
+    <div id="goods">
+        <!-- <img src="img/m0.jpg" />
+        <h1>iphone7 plugs</h1>
+        <p class="price"><del>998</del><span>2.8</span></p>
+        <p>颜色：土豪金</p> -->
+    </div>
+    <script>
+        /**
+            * 获取url参数，转成对象，并写入页面
+         */
+        var params = location.search.slice(1); // id=006&name=好自为之&price=123
+        var arr_params = params.split('&');// ['id=006','name=好自为之','price=123']
+        var data = {};
+        arr_params.forEach(function(item){
+            // 第一次：item => 'id=006'
+            var arr = item.split('=');// ['id','006']
+            var key = arr[0];// id
+            var value = arr[1]; // 006
+            data[key] = decodeURI(value);
+        })
+        console.log('params=>data',params,data);
+
+        var html = ''
+        html += '<img src="'+data.imgurl+'" />';
+        html += '<h1>'+data.name+'</h1>';
+        html += '<p class="price"><del>'+data.price+'</del><span>'+data.sale+'</span></p>';
+        html += '<p>颜色：'+data.color+'</p>';
+        html += '<p>已售'+data.sales+'</p>';
+
+        goods.innerHTML = html;
+    </script>
+</body>
+</html>

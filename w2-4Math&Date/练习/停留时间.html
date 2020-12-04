@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>当前时间/停留时间</title>
+	<script>
+	/*
+		[案例]停留在页面的时间
+			1)获取进入页面的时间
+			2)每秒更新，显示“当前时间”与“进入页面”时间的差值
+	 */
+	window.onload = function(){
+		var oGap = document.getElementById('gap');
+		var start = new Date();//进入页面的时间
+
+		showTime();
+		setInterval(showTime,1000);
+
+		function showTime(){
+			var end = new Date();
+
+			// 当前时间
+			var hours = end.getHours();
+			var min = end.getMinutes();
+			var sec = end.getSeconds();
+
+			// 获取毫秒差值
+			var gap = parseInt((Date.parse(end) - Date.parse(start)) / 1000);
+			// var gap = Math.round((end - start)/1000);
+			// var gap = (end.getTime() -start.getTime())/1000;
+			
+			// 停留时间
+			var hoursLeft = Math.floor(gap/60/60);
+			var minLeft = Math.floor(gap/60%60);
+			var secLeft = gap%60;
+
+
+			oGap.innerHTML = '当前时间：' + hours + ':' + min + ':' + sec +'<br/>您在页面停留了'+ hoursLeft + '时' + minLeft + '分' + secLeft + '秒';
+			// document.write('您在页面停留了'+ gap + '秒');
+		}
+	}
+	</script>		
+</head>
+<body>
+	<div id="gap"></div>
+</body>
+</html>

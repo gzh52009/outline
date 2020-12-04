@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.系统弹窗</title>
+    <style>
+        /**
+            打印样式
+                * link
+                    <link href="xxx.css" media="print" />
+                * import写法
+                    @import url(xxx.css) print;
+                * css写法
+                    * 如下代码
+        */
+
+        @media print {
+            /**
+                默认不会打印背景颜色，需要在弹窗中设置
+            */
+            button{
+                display: inline-block;
+                background-color:#58bc58;color:#f00;border:1px solid #58bc58;padding:5px 10px;
+            }
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>04.系统弹窗</h1>
+    <button id="btnClose">关闭窗口</button>
+    <button id="btnPrint">打印</button>
+    <script>
+       /**
+            * 04.系统弹窗
+                * alert(msg): 弹出对话框，一般用于提示
+                * confirm(msg): 弹出警告框(包含确定和取消按钮)，返回布尔值，一般用于确认操作
+                * prompt(msg,default): 弹出输入框，返回消息或null
+                * open(url,name,[options]) : 打开一个新窗口并返回新 window 对象
+                    name:不命名会每次打开新窗口，命名的第一次打开新窗口,之后在这个窗口中加载
+                    options为字符串：'width=400,height=400,top=200,left=200'
+                * close(): 关闭窗口
+                * print(): 调出打印对话框，一般配合打印样式实现效果
+        */
+       var btnClose = document.getElementById('btnClose')
+       var btnPrint = document.getElementById('btnPrint')
+
+        console.log('start')
+
+        // var res1 = alert('alert弹窗') ; // 
+        // console.log('alert返回值=',res1);
+
+        // var res2 = confirm('你真的忍心离我而去吗？') ;
+        // console.log('confirm 返回值=',res2);
+
+        // var res3 = prompt('请输入的你大名') ;
+        // console.log('prompt 返回值=',res3);
+
+        // var res4 = open('http://www.taobao.com','tb','width=400,height=400,top=200,left=200') ;
+        // console.log('open 返回值=',res4);
+
+        // setTimeout(function(){
+        //     res4.close();
+        // },5000);
+
+        // for(var i=0;i<10;i++){
+        //     var w = parseInt(Math.random()*800);
+        //     var h = parseInt(Math.random()*600);
+        //     var l = parseInt(Math.random()*(window.innerWidth-w));
+        //     var t = parseInt(Math.random()*(window.innerHeight-h));
+        //     open('http://www.taobao.com','tb'+i,'width='+w+',height='+h+',top='+t+',left='+l+'') ;
+        // }
+
+        btnClose.onclick = function(){
+            window.close()
+        }
+
+        // 打印
+        btnPrint.onclick = function(){
+            window.print();
+        }
+
+        console.log('end');
+    </script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面之间数据传递</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #goodslist {
+            overflow: hidden
+        }
+
+        #goodslist li {
+            float: left;
+            padding: 10px;
+        }
+
+        #goodslist img {
+            width: 200px;
+            height: 200px;
+        }
+
+        #goodslist .price del {
+            color: #999;
+            margin-right: 5px;
+        }
+
+        #goodslist .price span {
+            color: #f00;
+        }
+
+        #goodslist .price span::before,
+        #goodslist .price del::before {
+            content: "￥"
+        }
+    </style>
+</head>
+
+<body>
+    <h1>页面之间数据传递</h1>
+    <button>价格</button>
+    <button>销量</button>
+    <input type="number" id="minPrice" style="width:60px" />
+    <input type="number" id="maxPrice" style="width:60px" />
+    <button>价格区间</button>
+    <ul id="goodslist">
+
+    </ul>
+    <script>
+        /**
+            * 页面之间数据传递
+         */
+
+        var goodslist = document.getElementById('goodslist');
+        var data = [{
+            id: '001',
+            name: 'iphone7 plugs',
+            imgurl: 'img/m0.jpg',
+            price: 5899.00,
+            sale: 5888.00,
+            color: '土豪金',
+            sales: 180
+        }, {
+            id: '002',
+            name: 'Note7',
+            imgurl: 'img/m1.jpg',
+            price: 3899.00,
+            sale: 998.00,
+            color: '黑色',
+            sales: 15
+        }, {
+            id: '003',
+            name: '荣耀7',
+            imgurl: 'img/m2.jpg',
+            price: 1999.00,
+            sale: 1899.00,
+            color: '白色',
+            sales: 10803
+        }, {
+            id: '004',
+            name: '耗子尾汁',
+            imgurl: 'img/m3.jpg',
+            price: 19.00,
+            sale: 3.50,
+            color: '黑色',
+            sales: 280
+        }, {
+            id: '005',
+            name: '螺蛳粉',
+            imgurl: 'img/m4.jpg',
+            price: 18.00,
+            sale: 8.00,
+            color: '白色',
+            sales: 21290
+        }, {
+            id: '006',
+            name: '隆江猪脚饭',
+            imgurl: 'img/m5.jpg',
+            price: 12.00,
+            sale: 10.00,
+            color: '棕色',
+            sales: 12920
+        }];
+
+        var result = data.map(function (item) {
+            // 拼接url参数
+            // {} -> id=006&name=隆江猪脚饭&
+            var params = '';
+            for (var key in item) {
+                // 把中文转成URL编码：encodeURI
+                params += key + '=' + encodeURI(item[key]) + '&'
+            }
+            //删除多余&
+            params = params.slice(1, -1);
+
+            var html = '';
+            html += '<li>'
+            html += '<a href="08.goods.html?' + params + '"><img src="' + item.imgurl + '" /></a>'
+            html += '<h4>' + item.name + '</h4>'
+            html += '<p class="price"><del>' + item.price.toFixed(2) + '</del><span>' + item.sale.toFixed(2) + '</span></p>'
+            html += '<p>颜色：' + item.color + '</p>'
+            html += '</li>';
+
+
+            return html
+        })
+        goodslist.innerHTML = result.join('');
+    </script>
+</body>
+
+</html>
