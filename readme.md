@@ -1024,7 +1024,7 @@ function fib(month){
         * Math.cos(radian)
         * Math.tan(radian)
     * 勾股定律
-        
+        c^2 = a^2+b^2
 * Date
     * 时间知识
     * 创建时间
@@ -1040,5 +1040,49 @@ function fib(month){
         * getMinutes()
         * getSeconds()
         * getDay()
+    * ES5方法
+        * Date.parse(); // Array.isArray()
+        * Date.now()
     * 定时器
-        > setInterval(fn,duration);
+        > setInterval(fn,duration)
+
+## day2-5
+
+### 复习
+* Math
+* Date
+    ```js
+        var d1 = new Date(); // 年月日，时分秒、毫秒、星期、时区
+        var d2 = new Date();
+        d2-d1 ; // 时间对象在隐式转换中会自动转成毫秒数
+    ```
+    * 定时器
+        * setInterval(fn,duration)  返回一个数字id
+        * clearInterval(id);
+
+* 提高学习能力和技术的有效方式
+    * 了解函数的参数
+    * 了解函数的返回值
+    * 研究内部实现原理
+
+### 知识点
+> javascript = ECMAScript + BOM + DOM
+
+* window对象（全局作用域）
+    ```js
+        window = {
+            //常用属性
+            name:"",
+
+            //常用方法
+            alert:function(){},
+            parseInt:function(){},
+
+            // 对象属性
+            document:{
+                getElementById:function(){}
+            },
+        }
+
+        window.document.getElementById()
+    ```

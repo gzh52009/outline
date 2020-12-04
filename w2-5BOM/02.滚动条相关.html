@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.滚动条相关</title>
+</head>
+<body>
+    <h1>02.滚动条相关</h1>
+    <script>
+       /**
+        * 02.滚动条相关
+        */
+
+        for(var i=0;i<100;i++){
+            document.write('<p>新闻内容'+i + '</p>')
+        }
+
+        setTimeout(function(){
+            console.log('setTimeout')
+            scrollTo(0,600)
+        },3000)
+    </script>
+</body>
+</html>

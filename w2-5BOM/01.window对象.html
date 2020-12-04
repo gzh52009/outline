@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.window对象</title>
+</head>
+<body>
+    <h1>01.window对象</h1>
+    <script>
+        /**
+            * 01.window对象
+                * 全局作用域
+                * 在全局作用域下用var声明的变量为全局变量，会自动成为window对象的属性
+        */
+
+        // 全局变量
+        var username = 'tiantian';
+        // var name = 'laoxie'
+
+        // name = 'xiaoxie';
+
+        function show(){
+            // 局部作用域在函数执行时创建，在函数执行完成后销毁
+            var age = 18;
+
+            // 在函数内部不使用var声明变量，会自动成为全局变量
+            // 这种全局变量可以通过delete 删除
+            nickname = 'Sweet Baby';
+        }
+
+        show();
+    </script>
+</body>
+</html>

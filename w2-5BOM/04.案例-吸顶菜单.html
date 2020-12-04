@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>吸顶菜单</title>
+	<style>
+		body{margin:0;}
+		.login{height:150px;background-color: #fc0;}
+		.nav{height:100px;background-color: #58bc58;text-align:center;line-height: 100px;font-size:40px;color:#fff}
+		.container{
+			background-color: #efefef;
+		}
+		.footer{height:200px;background-color: #f80;text-align: center;line-height: 200px;color:#fff;font-size:40px;}
+		.fixed{position: fixed;left:0;top:0;right:0;}
+		.mgb{margin-bottom:100px;}
+	</style>
+	<script>
+		
+	</script>
+</head>
+<body>
+	<div class="login">欢迎来到xxx, <a href="#">登录</a> <a href="#">登录</a></div>
+	<nav class="nav" id="nav">导航</nav>
+	<div class="container" id="container">
+		
+	</div>
+	<div class="footer">底部</div>
+	<script>
+		/**
+			 * 吸顶菜单
+				 * 动态添加fixed类名
+					 * 什么时候添加
+					 	* 当滚动条滚动到一定距离时（150px）
+					 * 什么时候删除
+						 * 当滚动条滚动过的距离小于150px时
+				* 滚动事件：onscroll
+					* 当滚动时触发
+				* 添加类名
+		 */
+
+		 var nav = document.getElementById('nav');
+		 var container = document.getElementById('container');
+		
+
+		 // 动态写入内容，产生滚动条
+		 var html = '';
+		 for(var i=0;i<100;i++){
+			 html += '<p>页面内容'+i+'</p>'
+		 }
+
+		 container.innerHTML = html;
+
+		 // 给window添加滚动事件
+		 window.onscroll = function(){
+			 // 获取滚动过的距离
+			 var scrollTop = window.scrollY;
+			 if(scrollTop >= 150){
+				nav.className = 'nav fixed';
+				container.style.marginTop = 100 + 'px';
+			 }else{
+				nav.className = 'nav';
+				container.style.marginTop = 0;
+			 }
+		 }
+
+	</script>
+</body>
+</html>
