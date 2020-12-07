@@ -27,3 +27,46 @@ function randomColor(){
 
     return 'rgb('+r+','+g+','+b+')';
 }
+
+/**
+ * 获取el元素下的所有子元素
+ * @param {Element} el 元素
+ * @return {Array}  返回el元素的所有子节点
+ */
+function children(el){
+    var result = [];
+    for(var i=0;i<el.childNodes.length;i++){
+        if( el.childNodes[i].nodeType != 1){
+            continue;
+        }
+        result.push( el.childNodes[i]);
+    }
+    return result;
+}
+
+/**
+ * 获取下一个元素节点
+ * @param {Element} el 
+ * @return {Element}    返回el元素的下一个兄弟元素
+ */
+function nextElement(el){
+    var next = el.nextSibling;
+    // 只有el元素的下一个兄弟元素存在时才符合循环条件
+    while(next){
+        if(next.nodeType != 1){
+            next = next.nextSibling
+        }else{
+            break;
+        }
+    }
+
+    return next;
+}
+
+/**
+ * 练习：获取前一个元素节点
+ * @param {*} el 
+ */
+function prevElement(el){
+
+}

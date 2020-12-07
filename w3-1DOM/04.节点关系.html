@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.节点关系</title>
+</head>
+<body>
+    <h1>04.节点关系</h1>
+    <ul id="list">
+        <li>list1</li>
+        <li>list2</li>
+        <li>list3</li>
+    </ul>
+    <script src="../utils.js"></script>
+    <script>
+        /**
+             * 04.节点关系（注意：得到的节点可以会包含文本节点）
+               * 父节点：parentNode
+               * 子节点：
+                    * childNodes    得到一个伪数组 [child,child,child]
+                    * firstChild    获得某个元素的第一个子节点
+                    * lastChild     获得某个元素的最后一个子节点
+                * 兄弟节点
+                    * nextSibling       得到元素的下一个兄弟节点
+                    * previousSibling   得到元素的前一个兄弟节点
+                
+
+            * 过滤非元素节点
+         */
+
+         var h1 = document.getElementsByTagName('h1')[0];
+
+        var list = document.getElementById('list');
+        // 过滤非元素节点
+        var result = [];
+        for(var i=0;i<list.childNodes.length;i++){
+            // if(list.childNodes[i].nodeType === 1){
+            //     result.push(list.childNodes[i])
+            // }
+            if(list.childNodes[i].nodeType != 1){
+                continue;
+            }
+            result.push(list.childNodes[i]);
+        }
+
+        console.log('list.childNodes=',list.childNodes);
+        console.log('result=',result);
+        
+        console.log('utils.children()=',children(list))
+    </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>自动应答机器人</title>
+	<style>
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		.msg-list {
+			position: relative;
+			width: 600px;
+			margin: 0 auto;
+		}
+
+		.msg-list ul {
+			padding: 10px;
+			min-height: 200px;
+			max-height: 400px;
+			overflow-y: auto;
+			border: 1px solid #ddd;
+		}
+
+		.msg-list li {
+			float: left;
+			clear: both;
+			margin: 10px 0;
+			padding: 5px;
+			line-height: 2;
+			border-radius: 5px;
+			background-color: #efefef;
+		}
+
+		.msg-list li.active {
+			float: right;
+			background-color: #58bc58;
+			color: #fff;
+		}
+
+		.msg-list textarea {
+			display: block;
+			min-height: 50px;
+			margin: 10px 0;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		.status {
+			display: none;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			padding: 5px 10px;
+			text-align: center;
+			color: #999;
+		}
+	</style>
+
+</head>
+
+<body>
+	<h1>自动应答机器人</h1>
+	<div id="autoAnswer" class="msg-list">
+		<ul>
+		</ul>
+		<textarea></textarea>
+		<button>提交</button>
+		<div class="status">对方正在输入...</div>
+	</div>
+	<script src="../utils.js"></script>
+	<script>
+		(function () {
+			/*
+				自动应答机器人
+					1. 发送消息
+						* 获取输入信息
+						* 生成li
+						* 写入ul
+					2. 自动回复
+						* 根据输入的信息回复
+						* 预设回复内容
+	
+	
+				PS：节点也是一个对象
+			 */
+			// 获取元素
+			var autoAnswer = document.getElementById('autoAnswer');
+			var status = document.getElementsByClassName('status')[0];
+			var childs = children(autoAnswer);
+			var ul = childs[0];
+			var msg = childs[1];
+			var btn = childs[2];
+
+			// 配置应答消息
+			var question = '你好,在吗,约吗,吃鸡吗'.split(',');
+			var answer = '不好,借钱不在吃饭在,不约儿童,上号'.split(',');
+			// [{
+			// 	q:'',
+			// 	a:''
+			// }]
+
+			// 1. 发送消息
+			btn.onclick = function () {
+				// * 获取输入信息
+				var _msg = msg.value;
+
+				// * 生成li
+				var li = document.createElement('li');
+				li.className = 'active';
+				// 创建文本节点
+				var txt = document.createTextNode(_msg);
+				li.appendChild(txt);
+				// li.innerHTML = _msg;
+
+				// 给li写入按钮
+				var delBtn = document.createElement('button');
+				delBtn.innerHTML = '&times;';
+				delBtn.title = '撤回';
+				li.appendChild(delBtn);
+
+				// 撤回功能（删除li）
+				delBtn.onclick = function(){
+					ul.removeChild(li);
+				}
+
+
+				// 把li写入ul
+				ul.appendChild(li);
+
+				// 清空并获得焦点
+				msg.value = '';
+				msg.focus();
+
+				// 自动应答
+				// 判断输入的内容是否有预设内容
+				var idx = question.indexOf(_msg);
+				var answerLi = document.createElement('li');
+				if (idx >= 0) {
+					answerLi.innerHTML = answer[idx];
+				} else {
+					answerLi.innerHTML = '你说什么？风太大我听不到';
+				}
+
+				console.log('status=', status)
+
+				// 延迟写入应答消息（模拟对方输入）
+				status.style.display = 'block';
+				setTimeout(function () {
+					ul.appendChild(answerLi);
+					status.style.display = 'none';
+
+					// 禁止撤回消息
+					// delBtn.onclick = null;
+					delBtn.parentNode.removeChild(delBtn);
+				}, 3000)
+			}
+		})();
+	</script>
+</body>
+
+</html>

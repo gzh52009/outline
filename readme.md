@@ -1123,9 +1123,11 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
         * 文本节点：文本内容
 * 获取页面元素
     * document.getElementById()
-    * getElementsByTagName()
+    * getElementsByTagName()            [element,element,element]
     * getElementsByClassName()
     * document.getElementsByName()
+
+* 通过节点关系获取
 
 * 元素的CRUD
     * 创建
