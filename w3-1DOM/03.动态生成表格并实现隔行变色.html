@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格并实现隔行变色</title>
+    <style>
+        .result {
+            margin-top: 20px;
+        }
+
+        table {
+            border: 1px solid #999;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        /* table tr:nth-child(odd){
+            background-color:#ccc;
+        } */
+        table tr.odd{background-color: #58bc58;}
+        table td {
+            border: 1px solid #999;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>动态生成表格并实现隔行变色</h1>
+    <p>
+        <label for="row">行:</label>
+        <input type="text" id="row">
+    </p>
+    <p>
+        <label for="col">列:</label>
+        <input type="text" id="col">
+    </p>
+    <button class="btnCreate">生成表格</button>
+    <div class="result">
+        <!-- <table>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table> -->
+    </div>
+    <script>
+        /**
+             * 动态生成表格并实现隔行变色
+                1. 获取元素节点
+                2. 给按钮节点添加点击事件
+                    * 获取输入的行和列
+                    * 利用嵌套循环生成表格
+                        * 节点的增、删、改
+            * 节点创建
+                * 创建元素节点：document.createElement()
+            * 插入节点
+                * parent.appendChild(node)      node会成为parent的子节点
+         */
+
+        //  1. 获取元素节点
+        var row = document.getElementById('row');
+        var col = document.getElementById('col');
+        var btnCreate = document.getElementsByClassName('btnCreate')[0];
+        var result = document.getElementsByClassName('result')[0];
+
+        // 2. 给按钮节点添加点击事件
+        btnCreate.onclick = function(){
+            // 获取输入的行和列
+            var _row = row.value;
+            var _col = col.value;
+
+            // 创建table
+            var table = document.createElement('table');// <table></table>
+
+            // 创建tbody
+            var tbody = document.createElement('tbody');   // <tbody></tbody>
+            
+
+            // 外层循环控制tr
+            for(var i=0;i<_row;i++){
+                // 创建tr
+                var tr = document.createElement('tr');
+
+                // 给偶数行添加背景颜色
+                if(i%2 === 0){
+                    // tr.style.backgroundColor = '#ccc';
+                    tr.className = 'odd';
+                }
+                
+                // 内层循环控制td
+                for(var j=0;j<_col;j++){
+                    // 创建td
+                    var td = document.createElement('td');
+
+                    // 往td中写入内容
+                    td.innerHTML = '单元格' + i + j
+
+                    // 把tr写入tr
+                    tr.appendChild(td);
+                }
+
+                // 把tr写入tbody
+                tbody.appendChild(tr);
+            }
+
+            // 把tbody写入table
+            table.appendChild(tbody); // <table><tbody></tbody></table>
+
+            // 把table写入#result
+            result.appendChild(table);
+        }
+    </script>
+</body>
+</html>

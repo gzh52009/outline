@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.获取元素节点</title>
+</head>
+<body>
+    <h1>02.获取元素节点</h1>
+    <div id="list">
+        <a href="#">google</a>
+        <a href="#" id="baidu">baidu</a>
+        <a href="#">360</a>
+    </div>
+    <a href="#" class="qf">千锋</a>
+    <script>
+        /**
+             * 02.获取元素节点
+                * document.getElementById(id)       通过id获取
+                * node.getElementsByTagName(tagName)     通过标签名获取元素，得到一个类数组（伪数组） // [node,node]
+                * node.getElementsByClassName(className)  通过类名获取元素，得到一个类数组（伪数组）// [node,node]
+                * document.getElementsByName(name)  通过name属性获取页面元素，得到一个类数组，一般用于表单元素
+         */
+
+         var list = document.getElementById('list');
+
+         var links = document.getElementsByTagName('a');
+         console.log('links=',links);
+
+        var searchLink = list.getElementsByTagName('a');
+
+        console.log('searchLink=',searchLink);
+
+        var qf = document.getElementsByClassName('qf'); // [node]
+        console.log('qf=',qf);
+         
+    </script>
+</body>
+</html>

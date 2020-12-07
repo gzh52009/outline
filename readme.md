@@ -1092,3 +1092,43 @@ function fib(month){
     * 事件
         * onscroll
         * onload
+
+##  day3-1
+
+### 复习
+* window
+    * 常用属性
+    * 方法
+    * 属性对象
+        * location
+        * history
+        * navigator
+        * document
+
+### 知识点
+javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
+
+* 节点Node
+    * nodeType（12种）
+        * 1: 元素节点
+        * 2: 属性节点
+        * 3: 文本节点
+    * nodeName
+        * 元素节点：大写的标签名
+        * 属性节点：属性名
+        * 文本节点：#text
+    * nodeValue
+        * 元素节点：null
+        * 属性节点：属性值
+        * 文本节点：文本内容
+* 获取页面元素
+    * document.getElementById()
+    * getElementsByTagName()
+    * getElementsByClassName()
+    * document.getElementsByName()
+
+* 元素的CRUD
+    * 创建
+        * document.createElement()
+    * 插入
+        * parent.appendChild(node)
