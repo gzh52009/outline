@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.案例-tab标签切换</title>
+    <style>
+        .tab{border:1px solid #ddd;width:600px;}
+        .tab .title{border-bottom:1px solid #ddd;}
+        .tab .title span{
+            display: inline-block;padding:10px 15px;
+        }
+        .tab .title span.active{background-color: #f90;}
+        .tab .content{padding:15px;text-align:center;}
+    </style>
+</head>
+<body>
+    <h1>07.案例-tab标签切换</h1>
+    <div class="tab">
+        <div class="title">
+            <span>laoxie</span>
+            <span>xiaoxie</span>
+            <span>tiantian</span>
+        </div>
+        <div class="content">
+            <div>laoxie喜欢写代码</div>
+            <div>xiaoxie喜欢种菜</div>
+            <div>tiantian喜欢大保健</div>
+        </div>
+    </div>
+    <script>
+        /**
+            * 07.案例-tab标签切换
+                1. 初始化
+                    * 高亮第一个tab
+                    * 显示Tab对应的内容，隐藏其它内容
+                2. 点击切换
+                    * 获取点击元素所在的索引值
+                    * 高亮对应的tab，删除其它tab高亮
+                    * 显示对应的内容，隐藏其它内容
+            * 重要知识点：
+                * 如何给所有元素添加事件？
+                * 为什么无法拿到对应的i值？
+                * 如何拿到对应的i值？
+         */
+        var tab = document.getElementsByClassName('tab')[0];
+        // var title = tab.getElementsByClassName('title')[0];
+        var title = tab.children[0];// tab.firstElementChild
+        var content = tab.children[1];// tab.firstElementChild
+
+        // 声明一个变量currentIndex，用于存放当前索引值
+        var currentIndex = 1;
+
+        // 1. 初始化
+        // * 高亮第一个tab
+        title.children[currentIndex].className = 'active';
+        // * 显示Tab对应的内容，隐藏其它内容
+        for(var i=0;i<content.children.length;i++){
+            if(i === currentIndex){
+                content.children[i].style.display = 'block';
+            }else{
+                content.children[i].style.display = 'none';
+            }
+        }
+
+        // 2. 点击切换
+        // title.children[0].onclick = function(){}
+        // title.children[1].onclick = function(){}
+        // title.children[2].onclick = function(){}
+        for(var i=0;i<title.children.length;i++){
+            // 设置节点属性
+            title.children[i].idx = i;
+            // 设置html属性
+            // title.children[i].setAttribute('idx',i);
+
+            title.children[i].onclick = function(){
+                // this:当前对像，在事件中，表示绑定事件的元素
+                // 获取点击元素所在的索引值
+                // var idx = this.getAttribute('idx');
+                var idx = this.idx;
+                console.log(666,i,idx);
+
+                for(var i=0;i<title.children.length;i++){
+                    if(i === idx){
+                        // * 高亮对应的tab
+                        title.children[i].className = 'active';
+                        // * 显示对应的内容
+                        content.children[i].style.display = 'block';
+                    }else{
+                         // * 删除其它tab高亮
+                         title.children[i].className = '';
+                        // * 隐藏其它内容
+                        content.children[i].style.display = 'none';
+                    }
+                }
+            }
+        }
+        console.log('for.end',i);
+    </script>
+</body>
+</html>

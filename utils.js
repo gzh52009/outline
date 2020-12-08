@@ -44,6 +44,14 @@ function children(el){
     return result;
 }
 
+function firstElement(el){
+    return children(el)[0];
+}
+function lastElement(el){
+    var arr = children(el);
+    return arr[arr.length-1];
+}
+
 /**
  * 获取下一个元素节点
  * @param {Element} el 
@@ -68,5 +76,15 @@ function nextElement(el){
  * @param {*} el 
  */
 function prevElement(el){
+    var prev = el.previousSibling;
+    // 只有el元素的下一个兄弟元素存在时才符合循环条件
+    while(prev){
+        if(prev.nodeType != 1){
+            prev = prev.previousSibling;
+        }else{
+            break;
+        }
+    }
 
+    return prev;
 }

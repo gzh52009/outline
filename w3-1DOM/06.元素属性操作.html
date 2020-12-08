@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>元素属性操作</title>
+</head>
+<body>
+    <h1>元素属性操作</h1>
+    <div id="box" nickname="xiaoxie"></div>
+    <script>
+        /**
+            * 元素属性操作
+                * 公共属性
+                * 私有属性
+            
+
+            html元素    <-公共/私有->   节点
+         */
+        var box = document.getElementById('box');
+
+        // 设置/获取 节点属性
+        // 点语法/方括号语法 是给元素<节点>添加属性
+        box.id;// box['id']
+        box.title = '设置属性title'
+        box.className = 'mybox'
+
+        box.username = 'laoxie';
+
+        // 设置html属性
+        box.setAttribute('idx',10);
+
+    </script>
+</body>
+</html>

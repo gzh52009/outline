@@ -1134,3 +1134,79 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
         * document.createElement()
     * 插入
         * parent.appendChild(node)
+
+## day3-2
+
+### 复习
+* DOM树
+    > 节点树
+* 节点Node
+    * nodeType
+    * nodeName
+    * nodeValue
+
+* 节点类型
+    * 元素节点
+    * 属性节点
+    * 文本节点
+
+* 节点获取
+    * document.getElementById(id)
+    * getElementsByClassName(className) 伪数组
+    * getElementsByTagName(tagName) 伪数组
+    * document.getElementsByName(name)  为数组，一般用于表单元素
+* 节点关系
+    * 父节点：parentNode
+    * 子节点：
+        * childNodes    所有子节点（伪数组）
+        * firstChild
+        * lastChild
+    * 兄弟节点
+        * previousSibling   前一个兄弟元素
+        * nextSibling       后一个兄弟元素
+* 过滤非元素节点
+    * children();
+    * nextElement();
+    * prevElement();
+    * firtElement();
+    * lastElement();
+
+* 节点的CRUD
+    * 创建
+        * document.createElement()
+        * document.createTextNode()  不常用
+        * document.createAttribute()    几乎不用
+    * 插入
+        * parent.appendChild(node)
+        * parent.insertBefore(newNode,oldNode)
+            > oldNode.parentNode.insertBefore(newNode,oldNode)
+    * 删除：parent.removeChild(node)
+    * 复制：node.cloneNode(boolean)
+    * 判断：node.hasChildNodes()
+
+* 使用方法需要考虑一下三个问题
+    1、了解方法用途
+    2、方法需要什么参数
+    3、方法有什么返回值
+
+### 知识点
+* 元素属性操作
+    > 利用对象的方式操作属性
+    * 节点属性
+    * html元素属性
+    ```js
+        // 获取 
+        el.id ;// 获取el元素的属性
+
+        // 设置属性
+        el.id = 'box';
+    ```
+* 元素关系
+    * 父元素：el.parentElement
+    * 子元素：
+        * 所有子元素：el.children
+        * 第一个子元素：el.firstElementChild
+        * 最后一个子元素：el.lastElementChild
+    * 兄弟元素
+        * 前一个兄弟元素：el.previousElementSibling
+        * 后一个兄弟元素：el.nextElementSibling
