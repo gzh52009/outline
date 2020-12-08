@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>检测鼠标按键</title>
+    <style>
+        #box{margin:0 auto;width:800px;height: 200px;border:5px solid #ccc;background-color: #efefef;font-size:40px;text-align:center;line-height: 200px;}
+    </style>
+</head>
+<body>
+    <h1>检测鼠标按键</h1>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById("box");
+
+        box.onmousedown = function(event){
+            console.log('event',event);
+            if(event.button === 0){
+                box.innerText = '左键射击'
+            }else if(event.button === 1){
+                box.innerText = '滚轮换枪'
+            }else if(event.button === 2){
+                box.innerText = '右键大招';
+            }
+        }
+    </script>
+</body>
+</html>

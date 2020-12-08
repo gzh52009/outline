@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09.获取元素css样式</title>
+    <style>
+        #box {
+            border: 5px solid #ff6600;
+            padding: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: #cccccc;
+
+            /* box-sizing: border-box; */
+        }
+        #box::before{
+            content:'￥';
+            color:#f00;
+        }
+        body{position:relative}
+    </style>
+</head>
+
+<body>
+    <h1>09.获取元素css样式</h1>
+    <div id="box"></div>
+    <script>
+        /**
+            * 09.获取元素css样式
+                * style: 获取/设置内联样式
+                * 获取计算样式：getComputedStyle(ele,pseudo)
+                    * 得到ele元素权重计算后的最终样式（对象）
+         */
+        var box = document.getElementById('box');
+
+        console.log('style.width=',box.style.width);//
+        // 设置内联样式
+        box.style.fontSize = 30 + 'px';
+
+        // 元素计算后的最终样式组成的对象
+        var boxCss = getComputedStyle(box);
+        console.log('boxCss=',boxCss.color);
+    </script>
+</body>
+
+</html>

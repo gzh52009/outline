@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自动登录勾选</title>
+    <style>
+        .tips{margin:10px 0;padding:10px;width:200px;background-color:#fc0;border:1px solid #f60}
+    </style>
+</head>
+
+<body>
+    <h1>自动登录勾选</h1>
+    <label>
+        <input type="checkbox" name="autoLogin" /> 自动登录
+    </label>
+    <div class="tips">
+        为也您的安全，请不要在网吧等公共场所使用自动登录
+    </div>
+    <button id="btn" disabled>下一步</button>
+    <script>
+        var autoLogin = document.getElementsByName('autoLogin')[0];
+        var tips = document.getElementsByClassName('tips')[0];
+        var btn = document.getElementById('btn');
+
+        autoLogin.onchange = function(){
+            // 判断复选框的勾选状态
+            console.log('checked',this.checked);
+            if(this.checked){
+                tips.style.display = 'none';
+                btn.disabled = false;
+            }else{
+                tips.style.display = 'block';
+                btn.disabled = true;
+            }
+        }
+    </script>
+</body>
+
+</html>

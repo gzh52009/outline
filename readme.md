@@ -1210,3 +1210,7 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
     * 兄弟元素
         * 前一个兄弟元素：el.previousElementSibling
         * 后一个兄弟元素：el.nextElementSibling
+
+
+* 事件
+    * 搞懂事件在什么时候执行？

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.鼠标事件</title>
+    <style>
+        #box{width:500px;height: 200px;border:5px solid #ccc;background-color: #efefef;}
+    </style>
+</head>
+<body>
+    <h1>01.鼠标事件</h1>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById("box");
+
+        box.onclick = function(){
+            console.log('click');
+        }
+
+        box.ondblclick = function(){
+            console.log('ondblclick');
+        }
+
+        box.onmousedown = function(){
+            console.log('onmousedown');
+        }
+        box.onmouseup = function(){
+            console.log('onmouseup');
+        }
+
+        box.onmouseover= function(){
+            console.log('onmouseover');
+        }
+        box.onmouseout = function(){
+            console.log('onmouseout');
+        }
+        box.onmousemove = function(){
+            console.log('onmousemove');
+        }
+    </script>
+</body>
+</html>

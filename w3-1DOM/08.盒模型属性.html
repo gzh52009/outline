@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08.盒模型属性</title>
+    <style>
+        #box {
+            border: 5px solid #ff6600;
+            padding: 10px;
+            width: 200px;
+            height: 100px;
+            background-color: #cccccc;
+
+            /* box-sizing: border-box; */
+        }
+        body{position:relative}
+    </style>
+</head>
+
+<body>
+    <h1>08.盒模型属性</h1>
+    <div id="box"></div>
+    <script>
+        /**
+            * 盒模型属性
+                * offsetTop: 当前元素离定位父级元素顶部的距离，如无定位父级，则相对于根元素。
+                * offsetLeft: 当前元素离<定位父级>元素左边的距离，如无定位父级，则相对于根元素。
+                * offsetWidth: 当前元素的宽度（border + padding + content）
+                * offsetHeight: 当前元素的高度（border + padding + content）
+         */
+        var box = document.getElementById('box');
+
+        // console.log('offsetWidth=',box.offsetWidth);
+        // console.log('offsetHeight=',box.offsetHeight);
+        console.log('offsetTop=',box.offsetTop);
+        console.log('offsetLeft=',box.offsetLeft);
+    </script>
+</body>
+
+</html>
