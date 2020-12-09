@@ -1214,3 +1214,40 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
 
 * 事件
     * 搞懂事件在什么时候执行？
+
+
+## day3-3
+
+### 复习
+
+* 元素节点属性与html属性
+    > 点语法和方括号语法
+    ```js
+        // 在html中，自定义属性必须添加"data-*"，这样才符合w3c的标准
+        <div id="box" data-username="laoxie"></div>
+
+        var box = document.getElementById('box')
+        box.id;// box
+        box.className = 'mybox';
+        box.nickname="test";
+        box.username;//undefined
+
+        // 在元素节点中获取html自定义属性（data-）
+        box.dataset.nickname
+    ```
+* 自定义属性data-*的设置与获取
+    > el.dataset
+
+* 事件
+    * 用户体验（埋点）
+    * 分类
+        * 鼠标事件
+        * 键盘事件
+        * 表单事件
+        * 页面事件
+        * 其他事件
+    * 事件绑定：Node.on事件类型 = 事件处理函数; // null
+    * event对象
+        * 公共属性：任何事件都有的属性
+            * type
+        * 私有属性：特定的事件才有的属性

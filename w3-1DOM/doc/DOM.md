@@ -139,12 +139,15 @@
     - style        设置/获取元素的内联样式
     - className    设置/获取元素的class属性
     - title
+    * ....
 * 私有属性
     - name         设置/获取元素name属性
     - value
     - checked
     - type
     - src
+    - href
+    - seleted
     - ...
 * 特殊属性
     - tagName      获取元素元素的标签名

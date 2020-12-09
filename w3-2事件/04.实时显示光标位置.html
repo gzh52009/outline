@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04.实时显示光标位置</title>
+	<style>
+		#pos{position: fixed;left:0;bottom:0;padding:20px;background-color:#fff;}
+	</style>
+</head>
+<body>
+    <h1>04.实时显示光标位置</h1>
+    <div id="pos">
+
+    </div>
+    <script>
+        /**
+            * 实时显示光标位置
+                * mousemove
+                * 给document绑定事件
+                * event
+                    * clientX/clientY
+                    * pageX/pageY
+                        > page = client + scroll
+                    * screenX/screenY
+         */
+        var pos = document.getElementById('pos');
+         document.onmousemove = function(e){
+            e = e || window.event;
+
+            var html = '<p>client: ' + e.clientX + ',' + e.clientY + '</p>';
+            html += '<p>page: ' + e.pageX + ',' + e.pageY + '</p>';
+            html += '<p>screen: ' + e.screenX + ',' + e.screenY + '</p>';
+
+            pos.innerHTML = html;
+         }
+
+         for(var i=0;i<100;i++){
+             document.write('<p>页面内容'+i+'</p>')
+         }
+    </script>
+</body>
+</html>

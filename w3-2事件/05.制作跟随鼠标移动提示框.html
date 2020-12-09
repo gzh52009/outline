@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>制作跟随鼠标移动提示框</title>
+    <style>
+        #tips{display:none;position:absolute;padding:15px;background-color:#ffc;border:1px solid #fc0;}
+    </style>
+</head>
+<body>
+    <h1>制作跟随鼠标移动提示框</h1>
+    <ul>
+        <li><a href="#" title="震惊！光天化日之下某女老师竟然调戏老谢">震惊！某女老师竟然调戏老谢</a></li>
+        <li><a href="#" title="震惊！光天化日之下某女老师竟然又调戏老谢">震惊！某女老师竟然又调戏老谢</a></li>
+        <li><a href="#" title="震惊！光天化日之下某女老师竟然还调戏老谢">震惊！某女老师竟然还调戏老谢</a></li>
+    </ul>
+    <div id="tips"></div>
+    <script>
+        /**
+            * 制作跟随鼠标移动提示框
+         */
+        var link = document.getElementsByTagName('a');
+        var tips = document.getElementById('tips');
+        for(var i=0;i<link.length;i++){
+            link[i].onmouseover = function(){
+                tips.style.display = 'block';
+                tips.innerText = this.title;
+                this.oldTitle = this.title;
+                this.removeAttribute('title');
+            }
+            link[i].onmousemove = function(e){
+                tips.style.left = e.pageX + 20 + 'px';
+                tips.style.top = e.pageY + 20 + 'px';
+            }
+
+            link[i].onmouseout = function(e){
+               tips.style.display = 'none';
+               this.title = this.oldTitle;
+            }
+        }
+    </script>
+</body>
+</html>

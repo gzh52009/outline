@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>元素属性操作</h1>
-    <div id="box" nickname="xiaoxie"></div>
+    <div id="box" nickname="xiaoxie" data-nickname="xiaoxiaoxie" data-idx="10"></div>
     <script>
         /**
             * 元素属性操作
@@ -29,6 +29,13 @@
 
         // 设置html属性
         box.setAttribute('idx',10);
+
+
+        box.nickname;// undefined
+        // 获取html属性
+        box.getAttribute('nickname');
+        // 获取data-*自定义属性
+        box.dataset.nickname;
 
     </script>
 </body>
