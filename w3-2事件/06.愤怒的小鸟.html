@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06.愤怒的小鸟</title>
+    <style>
+        #bird{position:absolute;left:0;top:0;width:100px;height:100px;border-radius:50%;}
+        .left{}
+        .right{transform:rotateY(180deg)}
+        .down{transform:rotateZ(180deg)}
+    </style>
+</head>
+<body>
+    <h1>06.愤怒的小鸟</h1>
+    <img src="img/m5.jpg" id="bird" />
+    <script>
+        /**
+            * 06.愤怒的小鸟
+                * 按住键盘上下左右键实现图片的移动（改变图片的left,top）
+                * keydown
+                    * event.which/event.keyCode
+         */
+        (function(){
+
+            var bird = document.getElementById('bird');
+    
+            var left = 0,top=0,speed=5,xclass='left',yclass="up";
+            
+    
+            document.onkeydown = function(e){
+                var keycode = e.keyCode || e.which;
+                // console.log(e.which,e.keyCode);
+    
+                if(keycode === 37){
+                    // 左
+                    left -= speed;
+                    xclass='left'
+                }else if(keycode === 38){
+                    // 上
+                    top -= speed;
+                    yclass="up"
+                }else if(keycode === 39){
+                    // 右
+                    left += speed;
+                    xclass='right'
+                }else if(keycode === 40){
+                    // 下
+                    top += speed;
+                    yclass="down"
+                }
+                console.log(left,top)
+    
+                bird.style.left = left + 'px';
+                bird.style.top = top + 'px';
+                bird.className = xclass + ' '+ yclass;
+            }
+        })();
+
+    </script>
+</body>
+</html>

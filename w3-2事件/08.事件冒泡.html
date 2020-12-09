@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08.事件冒泡</title>
+    <style>
+        #container{width:800px;margin:50px auto;padding:30px;background-color:#efefef;border:2px solid #ccc}
+        #box{margin:0 auto;padding:20px;background-color: #f00;}
+    </style>
+</head>
+<body>
+    <h1>08.事件冒泡</h1>
+    <div id="container">
+        <div id="box">
+            <button id="btn">点我有惊喜</button>
+        </div>
+    </div>
+    <script>
+        /**
+            * 08.事件冒泡
+                
+         */
+        var container = document.getElementById('container');
+        var box = document.getElementById('box');
+        var btn = document.getElementById('btn');
+
+        window.onclick = function(){
+            console.log('window')
+        }
+
+        document.body.onclick = function(e){
+            console.log('body',e.target)
+        }
+
+        document.documentElement.onclick = function(){
+            console.log('html')
+        }
+        document.onclick = function(e){
+            console.log('document',e.target)
+        }
+
+        btn.onclick = function(){
+            console.log('btn');
+        }
+        box.onclick = function(){
+            console.log('box');
+        }
+        container.onclick = function(){
+            console.log('container');
+        }
+
+    </script>
+</body>
+</html>

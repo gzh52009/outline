@@ -1251,3 +1251,17 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
         * 公共属性：任何事件都有的属性
             * type
         * 私有属性：特定的事件才有的属性
+
+* 在全局作用于中不能使用的变量
+  * name
+  * status
+  * top
+
+## 知识点
+* 事件传播
+  * 事件冒泡：事件由下往上沿着DOM树传播，直到document/window
+    * event.target：事件源对象，触发事件的元素，这个对象在事件传播过程中不会改变
+
+* 停止事件传播: event.stopPropagation()
+* 事件数量太多会影响页面的性能
+  * 事件委托优化：利用事件冒泡优化事件数

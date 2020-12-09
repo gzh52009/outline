@@ -60,6 +60,12 @@
 		document.onclick = function(){
 			contextMenu.style.display = 'none';
 		}
+		contextMenu.onclick = function(e){
+			e.stopPropagation();
+			setTimeout(function(){
+				contextMenu.style.display = 'none';
+			},1000)
+		}
 	</script>
 </body>
 </html>

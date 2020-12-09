@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.键盘事件</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>07.键盘事件</h1>
+    <script>
+        /**
+            * 07.键盘事件
+                * keydown
+                * keyup
+                * keypress
+                    * event.which/event.keyCode
+                    * ctrlKey
+                    * shiftKey
+                    * altKey
+         */
+        (function(){
+            // document.onkeydown = function(){
+            //     console.log('keydown')
+            // }
+            // document.onkeyup = function(){
+            //     console.log('onkeyup')
+            // }
+            // document.onkeypress = function(e){
+            //     console.log('onkeypress',e.keyCode)
+            // }
+            document.onkeydown = function(e){
+                console.log('onkeydown',e.keyCode)
+                console.log('ctrl',e.ctrlKey)
+                console.log('shift',e.shiftKey)
+                console.log('alt',e.altKey)
+                if(e.ctrlKey && e.keyCode === 67){
+                    // 复制
+                }else
+                if(e.ctrlKey && e.keyCode === 86){
+                    // 粘贴
+                }
+            }
+            
+            
+        })();
+
+    </script>
+</body>
+</html>
