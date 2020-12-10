@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11.事件监听器</title>
+    <style>
+        #box{position:relative;width:600px;height:200px;margin:0 auto;background-color: #efefef;border:5px solid #ccc;}
+        #btn{position:absolute;left:50%;top:50%;padding:20px;background-color: #f00;color:#fff;transform: translate(-50%,-50%)}
+    </style>
+</head>
+<body>
+    <h1>11.事件监听器</h1>
+    <div id="box">
+        <span id="btn">点我</span>
+    </div>
+    <script>
+        /**
+             * 11.事件监听器
+                * 标准：node.addEventListener(type,handle,capture)
+                * IE8-：node.attachEvent(type,handle)
+                    * type: 需要加on
+            
+                * 移除事件监听器
+                    * 标准：removeEventListener(type,handle,captrue)
+                    * IE8-:detachEvent('onclick',fun)
+                    > PS: 移除的参数要跟添加时的参数一致
+         */
+
+         var box = document.getElementById('box');
+         var btn = document.getElementById('btn');
+
+
+         // 以下事件处理函数在冒泡阶段执行
+         btn.onclick = function(){
+             console.log('btn onclick 1')
+         }
+        //   同名事件会被覆盖：这里的代码会覆盖上面的事件
+         btn.onclick = function(){
+             console.log('btn onclick 2')
+         }
+
+         // 事件监听器事件不会覆盖
+         btn.addEventListener('click',function(){
+            console.log('btn listener 1')
+         })
+         btn.addEventListener('click',function(){
+            console.log('btn listener 2')
+         });
+
+         var handle1 = function(){
+            console.log('box listener 1')
+         }
+         box.addEventListener('click',handle1);
+         var handle2 = function(){
+            console.log('box listener 2')
+         }
+         box.addEventListener('click',handle2,true);
+
+
+         // 删除事件监听
+         btn.onclick = null;
+         box.removeEventListener('click',handle1);
+         box.removeEventListener('click',handle2,true);
+    </script>
+</body>
+</html>

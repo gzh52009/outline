@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.匹配规则</title>
+</head>
+<body>
+    <h1>01.匹配规则</h1>
+    <script>
+        /**
+            * 01.匹配规则
+                * 字符类
+                    * \d    一个数字
+                    * \D    一个非数字
+                    * \w    一个数字或字母或下划线（_）
+                    * \W    一个非数字，非字母，非下划线的字符
+                    * \s    一个空格
+                    * \S    一个非空格
+                    * .     除换行以外的字符
+                * 数量词
+                    * {3}   匹配3个
+                    * {3,5} 匹配3到5个
+                    * {3,}  匹配3个及3个以上
+                    * +     等效于{1,}
+                    * *     等效于{0,}
+                * 贪婪模式：尽可能多地匹配（默认）
+                * 非贪婪模式：在数量词后面加问号（?）
+         */
+
+         var str = 'laoxie123 laotian321';
+
+         var res1 = str.replace('laoxie','xiao');
+         console.log('res1=',res1);
+         var res2 = str.replace(/lao/g,'xiao');
+         console.log('res2=',res2);
+
+         // 把数字替换成*
+         var res3 = str.replace(/\d{3}/g,'*');
+         console.log('res3=',res3);
+
+
+         var searchName = 'gooooooooooooooooogle'
+    </script>
+</body>
+</html>

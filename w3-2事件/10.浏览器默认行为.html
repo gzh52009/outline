@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.浏览器默认行为</title>
+    <style>
+      
+    </style>
+</head>
+<body>
+    <h1>10.浏览器默认行为</h1>
+    <a href="http://www.baidu.com" id="baidu" target="_blank">baidu</a>
+    <form action="http://www.taobao.com">
+        <div class="form-item">
+            <label for="username">用户名</label>
+            <input type="text" name="username" id="username" />
+        </div>
+        <div class="form-item">
+            <label for="password">密码</label>
+            <input type="password" name="psw" id="password" />
+        </div>
+        <button id="btnLogin">登录</button>
+    </form>
+    <script>
+        /**
+         * 10.浏览器默认行为
+            * 链接跳转
+            * 表单提交
+            * 右键菜单...
+            * 文本的选择
+            * 图片、链接拖拽
+         */
+
+         var bd = document.getElementById('baidu');
+         var btnLogin = document.getElementById('btnLogin');
+
+        //  location.search = 'username=laoxie&password=123'
+
+        bd.onclick = function(e){
+            this.href = this.href + '?username=laoxie&password=123456';
+
+            // 阻止默认行为：链接跳转
+            e.preventDefault();
+        }
+
+        btnLogin.onclick = function(e){
+            // 兼容写法：判断是否支持某个方法、属性
+            if(typeof e.preventDefalut === 'function'){
+                e.preventDefalut();
+            }else{
+                e.returnValue = false;
+            }
+
+            // 获取表单元素的值 -> ajax传到服务器
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>12.窗口拖拽效果</title>
+    <style>
+        #box{position:absolute;left:0;top:0;width:600px;height:200px;margin:0 auto;padding:0 2px;background-color: #efefef;border:5px solid #ccc;}
+        #box .title{
+            border-bottom:2px solid #ccc;padding:10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>12.窗口拖拽效果</h1>
+    <div id="box">
+        <div class="title">弹窗</div>
+    </div>
+    <script>
+        /**
+             * 12.窗口拖拽效果
+                * mousedown
+                * mousemove
+               
+         */
+
+         var box = document.getElementById('box');
+
+
+        box.onmousedown = function(e){
+            e = e || window.event;
+
+            // offsetX,offsetY在复杂html结构中有问题
+            // var ox = e.offsetX; 
+            // var oy = e.offsetY;
+
+            // 在按下式计算ox,oy
+            var ox = e.clientX - box.offsetLeft;
+            var oy = e.clientY - box.offsetTop;
+
+            console.log('oxy',ox,oy)
+            document.onmousemove = function(evt){
+                console.log('move')
+                var left = evt.clientX - ox;
+                var top = evt.clientY - oy;
+
+                box.style.left = left + 'px';
+                box.style.top = top + 'px';
+            }
+        }
+
+        document.onmouseup = function(){
+            document.onmousemove = null;
+        }
+
+         
+    </script>
+</body>
+</html>

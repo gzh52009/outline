@@ -1265,3 +1265,135 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
 * 停止事件传播: event.stopPropagation()
 * 事件数量太多会影响页面的性能
   * 事件委托优化：利用事件冒泡优化事件数
+
+## day3-4
+
+### 复习
+* event
+    * 获取
+        * 标准：事件处理函数的第一个参数
+        * IE8-：window.event
+    * 属性
+        * type  事件类型
+        * target 事件源节点对象
+        * currentTarget 绑定事件的元素
+    * 方法
+        * 标砖：stopPropagation();
+* 事件传播
+    * 事件冒泡：从事件源对象开始沿着DOM树往父级传播，直到被处理或到达document/window
+    * 事件捕获
+    * 停止事件传播
+        * 标准：stopPropagation();
+        * IE8-： event.cancelBubble = true
+* 事件委托： 利用事件冒泡机制把本该绑定的事件委托给父节点处理的一种方式
+    * target：事件源对象
+    * currentTarget： 父级节点（绑定事件的元素）
+
+### 知识点
+* 阻止默认行为
+    * 标准：e.preventDefault()
+    * IE8-: e.returnValue = false; // return false;
+* 事件传播
+    * 事件冒泡：从事件源对象开始沿着DOM树往父级传播，直到被处理或到达document/window
+    * 事件捕获：从根节点开始沿着DOM树向下传播，直到事件源对象
+    
+    > PS: IE8以下的浏览器不支持捕获
+
+    ```js
+        <div>
+            <span id="btn">点我</span>
+        </div>
+
+        // 传统事件绑定方式：事件处理函数在冒泡阶段执行
+        btn.onclick = function(){
+            // 这里的代码在click事件触发时冒泡阶段执行
+        }
+        btn.onclick = function(){
+            // 这里的代码会覆盖上面的事件
+        }
+        div.onclick = function(){
+            // 这里的代码在click事件触发时冒泡阶段执行
+        }
+        document.onclick = function(){
+            // 这里的代码在click事件触发时冒泡阶段执行
+        }
+
+        // 让事件处理函数在捕获阶段执行：
+    ```
+* 事件监听
+    * 标准：node.addEventListener(type,handle,captrue)
+        * type: 事件类型
+        * handle： 事件处理函数
+        * capture：是否捕获，默认false（如参数省略，默认handle在冒泡阶段执行）
+        > 事件监听器同名事件不会被覆盖，如captrue为true，则事件在捕获阶段触发
+    * IE8-：node.attachEvent(type,handle)
+                    * type: 需要加on
+     ```js
+        <div>
+            <span id="btn">点我</span>
+        </div>
+
+        btn.addEventListener('click',function(){
+            // 这里的代码在click冒泡阶段执行
+        })
+        btn.addEventListener('click',function(){
+            // 与上面事件同时存在
+        })
+
+        // 让事件处理函数在冒泡阶段执行：
+        div.addEventListener('click',function(){})
+        // 让事件处理函数在捕获阶段执行：
+        div.addEventListener('click',function(){},true)
+    ```
+    * 移除事件监听器
+        * 标准：removeEventListener(type,handle,captrue)
+        * IE8-:detachEvent('onclick',fun)
+        > PS: 移除的参数要跟添加时的参数一致
+
+* 拖拽效果
+
+### 知识点
+* 正则表达式
+    * 字符类
+        * \d    一个数字
+        * \D    一个非数字
+        * \w    一个数字或字母或下划线（_）
+        * \W    一个非数字，非字母，非下划线的字符
+        * \s    一个空格
+        * \S    一个非空格
+        * .     除换行以外的字符
+    * 数量词
+        * `{3}`   匹配3个
+        * `{3,5}` 匹配3到5个
+        * `{3,}`  匹配3个及3个以上
+        * `+`     等效于{1,}
+        * `*`     等效于{0,}
+        * `?`     等效于{0,1}
+    * 贪婪模式：尽可能多地匹配（默认）
+    * 非贪婪模式：在数量词后面加问号（?）
+    * 特殊字符
+        * `^` 表示开始
+        * `$` 表示结束
+        * `|` 表示或
+        * `[]`    代表任意“单个字符” ,里面的内容表示“或”的关系
+            * `-` 代表范围
+            * `^` 表示非
+            ```js
+                1[^3-9]
+            ```
+    * 边界处理
+        * \b : 匹配一个单词边界，也就是指单词和空格间的位置
+        * \B : 匹配非单词边界
+
+    * 引用分组
+        > 括号括起来的内容
+        * 正则内: \n
+        * 正则外: $n	
+            str.replace(reg,"$1")
+        > PS: n的值为1-99，分组顺序：以左括号出现的顺序为分组顺序
+    * 表示所有字符
+        ```js
+            [\s\S]
+            [\d\D]
+            [\w\W]
+        ```
