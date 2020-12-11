@@ -53,7 +53,7 @@
     替换字符串
 * `split(reg)`
     ```js
-        'a,b ,c , d, e'.split(/\s*,\s* /);
+        'a,b ,c , d, e'.split(/\s*,\s*/);
     ```
 
 

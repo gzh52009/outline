@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04.类名操作</title>
+    <style>
+        .box::before{
+            content:'￥'
+        }
+    </style>
+</head>
+<body>
+    <h1>04.类名操作</h1>
+    <div id="result" class="container">container</div>
+    <script>
+       'use strict'
+
+       /**
+            04.类名操作
+                * el.className
+                * el.classList
+                    - length :  class类名的个数
+                    - add()  :  添加class方法
+                    - remove()  :  删除class方法
+                    - contains():是否含有某个类,返回布尔值
+                    - toggle() :  切换class方法
+                
+                
+       */
+
+       var result = document.querySelector('#result');
+
+    //    result.className += ' box container'
+        result.classList.add('box')
+        
+    </script>
+</body>
+</html>

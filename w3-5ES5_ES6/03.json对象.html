@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03.json对象</title>
+
+</head>
+<body>
+    <h1>03.json对象</h1>
+    <div id="result"></div>
+    <script>
+       'use strict'
+
+       /**
+            JSON
+                > json是一个规范，任何符合这个规范的数据都可以称为json
+                * json规范
+                    + 属性名必须加双引号
+                    + 字符串必须加双引号
+                    + 不能有注释
+                    + 最后不能有多余逗号
+                    + 属性值为以下值
+                        * Number（整数或浮点数）
+                        * String（在双引号中）
+                        * Boolean
+                        * Array（在方括号中）
+                        * Object（在花括号中）
+                        * null
+                * json
+                    * json字符串：符合json规范的字符串
+                    * json对象：符合json规范的js对象
+
+                * JSON.stringify(js对象)  把js对象转成json字符串
+                * JSON.parse(json)      把json字符串转成json对象
+
+                
+                
+       */
+
+       var result = document.getElementById('result');
+        
+        // js对象
+        var user = {
+            username:'laoxie',
+            age:18,
+            gender:'男',
+            isDanshen:false
+        }
+
+        // 字符串,也叫json字符串
+        var info = '{"name":"tiantian","age":28,"gender":"不详"}'
+
+        result.innerHTML = JSON.stringify(user);
+
+        var user2 = JSON.parse(JSON.stringify(user))
+    </script>
+</body>
+</html>

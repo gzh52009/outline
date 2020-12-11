@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.页面事件</title>
+    <script>
+        /**
+            document页面事件
+                * readystatechange
+        */
+        window.onload = function(){
+            console.log('window.onload')
+        }
+        document.onreadystatechange = function(){
+            // console.log('readyState=',document.readyState)
+            if(document.readyState === 'interactive'){
+
+                var box = document.getElementById('box');// null
+                // console.log('box=',box);
+                console.log('interactive');
+            }else if(document.readyState === 'complete'){
+                console.log('complete')
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded',function(){
+            console.log('DOMContentLoaded')
+        })
+    </script>
+</head>
+<body>
+    <h1>01.页面事件</h1>
+    <div id="box"></div>
+    <script>
+        var box = document.getElementById('box');// Node
+    </script>
+</body>
+</html>

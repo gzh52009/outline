@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.严格模式</title>
+
+</head>
+<body>
+    <h1>02.严格模式</h1>
+    <script>
+       'use strict'
+        var a = 100;
+
+        function show(){
+            
+            var a = 10;
+
+            c = 20;
+        }
+
+        function sum(a,b){
+            c = 200;
+            return a+b+c
+        }
+
+        // show();
+        //sum(10,20);
+
+        // delete Math.PI; // 报错
+
+        var obj={name:"小王",name:'王大锤'}
+
+        // function sum(a,a,b){} ;// 报错
+
+        var arr = [10,2,3,50];
+        if(arr.length>3){
+            function get(){//报错
+
+            }
+        }
+    </script>
+</body>
+</html>

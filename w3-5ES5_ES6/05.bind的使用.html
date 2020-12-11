@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.bind的使用</title>
+</head>
+<body>
+    <h1>05.bind的使用</h1>
+    <button class="btn">点我</button>
+    <button class="btn">点我</button>
+    <button class="btn">点我</button>
+    <button class="btn">点我</button>
+    <button class="btn">点我</button>
+    <script>
+       'use strict'
+
+       /**
+            05.bind的使用
+                * this 表示当前对象，只能在函数中使用
+                * fn.bind(target)：把fn的this指向改成target，bind方法返回一个新的函数
+                
+       */
+
+    var btns = document.querySelectorAll('.btn');
+    
+    for(var i=0;i<btns.length;i++){
+        btns[i].idx = i;
+        // btns[i].setAttribute('idx',i);
+        btns[i].onclick = function(){
+            // 事件处理函数中的this指向绑定事件的节点
+            console.log('idx1=',this.idx);
+            // var self = this;
+            var callback = function(){
+                // setTimeout回调函数的this指向window
+                // console.log('idx2=',self.idx)
+                console.log('idx2=',this.idx)
+            }
+            setTimeout(callback.bind(this),1000);
+        }
+    }
+    </script>
+</body>
+</html>

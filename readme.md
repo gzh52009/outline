@@ -1397,3 +1397,69 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
             [\d\D]
             [\w\W]
         ```
+
+## day3-5
+
+### 复习
+* 正则表达式RegExp
+    * 字符串方法
+        * search()
+        * match()
+        * replace(str|reg,replacement)
+        * split()
+    * 正则方法
+        * test()    返回boolean
+        * exec()    类似于字符串的match方法
+    * 字符类
+        * \d,\D
+        * \w,\W
+        * \s,\S
+        * .
+    * 边界
+        * \b,\B
+    * 数量词
+        * {3}   `\d{3},[\s\S]{5}`
+        * {3,5}
+        * {3,}
+        * ?     等效：{0,1}， \d??
+        * +     等效：{1,}
+        * *     等效：{0,}
+    * 表示所有字符
+        * [\d\D]
+        * [\w\W]
+        * [\s\S]
+    * 特殊符号
+        * []
+            * [0123456789]  等效于 \d
+            * - 范围
+                * [3-8]
+                * [a-zA-Z]
+            * ^ 表示非
+                [^>]
+        * {}
+        * ? 数量词、非贪婪
+        * ^ 开始、非
+        * $ 结束
+        * ()    分组
+    * 贪婪模式于非贪婪模式
+        > 默认贪婪模式，转非贪婪模式：?
+    * 分组
+        * 正则内：\1
+        * 正则外：$1
+        * 非捕获分组：(?:\.\w+) 一般用于优化正则表达式的性能
+
+### 知识点
+javascript = ECMAScript + BOM + DOM
+* ES5
+    * 页面事件
+    * 严格模式
+    * json
+    * 获取元素
+        * document.getElementById()
+        * getElementsByClassName()
+        * getElementsByTagName()
+        * document.getElementsByName()
+        * 节点关系
+        * 元素关系
+        * querySelector(cssSelector)     得到选择器匹配的第一个元素
+        * querySelectorAll(cssSelector)   得到所有匹配到的元素，返回一个伪数组
