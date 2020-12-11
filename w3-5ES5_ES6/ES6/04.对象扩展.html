@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04.对象扩展</title>
+</head>
+
+<body>
+    <h1>04.对象扩展</h1>
+    <script>
+        /**
+            04.对象扩展
+                * Object.assign(target,obj1,obj2....objn)
+
+        */
+
+        var goods = {
+            id: 'g001',
+            name: 'huawei mate40',
+            price: 4998,
+            salePrice: 1998
+        }
+
+        var goods2 = goods;// 复制了地址，并没有复制对象
+
+        var newGoods = {}
+        for (let key in goods) {
+            newGoods[key] = goods[key];
+        }
+
+        var newGoods2 = Object.assign({}, goods, { kucun: 100, price: 9.8 });
+        console.log(newGoods2)
+
+        // 对象的简写
+        // 属性简写
+        var myName = 'laoxie';
+        var obj1 = {
+            myName // 属性名为变量名, 属性值为变量的值，等效于：myName:'laoxie
+        };
+        var obj2 = {
+            [myName]:18 // 把变量值作为对象的属性名，等效于：laoxie:18
+        }
+
+        // 方法简写
+        var obj3 = {
+            getData(){      // 等效于：getData:function(){}
+
+            }
+        }
+    </script>
+</body>
+
+</html>

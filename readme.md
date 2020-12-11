@@ -1452,14 +1452,70 @@ javascript = ECMAScript(ECMA) + BOM + DOM(W3C)
 javascript = ECMAScript + BOM + DOM
 * ES5
     * 页面事件
+        * readystatechange
+            * interactive
+            * complete
+        * DOMContentLoaded
+            * document.addEventListener('DOMContentLoaded',()=>{})
+        ```js
+            document.onreadystatechange = function(){
+
+            }
+            document.addEventListener('readystatechange',function(){})
+        ```
     * 严格模式
-    * json
+        > 'use strict'
+    * JSON
+        * 什么是json
+        * 规范
+            * 属性名必须使用双引号
+            * 字符串必须使用双引号
+            * 不能有注释
+            * 不能有多余的逗号
+            * 属性值必须为以下数据类型
+                * Number
+                * String
+                * Boolean
+                * Array
+                * Object
+                * null
+        * JSON.stringify()
+        * JSON.parse()
+
+        ```js
+            var goods = {
+                "name":"huawei mate 40 pro", // 商品名称
+                "price": 5998,
+            }
+
+        ```
     * 获取元素
-        * document.getElementById()
-        * getElementsByClassName()
-        * getElementsByTagName()
-        * document.getElementsByName()
-        * 节点关系
-        * 元素关系
         * querySelector(cssSelector)     得到选择器匹配的第一个元素
         * querySelectorAll(cssSelector)   得到所有匹配到的元素，返回一个伪数组
+    * classList
+        * length
+        * add()
+        * remove()
+        * contains()
+        * toggle()
+    *  dataset
+        > data-* 符合W3C规范的自定义属性
+    * bind()
+        > 格式： fn.bind(target)    把fn的this指向改为target
+
+* ES6  (ECMAScript2015) 
+    * 变量声明
+        * var 
+        * let 
+    * 解构赋值
+        * 数组
+        * 对象
+    * 字符串扩展
+        * 模板字符串
+            在模板字符串中使用js代码：${}
+        * 方法扩展
+            * includes()
+            * startsWith()
+            * endsWith()
+    * 对象扩展
+        * 

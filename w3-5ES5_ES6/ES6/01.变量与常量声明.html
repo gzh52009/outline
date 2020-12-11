@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.变量与常量声明</title>
+</head>
+<body>
+    <h1>01.变量与常量声明</h1>
+    <script>
+        /**
+            01.变量与常量声明
+                * var
+                * let
+                    1. 变量声明不会提前
+                    2. 块级作用域
+                    3. let不允许相同作用域内多次声明同一变量
+                * const
+                    1. 变量声明不会提前
+                    2. 块级作用域
+                    3. const不允许相同作用域内多次声明同一变量
+                    4. const声明常量不可改变
+            * 作用域
+                * 全局作用域
+                * 函数作用域
+                * 块级作用域
+        */
+
+        // console.log('username=',username);// undefined
+
+        var className = 'h52009'; // var声明的全局变量会自动成为widnow对象的属性
+        // var className = 'gzh52009';
+        // let className = 'h52009';
+        // let className = 'gzh52009';
+
+        let username = 'laoxie';// let声明的全局变量不会成为window的属性
+        let num = 1;
+        // show();
+
+        function show(){
+            // var num
+            console.log('num=',num); // undefined
+            let num = 10;
+        }
+
+        // 块级作用域
+        // var i=0;
+        // for(var i=0;i<5;i++){
+        //     console.log(i);
+        // }
+        // console.log('end=',i); // 5
+
+        for(let i=0;i<5;i++){
+            // 相当于：let i
+            console.log(i);
+        }
+        // console.log('end=',i); // 报错
+
+        
+        // const常量
+        const age = 18;
+        const user = {
+            age:18
+        }
+    </script>
+</body>
+</html>

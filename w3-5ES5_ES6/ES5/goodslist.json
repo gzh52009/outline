@@ -1,0 +1,8 @@
+{
+    "name":"huawei mate 40 pro",
+    "price":5998,
+    "imgurl":"img/mate40.png",
+    "id":"001",
+    "piclist":["img/mate40_1.png","img/mate40_2.png","img/mate40_3.png"],
+    "sales":{}
+}

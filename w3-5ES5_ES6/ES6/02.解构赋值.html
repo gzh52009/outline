@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.解构赋值</title>
+</head>
+<body>
+    <h1>02.解构赋值</h1>
+    <script>
+        /**
+            02.解构赋值
+                * 对象
+                * 数组
+
+                * 指定默认值
+                
+        */
+
+        var goods = {
+            id:'g001',
+            name:'huawei mate40',
+            price:4998,
+            salePrice:1998
+        }
+
+        // 以前的写法
+        // var salePrice = goods.salePrice;
+
+        // 解构写法
+        let {salePrice,price,nickName} = goods;
+        console.log(salePrice,price);
+        console.log(nickName); // undefined
+
+        // 声明goodsName变量，并把goods中的name属性值赋值给变量
+        let {name:goodsName} = goods;
+        console.log('goodsName=',goodsName)
+
+
+        const imglist = ['mate40_1.png','mate40_2.png','mate40_3.png'];
+        const [img1,img2] = imglist;
+        console.log(img1,img2);
+
+        // 解构指定默认值：在解构失败是得到的值
+        var {nickname='no name'} = {
+            id:'g002',
+            name:'huawei mate40 pro',
+            price:4998,
+            salePrice:1998,
+            nickname:'2020旗舰手机'
+        };
+
+        console.log('nickname=',nickname);
+        
+
+        // 解构应用1： 交换变量
+        var a = 10;
+        var b = 20;
+        var [a,b] = [b,a];
+        console.log('a=',a);
+        console.log('b=',b);
+
+        // 解构应用2： 定义函数形参
+        // function getData(url,data,callback){
+
+        // }
+        // function getData(obj){
+        function getData({url,data,callback}){
+            // var obj = {url:'xx',data:{},callback:function(){}}
+            // var {url,data,callback} = {url:'xx',data:{},callback:function(){}}
+        }
+        getData({
+            url:'xxx',
+            data:{},
+            callback:function(){}
+        })
+
+        
+    </script>
+</body>
+</html>
