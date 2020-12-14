@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>11.Map映射</title>
+</head>
+<body>
+    <h1>11.Map映射</h1>
+    <script>
+        /**
+            11.Map映射
+                > 对Object的扩展
+        */
+        var arr = [10,20,30]
+        var o = {a:1,b:2}
+
+        var obj = {
+            // key:value, // key:只能为字符串
+            id:123,
+            [arr]:'array作为key',
+            [o]:'object作为key'
+        }
+
+
+        // 实际开发中可能需要key和value一样，可以时任意数据类型
+        let map1 = new Map();
+       map1.set('id',123)
+       map1.set('name','map数据')
+       map1.set(arr,'array作为key')
+       map1.set(o,'object作为key')
+       console.log('map1=',map1);
+
+        // 遍历Map
+        for(let [key,value] of map1){
+        console.log(key,value);
+    }
+    </script>
+
+    
+</body>
+</html>

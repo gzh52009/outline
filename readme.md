@@ -1519,3 +1519,99 @@ javascript = ECMAScript + BOM + DOM
             * endsWith()
     * 对象扩展
         * 
+## day4-1
+
+### 复习
+* 事件
+* 正则
+* ES5
+* ES6
+    * 变量于常量
+        * let 
+        * const
+        * 块级作用域
+            > 在花括号中的作用域
+            ```js
+                // var i;
+                for(var i=0;i<btns.length;i++){
+                    btns[i].onclick = function(){
+                        console.log(i); // 5
+                    }
+                }
+
+                btns[0].onclick = function(){}
+                btns[1].onclick = function(){}
+                btns[2].onclick = function(){}
+                btns[3].onclick = function(){}
+                btns[4].onclick = function(){}
+            ```
+    * 解构赋值
+        * 数组
+        * 对象
+        ```js
+            let [a,b,c,d] = [10,20,30]
+            var {a:n1,b,c,d} = {b:20,c:30,d:40,a:10};
+        ```
+    * 字符串扩展
+        * 模板字符串
+        ```js
+            let username = 'laoxie'
+            var str = `my name is ${username}`
+        ```
+    * 对象扩展
+        * Object.assign(target,obj1,obj2...objN)
+        * 对象的简写
+            ```js
+                var username = 'laoxie';
+                var obj = {
+                    key:value,
+                    username,
+                    [username]:18,
+                    //getData:function(){}
+                    getData(){
+
+                    }
+                }
+            ```
+### 知识点
+* 箭头函数
+    * 使用箭头`=>`，省略`function`，选择性省略`()`,`{}`和`return`的写法
+    * this: 箭头函数中没有this
+* 数据类型
+    * 基本数据类型（值类型）
+        * Number
+            > 0-9
+        * String
+            > 单引号、双引号、反引号
+        * Boolean
+            * true
+            * false
+        * Undefined
+            * undefined
+        * Null
+            * null
+        * Symbol
+    * 引用数据类型
+        * Object
+            * Array
+    ```js
+        var num1 = 10;
+        var num2 = 10;
+
+        num1 === num2; //true
+    ```
+* 循环语句
+    * while
+    * do...while
+    * for
+    * for...in
+    * for...of
+        - DOM节点集合(HTMLCollection/NodeList)
+        - 字符串
+        - 数组
+        - Set集合/Map映射
+        - ...
+        > 准确来说，for-of循环能遍历所有带有迭代器的数据，默认不支持普通对象（无迭代器）
+* 扩展运算符
+* Set
+* Map

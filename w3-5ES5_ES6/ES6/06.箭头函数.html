@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06.箭头函数</title>
+</head>
+<body>
+    <h1>06.箭头函数</h1>
+    <script>
+        // function sum(){
+        // }
+        var sum1 = function(){}
+        // 0个参数
+        let sum11 = ()=>{}
+        
+        var sum2 = function(a){}
+        // 1个参数
+        let sum21 = a=>{}
+
+        var sum3 = function(a,b){}
+        // 多个参数
+        let sum31= (a,b) => {}
+
+        var sum4 = function(a,b){
+            return a+b;
+        }
+        // 如果函数中只有一行代码，可省略花括号
+        let sum41 = (a,b)=>a+b;
+
+        // 如果有多行代码，不能省略花括号和return值
+        var sum5 = function(a,b){
+            a = Number(a);
+            b = Number(b);
+            return a+b;
+        }
+        let sum51 = (a,b)=>{
+            a = Number(a);
+            b = Number(b);
+            return a+b;
+        }
+
+        // map方法
+        var arr = [10,20,30];
+        var result = arr.map(function(item){
+            return item*item
+        });
+        arr.map(item=>item*item);
+
+        // 注意：如果函数中返回一个对象，写箭头函数时要注意以下问题
+        var getData = function(){
+            return {
+                id:1,
+                name:"huawei mate40",
+                price:5998
+            }
+        }
+        let getData1 = ()=>({
+            id:1,
+            name:'huawei mate40',
+            price:5998
+        })
+
+
+
+        let getData2 = ({url,data})=>{
+            // let {url,data} = obj;
+            // console.log(obj)
+        }
+        // 配合解构实现一个箭头函数
+        getData2({
+            url:'http://laoxie.com',
+            data:{
+                page:1,
+                size:10
+            }
+        })
+    </script>
+</body>
+</html>

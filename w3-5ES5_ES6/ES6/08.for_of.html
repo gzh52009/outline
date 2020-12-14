@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08.for_of</title>
+</head>
+<body>
+    <h1>08.for_of</h1>
+    <script>
+        var arr = [10,20,30,40,50];
+
+        for(let i=0;i<arr.length;i++){
+            // arr[i]
+            // 必须通过索引值才能获取到数组元素
+
+            // continue/break
+        }
+
+        arr.forEach((item,idx,arr)=>{
+            // item  // arr[idx]
+
+            // 虽然forEach中可以很方便地拿到数组元素，但不能break/continue
+        });
+
+
+        for(let item of arr){
+            console.log('item=',item);
+            if(item === 20){
+                break;
+            }
+        }
+
+        // for..of不能遍历普通Object对象
+        // var obj = {username:'laoxie',age:18,gender:'男'}
+        // for(let val of obj){
+
+        // }
+    </script>
+</body>
+</html>

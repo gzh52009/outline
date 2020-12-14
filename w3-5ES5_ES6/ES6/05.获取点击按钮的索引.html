@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.获取点击按钮的索引</title>
+</head>
+
+<body>
+    <h1>05.获取点击按钮的索引</h1>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            var btns = document.querySelectorAll('button');
+
+            // var i
+            // for (var i = 0; i < btns.length; i++) {
+            //     btns[i].idx = i;
+            //     btns[i].onclick = function () {
+            //         // console.log(i); // 5
+            //         console.log(this.idx)
+            //     }
+            // }
+
+            // 以上for循环等效于以下代码
+            // btns[0].onclick = function(){}
+            // btns[1].onclick = function(){}
+            // btns[2].onclick = function(){}
+            // btns[3].onclick = function(){}
+            // btns[4].onclick = function(){}
+
+
+            for (let i = 0; i < btns.length; i++) {
+                // let i;
+                // btns[i].onclick = function () {
+                //     console.log(i,this);
+                // }
+                btns[i].onclick = () => {
+                    console.log(i, this);
+                }
+            }
+
+            // 以上for循环等效于以下代码
+            // {
+            //     let i=0;
+            //     btns[i].onclick = function () {
+            //         console.log(i);
+            //     }
+            // }
+            // {
+            //     let i=1;
+            //     btns[i].onclick = function () {
+            //         console.log(i);
+            //     }
+            // }
+            // {
+            //     let i=2;
+            //     btns[i].onclick = function () {
+            //         console.log(i);
+            //     }
+            // }
+            // {
+            //     let i=3;
+            //     btns[i].onclick = function () {
+            //         console.log(i);
+            //     }
+            // }
+            // {
+            //     let i=4;
+            //     btns[i].onclick = function () {
+            //         console.log(i);
+            //     }
+            // }
+        })
+
+
+    </script>
+</body>
+
+</html>

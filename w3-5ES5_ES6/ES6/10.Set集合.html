@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>10.Set集合</title>
+</head>
+<body>
+    <h1>10.Set集合</h1>
+    <script>
+        /**
+            10.Set集合
+        */
+        var arr = [10,20,30];
+        arr.push(40,30);
+
+        let imgs = new Set(); 
+        imgs.add(1); 
+        imgs.add(1);
+        imgs.add(5);
+        imgs.add("5"); 
+        imgs.add(new String("abc")); 
+        imgs.add(new String("abc"));
+        imgs.add({a:10,b:20});
+        imgs.add({a:10,b:20});
+
+        // 数组去重
+        var arr2 = [1, 2, 3, 4, 5, 5, 5, 5]
+        var res2 = [];
+        for(var i=0;i<arr2.length;i++){
+            if(!res2.includes(arr2[i])){
+                res2.push(arr2[i])
+            }
+        }
+        console.log('arr2=',arr2)
+        console.log('res2=',res2)
+        var set2 = new Set(arr2);
+        var arr3 = Array.from(set2);
+        var arr4 = [...set2];
+        console.log('set2=',set2);
+        console.log('arr3=',arr3);
+        console.log('arr4=',arr4);
+
+        // for..of遍历Set
+        for(let item of set2){
+            console.log('item=',item)
+        }
+    </script>
+
+    
+</body>
+</html>

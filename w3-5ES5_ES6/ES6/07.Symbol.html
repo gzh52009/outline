@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.Symbol</title>
+</head>
+<body>
+    <h1>07.Symbol</h1>
+    <script>
+        /**
+            * Symbol定义
+                1. Symbol()
+                2. Symbol(name)
+                3. Symbol.for(name)
+        */
+        let s1 = Symbol(); // 独一无二
+        let s2 = Symbol(); // 独一无二
+
+        console.log('s1=',s1,'Symbol()');
+        console.log('s1==s2',s1,s2,s1===s2);
+
+
+        var s3 = Symbol('laoxie');//独一无二
+        var s4 = Symbol('laoxie');//独一无二
+        console.log('s3=',s3,s4,s3==s4);
+
+
+        var s5 = Symbol.for('lx');//
+        var s6 = Symbol.for('lx');
+
+        console.log('s5==s6',s5==s6);
+
+
+        const sAge = Symbol('xiaoxieage')
+        const xiaoxie = {
+            username:'xiaoxie',
+            // age:28,
+            [sAge]:18
+        }
+        xiaoxie.age = 30;
+    </script>
+</body>
+</html>

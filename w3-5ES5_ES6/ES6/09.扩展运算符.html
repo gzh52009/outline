@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>扩展运算符</title>
+</head>
+<body>
+    <h1>扩展运算符</h1>
+    <script>
+        /**
+            *  ...
+                * 扩展运算符
+                    * 扩展对象
+                    * 扩展数组
+                    > 类似于：Object.assigin(target,Obj1,obj2...objN)
+                * 剩余操作
+                    * 数组
+                    * 对象
+                    *　函数定义
+        */
+
+        var user = {
+            username:'laoxie',
+            password:123456,
+            id:123
+        }
+
+        let newUser = {
+            ...user,
+            id:'u123'
+        }; 
+
+        var userlist = ['laoxie','xiaoxie','tiantian'];
+        var newUserlist = [...userlist,'xiao xiaoxie'];
+
+
+        // 函数定义
+        // let sum = (a,b,c)=>{
+        //     return a+b+c;
+        // }
+        let sum = (a,...res)=>{
+            // 第一个参数赋值给a，剩余的参数复制给res数组
+            // var total = res.reduce(function(prev,item){
+            //     return prev+item
+            // },a)
+            return res.reduce((prev,item)=>prev+item,a);
+        }
+
+        console.log(sum(10,20,30));
+        console.log(sum(10,20,30,40,50));
+
+
+        // 解构赋值
+        let list = [6,16,26,36,46,56,66]
+        let [x,...y] = list;//x:6,y:[16,26,36,46,56,66]
+
+        let goods = {id:'g123',name:'mate40',price:5998}
+        let {id,...keys} = goods;
+        console.log('id=',id);
+        console.log('keys=',keys);
+    </script>
+</body>
+</html>
