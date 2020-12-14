@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>邮政编码检测</title>
+	<script>
+		/*
+			邮政编码检测
+		 */
+		
+		var reg = /\b\d{6}\b/;
+
+		var code1 = '543000';
+		reg.test(code1);//true
+
+		var code2 = '53540086'
+		reg.rest(code2);//false
+
+	</script>
+</head>
+<body>
+	<h1>邮政编码检测</h1>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文件格式检测</title>
+	<script>
+		/*
+			文件格式检测
+		 */
+		
+		var reg = /.+\.[a-z0-9]+/;
+
+		var filename1 = 'local.txt';
+		var filename2 = 'myfile.7z';
+		var filename3 = '代码演示2.docx'
+
+		if(reg.test(filename1)){
+			console.log('是1个文件');
+		}
+
+	</script>
+</head>
+<body>
+	<h1>文件格式检测</h1>
+</body>
+</html>

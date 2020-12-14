@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>飞翔的小鸟（匀速）</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #bird {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>飞翔的小鸟（匀速）</h1>
+    <img src="img/bird.gif" id="bird" />
+
+    <script>
+        /**
+            飞翔的小鸟（匀速运动）
+
+
+            边界处理
+
+        */
+        document.addEventListener('DOMContentLoaded',()=>{
+        // window.onload = function () {
+            // 写在这里的代码，不会污染全局环境
+
+            let bird = document.querySelector("#bird");
+
+            // 速度
+            let speed = 5;
+
+            // 目标位置
+            let target;
+
+
+            // 等待图片加载完成后计算
+            bird.onload = function(){
+                console.log('onload=',bird.offsetWidth);
+                target = window.innerWidth - bird.offsetWidth; 
+            }
+            // 如果图片已经被缓存，则不会执行onload事件
+            // 利用图片的completed属性，判断时候被缓存
+            if(bird.completed){
+                console.log('completed')
+                target = window.innerWidth - bird.offsetWidth;
+            }
+
+
+            let timer = setInterval(() => {
+                
+                // 先获取当前left
+                let left = bird.offsetLeft;
+
+                left = left + speed;
+
+                if (left >= target) {
+                    clearInterval(timer);
+                    left = target;
+                }
+
+
+                bird.style.left = left + 'px';
+
+            }, 30)
+        // }
+        })
+    </script>
+</body>
+
+</html>

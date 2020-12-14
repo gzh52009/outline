@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作业_搜索下拉菜单</title>
+	<style>
+		ul{list-style: none;padding:0;margin:0;}
+		.search{position:relative;}
+		.search ul{display:none;position: absolute;top:30px;width:202px;border:1px solid #ddd;}
+		.search ul li{padding:0 10px;border-bottom:1px dotted #ddd;line-height:2;}
+		.search ul li:hover{background-color: #ffc;}
+		.search ul li.active{background-color: #ffc;}
+		.search input{width:200px;height:24px;line-height:24px;}
+		.search button{height:30px;}
+	</style>
+	<script>
+		window.onload = function(){
+			var search = document.getElementsByClassName('search')[0];
+			var keyword = document.getElementById('keyword');
+			var list = search.lastElementChild;
+
+			keyword.onfocus = function(){
+				list.style.display = 'block';
+			}
+
+			keyword.onblur = function(){
+				list.style.display = 'none';
+			}
+
+			// 点击选择
+			search.onmousedown = function(e){
+				if(e.target.tagName === 'LI'){
+				console.log(123,e.target)
+					for(var i=0;i<list.children.length;i++){
+						if(list.children[i] === e.target){
+							activeIdx = i;
+							setActive(list.children);
+							keyword.value = list.children[activeIdx].innerText;
+							break;
+						}
+					}
+				}
+			}
+
+			// 上下键选择
+			var activeIdx = 0;
+			document.onkeyup = function(e){
+				var keyCode = e.keyCode || e.which;
+
+				if(keyCode === 38){
+					activeIdx--;
+					setActive(list.children);
+				}else if(keyCode === 40){
+					activeIdx++;
+					setActive(list.children);
+				}else if(keyCode === 13){
+					keyword.value = list.children[activeIdx].innerText;
+					list.style.display = 'none';
+
+				}
+			}
+
+			function setActive(nodes){console.log(nodes,activeIdx)
+				if(activeIdx<0){
+					activeIdx = 0;
+					return;
+				}else if(activeIdx>=nodes.length){
+					activeIdx = nodes.length-1;
+					return;
+				}
+				for(var i=0;i<nodes.length;i++){
+					if(i === activeIdx){
+						nodes[i].className = 'active';
+					}else{
+						nodes[i].className = '';
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="search">
+		<input type="text" id="keyword" autocomplete="off"><button>搜索</button>
+		<ul>
+			<li>地下城与勇士</li>
+			<li>魔兽世界（国服）</li>
+			<li>魔兽世界（台服）</li>
+			<li>热血江湖</li>
+			<li>大话西游II</li>
+			<li>QQ幻想世界</li>
+		</ul>
+	</div>
+</body>
+</html>

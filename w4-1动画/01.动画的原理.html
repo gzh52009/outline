@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.动画的原理</title>
+    <style>
+        body{margin:0;padding:0;}
+        #box{position:absolute;width:100px;height:100px;background-color: #f00;}
+    </style>
+</head>
+<body>
+    <h1>01.动画的原理</h1>
+    <div id="box"></div>
+    <script>
+        /**
+            动画的原理: 不断改变某个属性让元素产生变化出现的效果
+
+        */
+        document.addEventListener('DOMContentLoaded',()=>{
+            let box = document.querySelector('#box');
+            let left = box.offsetLeft;
+            let top = box.offsetTop;
+            setInterval(()=>{
+                left += 5;
+                top++;
+                box.style.left = left + "px";
+                box.style.top = top + "px";
+            },30);
+
+            // 丢帧
+        })
+    </script>
+</body>
+</html>

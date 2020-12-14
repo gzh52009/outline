@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>飞翔的小鸟（匀速）</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow:hidden;
+        }
+
+        #bird {
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>飞翔的小鸟（匀速）</h1>
+    <img src="img/bird.gif" id="bird" />
+
+    <script>
+        /**
+            飞翔的小鸟（匀速运动）
+                * 边界处理
+                    * 停止
+                    * 在另一边飞入
+
+        */
+        document.addEventListener('DOMContentLoaded',()=>{
+            // 写在这里的代码，不会污染全局环境
+
+            let bird = document.querySelector("#bird");
+
+            // 速度
+            let speed = 5;
+
+            // 目标位置
+            let target = window.innerWidth;
+
+            let timer = setInterval(() => {
+                
+                // 先获取当前left
+                let left = bird.offsetLeft;
+
+                left = left + speed;
+
+                if (left >= target) {
+                    left = -bird.offsetWidth;
+                }
+
+
+                bird.style.left = left + 'px';
+
+            }, 30)
+        })
+    </script>
+</body>
+
+</html>

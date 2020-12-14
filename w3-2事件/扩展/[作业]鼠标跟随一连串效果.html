@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标跟随一连串效果</title>
+	<style>
+		.ball{position:absolute;left:0;top:0;width:30px;height:30px;border-radius:50%;}
+	</style>
+	<script>
+		window.onload = function(){
+			function randomColor(){
+				var str = '0123456789abcef';
+				var color = '#';
+				for(var i=0;i<6;i++){
+					color += str[parseInt(Math.random()*str.length)];
+				}
+				return color;
+			}
+			/*
+				鼠标跟随一连串效果
+					1）生成多个随机背景色的小球
+					2）鼠标移动时，所有小球跟随移动
+						给小球设置定位
+			 */
+			var followMe = document.getElementById('followme');
+
+			// 1）生成多个随机背景色的小球
+			for(var i=0;i<100;i++){
+				var ball = document.createElement('div');
+				ball.className = 'ball';
+				ball.innerHTML = i;
+				ball.style.backgroundColor = randomColor();
+
+				followMe.appendChild(ball);
+			}
+
+			var ball = document.getElementsByClassName('ball');
+
+			// 2）鼠标移动时，所有小球跟随移动
+			// 设置小球的top,left值为光标位置
+			// 当前小球跟随前一个小球的位置
+			var timer;
+			document.onmousemove = function(e){
+				ball[0].style.left = e.clientX + 'px';
+				ball[0].style.top = e.clientY + 'px';
+
+				for(var i=ball.length-1;i>0;i--){
+					ball[i].style.left = ball[i-1].offsetLeft + 'px';
+					ball[i].style.top = ball[i-1].offsetTop + 'px';
+				}
+				//clearInterval(timer);
+				/*if(timer) return;
+				var i=0;
+				timer = setInterval(function(){
+					i++;
+					if(i>=ball.length){
+						clearInterval(timer);
+						timer=null;
+						return;
+					}
+					ball[i].style.left = ball[i-1].offsetLeft + 'px';
+					ball[i].style.top = ball[i-1].offsetTop + 'px';
+					
+				},10);*/
+			}
+		}
+	</script>
+</head>
+<body>
+	<div id="followme"></div>
+</body>
+</html>

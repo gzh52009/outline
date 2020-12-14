@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05.抛物运动</title>
+	<style>
+		body{overflow:hidden;background-color: #000;}
+		.basketball{position:absolute;width:100px;}
+	</style>
+	
+</head>
+<body>
+	<img src="img/basketball.jpg" class="basketball">
+	<script>
+		/**
+			05.抛物运动
+                > 垂直运动+水平运动
+		*/
+			document.addEventListener('DOMContentLoaded',()=>{
+				let basketball = document.querySelector('.basketball');
+				let xspeed = 25;
+                let yspeed = 0;
+	
+				let timer = setInterval(()=>{
+					// 加速
+					yspeed++;
+
+					// 获取当前top,left值
+					let top = basketball.offsetTop;
+					let left = basketball.offsetLeft;
+
+					top += yspeed;
+
+                    left += xspeed
+
+					// 当篮球到达地板时停止定时器
+					if(top >= window.innerHeight-basketball.offsetHeight+13){
+						top = window.innerHeight-basketball.offsetHeight+13
+						clearInterval(timer);
+					}
+
+					basketball.style.top = top + 'px';
+					basketball.style.left = left + 'px';
+				},30);
+				
+			})
+		</script>
+</body>
+</html>

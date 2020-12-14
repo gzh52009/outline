@@ -1615,3 +1615,5 @@ javascript = ECMAScript + BOM + DOM
 * 扩展运算符
 * Set
 * Map
+
+### 动画：DOM节点高级操作

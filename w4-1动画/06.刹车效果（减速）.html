@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>06.刹车效果（减速）</title>
+	<style>
+		body{overflow:hidden;}
+		.cart{position:absolute;left:0;bottom:0;width:200px;}
+	</style>
+	
+</head>
+<body>
+	<img src="img/car.jpg" class="cart">
+	<script>
+		/**
+			06.刹车效果（减速）
+                减速运动：速度不断较少的运动
+		*/
+			document.addEventListener('DOMContentLoaded',()=>{
+				let cart = document.querySelector('.cart');
+				
+				let speed = 50;
+
+
+                setInterval(()=>{
+                    speed--;
+                    
+                    let left = cart.offsetLeft;
+                    
+
+                    // 停车：当速度等于0时
+                    if(speed <= 0){
+                        clearInterval(timer);
+                        speed = 0;
+                    }
+
+                    left += speed;
+
+                    cart.style.left = left + 'px';
+                },30)
+			})
+		</script>
+</body>
+</html>

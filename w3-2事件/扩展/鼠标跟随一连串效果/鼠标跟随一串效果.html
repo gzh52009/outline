@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>鼠标跟随一串效果</title>
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <style>
+	    .leaf {
+	        width: 10px;
+	        height: 10px;
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	    }
+	    
+	    .leaf::after {
+	        font-family: fontawesome;
+	        content: "\f06c";
+	        font-size: 18px;
+	        color: green;
+	    }
+    </style>
+    <script>
+    	document.addEventListener('DOMContentLoaded',()=>{
+    		var fg = document.createDocumentFragment();
+    		for(let i=0;i<50;i++){
+    			let leaf = document.createElement('div');
+    			leaf.classList.add('leaf');
+    			fg.appendChild(leaf);
+    		}
+    		document.body.appendChild(fg);
+
+
+    		var leafs = document.querySelectorAll('.leaf');
+
+    		// 方法一：延迟法
+    		/*var timer;
+    		var idx = 0;
+    		document.onmousemove = (e)=>{
+    			timer = setTimeout(function(){
+    				
+    				leafs[idx].style.left = e.pageX + 'px';
+    				leafs[idx].style.top = e.pageY + 'px';
+
+					idx++;
+    				if(idx===leafs.length){
+    					idx = 0;
+    				}
+    			},20);
+    		}*/
+
+
+    		// 方法二：遍历法
+    		document.onmousemove = (e)=>{
+    			for(var i=0;i<leafs.length-1;i++){
+    				leafs[i].style.left = leafs[i+1].offsetLeft + 'px';
+    				leafs[i].style.top = leafs[i+1].offsetTop + 'px';
+    			}
+    			leafs[leafs.length-1].style.left = e.pageX + 'px';
+    			leafs[leafs.length-1].style.top = e.pageY + 'px';
+    		}
+    	})
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

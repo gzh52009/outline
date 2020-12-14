@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>07.图片淡入淡出效果</title>
+	<style>
+		body{overflow:hidden;}
+        .girl{opacity: 0.5;}
+	</style>
+	
+</head>
+<body>
+	<img src="img/g3.jpg" class="girl">
+	<script>
+		/**
+			07.图片淡入淡出效果
+                1. 鼠标移入
+                    * 不断把图片的opacity改成1
+                2. 鼠标移除
+                    * 不断把图片的opactiy改成0.5
+		*/
+			document.addEventListener('DOMContentLoaded',()=>{
+				let girl = document.querySelector('.girl');
+
+                let timer;
+
+                // 鼠标移入
+                girl.onmouseenter = function(){console.log('enter')
+                    // 0.5->1
+                    // 获取当前opacity值
+                    let opacity = Number(getComputedStyle(girl).opacity);
+                    clearInterval(timer);
+                    timer = setInterval(()=>{
+                        opacity += 0.1;
+                        if(opacity>=1){
+                            clearInterval(timer);
+                            opacity = 1;
+                        }
+                        girl.style.opacity = opacity;
+                    },30)
+                }
+
+                girl.onmouseleave = function(){
+                    let opacity = Number(getComputedStyle(girl).opacity);
+                    clearInterval(timer);
+                    timer = setInterval(()=>{
+                        opacity -= 0.1;
+                        if(opacity<=0.5){
+                            clearInterval(timer);
+                            opacity = 0.5;
+                        }
+                        girl.style.opacity = opacity;
+                    },30)
+                }
+			})
+		</script>
+</body>
+</html>

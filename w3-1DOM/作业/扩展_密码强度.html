@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <meta charset="UTF-8">
+          <title>周六练习_密码强度</title>
+     </head>
+     <style type="text/css">
+          ul{list-style: none;padding:0;margin:0;}
+          #pwd_level {
+              list-style: none; margin: 10px; border-radius: 15px;
+              width: 174px; border: solid 1px gainsboro; height: 16px;
+          }
+          #pwd_level li{
+              background: silver;  float: left;
+              width: 50px; margin: 4px; height: 8px;
+          }
+          #pwd_level_tip {
+              margin: 10px; width: 174px; height: 16px;
+          }
+          #pwd_level_tip div{
+              float: left; width: 58px; height: 16px;
+              text-align: center; line-height: 16px;
+              visibility: hidden;
+          }
+     </style>
+     <body>
+          <input type="text" name="pwd" id="pwd" value="" size="30"/>
+          <ul id="pwd_level">
+              <li style="border-top-left-radius: 8px; border-bottom-left-radius: 8px;"></li>
+              <li></li>
+              <li style="border-top-right-radius: 8px; border-bottom-right-radius: 8px;"></li>
+          </ul>
+          <div id="pwd_level_tip">
+              <div>弱</div>
+              <div>中</div>
+              <div>强</div>
+          </div>
+     </body>
+     <script>
+		var pwd = document.getElementById("pwd");
+		var pwd_level = document.getElementById("pwd_level").children;
+        var pwd_level_tip = document.getElementById("pwd_level_tip").children;
+        pwd.onkeyup = function(){
+        	var _psw = pwd.value.trim().toUpperCase();
+        	var hasNumber = false;
+        	var hasLetter = false;
+        	var hasSign = false;
+
+        	for(var i=0;i<_psw.length;i++){
+        		if(!isNaN(_psw[i])){
+        			hasNumber = true;
+        		}else{
+        			if(_psw.charCodeAt(i)>=65 && _psw.charCodeAt(i)<=90){
+        				hasLetter = true;
+        			}else{
+        				hasSign = true;
+        			}
+        		}
+        	}
+
+        	if(hasSign && (hasLetter || hasNumber)){
+        		pwd_level[0].style.backgroundColor = '#c00';
+        		pwd_level[1].style.backgroundColor = '#f90';
+        		pwd_level[2].style.backgroundColor = '#0c0';
+        	}else if(hasLetter && hasNumber){
+        		pwd_level[0].style.backgroundColor = '#f00';
+        		pwd_level[1].style.backgroundColor = '#f60';
+        		pwd_level[2].style.backgroundColor = '#ccc';
+        	}else if(hasSign || hasLetter || hasNumber){
+        		pwd_level[0].style.backgroundColor = '#f00';
+        		pwd_level[1].style.backgroundColor = '#ccc';
+        		pwd_level[2].style.backgroundColor = '#ccc';
+        	}else{
+        		pwd_level[0].style.backgroundColor = '#ccc';
+        		pwd_level[1].style.backgroundColor = '#ccc';
+        		pwd_level[2].style.backgroundColor = '#ccc';
+        	}
+        }
+     </script>
+</html>

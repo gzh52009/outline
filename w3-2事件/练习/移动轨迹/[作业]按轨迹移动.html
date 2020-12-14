@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>按轨迹移动</title>
+	<style>
+		#human{position:absolute;left:50px;top:100px;}
+	</style>
+	<script src="../../common.js"></script>
+	<script>
+	window.onload = function(){
+		var btnMove = document.getElementById('btnMove');
+		var btnTrack = document.getElementById('btnTrack');
+		var human = document.getElementById('human');
+		var ismove = false;
+		var istrack = false;
+		var pos = [];
+		
+		btnMove.onclick = function(e){
+			e = e || window.event;
+			ismove = !ismove;
+			if(ismove){
+				this.innerHTML += '(激活)';
+				document.onclick = function(e){
+					if(!ismove){
+						return;
+					}
+					e = e || window.event;
+					human.src = 'img/2.gif';
+					// human.style.left = e.clientX + 'px';
+					// human.style.top = e.clientY + 'px';
+					animate(human,{left:e.clientX,top:e.clientY},function(){human.src = 'img/1.gif';});
+				}
+				// document.onmouseup = function(e){
+				// 	human.src = 'img/1.gif';
+				// }
+			}else{
+				this.innerHTML = this.innerHTML.replace('(激活)','');
+				document.onclick = null;
+			}
+			e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+		}
+
+		btnTrack.onclick = function(e){
+			e = e || window.event;
+			istrack = !istrack;
+			if(istrack){
+				this.innerHTML = '根据标鼠标轨迹移动(已激活)';
+				pos = [{left:human.offsetLeft,top:human.offsetTop}];
+				document.onmousedown = function(){
+					document.onmousemove = function(e){
+						e = e || window.event;
+						pos.push({left:e.clientX,top:e.clientY});
+					}
+				}
+				document.onmouseup = function(){
+					document.onmousemove = null;
+					if(!istrack){
+						return;
+					}
+					human.src = 'img/2.gif';
+					var index = 0;
+					var timer = setInterval(function(){
+						if(index == pos.length - 1){
+							clearInterval(timer);
+							human.src = 'img/1.gif';
+							pos = [];
+							return;
+						}
+						human.style.left = pos[index].left + 'px';
+						human.style.top = pos[index].top + 'px';
+						index++;
+					},30);
+					
+				}
+			}else{
+				this.innerHTML = '根据标鼠标轨迹移动';
+				document.mousedown = null;
+				document.mouseup = null;
+			}
+			e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+		}
+	}
+	</script>
+</head>
+<body>
+	<button id="btnMove">根据鼠标点击位置移动</button>
+	<button id="btnTrack">根据标鼠标轨迹移动</button>
+	<p>点击按钮实现相应功能</p>
+	<img src="img/1.gif" id="human">
+</body>
+</html>

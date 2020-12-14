@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>04.篮球自由落体（加速）</title>
+	<style>
+		body{overflow:hidden;background-color: #000;}
+		.basketball{position:absolute;width:100px;}
+	</style>
+	
+</head>
+<body>
+	<img src="img/basketball.jpg" class="basketball">
+	<script>
+		/**
+			04.篮球自由落体（加速）
+
+		*/
+			document.addEventListener('DOMContentLoaded',()=>{
+				let basketball = document.querySelector('.basketball');
+				let speed = 0;
+	
+				let timer = setInterval(()=>{
+					// 加速
+					speed++;
+
+					// 获取当前top值
+					let top = basketball.offsetTop;
+
+					top += speed;
+
+					// 当篮球到达地板时停止定时器
+					if(top >= window.innerHeight-basketball.offsetHeight+13){
+						top = window.innerHeight-basketball.offsetHeight+13
+						clearInterval(timer);
+					}
+
+					basketball.style.top = top + 'px';
+				},30);
+				
+			})
+		</script>
+</body>
+</html>

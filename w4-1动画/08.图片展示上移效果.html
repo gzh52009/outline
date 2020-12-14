@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>08.图片展示上移效果</title>
+	<meta charset='utf-8' />
+	<style type="text/css">
+		body,
+		ul,
+		li,
+		ol {
+			list-style: none;
+			padding: 10px;
+			margin: 20px;
+			font-size: 12px;
+			font-family: 微软雅黑;
+		}
+
+		img {
+			border: 0px;
+		}
+
+		.picList {
+			width: 100%;
+			float: left;
+		}
+
+		.picList .col {
+			width: 300px;
+			height: 200px;
+			position: relative;
+			overflow: hidden;
+			float: left;
+			margin: 10px 0 0 10px;
+		}
+
+		.picList .col img,
+		.col a {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+		}
+
+		.picList .col img {
+			width: 100%;
+		}
+
+		.picList .col a {
+			display: block;
+			width: 280px;
+			height: 180px;
+			top: 160px;
+			background: #000;
+			color: white;
+			font-style: normal;
+			line-height: 25px;
+			padding: 10px;
+			opacity: 0.8;
+			text-decoration: none;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="picList">
+		<div class="col">
+			<img src="images/b1.jpg" />
+			<a href="#">学会html5 <br />
+				本课程由浅入深，逐步推进，以示例为主线，详细完整地介绍HTML5的新功能与新特征
+			</a>
+		</div>
+		<div class="col">
+			<img src="images/b2.jpg" />
+			<a href="#">圆角水晶按钮制作<br />
+				网页中的圆角按钮和宽度自适应按钮就这么轻松制作！
+			</a>
+		</div>
+		<div class="col">
+			<img src="images/b3.jpg" />
+			<a href="#">导航条菜单的制作<br />
+				30分钟教你轻松制作出各种形式的网站导航条菜单
+			</a>
+		</div>
+	</div>
+	<script>
+		/*
+			08.图片展示上移效果
+				* 移入
+					* 把当前的a元素节点top值改成10
+				* 移出
+					* 把当前的a元素节点top值改成160
+
+				* 给节点绑定定时器
+				* 设置定时器前先清除之前的定时器（防抖：清除之前所有操作，只生效最后一次）
+
+
+				* 防抖于节流（为了优化页面性能，减少不必要的资源浪费）
+					* 防抖：清除之前所有操作，只生效最后一次
+					* 节流：只生效第一次，取消后面所有操作
+		 */
+		 document.addEventListener('DOMContentLoaded',()=>{
+			 const picList = document.querySelector('.picList');
+			 const cols = picList.querySelectorAll('.col');
+
+
+			 for(let col of cols){
+				col.onmouseenter = function(){
+					// 获取当前元素下的a元素
+					const link = this.children[1];
+					clearInterval(this.timer);
+					this.timer = setInterval(()=>{
+						let top = link.offsetTop;
+						top -= 10;
+
+						if(top <= 10){
+							top = 10;
+							clearInterval(this.timer)
+						}
+
+						link.style.top = top + 'px';
+
+					},30);
+				}
+				col.onmouseleave = ()=>{
+					// 获取当前元素下的a元素
+					const link = col.children[1];
+					clearInterval(col.timer);
+					col.timer = setInterval(()=>{
+						let top = link.offsetTop;
+						top += 10;
+
+						if(top >= 160){
+							top = 160;
+							clearInterval(col.timer)
+						}
+
+						link.style.top = top + 'px';
+
+					},30);
+				}
+			 }
+		 })
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>鼠标移入时替换图片</title>
+	<style>
+		.picShow{margin:0 auto;padding:5px;width:250px;border:2px solid #999;}
+		#bigPic{width:250px;}
+		#smallPic img{border:1px solid #ddd;padding:2px;}
+		#smallPic img.active{border:2px solid #f00;padding:1px;}
+	</style>
+
+	<script>
+		window.onload = function(){
+			var bigPic = document.getElementById('bigPic');
+			var smallPic = document.getElementById('smallPic');
+			var smallList = smallPic.children;
+
+			var lastImg = smallList[0];
+
+			// 给小图绑定点击事件
+			// 改变大图的src属性
+			for(var i=0;i<smallList.length;i++){
+				smallList[i].onmouseover = function(){
+					console.log(i)
+					bigPic.src = this.src;
+
+					// 取消其他高亮
+					lastImg.className = '';
+
+					// 添加高亮效果
+					this.className = 'active';
+
+					// 更新上一张图片
+					lastImg = this;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="picShow">
+		<img src="img/big_4.jpg" id="bigPic">
+		<div id="smallPic">
+			<img src="img/small_1.jpg" class="active">
+			<img src="img/small_2.jpg">
+			<img src="img/small_3.jpg">
+			<img src="img/small_4.jpg">
+		</div>
+	</div>
+</body>
+</html>

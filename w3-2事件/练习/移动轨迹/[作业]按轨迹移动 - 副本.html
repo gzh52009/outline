@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>按轨迹移动</title>
+	<style>
+		#human{position:absolute;left:50px;top:100px;}
+	</style>
+	<script src="../../common.js"></script>
+	<script>
+	window.onload = function(){
+		var human = document.getElementById('human');
+
+		document.onmousedown = function(e){
+			e = e || window.event;
+
+			// 改变图片为张开状态
+			human.src = 'img/2.gif';
+			animate(human,{left:e.clientX,top:e.clientY},function(){
+				human.src = 'img/1.gif';
+			});
+
+		}
+	}
+	</script>
+</head>
+<body>
+	<p>点击按钮实现相应功能</p>
+	<img src="img/1.gif" id="human">
+</body>
+</html>

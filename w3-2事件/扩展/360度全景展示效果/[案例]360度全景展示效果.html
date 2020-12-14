@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>360度全景展示</title>
+    <style>
+        img {
+        	display:block;
+            margin: 50px auto;
+        }
+        .controle{padding:20px;text-align:center;}
+    </style>
+    <script>
+        window.onload = function(){
+            /*
+                思路：
+                    1.给document绑定onmousedown事件
+                        1)给document绑定onmousemove事件
+                            *计算当前index索引
+                            改变#img的src属性
+                    2.鼠标弹开时清除onousemove事件
+             */
+            
+            var img = document.getElementById('img');
+            var imgLen = 77;//一共77张图片
+
+            // 当前索引值
+            var index = 0;
+
+            //上一次转动到的图片索引
+            var lastIndex = 0;
+
+            var speed = 30;
+            
+            // 1.给document绑定onmousedown事件
+            document.onmousedown = function(e){
+                // 改变光标形状
+                document.body.style.cursor = 'e-resize';
+
+                // 给document绑定onmousemove事件
+                document.onmousemove = function(evt){
+
+                    speed -= 0.1;
+                    if(speed < 1){
+                        speed = 1;
+                    }
+
+                    // 计算移动过的距离
+                    var oWidth = parseInt((evt.clientX - e.clientX)/speed) + lastIndex;
+
+                    // *计算当前index索引
+                    // oWidth=30 ==> 30
+                    // oWidth=80 ==> 80-77 = 3 (80%77=3)
+                    // oWidth=180 ==> 180-77 = 103-77 = 26(180%77)
+                    index = oWidth%imgLen;
+
+                    // if(index<0){
+                    //     // -1 ==> 76
+                    //     // -2 ==> 75 (index + 77)
+                    //     // -79 ==> -2 + 77 ==> 75
+                    // }
+
+                    while(index<0){
+                        index += imgLen
+                    }
+
+                    // 改变#img的src属性
+                    img.src = 'img/' + index + '.jpg';
+
+                    // 移除浏览器默认行为（图片移动）
+                    evt.preventDefault();
+                    // evt.returnValue = false;
+                }
+
+            }
+
+            // 2.鼠标弹开时清除onousemove事件
+            document.onmouseup = function(){
+                document.onmousemove = null;
+
+                // 更新上一次索引值
+                lastIndex = index;
+
+                speed = 30;
+
+                // 改变光标形状
+                document.body.style.cursor = '';
+            }
+
+            // 自动旋转
+            var autoRotate = document.getElementById('autoRotate');
+            var timer;
+            autoRotate.onclick = function(){
+                if(timer){
+                    clearInterval(timer);
+                    timer = undefined;
+                    this.innerHTML = this.innerHTML.replace('(激活)','');
+                    return;
+                }
+                this.innerHTML += '(激活)';
+                timer = setInterval(function(){
+                    index--;
+                    if(index<0){
+                        index = imgLen - 1;
+                    }
+                    img.src = 'img/' + index + '.jpg';
+                },30);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <img id="img" src="img/0.jpg" />
+    <div class="controle">
+        <button id="autoRotate">自动旋转</button>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>无标题文档</title>
+<link  id="link" href="css.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script >
+	/*
+		[案例]网页换肤
+			1)编写两套css样式
+			2)给按钮绑定点击事件，实现点击不同的按钮切换相应的css样式
+				改变link标签的href属性
+	 */
+	window.onload = function(){
+		var btn1 = document.getElementById('btn1');
+		var btn2 = document.getElementById('btn2');
+
+		var link = document.getElementById('link');
+
+		// 皮肤1
+		btn1.onclick = function(){
+			// link.setAttribute('href','css1.css');
+			// link.href = 'css1.css';
+			document.body.className = 'skin1';
+		}
+
+		// 皮肤2
+		btn2.onclick = function(){
+			// link.href = 'css2.css';
+			document.body.className = '';
+		}
+	}
+</script>
+<body>
+
+<dl id="message">
+	<form>
+		<dt>
+			<strong>可以换肤的提交框：</strong>
+			<input id="btn1" type="button" value="皮肤1"/>
+			<input id="btn2" type="button" value="皮肤2"/>
+		</dt>
+		<dd>输入姓名：<input class="text" type="text" /></dd>
+		<dd>输入密码：<input class="text" type="password" /></dd>
+		<dd>请您留言：<textarea></textarea></dd>
+		<dd class="center"><input class="btn" type="submit" value="提交" /></dd>
+	</form>
+</dl>
+
+</body>
+</html>

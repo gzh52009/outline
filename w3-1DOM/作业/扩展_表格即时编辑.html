@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态生成表格</title>
+	<style>
+		table{margin-top:20px;width:800px;border:1px solid #ddd;border-collapse:collapse;}
+		td,th{border:1px solid #ddd;padding:5px 10px;}
+		td{padding:0;height:30px;}
+		td input{width:100%;height:30px;border:none;background-color:#ffc;}
+	</style>
+	<script>
+		window.onload = function(){
+			/*
+				动态生成可编辑表格
+					1）生成表格
+						1>序号
+							1-n
+						2>数据
+							根据输入值确定数据
+						3>删除
+							显示删除按钮
+					2）表格编辑
+						1>点击td时,生成一个输入框
+						2>把td的内容赋值给输入框
+						3>把输入框添加到td
+					3）保存编辑
+						把输入框的值写入td
+			 */
+			
+			// 获取页面元素
+			var username = document.getElementById('username');
+			var age = document.getElementById('age');
+			var tel = document.getElementById('tel');
+			var qq = document.getElementById('qq');
+			var btnSave = document.getElementById('btnSave');
+			var tableList = document.getElementById('tableList');
+			var tbody = tableList.children[1];
+
+			// 序号
+			var index=1;
+			
+			// 1）生成表格
+			// 点击保存按钮生成表格
+			btnSave.onclick = function(){
+				// 生成一行
+				var tr = document.createElement('tr');
+				
+				tr.innerHTML = '<td>' + index++ + '</td><td>' + username.value + '</td><td>' + age.value + '</td><td>' + tel.value + '</td><td>' + qq.value + '</td><td><button class="btnDel">删除</td>';
+
+				// 往表格里添加行
+				tbody.appendChild(tr);
+
+				/*// 删除操作
+				// 获取删除按钮
+				var btnDel = document.getElementsByClassName('btnDel');
+
+				// 绑定点击事件，移除tr
+				for(var i=0;i<btnDel.length;i++){
+					btnDel[i].onclick = function(){
+						tbody.removeChild(this.parentNode.parentNode);
+					}
+				}*/
+			
+			}
+
+			// 事件委托：利用事件冒泡原理
+			// 把本来绑定到删除按钮的事件委托给它的父级去处理
+			// 目的：减少事件绑定数量，提高页面性能
+			tbody.onclick = function(e){
+				e = e || window.event;
+				var _target = e.target || e.srcElement;
+				var tagName = _target.tagName.toLowerCase();
+
+				// 判断是否点击了删除按钮
+				// 事件源对象：触发事件的元素
+				// toLowerCase()/toUpperCase()：把字符转换成小写/大写
+				if(tagName === 'button'){
+					tbody.removeChild(_target.parentNode.parentNode);
+				}
+
+				// 编辑表格
+				// 1>点击td时,生成一个输入框
+				else if(tagName === 'td'){
+					// 第一个和最有一个td不可编辑
+					if(_target === _target.parentNode.firstElementChild || _target === _target.parentNode.lastElementChild){
+						return;
+					}
+					var input = document.createElement('input');
+
+					// 2>把td的内容赋值给输入框
+					input.value = _target.innerHTML;
+
+					// 3>把输入框添加到td
+					_target.innerHTML = '';
+					_target.appendChild(input);
+
+					// 自动获得焦点
+					input.focus();
+
+
+					// 3）保存编辑
+					// 输入框失去焦点时保存
+					input.onblur = function(){
+						_target.innerHTML = input.value;
+					}
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<label for="username">姓名</label>
+	<input type="text" id="username" name="username">
+	<label for="age">年龄</label>
+	<input type="text" id="age" name="age">
+	<label for="tel">电话</label>
+	<input type="text" id="tel" name="tel">
+	<label for="qq">QQ号</label>
+	<input type="text" id="qq" name="qq">
+	<button id="btnSave">保存</button>
+	<div class="list">
+		<table id="tableList">
+			<thead>
+				<tr>
+					<th width="40">序号</th>
+					<th width="160">姓名</th>
+					<th width="60">年龄</th>
+					<th width="160">电话</th>
+					<th width="160">QQ号</th>
+					<th width="60">操作</th>
+				</tr>
+			</thead>
+			<tbody></tbody></table>
+</body>
+</html>
