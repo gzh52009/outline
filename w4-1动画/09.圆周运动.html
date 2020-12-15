@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>圆周运动</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .sun {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f00;
+            box-shadow:0 0 0 198px #fff,0 0 0 200px #f00;
+        }
+
+        .earth {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #06f
+        }
+    </style>
+</head>
+
+<body>
+    <h1>圆周运动</h1>
+    <div class="sun"></div>
+    <div class="earth"></div>
+    <script>
+        /**
+            圆周运动
+                1. 初始化
+                    * 定义中心点于半径
+                    * 把太阳定位到页面中心点
+                    * 把地球定位到页面中心点
+
+        */
+        document.addEventListener('DOMContentLoaded', function () {
+            const sun = document.querySelector('.sun');
+            const earth = document.querySelector('.earth');
+
+            // 中心点
+            const c = { x: window.innerWidth / 2, y: window.innerHeight / 2 }
+
+            // 轨道半径
+            const r = 225;
+            // 地球半径
+            const er = earth.offsetWidth/2;
+
+            // 定位到中心点
+            sun.style.left = c.x - sun.offsetWidth / 2 + 'px';
+            sun.style.top = c.y - sun.offsetHeight / 2 + 'px';
+
+
+            // 角度
+            let deg = 0;
+            // 速度
+            let speed = 2;
+
+            const {left,top} = pos(deg);
+            earth.style.left = left + 'px';
+            earth.style.top = top + 'px';
+
+            let timer = setInterval(()=>{
+                deg += speed;
+
+                const {left,top} = pos(deg);
+                earth.style.left = left + 'px';
+                earth.style.top = top + 'px';
+            },30);
+
+            function pos(deg){
+                // 限制角度超过360
+                deg = deg%360;
+
+                const rad = deg * Math.PI/180;
+
+                let a = r*Math.sin(rad);
+                let b = r*Math.cos(rad);
+
+                let left = c.x + b - er;
+                let top = c.y + a - er;
+
+               return {
+                   left,
+                   top
+               }
+            }
+        })
+    </script>
+</body>
+
+</html>

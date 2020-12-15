@@ -88,3 +88,56 @@ function prevElement(el){
 
     return prev;
 }
+
+function getStyle(el,key){
+    // 标准
+    if(window.getComputedStyle){
+        return getComputedStyle(el)[key]
+    }
+    // IE8-
+    else if(el.currentStyle){
+        return el.currentStyle[key]
+    }
+    // 内联
+    else{
+        return el.style[key]
+    }
+}
+
+
+
+function animate(el,attr,target){
+    // // 获取当前值
+    // const current = getStyle(el,attr);
+
+    // // 计算速度（匀速）
+    // const speed = (target-current)/10;
+    const timer = setInterval(()=>{
+        // 缓冲运动
+         // 获取当前值
+        let current = getStyle(el,attr); // 200px,0.5,50deg
+
+        // 提取单位
+        let unit = current.match(/[a-z]+$/);// [px],null,[deg]
+
+        if(unit){
+            unit = unit[0];
+        }else{
+            unit = ''
+        }
+
+        // 提取数字
+        current = parseFloat(current);
+
+        // 计算速度（匀速）
+        const speed = Math.ceil((target-current)/10);
+
+        const val = current + speed;
+
+        if(val == target){
+            clearInterval(timer);
+        }
+
+        el.style[attr] = val  + unit;
+    },30)
+}
