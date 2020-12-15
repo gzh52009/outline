@@ -1628,3 +1628,5 @@ javascript = ECMAScript + BOM + DOM
 
 ### 知识点
 * 圆周运动
+* 缓冲运动
+* 动画函数封装

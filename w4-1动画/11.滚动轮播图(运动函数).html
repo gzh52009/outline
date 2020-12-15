@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>滚动轮播图</title>
+	<style>
+		body{margin:50px;}
+		ul{padding:0;margin:0;list-style:none;}
+		#lbt{position:relative;margin:0 auto;width:810px;height:320px;overflow:hidden;}
+		#lbt ul{position:relative;left:0;top:0;}
+		li{height:320px;overflow:hidden;}
+		.page{position: absolute;right:15px;bottom:15px;}
+		.page span{display:inline-block;margin:0 5px;width:30px;height:30px;line-height:30px;text-align:center;background-color:#efefef;border-radius:50%;}
+		.page span.active{background-color:#f60;color:#fff;}
+
+		.prev,.next{position: absolute;width:30px;height:50px;line-height:50px;background-color:#f60;color:#fff;text-align:center;}
+		.prev{left:0;top:0;bottom:0;margin:auto 0;}
+		.next{right:0;top:50%;margin-top:-25px;}
+	</style>
+	
+</head>
+<body>
+	<div id="lbt">
+		<ul>
+			<li><img src="img/001.jpg"></li>
+			<li><img src="img/002.jpg"></li>
+			<li><img src="img/003.jpg"></li>
+			<li><img src="img/004.jpg"></li>
+		</ul>
+		<!-- <div class="page"><span class="active">1</span><span>2</span><span>3</span><span>4</span></div>
+		<div class="prev">&lt;</div>
+		<div class="next">&gt;</div> -->
+	</div>
+	<script src="../utils.js"></script>
+	<script>
+		/**
+			 * 11.滚动轮播图(运动函数)
+				 * 初始化
+					 * index
+					 * pagination
+					 * li高度
+					 * 前后按钮
+		 */
+		document.addEventListener('DOMContentLoaded',()=>{
+			var lbt = document.querySelector('#lbt');
+			var ul = lbt.children[0];
+			let len = ul.children.length;
+
+			// li高度
+			let liHeight = ul.children[0].offsetHeight
+			
+			// 默认索引值
+			let index = 0;
+
+
+			// 添加数字指示标
+			const pagination = document.createElement('div');
+			pagination.className = 'page';
+			for(let i=0;i<len;i++){
+				let span = document.createElement('span');
+				if(i===index){
+					span.className = 'active'
+				}
+				span.innerText = i+1;
+				pagination.appendChild(span);
+			}
+			lbt.append(pagination);
+
+			// 添加前后按钮
+			const prev = document.createElement('div');
+			prev.className = 'prev';
+			prev.innerHTML = '&lt;';
+			const next = document.createElement('div');
+			next.className = 'next';
+			next.innerHTML = '&gt;';
+			lbt.appendChild(prev);
+			lbt.appendChild(next);
+
+
+			let timer = setInterval(run,3000)
+
+
+			// 鼠标移入移出
+			lbt.onmouseenter = function(){
+				clearInterval(timer);
+			}
+			lbt.onmouseleave = function(){
+				timer = setInterval(run,3000);
+			}
+
+			// 点击切换：利用事件委托
+			lbt.onclick = e=>{
+				// 点击页码
+				if(e.target.tagName.toLowerCase() === 'span'){
+					index = e.target.innerText-1;
+					show();
+				}else if(e.target.classList.contains('prev')){
+					index--;
+					show();
+				}else if(e.target.classList.contains('next')){
+					index++;
+					show();
+				}
+			}
+
+			function show(){
+				
+
+				if(index>=len){
+					index = 0;
+				}else if(index<0){
+					index = len-1;
+				}
+
+				let top = -index*liHeight;
+
+				animate(ul,'top',top);
+				// ul.style.top = top + 'px';
+
+
+				// 高亮指示器
+				for(let i=0;i<len;i++){
+					if(i === index){
+						pagination.children[i].className='active';
+					}else{
+						pagination.children[i].classList.remove('active');
+					}
+				}
+			}
+			function run(){
+				index++;
+				show();
+			}
+
+		});
+	</script>
+</body>
+</html>

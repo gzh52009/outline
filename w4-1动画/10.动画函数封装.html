@@ -7,7 +7,7 @@
     <title>01.动画的原理</title>
     <style>
         body{margin:0;padding:0;}
-        #box{position:absolute;width:100px;height:100px;background-color: #f00;}
+        #box{position:absolute;left:200px;width:100px;height:100px;background-color: #f00;}
     </style>
 </head>
 <body>
@@ -24,15 +24,27 @@
             let left = box.offsetLeft;
             let top = box.offsetTop;
 
-            // animate1.0
-            animate(box,'left',800);
-            animate(box,'top',500);
-            // animate(box,'opacity',1)
+            
 
+            // animate1.0
+            // animate(box,'left',20);
+            // animate(box,'top',500);
+            // animate(box,'width',300);
+            // animate(box,'opacity',0.5);
+
+            // box.onmouseover = function(){
+            //     animate(box,'opacity',1);
+            // }
+            // box.onmouseout = function(){
+            //     animate(box,'opacity',0.5);
+            // }
+            
             // animate2.0 
-            // animate(box,{left:800,top:500},function(){}{
-                // alert('恭喜你')
-            // })
+            // animate(box,{opacity:0.5})
+            // animate(box,{width:300,opacity:0.2})
+            animate(box,{top:500,opacity:0.5},function(){
+                alert('恭喜你')
+            })
         })
     </script>
 </body>

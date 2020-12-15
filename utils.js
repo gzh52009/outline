@@ -105,39 +105,115 @@ function getStyle(el,key){
 }
 
 
+/**
+ * 动画函数1.0
+ * @param {Element} el      动画元素
+ * @param {String} attr     动画属性
+ * @param {Number} target   动画属性目标值
+ */
+// function animate(el,attr,target){
+//     // // 获取当前值
+//     // const current = getStyle(el,attr);
 
-function animate(el,attr,target){
-    // // 获取当前值
-    // const current = getStyle(el,attr);
+//     // // 计算速度（匀速）
+//     // const speed = (target-current)/10;
+//     // 清除之前的定时器
+//     clearInterval(el.timer);
+//     el.timer = setInterval(()=>{
+//         // 缓冲运动
+//          // 获取当前值
+//         let current = getStyle(el,attr); // 200px,0.5,50deg
 
-    // // 计算速度（匀速）
-    // const speed = (target-current)/10;
-    const timer = setInterval(()=>{
-        // 缓冲运动
-         // 获取当前值
-        let current = getStyle(el,attr); // 200px,0.5,50deg
+//         // 提取单位
+//         let unit = current.match(/[a-z]+$/);// [px],null,[deg]
 
-        // 提取单位
-        let unit = current.match(/[a-z]+$/);// [px],null,[deg]
+//         if(unit){
+//             unit = unit[0];
+//         }else{
+//             unit = ''
+//         }
 
-        if(unit){
-            unit = unit[0];
-        }else{
-            unit = ''
-        }
+//         // 提取数字
+//         current = parseFloat(current);
 
-        // 提取数字
-        current = parseFloat(current);
+//         // 计算速度（匀速）
+//         let speed = (target-current)/10;// 1.5=>2,-1.5=>-2,-0.5=>-1
+//         speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
 
-        // 计算速度（匀速）
-        const speed = Math.ceil((target-current)/10);
+//         // opacity属性
+//         if(attr === 'opacity'){
+//             speed = speed>0 ? 0.1:-0.1;
+//         }
 
-        const val = current + speed;
+//         const val = current + speed;
 
-        if(val == target){
-            clearInterval(timer);
-        }
+//         if(val == target){
+//             clearInterval(el.timer);
+//         }
 
-        el.style[attr] = val  + unit;
-    },30)
+//         el.style[attr] = val  + unit;
+//     },30)
+// }
+
+
+/**
+ * 运动函数2.0
+ * @param {Element} el          动画元素
+ * @param {Object} opt          动画属性（键值对）
+ * @param {Function} callback   回调函数（所有动画执行完成后调用）
+ */
+function animate(el,opt,callback){
+    // 如何判断所有动画执行完成
+    // 记录动画数量
+    el.timerLen = 0;
+
+    for(let attr in opt){
+        el.timerLen++;
+
+        const timerName = attr + 'timer';
+        clearInterval(el[timerName]);
+        el[timerName] = setInterval(()=>{
+            // 获取当前值
+            let current = getStyle(el,attr); // string
+            let target = opt[attr];
+
+            // 提取单位
+            let unit = current.match(/[a-z]+$/);// [px],null,[deg]
+            unit = Array.isArray(unit) ? unit[0] : '';
+
+            current = parseFloat(current);
+
+            // 计算缓冲速度
+            let speed = (target-current)/10;
+            speed = speed>0 ? Math.ceil(speed) : Math.floor(speed);
+
+            // opacity
+            if(['opacity'].includes(attr)){
+                speed = speed>0 ? 0.05 : -0.05;
+            }else{
+                current = Math.round(current);
+            }
+
+            const currentVal = current + speed;
+            console.log('current=',current,speed,currentVal);
+            if(currentVal == target){
+                clearInterval(el[timerName]);
+
+                // 每完成一个动画，数量自动-1
+                el.timerLen--;
+                // 当锁游戏动画执行完毕时，调用回调函数
+                if(el.timerLen === 0){
+                    // if(typeof callback==='function'){
+                    //     callback();
+                    // } 
+                    // e = e || window.event; // 当e有值，则赋值e，否则赋值window.event;
+                    typeof callback==='function' && callback(); // 如果&&前面的值转成boolean为true时执行&&后面的代码，如为false则忽略后面的代码
+                }
+            }
+
+            el.style[attr] = currentVal + unit;
+
+        },30)
+    }
+    
 }
