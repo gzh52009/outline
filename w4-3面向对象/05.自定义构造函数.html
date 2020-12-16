@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.自定义构造函数</title>
+</head>
+<body>
+    <h1>05.自定义构造函数</h1>
+    <script>
+        /**
+
+            * 05.自定义构造函数
+                * 构造函数与普通函数的区别：调用方式不同
+                * 约定：构造函数首字母大写
+
+                * 实例化时经历以下5步（重要）
+                    1. 创建一个对象
+                    2. 将构造函数的this指向这个对象
+                    3. 给该对象添加__proto__属性并指向原型对象
+                    4. 执行构造函数中的代码
+                    5. 返回创建的对象
+        */
+
+
+        function Student(name,age,gender){
+            // 模拟实例化过程
+            // var obj = {}
+            // this = obj
+            // this.__proto__ = Student.prototype
+
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            // return obj;
+        }
+
+        let s1 = Student();// 把Student当做普通函数
+        let s2 = new Student('laoxie',18,'male'); // 把Student当做构造函数
+
+        console.log('s1=',s1); // undefined
+        console.log('s2=',s2);
+    </script>
+</body>
+</html>

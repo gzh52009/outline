@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06.原型对象prototype</title>
+</head>
+<body>
+    <h1>06.原型对象prototype</h1>
+    <script>
+        /**
+
+            * 06.原型对象prototype
+                * 获取原型对象
+                    * 通过构造函数获取：构造函数.prototype
+                    * 通过实例获取：实例.__proto__
+                * 原型对象的属性
+                    * constructor   指向构造函数
+                    * __proto__     原型对象的原型对象
+        */
+
+
+        function Student(name,age,gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        let stu1 = new Student('laoxie',18,'male'); // 把Student当做构造函数
+        let stu2 = new Student('xiaoxie',28,'female'); // 把Student当做构造函数
+
+        console.log('通过构造函数获取原型对象：',Student.prototype)
+        console.log('通过实例获取原型对象：',stu1.__proto__)
+        console.log('通过实例获取原型对象：',Object.getPrototypeOf(stu1))
+        console.log('===',Student.prototype === stu1.__proto__)
+
+
+        // 识别实例是有那个构造函数生成的
+        // stu1.__proto__.constructor === Student;
+        stu1.constructor === Student; // 属性访问规则
+
+        stu1 instanceof Student;
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.面向过程与面向对象的区别</title>
+</head>
+<body>
+    <h1>02.面向过程与面向对象的区别</h1>
+    <script>
+        /**
+
+            * 02.面向过程与面向对象的区别
+                小狗觅食
+                    1. smell
+                    2. lick
+                    3. bite
+
+        */
+
+        // 面向过程（主角是小狗）
+        function smell(){
+
+        }
+        function lick(){
+
+        }
+        function bite(){
+
+        }
+        smell(); // 闻一闻
+        lick(); // 舔一舔
+        bite(); // 咬一咬
+
+        // 面向对象（主角是我们）
+        // 1.创建一个小狗对象
+        let wangcai = {
+            // 2. 描述对象
+            name:'waicai',
+            age:2,
+
+            smell:function(){},
+            lick(){},
+            bite(){}
+        }
+        // 3. 操作对象
+        waicai.smell();
+        waicai.lick();
+        waicai.bite();
+    </script>
+</body>
+</html>

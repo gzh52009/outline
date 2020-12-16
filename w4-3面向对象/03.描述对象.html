@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03.描述对象</title>
+</head>
+<body>
+    <h1>03.描述对象</h1>
+    <script>
+        /**
+
+            * 03.描述对象
+                * 人
+                * 购物车
+                * 手机
+
+        */
+
+        // 1. 创建对象
+        var phone = {}
+
+        // 2. 描述对象
+        phone.name = 'huawei mate40';
+        phone.size = '6.5 inc';
+        phone.price = 5998;
+
+        phone.call = function(){
+
+        }
+        phone.sw = function(){
+
+        }
+
+        // 3. 操作对象
+        phone.call();
+
+
+        let shoppingCart = {
+            step:1,
+            goodslist:[{price:40,qty:10}],
+            total:5980,
+            buyButton:'#btnBuy',
+            // ....
+
+            // 添加商品
+            add(){
+
+                this.sum();
+            },
+            // 删除商品
+            remove(){
+
+                this.sum();
+            },
+            // 修改数量
+            changeQty(){
+
+                this.sum();
+            },
+            // 结算
+            sum(){
+                const total = this.goodslist.reduce((prev,item)=>prev+item.price*item.qty,0)
+                this.total = total;
+                return total;
+            },
+            // ...
+        }
+
+        buyButton.onclick = function(){
+            sum()
+        }
+    </script>
+</body>
+</html>

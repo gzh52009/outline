@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点击回到顶部动画效果</title>
+    <style>
+        #toTop{
+            position: fixed;
+            right:20px;
+            bottom:60px;
+            padding:15px;
+            background-color: rgba(0,0,0,0.5);
+            color:#fff;
+        }
+    </style>
+</head>
+<body>
+    <h1>点击回到顶部动画效果</h1>
+    <div id="toTop">回到顶部</div>
+    <script>
+       /**
+        * 点击回到顶部动画效果
+        */
+
+        var btnTop = document.getElementById('toTop');
+
+        for(var i=0;i<100;i++){
+            document.write('<p>新闻内容'+i + '</p>')
+        }
+
+        btnTop.onclick = function(){
+            // 瞬间移动
+            // scrollTo(0,0);
+
+            // 动画效果
+            // 先获取滚动过的距离
+            // var scrollTop = window.scrollY;
+
+            var timer = setInterval(function(){
+                // 计算缓冲速度
+                var scrollTop = window.scrollY;
+                var speed = Math.ceil(scrollTop/10);
+                if(speed<2){
+                    speed = 2;
+                }
+
+                if(scrollTop <=0){
+                    clearInterval(timer);
+                }
+
+                scrollBy(0,-speed);
+            },30)
+        }
+
+
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04.创建对象的方式</title>
+</head>
+<body>
+    <h1>04.创建对象的方式</h1>
+    <script>
+        /**
+
+            * 04.创建对象的方式
+                * 字面量
+                * 内置构造函数：Object
+                    * 缺点：重复性代码
+                * 封装工厂函数
+                    * 解决重复代码的问题
+                    * 缺点：无法识别对象由谁生成
+                * 自定构造函数
+        */
+
+        var student = {id:10,name:'小王',age:18}
+
+        var student = new Object()
+        student.id = 10;
+        student.name = '王铁锤';
+        student.age = 48;
+
+
+        // 以上两种方式的缺点：创建多个对象时，会产生大量的重复代码
+        function createStudent(name,age=18,gender='男'){
+            var obj = {
+                name,
+                age,
+                gender
+            }
+            return obj;
+        }
+
+        let s1 = createStudent('小王');
+        let s2 = createStudent('老王',48);
+
+    </script>
+</body>
+</html>
