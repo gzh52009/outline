@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.给原型对象添加属性和方法</title>
+</head>
+<body>
+    <h1>07.给原型对象添加属性和方法</h1>
+    <script>
+        /**
+
+            * 07.给原型对象添加属性和方法：共享
+                * 默认属性
+                    * constructor
+                    * __proto__
+                * 给实例添加属性和方法：复制
+        */
+
+
+        function Student(name,age,gender){
+            // 通过this.xxx添加的属性、方法称为实例方法
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.toString = function(){
+                return 'hello xiaoxie';
+            }
+        }
+
+        let stu1 = new Student('laoxie',18,'male'); // 把Student当做构造函数
+        let stu2 = new Student('xiaoxie',28,'female'); // 把Student当做构造函数
+
+        Student.prototype.type = 'student';
+        Student.prototype.toString = function(){
+            return 'hello laoxie'
+        };
+
+        stu1.__proto__.constructor;// Student
+        stu1.constructor;// Student;
+    </script>
+</body>
+</html>

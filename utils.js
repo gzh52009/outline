@@ -195,7 +195,7 @@ function animate(el,opt,callback){
             }
 
             const currentVal = current + speed;
-            console.log('current=',current,speed,currentVal);
+
             if(currentVal == target){
                 clearInterval(el[timerName]);
 

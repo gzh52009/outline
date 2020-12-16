@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>08.案例-面向对象的窗口拖拽效果</title>
+    <style>
+        #box{position:absolute;left:0;top:0;width:600px;height:200px;margin:0 auto;padding:0 2px;background-color: #efefef;border:5px solid #ccc;}
+        #box .title{
+            border-bottom:2px solid #ccc;padding:10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>08.案例-面向对象的窗口拖拽效果</h1>
+    <div id="box">
+        <div class="title">弹窗</div>
+    </div>
+    <script>
+        /**
+             * 08.案例-面向对象的窗口拖拽效果
+                1. 创建对象
+                2. 描述对象
+                3. 操作对象
+         */
+
+        var popover = {
+            // 属性
+            el:'#box',
+
+            // 方法
+            // 初始化
+            init(){
+                // 把选择器变成元素节点
+                this.el = document.querySelector(this.el);
+                
+                this.drag();
+
+                document.onmouseup = ()=>{
+                   this.stop();
+                }
+            },
+            // 拖拽
+            drag:function(){
+                let el = this.el;
+
+                // 给窗口元素添加事件
+                el.onmousedown = function(e){
+                     // 在按下式计算ox,oy
+                    var ox = e.clientX - el.offsetLeft;
+                    var oy = e.clientY - el.offsetTop;
+
+                    document.onmousemove = function(evt){
+                        var left = evt.clientX - ox;
+                        var top = evt.clientY - oy;
+
+                        el.style.left = left + 'px';
+                        el.style.top = top + 'px';
+                    }
+                }
+            },
+            // 停止拖拽
+            stop(){
+                document.onmousemove = null;
+            }
+        }
+
+        // 操作对象
+        popover.init();
+
+         
+    </script>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放烟花效果</title>
+	<style type="text/css">
+	html,body{overflow:hidden;height:100%;}
+	body,div,p{margin:0;padding:0;}
+	body{background:#000;font:12px/1.5 arial;color:#7A7A7A;}
+	a{text-decoration:none;outline:none;}
+	#tips,#copyright{position:absolute;width:100%;height:50px;text-align:center;background:#171717;border:2px solid #484848;}
+	#tips{top:0;border-width:0 0 2px;}
+	#tips a{font:14px/30px arial;color:#FFF;background:#F06;display:inline-block;margin:10px 5px 0;padding:0 15px;border-radius:15px;}
+	#tips a.active{background:#FE0000;}
+	#copyright{bottom:0;line-height:50px;border-width:2px 0 0;}
+	#copyright a{color:#FFF;background:#7A7A7A;padding:2px 5px;border-radius:10px;}
+	#copyright a:hover{background:#F90;}
+	p{position:absolute;top:55px;width:100%;text-align:center;}
+	.fire {
+		width: 3px;
+		height: 30px;
+		background: white;
+		position: absolute;top:100%;
+	} 
+	.spark {
+		position: absolute;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+	}
+</style>
+
+</head>
+<body>
+	<div id="tips"><a id="auto" href="javascript:;" class="">自动放烟花</a></div>
+	<script src="../utils.js"></script>
+	<script>
+		/*
+			找对象
+				* 烟花：Firework
+				* 烟灰：Spark
+			放烟花效果
+				思路：
+				1）烟花飞入阶段
+					1>给document绑定点击事件,得到点击的坐标(x,y)
+					2>生成一个烟花：left = x;
+					3>烟花飞入：top = y; animate()
+	
+				2）烟花爆炸阶段
+		 */
+
+		 document.addEventListener('DOMContentLoaded',function(){
+			 // 烟花构造函数
+			 function Firework(left,top){
+				 // 属性
+				this.left = Math.ceil(left);
+				this.top = Math.ceil(top);
+				this.qty = randomNumber(10,30);
+				this.r = randomNumber(50,100);
+
+				this.init();
+			}
+
+			// 把方法写在原型对象
+			Firework.prototype.init = function(){
+				// 创建烟花
+				let el = document.createElement('div');
+
+				// 设置初始样式
+				el.className = 'fire';
+				el.style.left = this.left + 'px';
+
+				// 把烟花写入页面
+				document.body.appendChild(el);
+
+				this.el = el;
+
+				// 飞入
+				this.move()
+
+			}
+			Firework.prototype.move = function(){
+				animate(this.el,{top:this.top,height:3},()=>{
+					// 这里的代码在动画（飞入效果）完成后执行
+					this.boom();
+					this.remove();
+				})
+			}
+			Firework.prototype.remove = function(){
+				this.el.parentNode.removeChild(this.el);
+			}
+			Firework.prototype.boom = function(){
+				// console.log('boom')
+				for(let i=0;i<this.qty;i++){
+					// 计算角度
+					let deg = (360/this.qty)*i;
+					new Spark({
+						x:this.left,
+						y:this.top,
+						r:this.r,
+						deg
+					})
+				}
+			}
+
+
+			function Spark({x,y,r,deg}){
+				this.x = x;
+				this.y = y;
+				this.r = r;
+				this.deg = deg;
+				this.bg = randomColor();
+
+				this.init();
+			}
+
+			// 重置原型对象
+			Spark.prototype = {
+				// 识别构造函数
+				constructor:Spark,
+
+				init(){
+					let el = document.createElement('div');
+
+					// 初始样式
+					el.className = 'spark';
+					el.style.left = this.x + 'px';
+					el.style.top = this.y + 'px';
+					el.style.backgroundColor = this.bg;
+
+					// 写入页面
+					document.body.appendChild(el);
+
+					this.el = el;
+
+					// 移动
+					this.move();
+				},
+				move(){
+					// 计算目标位置
+					let rad = this.deg*Math.PI/180;
+					let a = this.r*Math.cos(rad);
+					let b = this.r*Math.sin(rad);
+					let left = Math.round(this.x + a);
+					let top = Math.round(this.y + b);
+					animate(this.el,{top,left,opacity:0.1},()=>{
+						this.remove();
+					})
+				},
+				remove(){
+					this.el.parentNode.removeChild(this.el);
+				}
+			}
+
+			//  给document添加点击事件，每点一次生成一个烟花
+			document.onclick = function(e){
+				
+				new Firework(e.clientX,e.clientY);
+			}
+		 })
+		
+	</script>
+</body>
+</html>
