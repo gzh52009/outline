@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>原生js放大镜效果</title>
+    <style>
+		/* body{margin:0;padding:0;} */
+    .bigPic img{width:300px;}
+	.lxzoom{position:relative;}
+	.lxzoom .minzoom{position: absolute;width:30px;height:30px;border:1px solid #fc0;background-color:#ff0;background-color: rgba(255,255,0,.3);filter:alpha(Opacity=30);}
+	.lx-big-zoom{position: absolute;width:200px;height:300px;overflow:hidden;}
+	.lx-big-zoom img{position: absolute;left:0;right:0;}
+    </style>
+    
+</head>
+
+<body>
+	<!-- 
+		src:放置小图路径
+		jqimg:放置大图路径
+		(大图小图比例越大放大镜效果越明显)
+	 -->
+   <div class="bigPic"><img src="img/car_min.png" data-big="img/car.jpg"></div>
+   <script>
+    	/*
+    		面向对象放大镜
+    			1、鼠标移入图片区域
+    				1）显示放大镜效果
+    				2）鼠标位置显示半透明方块
+    			2、鼠标移出图片区域
+    				1）放大区域消失
+    				2）半透明区域小时
+    			3、鼠标在图片区域移动
+    				1）半透明方块跟随移动
+    				2）大图跟随移动
+						计算比例
+			ES6 class类
+				* class
+    	 */
+		
+		document.addEventListener('DOMContentLoaded',function(){{
+			class Zoom{
+				constructor(selector,options={}){
+					let defaults = {
+						// 放大区域宽高
+						width:300,
+						height:300,
+						// 大图位置
+						position:'right', // left,top,right（默认）,bottom
+						// 小图与大图间距
+						gap:20,
+					}
+					let opt = Object.assign({},defaults,options);
+					this._init(selector,opt);
+				}
+				_init(selector,opt){
+					// 获取需要放大的元素
+					const small = document.querySelector(selector);
+					
+
+					// 添加专属类名
+					small.classList.add('lxzoom');
+
+					// 获取小图
+					const smallImg = small.children[0];
+
+					// 生成放大镜
+					const minzoom = document.createElement('div');
+					minzoom.className = 'minzoom';
+
+					// 生成大图
+					const big = document.createElement('div');
+					big.className = 'lx-big-zoom';
+					const bigImg = new Image();// 等效于：document.createElement('img')
+					bigImg.src = smallImg.dataset.big || smallImg.src;
+					big.appendChild(bigImg);
+
+					// 等待图片加载完成后计算大图与小图比例
+					let ratio ;
+					bigImg.onload = ()=>{
+						ratio = bigImg.offsetWidth/smallImg.offsetWidth;console.log(666,bigImg.offsetWidth,smallImg.offsetWidth)
+
+						// 设置放大镜宽高
+						minzoom.style.width = opt.width/ratio + 'px';
+						minzoom.style.height = opt.height/ratio + 'px';
+					}
+
+					// 设置大图定位
+					big.style.width = opt.width + 'px';
+					big.style.height = opt.height + 'px';
+					if(opt.position === 'right'){
+						big.style.left = small.offsetLeft + smallImg.offsetWidth + opt.gap + 'px';
+						big.style.top = small.offsetTop + 'px';
+					}
+
+					// 1、鼠标移入图片区域
+					small.onmouseenter = ()=>{
+						this.show();
+					}
+
+					small.onmousemove = (e)=>{console.log(minzoom.offsetWidth)
+						let left = e.pageX - small.offsetLeft - minzoom.offsetWidth/2;
+						let top = e.pageY - small.offsetTop - minzoom.offsetHeight/2;
+
+						if(left < 0){
+							left = 0;
+						}else if(left > smallImg.offsetWidth - minzoom.offsetWidth){
+							left = smallImg.offsetWidth - minzoom.offsetWidth;
+						}
+
+						if(top<0){
+							top = 0;
+						}else if(top > smallImg.offsetHeight - minzoom.offsetHeight){
+							top = smallImg.offsetHeight - minzoom.offsetHeight
+						}
+
+						minzoom.style.left = left + 'px';
+						minzoom.style.top = top + 'px';
+
+
+						// 显示大图位置
+						let bigLeft = left * this.ratio;
+						let bigTop = top * this.ratio;
+
+						bigImg.style.left = -bigLeft + 'px';
+						bigImg.style.top = -bigTop + 'px';
+					}
+
+					small.onmouseleave = ()=>{
+						this.hide();
+					}
+
+
+					// 共享数据
+					this.small = small;
+					this.smallImg = smallImg;
+					this.minzoom = minzoom;
+					this.big = big;
+					this.bigImg = bigImg;
+					this.opt = opt;
+				}
+				show(){
+					const {small,minzoom,big,bigImg,smallImg,opt} = this;
+					small.appendChild(minzoom);
+					document.body.appendChild(big);
+
+					this.ratio = bigImg.offsetWidth/smallImg.offsetWidth;console.log(this.ratio,bigImg.offsetWidth,smallImg.offsetWidth)
+
+					// 设置放大镜宽高
+					minzoom.style.width = opt.width/this.ratio + 'px';
+					minzoom.style.height = opt.height/this.ratio + 'px';
+				}
+				hide(){
+					const {small,minzoom,big} = this;
+					small.removeChild(minzoom);
+					document.body.removeChild(big);
+				}
+			}
+
+
+			new Zoom('.bigPic');
+		}})
+		
+    	
+    </script>
+</body>
+
+</html>

@@ -1707,11 +1707,13 @@ javascript = ECMAScript + BOM + DOM
 * 什么是面向对象：利用对象进行编程
 * 面向对象操作步骤
     1. 创建对象
-        * 字面量
-        * 内置构造函数
-        * 封装：工厂函数
-        * 自定义构造函数
-        * class
+        * 只有一个对象
+            * 字面量 
+            * 内置构造函数
+        * 多个对象
+            * 封装：工厂函数
+            * 自定义构造函数 
+            * class
     2. 描述对象
     3. 操作对象
 * 构造函数
@@ -1727,3 +1729,12 @@ javascript = ECMAScript + BOM + DOM
     * 原型方法：指向实例
     * 事件处理函数：执向绑定事件的元素
     * 其他：指向window
+### 知识点
+* 获取滚动条滚动距离
+    * 浏览器滚动条位置：
+        * window.scrollX
+        * window.scrollY
+    * 获取元素滚动条位置
+        > 元素具有滚动条后才能获取到相应的值：width/height,overflow:auto|scroll,overflow-x,overflow-y
+        * 元素.scrollLeft
+        * 元素.scrollTop
