@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品列表</title>
+</head>
+
+<body>
+    <h1>商品列表</h1>
+    <div id="goodslist">
+
+    </div>
+    <script>
+        const goodslist = document.querySelector('#goodslist');
+
+        let data = [];
+
+        // 请求后端数据：ajax
+        // 1. 实例化http请求对象
+        const xhr = new XMLHttpRequest();
+
+        // 4. 接收响应数据
+        xhr.onload = function () {
+            // 请求结束后执行这里的代码
+            // 响应数据存放在xhr.responseText;
+            console.log('data=', xhr.responseText);
+            data = JSON.parse(xhr.responseText);
+            render();
+        }
+
+        // 2.建立与服务器的链接：xhr.ope(请求类型,地址,是否异步)
+        xhr.open('get', 'http://localhost:2009/api/goodslist.php', true);
+
+        // 3.发起请求
+        xhr.send();
+
+        function render() {
+            const ul = document.createElement('ul');
+            ul.innerHTML = data.map(item => `<li>
+                <img src="${item.imgurl}" />
+                <h4>${item.name}</h4>
+                <p class="price">价格：<span>${item.price}</span></p>
+                <p>库存：<span>${item.kucun}</span></p>
+            </li>`).join('');
+
+            goodslist.appendChild(ul);
+        }
+    </script>
+</body>
+
+</html>

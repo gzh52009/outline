@@ -1738,3 +1738,84 @@ javascript = ECMAScript + BOM + DOM
         > 元素具有滚动条后才能获取到相应的值：width/height,overflow:auto|scroll,overflow-x,overflow-y
         * 元素.scrollLeft
         * 元素.scrollTop
+
+
+## day4-6
+
+### 知识点
+* 服务器知识
+    > http://localhost/home/index.php
+    * 协议：http/https
+    * 主机/域名：localhost/127.0.0.1
+    * 端口：80（1-2^16,默认80端口不显示）
+    * 目录：/home
+    * 文件：index.php
+* 客户端与服务端
+    * 请求request
+    * 响应response
+* php语法
+    * 变量
+        * 超级变量
+    * 常量
+    * 函数
+        * 作用域
+    * 注释
+    * 运算
+        * 算术运算
+        * 逻辑运算
+        * 关系运算
+        * 三元运算
+    * 语句
+        * 条件
+        * 循环语句
+    * 数据类型
+        * String
+        * Integer
+        * Float
+        * Boolean
+            * true,True,TRUE,
+        * Array
+            * 数值数组：带有数字索引值的数组（与js数组一至）
+            * 关联数组：带有指定的键的数组，每个键关联一个值（与js对象一致）
+            * 多维数组：包含一个或多个数组的数组
+        * Object
+            * 类型
+            * 访问控制
+                * public（公有）：公有的类成员可以在任何地方被访问（用于替换var）。
+                * protected（受保护）：受保护的类成员则可以被其自身以及其子类和父类访问。
+                * private（私有）：私有的类成员则只能被其定义所在的类访问。
+        * json操作
+            * json_encode(data) 把数据data转成json字符串
+                > JSON_UNESCAPED_UNICODE
+            * json_decode(json,assoc) 把json字符串转成json对象
+
+* apache
+    * 虚拟主机配置
+    ```xml
+        listen 2009
+        <VirtualHost *:2009>
+            ServerName localhost
+            DocumentRoot D:/h52009/w4-6PHP_MySQ
+            <Directory  "D:/h52009/w4-6PHP_MySQ">
+                Options +Indexes +Includes +FollowSymLinks +MultiViews
+                AllowOverride All
+                # Require local
+                # 允许其他人访问这台服务器
+                Require all granted
+            </Directory>
+        </VirtualHost>
+    ```
+
+* 服务端渲染与客户端渲染
+    * 服务端渲染（SSR）：所有的内容在服务器生成，并响应给前端（前后端不分离）的开发模式
+    * 客户端渲染（BSR）：前后端分离，前端写界面，后端写接口，然后利用ajax请求数据回到前端渲染的开发模式
+
+
+* ajax
+    * 步骤
+        1. 实例化xhr对象： new XMLHttpRequest();
+        2. 建立与服务器连接：xhr.open(type,url,async)
+        3. 发送请求：xhr.send()
+        4. 接收数据：xhr.onload = function(){}
+            * xhr.responseText
+    * 搞懂BSR的请求过程
