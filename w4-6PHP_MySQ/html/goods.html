@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品详情</title>
+</head>
+<body>
+    <h1>商品详情</h1>
+    <div id="goods">
+
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            /**
+                发起ajax请求
+            */ 
+            // 1. 创建请求对象
+            var xhr = new XMLHttpRequest();// readyState=0
+
+             // 4. 处理响应数据
+            xhr.onreadystatechange = function(){
+                console.log('xhr=',xhr.readyState,xhr.status);
+                if(xhr.readyState === 4){
+                    console.log('4=',xhr.responseText);
+                }
+            }
+             xhr.onload = function(){
+                const data = JSON.parse(xhr.responseText);
+                console.log(data);
+            }
+
+            // 2.设置请求参数，打开与服务器连接
+            xhr.open("get", "http://localhost:2009/api/goods.php", true); // readyState=1
+
+            // 3. 向服务器发送请求
+            xhr.send(); // readyState=2
+
+           
+
+            
+        })
+    </script>
+</body>
+</html>

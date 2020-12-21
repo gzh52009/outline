@@ -1819,3 +1819,50 @@ javascript = ECMAScript + BOM + DOM
         4. 接收数据：xhr.onload = function(){}
             * xhr.responseText
     * 搞懂BSR的请求过程
+
+## day5-1
+
+### 复习
+* 前端与后端
+* 客户端与服务器
+    * 请求过程: http://www.baidu.com/home/a/index.html?username=laoxie&password=12345#home
+        1. request
+        2. response
+    * 协议
+        * http
+        * https     ssl
+    * 端口(2^16)
+        * 80
+        * 443
+        * 3306
+    * 主机/域名
+    * 路径
+    * url参数
+    * hash  哈希
+* ajax
+    > 不刷新页面的情况下请求服务器数据
+* SSR与BSR
+    * SSR: 服务端渲染
+        > 所有的html结构在服务器生成，然后响应给前端浏览器渲染
+    * BSR: 客户端渲染
+        > 在客户端生成html结构（一般为js生成）
+
+### 知识点
+
+* ajax
+    * open(type,url,async)
+        * type: 请求类型
+            * get           查：获取数据
+            * post          增：添加数据
+            * put/patch     改：修改数据
+            * delete        删：删除数据
+        * url: 接口地址
+            > 注意：当前页面地址与API地址必须同域（同源策略）
+            * 当前页面地址：http://localhost:2009/html/goods.html
+            * api地址：    http://localhost:2009/api/goods.php
+            * 同域: 协议，域名，端口三者一致，否则为跨域
+                > ajax请求默认不允许跨域
+        * async: 是否异步请求，默认为true
+            * 同步：按步骤顺序执行，前面的代码执行完后，后面的代码才会执行
+                > 做完前一件事情, 才能下一件事情（排队）
+            * 异步：与其他操作同时执行，也叫并发（setTimeout, 图片加载，ajax请求）
