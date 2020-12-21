@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>获取微博信息</title>
+	<style>
+		.datalist{margin:0 auto;line-height:2;}
+		.datalist li{position:relative;border-bottom:1px dotted #ddd;padding-right:100px;}
+		.datalist li span{position:absolute;right:0;top:0;margin:0 5px;padding:2px 5px 2px 20px;background:skyblue url(icon/com.svg) no-repeat 5px center;background-size:20px;border-radius: 5px;width:30px;text-align:center;color:#fff;}
+		.datalist li span.like{right:70px;background-image:url(icon/zan.svg);background-color:orange;}
+
+	</style>
+	
+</head>
+<body>
+	<div class="datalist">
+		
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded',()=>{
+                var datalist = document.querySelector('.datalist');
+        
+        
+                var requrl = '/api/weibo.php';
+        
+                var xhr = new XMLHttpRequest();
+        
+                // 接收数据
+                xhr.onreadystatechange = function(){
+                    if(xhr.readyState === 4 && xhr.status === 200){
+                        var res = JSON.parse(xhr.responseText);
+                        console.log(res);
+        
+                        // 遍历数据，并写入页面
+                        var ul = document.createElement('ul');
+                        ul.className = 'datalist';
+                        for(var i=0;i<res.length;i++){
+                            var li = document.createElement('li');
+                            li.dataset.guid = res[i].id;
+                            li.innerHTML = '<h4>' + res[i].username + '</h4><p>' + res[i].content + '</p><span>' + res[i].comtcnt + '</span><span class="like">' + res[i].likecnt + '</span>';
+                            ul.appendChild(li);
+                        }
+        
+                        // 写入页面
+                        datalist.innerHTML = '';
+                        datalist.appendChild(ul);
+                    }
+                }
+        
+                // 建立连接
+                xhr.open('get',requrl,true);
+        
+                // 发送
+                xhr.send();
+
+
+               
+        
+        
+                // 点赞
+                datalist.onclick = e=>{
+                    if(e.target.className === 'like'){
+                        var currentLi = e.target.parentNode;
+        
+                        var xhr_zan = new XMLHttpRequest();
+                        xhr_zan.onreadystatechange = ()=>{
+                            if(xhr_zan.readyState === 4 && xhr_zan.status === 200){
+                                if(xhr_zan.responseText === 'success'){
+                                    e.target.innerText = Number(e.target.innerText)+1;
+                                };
+                            }
+                        }
+                        
+                        xhr_zan.open('get',requrl + '?type=like&guid=' + currentLi.dataset.guid,true);
+                        xhr_zan.send();
+                    }
+                }
+            })
+                
+            </script>
+</body>
+</html>

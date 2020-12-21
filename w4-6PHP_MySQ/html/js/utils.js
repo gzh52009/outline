@@ -219,7 +219,7 @@ function animate(el,opt,callback){
 }
 
 
-function request(options){
+function request(options){console.log('start')
     var defaults = {
         type:'get',
         async:true
@@ -251,8 +251,21 @@ function request(options){
             }
         }
     }
+
+    var result;
+
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);
+            console.log('load')
+            // callback(data)
+            opt.success(data)
+        }
+    }
         
 
     xhr.open(opt.type,opt.url,opt.async);
     xhr.send()
+    console.log('end')
+    return result;
 }

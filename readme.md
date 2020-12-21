@@ -1850,7 +1850,8 @@ javascript = ECMAScript + BOM + DOM
 ### 知识点
 
 * ajax
-    * open(type,url,async)
+    * xhr = new XMLHttpRequest();
+    * xhr.open(type,url,async)
         * type: 请求类型
             * get           查：获取数据
             * post          增：添加数据
@@ -1866,3 +1867,23 @@ javascript = ECMAScript + BOM + DOM
             * 同步：按步骤顺序执行，前面的代码执行完后，后面的代码才会执行
                 > 做完前一件事情, 才能下一件事情（排队）
             * 异步：与其他操作同时执行，也叫并发（setTimeout, 图片加载，ajax请求）
+    * xhr.send(data): 发送ajax请求
+    * 事件
+        * xhr.onload
+        * xhr.onreadystatechange
+            * xhr.readyState
+                * 0     初始化
+                * 1     open
+                * 2     send
+                * 3     部分接收
+                * 4     完全接收
+            * xhr.status    请求状态
+                * 200+
+                * 300+
+                * 400+
+                * 500+
+* try...catch
+* ajax请求传参
+    * get: 放在url参数中
+    * post: 放在请求体中
+* php中操作文件
