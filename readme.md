@@ -1886,4 +1886,28 @@ javascript = ECMAScript + BOM + DOM
 * ajax请求传参
     * get: 放在url参数中
     * post: 放在请求体中
+* 接收参数
+    * $_GET
+    * $_POST
+    * isset()
 * php中操作文件
+    * fopen(path,mode)
+    * fread(file,length)
+    * filesize(path)
+    * fwrite(file,content)：写入内容
+    * fclose()：关闭文件,避免资源占用
+
+
+## day5-2
+
+### 知识点
+* 跨域
+    * 页面地址：http://localhost:10086/html/weibo.html
+    * api地址：http://localhost:2009/api/weibo.php
+* 跨域解决方案
+    * CORS: 需要服务器支持
+    * JSONP
+        * img
+        * iframe
+        * script    
+            * src   引入js文件，php

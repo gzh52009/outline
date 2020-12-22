@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>跨域请求之JSONP</title>
+	
+</head>
+<body>
+    <h1>跨域请求之JSONP</h1>
+    <!-- <iframe style="position:absolute;left:0;top:0;right:0;bottom:0;border:none;width:100%;height:100%;" src="http://www.taobao.com"></iframe> -->
+    <!-- <script>
+        // document.addEventListener('DOMContentLoaded',()=>{
+            // 全局函数
+            function getData(data){
+                console.log('data=',data);
+                document.write(JSON.stringify(data));
+            }
+
+        // })
+    </script>
+    <script src="http://localhost:2009/api/jsonp.php">
+        // getData($result)
+    </script> -->
+
+    <script>
+        /**
+            * 跨域请求之JSONP
+                1. 预定义全局函数getData
+                2. 生成script标签，请求服务器地址,并发送《函数名》
+                    > 接口一定要返回js代码（全局函数的执行）
+                3. 把script写入页面
+                4. 删除script
+         */
+
+         document.addEventListener('DOMContentLoaded',function(){
+
+             window.getUser = function(data){
+                console.log(data);
+    
+                // 数据返回后请求script
+                document.body.removeChild(script);
+             }
+    
+            //  2.生成script标签
+            let script = document.createElement('script');
+            script.src = 'http://localhost:2009/api/jsonp.php?callback=getUser';
+    
+            // 3. 把script写入页面
+            document.body.appendChild(script);
+         })
+
+    </script>
+</body>
+</html>
