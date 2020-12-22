@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>根据ip获取城市地址</title>
+
+</head>
+
+<body>
+    <h1>根据ip获取城市地址</h1>
+    <div id="result">
+
+    </div>
+
+    <script>
+        /**
+            * 根据ip获取城市地址
+                * http://whois.pconline.com.cn/ip.jsp?ip=61.144.96.228
+         */
+        let result = document.querySelector('#result');
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            let data = xhr.responseText;
+            console.log('data=', data);
+            result.innerHTML = data;
+        }
+
+        const xhr_ip = new XMLHttpRequest();
+        xhr_ip.onload = function () {
+            let ip = xhr_ip.responseText;
+            xhr.open('get', 'http://localhost:2009/api/getcity.php?ip='+ip, true);
+            xhr.send()
+        }
+        xhr_ip.open('get', 'http://localhost:2009/api/getip.php', true);
+        xhr_ip.send()
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>跨域请求之服务器代理</title>
+
+</head>
+
+<body>
+    <h1>跨域请求之服务器代理</h1>
+
+
+    <script>
+        /**
+            * 跨域请求之服务器代理
+                * 有接口，但没权限
+         */
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            let data = xhr.responseText;
+            console.log('data=',data);
+        }
+
+        // http://localhost:2009/html/proxy.html
+        xhr.open('get', 'http://localhost:2009/api/proxy.php', true);
+        xhr.send()
+
+    </script>
+</body>
+
+</html>

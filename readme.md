@@ -1906,8 +1906,17 @@ javascript = ECMAScript + BOM + DOM
     * api地址：http://localhost:2009/api/weibo.php
 * 跨域解决方案
     * CORS: 需要服务器支持
-    * JSONP
-        * img
-        * iframe
+        * 设置响应头
+            * Access-Control-Allow-Origin
+            * Access-Control-Allow-Methods: get,post,put
+            * Access-Control-Allow-Headers: 
+    * JSONP: 需要服务器的支持
+        * 全局函数
         * script    
-            * src   引入js文件，php
+            * src   请求php,响应js代码
+        * 缺点：只支持get请求
+    * 服务器代理
+        > 有接口，但没权限访问
+    * 爬虫
+        > 目标服务器没有提供接口，但你很想拿到他的数据
+        * 根据ip获取城市接口：http://whois.pconline.com.cn/ip.jsp?ip=61.144.96.228

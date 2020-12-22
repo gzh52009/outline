@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>百度搜索建议</title>
+    <style>
+        #search {
+            position: relative;
+        }
+
+        #search input {
+            width: 500px;
+            height: 50px;
+        }
+
+        .result {
+            display: none;
+            position: absolute;
+            top: 55px;
+            left: 0;
+            width: 500px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .result li {
+            padding: 10px;
+            border-bottom: 1px dotted #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>百度搜索建议</h1>
+    <div id="search">
+        <input type="search" placeholder="请输入搜索关键字" />
+        <ul class="result">
+        </ul>
+    </div>
+    <script>
+        /**
+            * 百度搜索建议
+                * 接口：https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?json=1&cb=getData&wd=html5
+                * 输入字符时提示搜索建议列表
+         */
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            let search = document.querySelector('#search');
+            let input = search.children[0];
+            let result = search.children[1];
+
+            window.getData = (data)=>{
+                result.innerHTML = data.s.map(item=>`<li>${item}</li>`).join('\n');
+                result.style.display = 'block';
+            }
+
+            let timer;
+
+            input.oninput = function(){
+                let keyword = input.value.trim();// html5
+
+                if(keyword.length==0){
+                    result.style.display = 'none';
+                    return;
+                }
+
+                clearTimeout(timer);
+
+                timer = setTimeout(()=>{
+                    let script = document.createElement('script');
+                    script.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?json=1&cb=getData&wd=${keyword}`;
+                    document.body.appendChild(script);
+                },500);
+
+            }
+
+            // 回车搜索
+            input.onkeyup = function(e){
+                if(e.keyCode === 13){
+                    let keyword = input.value.trim();
+                    location.href = `https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=${keyword}&fenlei=256&rsv_pq=e6722ee8000b888f&rsv_t=bc16jIYQyYvM0qMCqnLsmeaGDEz2snW0RNtAnBDoU4pDNnwDJVY6nCeAfyo&rqlang=cn&rsv_enter=1&rsv_dl=tb&rsv_sug3=6&rsv_sug1=3&rsv_sug7=101&rsv_sug2=0&rsv_btype=i&prefixsug=html&rsp=5&inputT=1879&rsv_sug4=2401`
+                }
+            }
+
+        })
+
+    </script>
+</body>
+
+</html>
