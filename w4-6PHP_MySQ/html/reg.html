@@ -33,13 +33,25 @@
             const xhr = new XMLHttpRequest();
             xhr.onload = function(){
                 let data = xhr.responseText;
-                if(data === '0'){
+                if(data === 'no'){
                     btnReg.disabled = true;
                     alert('用户名已存在，请更换一个')
                 }else{
                     btnReg.disabled = false;
                 }
             }
+
+            const xhr_reg = new XMLHttpRequest();
+            xhr_reg.onload = function(){
+                let data = xhr_reg.responseText;console.log(`'${data}'`)
+                if(data == 'success'){
+                    alert('注册成功');
+                    location.href = 'login.html';
+                }else if(data === 'fail'){
+                    alert('注册失败')
+                }
+            }
+
 
             username.onchange = function(){
                 let _username = username.value;
@@ -51,6 +63,16 @@
 
                 // post请求传参
                 // xhr.send(params)
+            }
+
+            // 注册
+            btnReg.onclick = function(){
+                let _username = username.value;
+                let _psw = password.value;
+                xhr_reg.open('post','http://localhost:2009/api/reg.php',true);
+                // 设置content-type请求头，以便php中的$_POST能获取到数据
+                xhr_reg.setRequestHeader('Content-Type',"application/x-www-form-urlencoded");
+                xhr_reg.send(`username=${_username}&password=${_psw}`)
             }
         })
     </script>

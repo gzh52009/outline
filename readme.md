@@ -1948,9 +1948,14 @@ javascript = ECMAScript + BOM + DOM
         * 刷选需要的内容
         > 一般使用正则表达式
 ### 知识点
-* 关系型数据库
-    * Oracle
-    * SQLServer
-    * MySQL/MariaDB
-* 非关系型数据库
-    * MongoDB
+* 数据库分类
+    * 关系型数据库
+        * Oracle
+        * SQLServer
+        * MySQL/MariaDB
+    * 非关系型数据库
+        * MongoDB
+* MySQL
+    * 数据库    database
+    * 表        table
+    * 数据      row
