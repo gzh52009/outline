@@ -1920,3 +1920,37 @@ javascript = ECMAScript + BOM + DOM
     * 爬虫
         > 目标服务器没有提供接口，但你很想拿到他的数据
         * 根据ip获取城市接口：http://whois.pconline.com.cn/ip.jsp?ip=61.144.96.228
+
+## day5-3
+
+### 复习
+* 跨域解决方案
+    * jsonp
+        1. 定义全局函数
+        2. 创建script标签并设置src属性为接口地址，传递全局函数名
+        3. 把script标签写入页面
+        4. 接收数据
+        5. 移除script标签
+    * CORS: 
+        * Access-Control-Allow-Origin
+            * 一个域名
+            * `*`
+        * Access-Control-Allow-Methods
+            * 多个请求类型
+            * `*`
+        * Access-Control-Allow-Headers
+            * 多个请求头
+            * `*`
+    * 服务器代理
+        > 后端没有跨域限制
+    * 爬虫
+        * 分析html解构
+        * 刷选需要的内容
+        > 一般使用正则表达式
+### 知识点
+* 关系型数据库
+    * Oracle
+    * SQLServer
+    * MySQL/MariaDB
+* 非关系型数据库
+    * MongoDB

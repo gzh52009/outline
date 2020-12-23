@@ -59,9 +59,13 @@
             window.getData = (data)=>{
                 result.innerHTML = data.s.map(item=>`<li>${item}</li>`).join('\n');
                 result.style.display = 'block';
+
+                // 数据返回后清除script标签
+                document.body.removeChild(script);
             }
 
             let timer;
+            let script;
 
             input.oninput = function(){
                 let keyword = input.value.trim();// html5
@@ -74,7 +78,7 @@
                 clearTimeout(timer);
 
                 timer = setTimeout(()=>{
-                    let script = document.createElement('script');
+                    script = document.createElement('script');
                     script.src = `https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?json=1&cb=getData&wd=${keyword}`;
                     document.body.appendChild(script);
                 },500);
