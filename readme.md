@@ -2018,5 +2018,10 @@ javascript = ECMAScript + BOM + DOM
 
         //查询前设置编码，防止输出乱码
         $conn->set_charset('utf8');
-        
+
     ```
+* 后端给前端的数据一定要统一格式
+    > {code,data,msg}
+        * code: 成功：200, 失败：400
+        * data: 返回数据，如无数据统一为空数组
+        * msg: 提示信息

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/page.css">
+    <title>商品列表</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>商品列表</h1>
+        <div class="btn-group btn-group-sm">
+            <button class="btn btn-outline-primary">价格排序</button>
+            <button class="btn btn-outline-primary">销量</button>
+
+        </div>
+        <div class="goodslist row">
+
+        </div>
+        <div class="pag">
+            <div class="btn-group btn-group-sm m-2" role="group" aria-label="First group">
+                <button type="button" class="btn btn-outline-secondary">1</button>
+                <button type="button" class="btn btn-outline-secondary">2</button>
+                <button type="button" class="btn btn-outline-secondary">3</button>
+                <button type="button" class="btn btn-outline-secondary">4</button>
+            </div>
+        </div>
+    </div>
+    <script src="./utils/utils.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let goodslist = document.querySelector('.goodslist');
+
+            let result = request({
+                url: '/goodslist.php',
+                data: {
+                    size: 20
+                },
+                success: function ({ data }) {
+                    console.log(data);
+
+                    goodslist.innerHTML = data.map(item => `<div class="col-sm-2"><div class="card my-3 p-2">
+                        <img src="${item.imgurl}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.name}</h5>
+                            <p class="card-text price"><del>${item.price}</del><span>${item.sale_price}</span></p>
+                            <p>库存：${item.kucun}</p>
+                            <a href="goods.html" data-id="${item.id}" class="btn btn-outline-primary btn-sm btnDetail">查看详细信息</a>
+                        </div>
+                    </div></div>`).join('')
+                }
+            });
+
+            // 点击进入商品页面
+            goodslist.onclick = function(e){
+                if(e.target.classList.contains('btnDetail')){
+                    e.preventDefault();
+                    const id = e.target.dataset.id;
+
+                    location.href = 'goods.html?id='+id;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
