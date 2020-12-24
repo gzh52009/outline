@@ -1,7 +1,8 @@
 <?php
 
     // 链接数据库
-    include '../db/connect.php';
+    // include '../db/connect.php';
+    require('../db/connect.php');
 
     // 接收前端传来的数据
     $username = $_POST['username'];

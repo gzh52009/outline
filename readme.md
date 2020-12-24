@@ -1959,3 +1959,64 @@ javascript = ECMAScript + BOM + DOM
     * 数据库    database
     * 表        table
     * 数据      row
+
+
+## day5-4
+
+### 复习
+* mySQL
+    * 服务
+        > wampserver
+    
+    * 增删改查CRUD：sql语句
+        * C: `insert into user(username,password) values('laoxie','123456')`
+        * D: `delete from user where id<=10`
+        * U: `update user set age=18 where age is null or age<18`
+        * R: `select username,password from user where age between 20 and 25`
+    * 条件：where 
+        * =、>、<、<>、IN(1,2,3......)、BETWEEN a AND b
+        * AND、OR、NOT
+        * LIKE用法中
+            * % 匹配任意、
+            * _ 匹配一个字符（可以是汉字）
+        * is null;
+    * 过滤
+        > 格式：limit index,qty
+    * 排序
+        > order by age 
+        * asc   升序（默认）
+        * desc  降序
+* 命令行
+    * 连接
+        * -h    服务器，默认为localhost
+        * -u    用户名（root）
+        * -p    密码，默认为空
+    * 切换数据库：
+        > use [database]
+* 可视化工具
+    * 连接
+    * 操作数据库
+* php中操作mysql
+    * 连接
+        * 服务器
+        * 用户名
+        * 密码
+        * 数据库
+    ```php
+        $_servername = 'localhost';
+        $_username = 'root';
+        $_password = '';
+        $_dbname = 'h52009';
+
+        // 链接mysql
+        $conn = new mysqli($_servername, $_username, $_password, $_dbname);
+
+        // 检测连接
+        if ($conn->connect_error) {
+            die("连接失败: " . $conn->connect_error);
+        } 
+
+        //查询前设置编码，防止输出乱码
+        $conn->set_charset('utf8');
+        
+    ```

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>批量添加商品</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h1>批量添加商品</h1>
+        <div class="input-group mt-5">
+            <div class="input-group-prepend">
+                <label for="qty" class="input-group-text">添加数量：</label>
+            </div>
+            <input type="number" id="qty" class="form-control">
+            <div class="input-group-append">
+                <button id="btnAdd" class="btn btn-success">添加</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            let btnAdd = document.querySelector('#btnAdd');
+            let qty = document.querySelector('#qty');
+            btnAdd.onclick = function(){
+                let _qty = qty.value;
+                let xhr = new XMLHttpRequest()
+                xhr.onload = function(){
+                    if(xhr.responseText === 'success'){
+                        alert('插入数据成功')
+                    }
+                }
+                xhr.open('get','http://localhost:2020/api/add_goods.php?qty='+_qty,true);
+                xhr.send();
+            }
+        })
+    </script>
+</body>
+
+</html>
