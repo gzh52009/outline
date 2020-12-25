@@ -2020,8 +2020,23 @@ javascript = ECMAScript + BOM + DOM
         $conn->set_charset('utf8');
 
     ```
+### 知识点
 * 后端给前端的数据一定要统一格式
     > {code,data,msg}
         * code: 成功：200, 失败：400
         * data: 返回数据，如无数据统一为空数组
         * msg: 提示信息
+
+## day5-5
+
+### 复习
+* 统一前后端数据格式
+    > 接口文档，api文档
+* 封装ajax请求方法2.0
+    + baseUrl
+    + data
+    + 回调函数
+* bootstrap
+    > 基于jquery的UI框架，编写了大量的样式供我们使用
+    * 栅格系统
+        > 把一个容器分成12份

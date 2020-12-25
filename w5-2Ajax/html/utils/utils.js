@@ -270,7 +270,7 @@ function request(options){
     }
 
     xhr.onload = function(){
-        let data = JSON.parse(xhr.responseText);
+        let data = JSON.parse(xhr.responseText);// {code,data,msg}
         // if(typeof opt.success==='function'){
         //     opt.success(data);
         // }

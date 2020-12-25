@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>用户注册</title>
+</head>
+
+<body>
+    <h1>用户注册</h1>
+    <div class="form">
+        <div class="item">
+            <label for="username">用户名：</label>
+            <input type="text" id="username" name="username" />
+        </div>
+        <div class="item">
+            <label for="password">密码</label>
+            <input type="password" id="password" name="password" />
+        </div>
+        <button id="btnReg">免费注册</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded",function(){
+            const username = document.querySelector('#username');
+            const password = document.querySelector('#password');
+            const btnReg = document.querySelector('#btnReg');
+
+            // 失去焦点时判断用户名是否已经被注册
+            // 把用户名发送到后端进行查询，看是否已经被注册
+
+            const xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+                let data = xhr.responseText;
+                if(data === 'no'){
+                    btnReg.disabled = true;
+                    alert('用户名已存在，请更换一个')
+                }else{
+                    btnReg.disabled = false;
+                }
+            }
+
+            const xhr_reg = new XMLHttpRequest();
+            xhr_reg.onload = function(){
+                let data = xhr_reg.responseText;console.log(`'${data}'`)
+                if(data == 'success'){
+                    alert('注册成功');
+                    location.href = 'login.html';
+                }else if(data === 'fail'){
+                    alert('注册失败')
+                }
+            }
+
+
+            username.onchange = function(){
+                let _username = username.value;
+               
+                let params = `username=${_username}`
+                // get请求传参
+                xhr.open('get','http://localhost:2009/api/check_username.php?'+params,true);
+                xhr.send()
+
+                // post请求传参
+                // xhr.send(params)
+            }
+
+            // 注册
+            btnReg.onclick = function(){
+                let _username = username.value;
+                let _psw = password.value;
+                xhr_reg.open('post','http://localhost:2009/api/reg.php',true);
+                // 设置content-type请求头，以便php中的$_POST能获取到数据
+                xhr_reg.setRequestHeader('Content-Type',"application/x-www-form-urlencoded");
+                xhr_reg.send(`username=${_username}&password=${_psw}`)
+            }
+        })
+    </script>
+</body>
+
+</html>

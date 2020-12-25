@@ -8,7 +8,19 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/page.css">
     <style>
-       
+        .shopping-cart {
+            padding: 10px 20px;
+            text-align: right;
+        }
+
+        .shopping-cart p {
+            margin: 0;
+        }
+
+        .shopping-cart span {
+            padding: 0 5px;
+            color: #f00;
+        }
     </style>
     <title>商品详情信息</title>
 </head>
@@ -23,18 +35,17 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="index.html">首页</a>
+                    <a class="nav-link" href="#">首页</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="goodslist.html">发现</a>
+                    <a class="nav-link" href="#">发现</a>
                 </li>
-                <li class="nav-item shopping-cart">
-                    <a class="nav-link" href="cart.html">购物车：(<span class="qty">0</span>)</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">我的</a>
                 </li>
             </ul>
-            <span class="navbar-text">
-               <a href="reg.html" class="btn btn-link">注册</a>
-               <a href="login.html" class="btn btn-link">登录</a>
+            <span class="navbar-text shopping-cart">
+                购物车：(<span class="qty">0</span>)
             </span>
         </div>
     </nav>

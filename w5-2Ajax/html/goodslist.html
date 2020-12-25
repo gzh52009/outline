@@ -11,6 +11,30 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark  navbar-expand">
+        <a class="navbar-brand" href="#">千锋购物系统</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">首页</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="goodslist.html">发现</a>
+                </li>
+                <li class="nav-item shopping-cart">
+                    <a class="nav-link" href="cart.html">购物车：(<span class="qty">0</span>)</a>
+                </li>
+            </ul>
+            <span class="navbar-text">
+                <a href="reg.html" class="btn btn-link">注册</a>
+                <a href="login.html" class="btn btn-link">登录</a>
+            </span>
+        </div>
+    </nav>
     <div class="container-fluid">
         <h1>商品列表</h1>
         <div class="btn-group btn-group-sm">
@@ -43,25 +67,27 @@
                 success: function ({ data }) {
                     console.log(data);
 
-                    goodslist.innerHTML = data.map(item => `<div class="col-sm-2"><div class="card my-3 p-2">
-                        <img src="${item.imgurl}" class="card-img-top">
-                        <div class="card-body">
-                            <h5 class="card-title">${item.name}</h5>
-                            <p class="card-text price"><del>${item.price}</del><span>${item.sale_price}</span></p>
-                            <p>库存：${item.kucun}</p>
-                            <a href="goods.html" data-id="${item.id}" class="btn btn-outline-primary btn-sm btnDetail">查看详细信息</a>
+                    goodslist.innerHTML = data.map(item => `<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                        <div class="card my-3 p-2" data-id="${item.id}">
+                            <img src="${item.imgurl}" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.name}</h5>
+                                <p class="card-text price"><del>${item.price}</del><span>${item.sale_price}</span></p>
+                                <p>库存：${item.kucun}</p>
+                                <a href="goods.html" class="btn btn-outline-primary btn-sm btnDetail">查看详细信息</a>
+                            </div>
                         </div>
-                    </div></div>`).join('')
+                    </div>`).join('')
                 }
             });
 
             // 点击进入商品页面
-            goodslist.onclick = function(e){
-                if(e.target.classList.contains('btnDetail')){
+            goodslist.onclick = function (e) {
+                if (e.target.classList.contains('btnDetail') || e.target.tagName.toLowerCase() === 'img') {
                     e.preventDefault();
-                    const id = e.target.dataset.id;
+                    const id = e.target.parentElement.dataset.id || e.target.parentElement.parentElement.dataset.id;
 
-                    location.href = 'goods.html?id='+id;
+                    location.href = 'goods.html?id=' + id;
                 }
             }
         })
