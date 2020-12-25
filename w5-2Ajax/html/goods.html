@@ -29,7 +29,7 @@
                     <a class="nav-link" href="goodslist.html">发现</a>
                 </li>
                 <li class="nav-item shopping-cart">
-                    <a class="nav-link" href="cart.html">购物车：(<span class="qty">0</span>)</a>
+                    <a class="nav-link" href="cart.html">购物车：(<span class="cart-qty">0</span>)</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -45,8 +45,8 @@
 
         </div>
         <div class="btn-group">
-            <button class="btn bg-lg btn-warning">添加购物车</button>
-            <button class="btn bg-lg btn-danger">立即购买</button>
+            <button class="btn bg-lg btn-warning btnAdd">添加购物车</button>
+            <button class="btn bg-lg btn-danger btnBuy">立即购买</button>
         </div>
         <!-- <div class="shopping-cart fixed-top">
             <p>购物车：(<span class="qty">0</span>)</p>
@@ -55,8 +55,11 @@
     </div>
     <script src="./utils/utils.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // document.addEventListener('DOMContentLoaded', () => {
             let goods = document.querySelector('.goods');
+            let btnAdd = document.querySelector('.btnAdd');
+            let btnBuy = document.querySelector('.btnBuy');
+            let cartQty = document.querySelector('.cart-qty');
 
             // 获取当前id
             let params = location.search.slice(1).split('&');
@@ -68,6 +71,13 @@
             console.log(data);
             // data.id;
 
+             // 获取原来的购物车数据
+             let cartlist = Cookie.get('cartlist') || [];
+             cartQty.innerText = cartlist.length;
+
+            // 商品信息
+            let goodsData = {};
+
             request({
                 url: '/goods.php',
                 data: {
@@ -75,6 +85,7 @@
                 },
                 success({ data }) {
                     console.log('data=', data);
+                    goodsData = data;
 
                     let html = `
                         <h1>${data.name}</h1>
@@ -85,7 +96,29 @@
                     goods.innerHTML = html;
                 }
             })
-        })
+        
+            // 添加到购物车
+            btnAdd.onclick = function(){
+                // 判断购物车中是否已经存在当前商品
+                let currentGoods = cartlist.filter(item=>item.id == goodsData.id)[0];
+                
+                if(currentGoods){
+                    // 存在：数量+1
+                    currentGoods.qty++;
+                }else{
+                    // 不存在：写入购物车
+                    goodsData.qty = 1;
+                    cartlist.unshift(goodsData);
+                }
+               
+
+                cartQty.innerText = cartlist.length;
+
+                // 把商品信息存入本地存储
+
+                Cookie.set('cartlist',cartlist);
+            }
+        // })
     </script>
 </body>
 

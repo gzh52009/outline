@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cookie的使用</title>
+    <style>
+            #box{position:absolute;left:0;top:0;width:600px;height:200px;margin:0 auto;padding:0 2px;background-color: #efefef;border:5px solid #ccc;}
+            #box .title{
+                border-bottom:2px solid #ccc;padding:10px 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Cookie保存拖拽位置</h1>
+        <div id="box">
+            <div class="title">弹窗</div>
+        </div>
+        <script>
+            /**
+                 * 12.窗口拖拽效果
+                    * mousedown
+                    * mousemove
+                   
+             */
+    
+             var box = document.getElementById('box');
+
+             // 进入页面获取保存的cookie
+             let cookies = document.cookie.split(/;\s+/);
+             let data = cookies.reduce((prev,item)=>{
+                let arr = item.split('=');
+                prev[arr[0]] = arr[1];
+                return prev;
+             },{});
+
+             box.style.left = data.left + 'px';
+             box.style.top = data.top + 'px';
+    
+    
+            box.onmousedown = function(e){
+                e = e || window.event;
+    
+                // offsetX,offsetY在复杂html结构中有问题
+                // var ox = e.offsetX; 
+                // var oy = e.offsetY;
+    
+                // 在按下式计算ox,oy
+                var ox = e.clientX - box.offsetLeft;
+                var oy = e.clientY - box.offsetTop;
+    
+                console.log('oxy',ox,oy)
+                document.onmousemove = function(evt){
+                    console.log('move')
+                    var left = evt.clientX - ox;
+                    var top = evt.clientY - oy;
+    
+                    box.style.left = left + 'px';
+                    box.style.top = top + 'px';
+                }
+            }
+    
+            document.onmouseup = function(e){
+                document.onmousemove = null;
+
+                if(e.target.id === 'box' || e.target.className==='title'){
+                    // 存储拖拽位置
+                    let left = box.offsetLeft;
+                    let top = box.offsetTop;
+
+                    // document.cookie = 'left='+left; 
+                    // document.cookie = 'top='+top;
+
+                    // 添加有效期（7天）
+                    let d = new Date();
+                    d.setDate(d.getDate()+7);
+                    document.cookie = `left=${left};expires=${d}`;
+                    document.cookie = `top=${top};expires=${d}`;
+
+                }
+            }
+    
+             
+        </script>
+</body>
+</html>

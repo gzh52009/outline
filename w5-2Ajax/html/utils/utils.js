@@ -280,3 +280,47 @@ function request(options){
     xhr.open(opt.type,opt.url,opt.async);
     xhr.send(params);
 }
+
+
+
+var Cookie = {
+    set: function (name, value, params = {}) {
+        // {expires,path,domain} -> expires=xxx;path=xxx
+        var str = ''
+        if(typeof value != 'string'){
+            value = JSON.stringify(value);
+        }
+        for (var key in params) {
+            str += key + '=' + params[key] + ';'
+        }
+        str = str.slice(0, -1);
+
+        document.cookie = name + '=' + value + ';' + str;
+    },
+    get: function (name) {
+        var cookies = document.cookie.split('; ');
+        var value = '';
+        cookies.forEach(function (item) {
+            var arr = item.split('=');
+            if (arr[0] === name) {
+                value = arr[1];
+            }
+        });
+        try{
+            value = JSON.parse(value);
+        }catch(err){
+            value = value;
+        }
+        return value;
+
+    },
+    remove: function (name) {
+        var d = new Date();
+        d.setDate(d.getDate() - 1);
+        // document.cookie = name + '=x;expires='+d;
+        this.set(name, 'x', { expires: d });
+    }
+}
+// Cookie.set('top', 100, { expires, path });
+// Cookie.get('left');
+// Cookie.remove('left')
