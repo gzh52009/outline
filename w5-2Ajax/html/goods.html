@@ -55,6 +55,7 @@
     </div>
     <script src="./utils/utils.js"></script>
     <script>
+        'use strict';
         // document.addEventListener('DOMContentLoaded', () => {
             let goods = document.querySelector('.goods');
             let btnAdd = document.querySelector('.btnAdd');
@@ -71,9 +72,17 @@
             console.log(data);
             // data.id;
 
-             // 获取原来的购物车数据
-             let cartlist = Cookie.get('cartlist') || [];
-             cartQty.innerText = cartlist.length;
+             // Cookie方案：获取原来的购物车数据
+            //  let cartlist = Cookie.get('cartlist') || [];
+            //  cartQty.innerText = cartlist.length;
+            let cartlist = localStorage.getItem('cartlist');
+            try{
+                cartlist = JSON.parse(cartlist) || [];
+            }catch(err){
+                cartlist = [];
+            }
+            console.log('cartlist',cartlist);
+            cartQty.innerText = cartlist.length;
 
             // 商品信息
             let goodsData = {};
@@ -100,23 +109,36 @@
             // 添加到购物车
             btnAdd.onclick = function(){
                 // 判断购物车中是否已经存在当前商品
-                let currentGoods = cartlist.filter(item=>item.id == goodsData.id)[0];
+                // let currentGoods = cartlist.filter(item=>item.id == goodsData.id)[0];
                 
+                // if(currentGoods){
+                //     // 存在：数量+1
+                //     currentGoods.qty++;
+                // }else{
+                //     // 不存在：写入购物车
+                //     goodsData.qty = 1;
+                //     cartlist.unshift(goodsData);
+                // }
+               
+
+                // cartQty.innerText = cartlist.length;
+
+                // // 把商品信息存入本地存储
+
+                // Cookie.set('cartlist',cartlist);
+
+                 // 判断购物车中是否已经存在当前商品
+                let currentGoods = cartlist.find(item=>item.id==goodsData.id);
                 if(currentGoods){
-                    // 存在：数量+1
                     currentGoods.qty++;
                 }else{
-                    // 不存在：写入购物车
                     goodsData.qty = 1;
                     cartlist.unshift(goodsData);
                 }
-               
 
                 cartQty.innerText = cartlist.length;
+                localStorage.setItem('cartlist',JSON.stringify(cartlist));
 
-                // 把商品信息存入本地存储
-
-                Cookie.set('cartlist',cartlist);
             }
         // })
     </script>

@@ -26,7 +26,7 @@
                     <a class="nav-link" href="goodslist.html">发现</a>
                 </li>
                 <li class="nav-item shopping-cart">
-                    <a class="nav-link" href="cart.html">购物车：(<span class="qty">0</span>)</a>
+                    <a class="nav-link" href="cart.html">购物车：(<span class="cart-qty">0</span>)</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -35,6 +35,43 @@
             </span>
         </div>
     </nav>
+    <div class="container-fluid">
+            <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">商品信息</th>
+                        <th scope="col">删除</th>
+                      </tr>
+                    </thead>
+                    <tbody id="goodsList">
+                      
+                    </tbody>
+                  </table>
+    </div>
+    <script>
+        let cartQty = document.querySelector('.cart-qty');
+        let goodsList = document.querySelector('#goodsList');
+
+        let cartlist = localStorage.getItem('cartlist');
+        try{
+            cartlist = JSON.parse(cartlist) || [];
+        }catch(err){
+            cartlist = [];
+        }
+        console.log('cartlist',cartlist);
+        cartQty.innerText = cartlist.length;
+
+
+        goodsList.innerHTML = cartlist.map((item,idx)=>`<tr>
+            <td>${idx+1}</td>
+            <td>
+                <h4>${item.name}</h4>
+                <p class="price"><span>${item.sale_price}</span> &times; <input type="number" value="${item.qty}" style="display:inline-block;width:60px;" class="form-control form-control-sm" />
+            </td>
+            <td><button class="btn btn-outline-danger btn-sm">删除</button></td>
+        </tr>`).join('\n');
+    </script>
 </body>
 
 </html>

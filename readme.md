@@ -2066,3 +2066,42 @@ javascript = ECMAScript + BOM + DOM
         * 删除cookie
             > 通过设置有效期来达到删除效果
     * webstorage
+
+## day6-1
+
+### 复习
+*  cookie: 本地存储方案
+    * 组成部分
+        * name=value （必填）
+        * 参数
+            * expires   有效期（默认：浏览器关闭失效）
+                > 有效期时间默认为世界时间
+            * path      保存路径（默认：页面所在路径）
+            * domain    生效域名（默认：当前域名）
+
+    * 写入：document.cookie = `name=value`
+        * 一次只能写入一个
+        * 只能写入字符串
+    * 读取：document.cookie
+        > 返回所有cookie
+    * 特点
+        * 随着请求自动发送给服务器
+        * 可以通过`Set-Cookie`响应头从后端设置cookie
+### 知识点
+* webStorage (HTML5新特性)
+    * 分类
+        * sessionStorage
+            > 会话存储，关闭浏览器就自动删除
+        * localStorage
+            > 本地存储，永久保存在电脑上，除非手动清除
+    * 属性
+        * length: 只读，用来获取storage内的键值对数量
+    * 方法
+        * setItem (key, value) —— 保存数据，以键值对的方式储存信息。
+            > 只能写入字符串
+        * getItem (key) —— 获取数据，将键值传入，即可获取到对应的value值。
+        * removeItem (key) —— 删除单个数据，根据键值移除对应的信息。
+        * clear () —— 删除所有的数据
+        * key (index) —— 获取某个索引的key
+    * 事件
+        * storage
