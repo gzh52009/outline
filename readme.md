@@ -2105,3 +2105,5 @@ javascript = ECMAScript + BOM + DOM
         * key (index) —— 获取某个索引的key
     * 事件
         * storage
+* 公共代码提取
+    

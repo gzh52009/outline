@@ -19,14 +19,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="index.html">首页</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="goodslist.html">发现</a>
                 </li>
                 <li class="nav-item shopping-cart">
-                    <a class="nav-link" href="cart.html">购物车：(<span class="qty">0</span>)</a>
+                    <a class="nav-link" href="cart.html">购物车：(<span class="cart-qty">0</span>)</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -55,6 +55,7 @@
         </div>
     </div>
     <script src="./utils/utils.js"></script>
+    <script src="./js/common.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let goodslist = document.querySelector('.goodslist');
