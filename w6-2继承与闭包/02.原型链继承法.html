@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>02.原型链继承法</title>
+</head>
+
+<body>
+    <h1>02.原型链继承法</h1>
+    <script>
+        /**
+            * 02.原型链继承法
+                * 核心：拿父类实例来充当子类原型对象
+         */
+
+         // 父类
+        function Laowang(name,age,gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.money = 1000000000;
+
+        }
+
+        Laowang.prototype = {
+            constructor:Laowang,
+            getMoney(){
+                return this.money;
+            },
+            chuiNiu(){
+                return '定个小目标，今年赚他一个亿';
+            },
+            singing(){
+                return `一无所有`
+            }
+        }
+
+       
+
+        // 子类
+        function Xiaowang(name,age,gender){
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+
+        Xiaowang.prototype = new Laowang();
+        Xiaowang.prototype.constructor = Xiaowang;
+
+        let sicong = new Xiaowang('思聪',32,'男');
+        console.log('sicong',sicong);
+
+    </script>
+</body>
+
+</html>

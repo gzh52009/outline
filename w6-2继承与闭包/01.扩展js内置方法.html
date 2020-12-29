@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>01.扩展js内置方法</title>
+</head>
+<body>
+    <h1>01.扩展js内置方法</h1>
+    <script>
+        /**
+            * 01.扩展js内置方法
+                * 让IE低版本浏览器支持trim()方法
+                    * 注意：不要尝试判断当前是什么浏览器，而是通过判断当前浏览器是否支持该方法
+                * 实现格式化时间的format方法
+         */
+
+         if(String.prototype.trim === undefined){
+            String.prototype.trim = function(){
+                var reg = /^\s+|\s+$/g;
+
+                // 如何在这里拿到字符串
+                return this.replace(reg,'');
+            }
+         }
+
+
+         if(Date.prototype.format === undefined){
+            Date.prototype.format = function(format){
+                var year = this.getFullYear();
+                var month = this.getMonth()+1;
+                var date = this.getDate();
+
+                if(month<10){
+                    month = '0' + month;
+                }
+
+                if(date <10){
+                    date = '0' + date;
+                }
+
+
+                return year + '-' + month + '-' + date;
+            }
+         }
+
+
+        //  ' a b c '.trim(); // a b c
+
+        //  new Date().format(); // 2020-12-29
+        //  new Date().format('YYYY-MM-DD'); // 2020-12-29
+        //  new Date().format('YYYY/MM/DD'); // 2020/12/29
+        //  new Date('2008-8-8').format('YYYY-M-D hh:mm:ss'); // 2008-8-8 00:00:00
+
+    </script>
+</body>
+</html>

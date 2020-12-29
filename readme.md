@@ -2106,4 +2106,149 @@ javascript = ECMAScript + BOM + DOM
     * 事件
         * storage
 * 公共代码提取
-    
+* bootstrap
+    * 尺寸
+        * xs
+        * sm
+        * md
+        * lg
+        * xl
+    * 颜色
+        * primary
+        * secondary
+        * success
+        * danger
+        * warning
+        * info
+    * 重置样式reset
+
+## day6-2
+
+### 复习
+* 服务器存储
+    * 数据库：mySQL
+* 本地存储（数据持久化）
+    * Cookie
+        > 一般用户存放简单数据和需要与服务器交互的数据，不允许跨域访问
+        * 参数
+            * expires
+            * path
+            * domain
+    * WebStorage
+        * sessionStorage
+        * localStorage
+* Bootstrap
+* 面向对象
+    * 创建对象的方式
+        * 字面量
+        * 内置构造函数
+        * 工厂函数
+        * 自定义构造函数
+        * Class类
+    * 面向对象中的三大模块
+        * 构造函数
+        * 原型对象
+        * 实例
+    * 属性访问规则
+        > 在**原型链**中查找（实例->Object的原型）
+        * 找到则停止，否则继续向上查找，直到Object的原型对象（终点）
+        * 到终点如果还是找不到，则得到undefined
+    * 一切皆对象（基于对象）
+        ```js
+            // js
+            str.length
+
+            //php
+            strlen($str);
+        ```
+    * 属性写在实例，方法写在原型对象上
+### 知识点
+* 原型链
+    ```js
+        funciton Firework({x,y}){
+            this.x = x
+            this.y = y
+
+            //this.move = function(){
+
+            //}
+        }
+
+        Firework.prototype.move = function(){}
+        Firework.prototype.remove = function(){}
+
+        // 重置原型对象
+        Firework.prototype = {
+            constructor:Firework,
+            move(){},
+            remove(){},
+            __proto__
+        }
+
+    ```
+* 内置构造函数
+    * Object
+    * Array
+    * Function
+    * String
+    * Number
+    * Boolean
+    * RegExp
+    * Audio
+    * Set
+    * Map
+    * ....
+    ```js
+
+        new Object();
+        new Array();
+        // new Function();
+        // new Number()
+        new String();
+
+       
+        
+    ```
+* 基本数据类型调用方法的原理
+    ```js
+        'abc'.substr(1);//bc
+        /*
+            以上代码内部执行步骤
+            1. 实例化对象：var o = new String('abc');
+            2. 调用对象方法: o.substr(1)
+            3. 返回结果bc
+            4. 删除实例化对象
+        */
+
+
+        //'10'.toFixed(2);// toFixed is not a function
+        (10).toFixed(2);//10.00
+        
+        // var n = new Number(10)
+        // n.toFixed(2); //10.00
+        // 删除n对象
+
+    ```
+* 扩展内置方法
+    > 让ie低版本浏览器（IE8-）支持`trim()`方法
+
+* 判断对象属性
+    * 判断是否可访问： `key in obj`
+    * 判断当前对象是否有某一属性：`obj.hasOwnProperty(key)`
+    * 判断某个属性是否在原型中：`key in obj && !obj.hasOwnProperty(key)`
+
+* 继承
+    > 子类继承父类的属性、方法
+    * 继承方式一：原型链继承法
+        > 核心：拿父类实例来充当子类原型对象
+    * 继承方式二：借用构造函数法
+        > 核心：借父类的构造函数来增强子类实例，相当于把父类的实例属性复制一份给子类实例
+        * call()/apply()
+    * 组合继承(最常用的继承方式)
+        * 原型链继承法：继承方法
+        * 借用构造函数法：继承属性
+    * 继承方式三：原型式继承法
+        * 原型链继承法的优化版本，解决了多余属性，多次调用的问题
+    * 组合继承升级版
+        * 原型式继承法：继承方法
+        * 借用构造函数法：继承属性

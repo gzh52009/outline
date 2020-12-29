@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04.原型式继承法</title>
+</head>
+
+<body>
+    <h1>04.原型式继承法</h1>
+    <script>
+        /**
+            * 04.原型式继承法（原型链继承法的优化版本）
+                * 核心：先创建了一个临时性的构造函数，然后将传入的对象作为这个构造函数的原型，最后返回了这个临时构造函数的一个新实例
+                * Object.create(o): 以o作为原型创建一个对象
+            */
+
+         // 父类
+        function Laowang(name,age,gender) {console.log(666)
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+            this.money = 1000000000;
+
+        }
+
+        Laowang.prototype = {
+            constructor:Laowang,
+            getMoney(){
+                return this.money;
+            },
+            chuiNiu(){
+                return '定个小目标，今年赚他一个亿';
+            },
+            singing(){
+                return `一无所有`
+            }
+        }
+
+       
+
+        // 子类
+        function Xiaowang(name,age,gender){
+            // this.name = name;
+            // this.age = age;
+            // this.gender = gender;
+
+            // 借用构造函数
+            // 下面这句代码的意思：执行Laowang并把Laowang的this指向改为当前this
+            Laowang.call(this,name,age,gender);// Laowang(name,age,gender)
+        }
+
+        // 原型链继承法缺点：多余属性，多次执行
+        // Xiaowang.prototype = new Laowang();
+        // 原型式继承法：
+        // Xiaowang.prototype = object(Laowang.prototype);
+
+        // ES5原型式继承法
+        Xiaowang.prototype = Object.create(Laowang.prototype)
+
+        Xiaowang.prototype.constructor = Xiaowang;
+
+        let sicong = new Xiaowang('思聪',32,'男');
+        console.log('sicong',sicong);
+
+
+        function object(o){
+            // 临时构造函数
+            function F(){}
+
+            // 把传入的对象作为临时构造函数的原型
+            F.prototype = o;
+
+            // 返回临时构造函数的实例
+            return new F();
+        }
+
+    </script>
+</body>
+
+</html>
