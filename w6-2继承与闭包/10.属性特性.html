@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.属性特性</title>
+
+</head>
+<body>
+    <h1>10.属性特性</h1>
+    <script>
+        let obj = {
+            username:'laoxie',
+            age:18
+        }
+        // 一：传统方式添加对象属性，属性特性默认为true
+        // obj.password = 123456;
+
+        // defineProperty添加属性，属性特性默认为false
+        // Object.defineProperty(obj,'password',{
+        //     // enumerable:true, 
+        //     // writable:true,
+        //     value:123456
+        // })
+
+        console.log('obj=',obj)
+
+        // 属性可以随意修改
+        // obj.password = 123654;
+
+        // 要求1：password不可修改
+        Object.defineProperty(obj,'password',{
+            configurable:true,
+            enumerable:true,
+            value:123456
+        })
+
+        // 要求2：age不允许遍历
+        Object.defineProperty(obj,'age',{
+            enumerable:false,
+        })
+        for(let key in obj){
+            console.log(key,obj[key]);
+        }
+
+        /**
+            * 二、利用Object.defineProperty()添加对象属性
+                > 格式：Object.definedProperty(target,key,descriptor)
+                * target: 目标对象
+                * key：属性名
+                * descriptor：属性特性
+         */ 
+    </script>
+</body>
+</html>

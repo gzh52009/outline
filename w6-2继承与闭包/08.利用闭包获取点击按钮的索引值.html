@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>利用闭包获取点击按钮的索引值</title>
+</head>
+
+<body>
+    <h1>利用闭包获取点击按钮的索引值</h1>
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+    <button>按钮6</button>
+    <script>
+        let btns = document.querySelectorAll('button');
+
+        // 无法获取对应索引值
+        // for(var i=0;i<btns.length;i++){
+        //     btns[i].onclick = function(){
+        //         console.log('i=',i);
+        //     }
+        // }
+
+        // 解决方案1：ES6块级作用域
+        // for(let i=0;i<btns.length;i++){
+        //     btns[i].onclick = function(){
+        //         console.log('i=',i);
+        //     }
+        // }
+
+        // 解决方案2：this
+        // for(var i=0;i<btns.length;i++){
+        //     btns[i].idx = i;
+        //     btns[i].onclick = function(){
+        //         console.log('i=',this.idx);
+        //     }
+        // }
+
+        // 解决方案3：闭包
+        for(var i=0;i<btns.length;i++){
+            // onclick一定要赋值一个函数，才能实现事件绑定
+            btns[i].onclick = (function(idx){
+                // 利用闭包，把i值限定在当前函数作用域中
+                return function(){
+                    console.log(idx);
+                }
+            })(i)
+        }
+    </script>
+</body>
+
+</html>

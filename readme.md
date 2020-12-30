@@ -2306,3 +2306,104 @@ javascript = ECMAScript + BOM + DOM
     * ....
 * 原型方法：通过实例调用
     * map(): arr.map()
+* call&apply的使用
+
+* 闭包
+    * 变量的查找规则：变量可以往外查找却不能往函数内查找
+    * 一个函数执行完毕，内部变量会被回收（销毁）
+    ```js
+        function show(){
+            var a = 100;
+
+            var sum = function(){
+                var b = 200;
+                return a + b;
+            }
+        }
+
+        show();
+        console.log(a);// a is not defined;
+
+    ```
+* 垃圾回收机制
+    * 自动
+    * 回收方式
+        * 引用计数法：
+        * 标记清除法
+        ```js
+            // 引用计数法缺点：相互引用时无法识别是否能被清除
+            let obj1 = {
+                name:'obj1',
+                show(){
+                    return obj2.name;
+                }
+            }
+            let obj2 = {
+                name:'obj2',
+                show(){
+                    return obj1.name;
+                }
+            }
+        ```
+* 闭包的应用
+    * 封装
+    ```js
+        function cookie(name){
+            return {
+                get(){
+                    var cookies = document.cookie.split('; ');
+                    var value = '';
+                    cookies.forEach(function (item) {
+                        var arr = item.split('=');
+                        if (arr[0] === name) {
+                            value = arr[1];
+                        }
+                    });
+                    return value;
+                },
+                set(value,params={}){
+                    var str = ''
+                    for (var key in params) {
+                        str += key + '=' + params[key] + ';'
+                    }
+                    str = str.slice(0, -1);
+
+                    document.cookie = name + '=' + value + ';' + str;
+                },
+                remove(){
+                    var d = new Date();
+                    d.setDate(d.getDate() - 1);
+                    this.set(name, 'x', { expires: d });
+                }
+            }
+        }
+
+        const myCookie = cookie('cartlist');
+        myCookie.get();
+        myCookie.set({a:10,b:20})
+        myCookie.remove();
+
+    ```
+* 属性特性
+    * 值属性（有值得属性）
+        * configurable  可配置性（总开关，控制其他属性特性是否可修改）
+        * enumerable    可枚举性（是否可遍历）
+        * writable      可写性（是否可修改）
+        * value
+    * 方法
+        * 设置
+            * Object.defineProperty(target,key,descriptor)
+            * Object.defineProperties(target,descriptors)
+            ```js
+                Object.defineProperty(obj,'username',{value:'tiantian'})
+                Object.defineProperties(obj,{
+                    username:{
+                        value:'tiantian'
+                    },
+                    password:{
+                        value:'123'
+                    }
+                })
+            ```
+        * 获取
+            * Object.getOwnPropertyDescriptor()

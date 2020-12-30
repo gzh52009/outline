@@ -39,6 +39,22 @@
             }
         }
 
+        // 让以上属性、方法不可枚举
+        Object.defineProperties(Laowang.prototype,{
+            constructor:{
+                enumerable:false,
+            },
+            getMoney:{
+                enumerable:false,
+            },
+            chuiNiu:{
+                enumerable:false,
+            },
+            singing:{
+                enumerable:false,
+            },
+        })
+
        
 
         // 子类
@@ -60,7 +76,10 @@
         // ES5原型式继承法
         Xiaowang.prototype = Object.create(Laowang.prototype)
 
-        Xiaowang.prototype.constructor = Xiaowang;
+        // Xiaowang.prototype.constructor = Xiaowang;
+        Object.defineProperty(Xiaowang.prototype,'constructor',{
+            value:Xiaowang
+        })
 
         let sicong = new Xiaowang('思聪',32,'男');
         console.log('sicong',sicong);

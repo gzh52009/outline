@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.案例-tab标签切换</title>
+    <style>
+        .tab{border:1px solid #ddd;width:600px;}
+        .tab .title{border-bottom:1px solid #ddd;}
+        .tab .title span{
+            display: inline-block;padding:10px 15px;
+        }
+        .tab .title span.active{background-color: #f90;}
+        .tab .content{padding:15px;text-align:center;}
+    </style>
+</head>
+<body>
+    <h1>07.案例-tab标签切换</h1>
+    <div class="tab">
+        <div class="title">
+            <span>laoxie</span>
+            <span>xiaoxie</span>
+            <span>tiantian</span>
+        </div>
+        <div class="content">
+            <div>laoxie喜欢写代码</div>
+            <div>xiaoxie喜欢种菜</div>
+            <div>tiantian喜欢大保健</div>
+        </div>
+    </div>
+    <script>
+        var tab = document.getElementsByClassName('tab')[0];
+        var title = tab.children[0];
+        var content = tab.children[1];
+
+        var currentIndex = 0;
+
+        changeTab();
+
+        // 2. 点击切换
+        for(var i=0;i<title.children.length;i++){
+            title.children[i].onclick = (function(idx){
+                return function(){
+                    currentIndex = idx;
+                    changeTab();
+                }
+            })(i)
+        };
+
+        function changeTab(){
+            for(var i=0;i<content.children.length;i++){
+                if(i === currentIndex){
+                    title.children[i].className = 'active';
+                    content.children[i].style.display = 'block';
+                }else{
+                    title.children[i].className = '';
+                    content.children[i].style.display = 'none';
+
+                }
+            }
+        }
+    </script>
+</body>
+</html>

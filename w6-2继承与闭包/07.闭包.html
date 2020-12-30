@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.闭包</title>
+</head>
+
+<body>
+    <h1>07.闭包</h1>
+    <script>
+        function show() {
+            var a = 100;
+
+            var sum = function () {
+                var b = 200;
+                return a + b;
+            }
+        }
+
+        show();
+        // 函数执行完毕，内部变量会被自动销毁（垃圾回收机制）
+        // console.log(a);// a is not defined;
+
+
+        function show() {
+            var a = 100;
+
+            var add = function () {
+                a++
+                return a;
+            }
+            return add;
+        }
+
+        const mySum = show();
+        // 函数内的a变量，没有被垃圾回收机制所回收
+
+        // 在外部操作函数内部变量
+        mySum();// a=101
+        mySum();// a=102
+        mySum();// a=103
+
+
+        function module(){
+            return {
+                add(){
+                    
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
