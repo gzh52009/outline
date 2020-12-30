@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.call和apply的使用</title>
+</head>
+
+<body>
+    <h1>07.call和apply的使用</h1>
+
+    <button>按钮1</button>
+    <button>按钮2</button>
+    <button>按钮3</button>
+    <button>按钮4</button>
+    <button>按钮5</button>
+
+    <script>
+        /**
+            * 07.call和apply的使用
+            
+        */
+        
+        let btns = document.querySelectorAll('button');
+       
+
+        // 获取按钮中的文字，并组成一个新的数组
+        // btns.map((item,idx)=>item.innerText);
+        // btns.map(function(item,idx){});
+
+        const result = Array.prototype.map.call(btns,function(item){
+            return item.innerText;
+        });
+        console.log('result=',result);
+
+
+        // 2.找出数组中最大值
+        let arr = [10,11,2,7,5,22,3,22,8,18]
+
+        // Math.max(...arr);
+        const result2 = Math.max.apply(null,arr); // Math.max(arr)
+        console.log('result2=',result2);
+
+        // 3. 判断数据类型
+        // typeof
+        // Object.prototype.toString()
+        // [].toString()
+        Object.prototype.toString.call([])
+
+        function type(data){
+            return Object.prototype.toString.call(data).slice(8,-1).toLowerCase();
+        }
+
+    </script>
+</body>
+
+</html>

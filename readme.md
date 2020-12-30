@@ -2252,3 +2252,57 @@ javascript = ECMAScript + BOM + DOM
     * 组合继承升级版
         * 原型式继承法：继承方法
         * 借用构造函数法：继承属性
+
+## day 6-3
+
+### 复习
+* 继承方式
+    1. 原型链继承法：只能继承方法
+        > 核心点：利用父类实例重置子类原型对象
+        * 缺点：
+            1. 只能继承方法，不能继承属性
+            2. 原型对象中有多余的属性
+    2. 借用构造函数法：用来继承属性
+        * fn.call(target,...args)
+        * fn.apply(target,arg)
+        > 把fn的this改成target并执行fn，跟直接执行`fn(...args)`和`fn(arg)`有本质区别
+        ```js
+            Laowang.call(this)
+        ```
+    * 组合继承法：
+        * 继承属性：借用构造函数法
+        * 继承方法：原型链继承法
+        * 缺点：
+            1. 原型对象中有多余的属性
+            2. 多次执行父类
+    3. 原型式继承法
+        * ES5: Object.create(obj)
+            > 以obj作为原型创建一个对象
+        ```js
+            Xiaowang.prototype = Object.create(Laowang.prototype)
+
+            // 低版本浏览器写法
+            Xiaowang.prototype = object(Laowang.prototype)
+            function object(o){
+                const F = function(){}
+                F.prototype = o;
+                return new F();
+            }
+        ```
+    * 组合升级版
+        * 继承属性：借用构造函数法
+        * 继承方法：原型式继承法
+### 知识点
+4. ES6的继承
+
+
+* 静态方法：通过类调用的方法
+    * Object.create()
+    * Date.now()
+    * Date.parse()
+    * String.fromCharCode()
+    * Array.from()
+    * Array.isArray()
+    * ....
+* 原型方法：通过实例调用
+    * map(): arr.map()

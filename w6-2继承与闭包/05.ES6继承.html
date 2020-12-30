@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.ES6继承</title>
+</head>
+
+<body>
+    <h1>05.ES6继承</h1>
+    <script>
+        /**
+            * 05.ES6继承
+                * class类
+        */
+        
+
+        class Person{
+            // php: public,private,protect
+            // 构造函数(如果不定义，则使用默认构造函数)
+            constructor(name,age=18,gender="男"){
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+            }
+
+            // 方法：写在这里的方法为原型对象上的方法
+            say(){
+                return `Hello my name is ${this.name}`;
+            }
+            coding(){
+                return `日入800行代码`
+            }
+
+            // 静态方法
+            static getMoney(){
+                return `我叫${this.name}，我每天赚200块`
+            }
+        }
+
+        const lx = new Person('laoxie');// {name:'laoxie',age:18,gender:'男'}
+        // lx.say();
+
+
+        // 继承
+        // extends: 继承原型上的属性、方法
+        class Man extends Person{
+            constructor(name,age=22){
+                // 类似于借用构造函数，super为父类
+                super(name,age);
+                // this.name = name;
+            }
+        }
+
+        let tiantian = new Man('tiantian');
+
+        class Girl extends Person{
+            constructor(name,age=20,gender='女'){
+                super(name,age,gender);
+                
+                // 在子类中调用父类静态方法
+                // console.log(Person.getMoney());
+                
+            }
+        }
+
+        let jingjing = new Girl('静静',32);
+
+
+
+
+    </script>
+</body>
+
+</html>
