@@ -2407,3 +2407,110 @@ javascript = ECMAScript + BOM + DOM
             ```
         * 获取
             * Object.getOwnPropertyDescriptor()
+
+## day6-4
+
+### 复习
+* 继承
+    * ES6继承：类
+        * class
+        * extends
+        * constructor
+            * super
+    ```js
+        class Person{
+            // 这里的方法会自动成为原型的方法
+            constructor(){
+                // 这里的属性为实例属性
+                // this.xx = xx;
+                // this.coding = function(){}
+            }
+            
+            coding(){
+
+            }
+        }
+
+        let p1 = new Person()
+        let p2 = new Person()
+        let p3 = new Person()
+        let p4 = new Person()
+        let p5 = new Person()
+
+        // 传统写法
+        Person.prototype = {
+            constructor:Person,
+            coding(){
+
+            }
+        }
+        Object.defineProperties(Person.prototype,{
+            constructor:{
+                configurable:true,
+                enumerable:false,
+                writable:true,
+                value:Person
+            },
+            coding:{
+                onfigurable:true,
+                enumerable:false,
+                writable:true,
+                value:function(){
+
+                }
+            }
+        })
+    ```
+
+* 静态方法与原型方法
+    * static 
+
+* 闭包
+    > 正常情况下：函数作用域在执行时创建，在执行完毕或销毁（所以函数内的变量也会被回收）
+    * 闭包的生成条件：函数嵌套函数，并返回嵌套函数
+    * 垃圾回收机制
+        * 计数清除法
+        * 标记清除法
+    * 结论：闭包是指有权访问另一函数作用域中的变量的函数
+    * 闭包应用
+        * 封装
+        * 模块化开发
+
+* 属性特性
+    * 值属性（有值得属性）
+        * configurable  可配置性
+        * enumerable    可枚举型
+            * for...in
+        * writable      可写性
+        * value         属性值
+    * 存储器属性
+* 属性特性操作
+    * 设置：
+        * Object.defineProperty(target,key,descriptor)
+        * Object.defineProperties(target,descriptor)
+    * 获取
+        * Object.getOwnPropertyDescriptor(target,key)
+        * Object.getOwnPropertyDescriptors(target)
+
+### 知识点 
+* 编写插件
+    * 原生插件：增强原生能力
+    ```js
+        // 增强兼容性：让trim方法在低版本浏览器也能生效
+        if(String.prototype.trim === undefined){
+            String.prototype.trim = function(){
+
+            }
+        }
+
+        // 增强易用性
+        if(Date.prototype.format === undefined){
+            Date.prototype.format = function(fmt){
+               
+               return 
+            }
+        }
+
+        new Date().format('YYYY/MM/DD');// 2020/12/31
+        new Date().format('YYYY-MM-DD hh:mm:ss');// 2020-12-31 10:06:43
+    ```
