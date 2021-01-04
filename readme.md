@@ -2514,3 +2514,62 @@ javascript = ECMAScript + BOM + DOM
         new Date().format('YYYY/MM/DD');// 2020/12/31
         new Date().format('YYYY-MM-DD hh:mm:ss');// 2020-12-31 10:06:43
     ```
+    * ajax请求封装3.0
+        > 利用回调函数获取数据
+
+## day7-1
+
+### 知识点
+* HTML5新特性：Promise 
+    * Promise的状态
+        * Pending   未完成（创建promise对象时的初始状态）
+
+* ajax封装4.0
+```js
+    function ajax(url,callback){
+        let xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+            console.log(xhr.responseText);
+
+            // 等数据返回后执行回调函数
+            callback(xhr.responseText);
+        }
+        xhr.open('get',url,true);
+        xhr.send();
+
+        return 
+    }
+
+    // 利用Promise封装
+    function ajax(url){
+        // 返回一个Promise实例，但是这个实例当前并不能得到数据，但承诺在某个时间返回数据
+        return new Promise(function(resolve,reject){
+            // resolve和reject都是函数
+            // 调用resolve()方法，表示成功，解决
+            // 调用reject()方法，表示失败，拒绝
+            let xhr = new XMLHttpRequest();
+            xhr.onload = function(){
+               let data = JSON.parse(xhr.responseText);
+                if(xhr.status === 200){
+                    resolve(data)
+                }else if(xhr.status === 400){
+                    reject('fail');
+                }
+                
+            }
+            xhr.open('get',url,true);
+            xhr.send();
+        })
+        
+    }
+
+    // 如何获取封装函数中的数据
+    // ajax('http://localhost:2009/api/goodslist',function(data){});
+    let promise = ajax('http://localhost:2009/api/goodslist')
+    promise.then(function(data){
+        console.log('data',data);
+    }).catch(function(err){
+        console.log('err',err);
+    })
+
+```

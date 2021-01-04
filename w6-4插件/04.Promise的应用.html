@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>04.Promise的应用</title>
+</head>
+<body>
+    <h1>04.Promise的应用</h1>
+    <script src="lib/request4.js"></script>
+    <script>
+        /*
+            04.Promise的应用
+                1. ajax封装
+
+            * async&await: ES8推出针对Promise对象操作的方式
+        */
+
+        // 1. ajax封装
+        request({
+            url:'http://localhost:2009/api/goodslist',
+            data:{
+                page:2,
+                size:15
+            }
+        }).then(data=>{
+            console.log('data=',data)
+        });
+
+        request.get('http://localhost:2009/api/goodslist',{page:2,size:15}).then(data=>{
+            console.log('data=',data);
+        });
+
+
+        // let data = await request.get('http://localhost:2009/api/goodslist',{page:2,size:15});
+    </script>
+</body>
+</html>

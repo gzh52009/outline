@@ -318,5 +318,5 @@ var Cookie = {
 // Cookie.remove('left')
 
 function type(data){
-    return Object.prototype.toString.call(data).slice(8,-1).toLowerCase();
+    return Object.prototype.toString.call(data).slice(8,-1).toLowerCase(); // data.toString()
 }

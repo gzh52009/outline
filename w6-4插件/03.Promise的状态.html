@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>03.Promise的状态</title>
+</head>
+<body>
+    <h1>03.Promise的状态</h1>
+    <script>
+        /*
+            Promise的状态
+                * 待定（pending）: 初始状态，既没有被兑现，也没有被拒绝。
+                * 已兑现（fulfilled）: 意味着操作成功完成。
+                    > 调用resolve()后，状态从pending->fulfilled
+                * 已拒绝（rejected）: 意味着操作失败。
+                    > 调用reject()后，状态从pending->rejected
+            
+            * Promise原型方法
+                * then
+                * catch
+            
+            * 静态方法
+                * Promise.resolve() 创建一个promise对象，并把它的状态改成fulfilled
+                * Promise.reject()  创建一个promise对象，并把它的状态改成rejected
+                * Promise.all(arr)     把多个Promise对象封装成一个大的Promise对象
+                * Promise.race(arr)     arr中的promise对象，哪个的状态最先变成fulfilled就返回这个promise对象
+
+        */
+        let promise = new Promise(function(resolve,reject){
+            setTimeout(function(){
+                // reject(50);
+                // console.log('rejected',promise);
+                resolve(100);
+                console.log('fulfilled',promise);
+            },3000)
+        });
+        console.log('init',promise);
+
+        promise.then(function(data){
+            // promise的状态变成fulfilled后执行这里的代码
+            console.log('data=',data);
+        },function(err){
+            // 这个函数等效于catch中的函数
+            console.log('then err',err);
+        }).catch(function(err){
+            // promise的状态变成rejected后执行这里的代码
+            console.log('catch',err);
+        }).then(function(data){
+            console.log('then2',data)
+        })
+    </script>
+</body>
+</html>
