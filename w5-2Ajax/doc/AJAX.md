@@ -218,7 +218,7 @@ Promise是一个构造函数，所谓的Promise对象，就是通过new Promise(
 
 ### Promise 的三种状态
 * Pending（未完成）可以理解为Promise对象实例创建时候的初始状态
-* Resolved（成功） 可以理解为成功的状态
+* Fulfilled（成功） 可以理解为成功的状态
 * Rejected（失败） 可以理解为失败的状态
 
 ### 方法
@@ -272,9 +272,9 @@ Promise是一个构造函数，所谓的Promise对象，就是通过new Promise(
 ```
 
 * 调用`resolve()`方法将Promise对象的状态从「未完成」变为「成功」
-    > pending -> resolved
+    > Pending -> Fulfilled
 * 调用`reject()`方法将Promise对象的状态从「未完成」变为「失败」
-    > pending -> rejected
+    > Pending -> Rejected
 * 如果调用resolve函数和reject函数时带有参数，那么它们的参数会被传递给回调函数
 
 

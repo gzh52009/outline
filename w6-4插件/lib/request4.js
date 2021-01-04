@@ -74,73 +74,30 @@ function request(options) {
 }
 
 request.jsonp = function (url, data, callback) {
-    if (typeof data === 'function' && callback === undefined) {
-        callback = data;
-        data = {}
-    }
     return request({
         type: 'jsonp',
         url,
-        data,
-        success: callback
+        data
     })
 }
 request.get = function (url, data) {
     return request({
         type: 'get',
         url,
-        data,
-        success: callback
+        data
     })
 }
 request.post = function (url, data) {
     return request({
         type: 'post',
         url,
-        data,
-        success: callback
+        data
     })
 }
 request.put = function (url, data) {
     return request({
         type: 'put',
         url,
-        data,
-        success: callback
+        data
     })
 }
-
-// request({
-//     url:'/goodslist.php?a=b', // /goodslist.php?a=b?c=10&d=20
-//     // type:'GET',
-//     data:{
-//         c:10,
-//         d:20
-//     }
-// })
-// request({
-//     url:'/jsonp1.php',
-//     type:'jsonp',
-//     success(data){
-
-//     }
-// })
-// request({
-//     url:'/jsonp2.php',
-//     type:'jsonp',
-//     success(data){
-
-//     }
-// })
-// request.jsonp('/jsonp2.php',{},function(data){
-
-// })
-// request.get('/goodslist.php',function(){
-
-// })
-// request.post('/reg.php',{username,password},function(){
-
-// })
-// request.get('/get_data.php',function(){})
-// request.put()
-// request.delete()

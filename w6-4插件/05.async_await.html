@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>05.async_await</title>
+</head>
+<body>
+    <h1>05.async_await</h1>
+    <script src="lib/request4.js"></script>
+    <script>
+        /*
+            05.async_await
+                > 用来简化promise的写法，把异步代码以同步的方式来编写
+                * async: 异步，函数修饰关键字，给函数添加async关键字后，函数的返回值就是Promise对象（状态为fulfilled）
+                * await: 等待，等待promise对象的返回结果（状态为fulfilled后得到的结果），必须放在async函数中
+        */
+
+        // Promise.resolve()
+        async function getData(){
+            return 'laoxie';
+        }
+
+        const result = getData();// undefined;
+        console.log('result=',result);
+
+
+        // result.then(data=>{
+        //     console.log('data=',data);
+        // });
+
+
+
+        async function run (){
+            // 以上写法可以使用await改造: 等待promise对象的返回结果
+            // let data = await getData();
+            // console.log('wait data=',data);
+
+            let username = await new Promise((resolve,reject)=>{
+                // 这里的代码会立即执行
+                console.log('start setTimeout');
+                setTimeout(()=>{
+                    resolve('xiaoxie');
+                },5000);
+                console.log('end setTimeout');
+            });
+            console.log('username=',username);
+        }
+
+        run();
+    </script>
+</body>
+</html>

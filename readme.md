@@ -2573,3 +2573,41 @@ javascript = ECMAScript + BOM + DOM
     })
 
 ```
+
+* async & await
+    > ECMAScript 2017(ES8)推出的标准
+    * async: 异步，函数关键字，给函数添加async关键字后，函数的返回值就是Promise对象
+    * await: 等待，等待promise对象的返回结果（状态为fulfilled后得到的结果），必须放在async函数中
+
+* 节点操作
+    1. 获取节点
+        * document.getElementById()
+        * getElementsByClassName()          HTMLCollection
+        * getElementsByTagName()            HTMLCollection
+        * document.getElmentsByName()       HTMLCollection
+        * querySelector()
+        * querySelectorAll()                NodeList
+        * 节点关系、元素关系
+    2. 操作节点
+        * 增
+        * 删
+        * 该
+        * 查
+    ```js
+        let link = document.createElement('a');
+        link.href = '#';
+        link.innerText = 'link';
+        link.title = 'link';
+
+        link.set({
+            href:'#',
+            innerText:'link',
+            title:'link'
+        })
+
+    ```
+* HTMLCollection与NodeList的区别
+    * HTMLCollection会自动更新页面添加的节点，而NodeList不会更新
+
+    
+    

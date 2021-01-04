@@ -13,27 +13,58 @@
         /*
             04.Promise的应用
                 1. ajax封装
+                2. 请求图片
 
             * async&await: ES8推出针对Promise对象操作的方式
         */
+       document.addEventListener('DOMContentLoaded',async ()=>{
 
-        // 1. ajax封装
-        request({
-            url:'http://localhost:2009/api/goodslist',
-            data:{
-                page:2,
-                size:15
-            }
-        }).then(data=>{
-            console.log('data=',data)
-        });
+           // 1. ajax封装
+           // request({
+           //     url:'http://localhost:2009/api/goodslist',
+           //     data:{
+           //         page:2,
+           //         size:15
+           //     }
+           // }).then(data=>{
+           //     console.log('data=',data)
+           // });
+    
+           request.get('http://localhost:2020/api/goodslist',{page:2,size:15}).then(data=>{
+               console.log('data=',data);
+           });
+    
+    
+           // let data = await request.get('http://localhost:2009/api/goodslist',{page:2,size:15});
+    
+    
+           // Promise的应用2：预加载图片
+           var preloadImage = function (path) {
+               return new Promise(function (resolve, reject) {
+                   var image = new Image();
+                   image.onload  = ()=>{
+                       // 图片加载完成后执行onload
+                       resolve(path);
+                   }
+                   image.onerror = reject;
+                   image.src = path;
+               });
+           };
+    
+           let img = new Image();
+           img.src = 'img/loading.gif'
+           document.body.appendChild(img);
+           // preloadImage('https://img2.doubanio.com/view/photo/l/public/p2625269903.webp').then(path=>{
+           //     console.log('path',path);
+           //     img.src = path;
+           //     // 要获取图片的宽高，必须先显示这张图片
+           //     console.log(img.offsetWidth,img.offsetHeight);
+           // })
+           let path = await preloadImage('https://img2.doubanio.com/view/photo/l/public/p2625269903.webp');
+           img.src = path;
+       })
 
-        request.get('http://localhost:2009/api/goodslist',{page:2,size:15}).then(data=>{
-            console.log('data=',data);
-        });
 
-
-        // let data = await request.get('http://localhost:2009/api/goodslist',{page:2,size:15});
     </script>
 </body>
 </html>

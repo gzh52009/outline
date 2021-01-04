@@ -2,6 +2,8 @@
     include "../db/connect.php";
     include "../utils/tools.php";
 
+    header('Access-Control-Allow-Origin:*');
+
     $page = isset($_GET['page']) ? $_GET['page'] : 1;
     $size = isset($_GET['size']) ? $_GET['size'] : 10;
 

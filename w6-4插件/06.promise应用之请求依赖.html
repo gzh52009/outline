@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>06.promise应用之请求依赖</title>
+</head>
+<body>
+    <h1>06.promise应用之请求依赖</h1>
+    <script src="lib/request4.js"></script>
+    <script>
+        /*
+            06.promise应用之请求依赖
+                
+            * 请求依赖：请求一个接口的数据，必须先要拿到另外一个接口的数据（数据获取有先后属性）
+                * 回调函数
+                    > 回调地狱，可以利用promise来解决回调地域产生的问题
+            * 等待所有请求返回后在执行操作（每个请求没有先后顺序）
+                Promise.all()
+        */
+        // 获取当前位置天气预报
+        // 1. 先获取ip
+        // 2. 根据ip获取城市
+        // 3. 根据城市获取天气
+
+        document.addEventListener('DOMContentLoaded',async ()=>{
+
+            // let xhr_ip = new XMLHttpRequest();
+            // xhr_ip.onload = function(){
+            //     let ip = xhr_ip.responseText;
+    
+            //     // 得到ip后，再发起获取定位的请求
+            //     let xhr_add = new XMLHttpRequest();
+            //     xhr_add.onload = function(){
+            //         let address = xhr_add.responseText;
+    
+            //         // 得到ip后，再发起获取定位的请求
+            //         let xhr_weather = new XMLHttpRequest();
+            //         xhr_weather.onload = function(){
+            //             let weather = xhr_weather.responseText;
+    
+                        
+            //         }
+            //         xhr_add.open('get','xxx.php',true);
+            //         xhr_add.send();
+            //     }
+            //     xhr_add.open('get','xxx.php',true);
+            //     xhr_add.send();
+            // }
+            // xhr_ip.open('get','xxx.php',true);
+            // xhr_ip.send();
+             
+            
+            // promise解决请求依赖问题（回调地狱）
+            let pro_ip = new Promise((resolve,reject)=>{
+                let xhr_ip = new XMLHttpRequest();
+                xhr_ip.onload = function(){
+                    let ip = xhr_ip.responseText;
+                    resolve(ip);
+                }
+                xhr_ip.open('get','ip.php',true);
+                xhr_ip.send();
+            });
+    
+            let ip = await pro_ip;
+            let pro_city = new Promise((resolve,reject)=>{
+                let xhr_city = new XMLHttpRequest();
+                xhr_city.onload = function(){
+                    let city = xhr_city.responseText;
+                    resolve(city);
+                }
+                xhr_city.open('get','city.php?ip='+ip,true);
+                xhr_city.send();
+            });
+    
+            let city = await pro_city;
+            let pro_weather = new Promise((resolve,reject)=>{
+                let xhr_weather = new XMLHttpRequest();
+                xhr_weather.onload = function(){
+                    let city = xhr_weather.responseText;
+                    resolve(city);
+                }
+                xhr_weather.open('get','weather.php?city='+city,true);
+                xhr_weather.send();
+            });
+
+            // 获取天气
+            let weather = await pro_weather;
+
+
+
+            // 等待所有请求完成后执行其他操作
+            // 需要把每个请求封装成promise，然后有Promise.all包装成一个大的promise对象，只有当所有的promise对象的状态都未fulfiiled后，大的promise对象的状态才变成fulfilled
+            const data = await Promise.all([pro_ip,pro_city,pro_weather])
+        })
+
+
+
+    </script>
+</body>
+</html>
