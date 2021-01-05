@@ -2609,5 +2609,22 @@ javascript = ECMAScript + BOM + DOM
 * HTMLCollection与NodeList的区别
     * HTMLCollection会自动更新页面添加的节点，而NodeList不会更新
 
-    
-    
+## day7-2
+
+### 知识点
+* 一个方法实现获取与设置的功能
+* html属性与节点属性
+    * 公共属性
+        * class
+        * id
+        * title
+        * style
+        * contenteditable
+    * 私有属性
+        * src
+        * name
+        * value
+        * checked
+        * selected
+    * 自定义属性
+        * data-*    dataset

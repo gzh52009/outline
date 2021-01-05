@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>07.jquery简化版的封装与使用</title>
+</head>
+
+<body>
+    <h1>07.jquery简化版的封装与使用</h1>
+    <button class="btnHide">隐藏</button>
+    <button class="btnShow">显示</button>
+    <a href="#">link1</a>
+    <a href="#">link2</a>
+    <a href="#">link3</a>
+    <a href="#">link4</a>
+    <a href="#">link5</a>
+    <script src="lib/jqlite.js"></script>
+    <script>
+        /*
+            07.jquery简化版的封装与使用
+        */
+        $('h1').addClass('title').css('color','#f00').css('background','#cfcfcf');
+
+        $('.btnHide').addClass('btn').on('click', function () {
+            $('h1').hide();
+        })
+
+        $('.btnShow').on('click', function () {
+            $('h1').show();
+        });
+
+
+        console.log($('h1').css('color'));// #f00
+        $('h1').css({color:'#58bc58','font-size':'20px'});
+
+        // 给页面上所有的a标签添加颜色为橙色,添加事件
+        // let link = document.querySelectorAll('a');
+        // for(let i=0;i<link.length;i++){
+        //     link[i].style.color = '#f60';
+        //     link[i].onclick = function(){
+        //         console.log('原生')
+        //     }
+        // }
+
+        // jqlite
+        $('a').css('color','#f60').on('click',function(){
+            console.log('jqlite')
+        });
+
+        $('h1').animate({width:200},function(){
+
+        })
+    </script>
+</body>
+
+</html>
