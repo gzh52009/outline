@@ -2628,3 +2628,35 @@ javascript = ECMAScript + BOM + DOM
         * selected
     * 自定义属性
         * data-*    dataset
+
+* jQuery
+    * 定义：jQuery是一个面向对象的工具库
+    * 概念
+        * 构造函数（类）: jQuery
+        * 原型对象     : jQuery.prototype = jQuery.fn
+        * 实例         : jQuery对象
+        * 原生节点     : 通过jquery下标获取
+    * 特点
+        * 擅长节点操作
+    * 节点操作
+        1. 获取节点
+        2. 操作节点
+* jquery常用操作
+    * jquery对象->原生对象（节点）
+        * get(idx)/get()
+        * [idx]
+    * 原生对象->jquery对象：$(原生对象)
+    * 判断是否为jquery对象:
+        ```js
+            let obj = $('xxx')
+            if(obj.jquery){
+                
+            }
+        ```
+    * 判断jquery对象是否匹配到元素
+        ```js
+            let $btns = $('button');
+            if($btns.length){
+
+            }
+        ```
