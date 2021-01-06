@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03无限级菜单</title>
+	<style>
+	a{color:#333;text-decoration: none;}
+	a:hover{color:#f00;}
+	ul ul{display:none;}
+	.nav{width:200px;}
+	.nav ul{padding:0;margin:0;line-height:2;list-style: none;}
+	.nav li{position:relative;}
+	.nav li > span{position:absolute;right:10px;top:50%;margin-top:-16px;color:#999;}
+	.nav li:hover > span{color:#f00;}
+	.nav > ul > li{border:1px solid #fff;}
+	.nav > ul > li > a{display:block;padding:5px;background-color:#efefef;}
+
+	/*子菜单*/
+	.nav > ul ul{overflow:hidden;position: absolute;left:200px;top:0;width:200px;border:1px solid #ddd;background-color: #fff;}
+	.nav > ul ul li{border-bottom:1px solid #ddd;width:200px;}
+	.nav > ul ul li:hover{background-color:#efefef;}
+	</style>
+	<script src="./lib/jquery3.5.1.js"></script>
+	<script>
+		jQuery(function($){
+			// 给有下级菜单的li添加箭头
+			var $hasMenu = $('.nav li').has('ul');
+			$hasMenu.append('<span>&gt;</span>');
+
+			$hasMenu.on('mouseenter',function(e){console.log(this);
+				clearTimeout(this.timer);
+
+				// 获取当前li下的ul
+				let $currentLi = $(this)
+				let $currentUl = $currentLi.children('ul');
+				$currentUl.show(500);
+				// $currentUl.slideDown();
+				// $currentUl.css({display:'block',width:0}).animate({width:200});
+			}).on('mouseleave',function(){
+				let $currentLi = $(this)
+				let $currentUl = $currentLi.children('ul');
+				this.timer = setTimeout(()=>{
+					$currentUl.hide(300);
+					// $currentUl.slideUp();
+					// $currentUl.animate({width:0},function(){
+					// 	$currentUl.hide()
+					// });
+
+				},500)
+			})
+		});
+	</script>
+</head>
+<body>
+	<div class="nav">
+		<ul>
+			<li class="item"><a href="#">导航1</a></li>
+			<li><a href="#">导航2</a></li>
+			<li class="item"><a href="#">导航3</a>
+				<ul>
+					<li><a href="#">导航31</a></li>
+					<li><a href="#">导航32</a></li>
+					<li><a href="#">导航33</a></li>
+					<li><a href="#">导航34</a>
+						<ul>
+							<li><a href="#">导航351</a></li>
+							<li><a href="#">导航352</a></li>
+							<li><a href="#">导航353</a></li>
+							<li><a href="#">导航354</a></li>
+							<li><a href="#">导航355</a></li>
+						</ul>
+					</li>
+					<li><a href="#">导航35</a>
+						<ul>
+							<li><a href="#">导航351</a></li>
+							<li><a href="#">导航352</a></li>
+							<li><a href="#">导航353</a></li>
+							<li><a href="#">导航354</a></li>
+							<li><a href="#">导航355</a>
+								<ul>
+									<li><a href="#">导航3551</a></li>
+									<li><a href="#">导航3552</a></li>
+									<li><a href="#">导航3553</a></li>
+									<li><a href="#">导航3554</a></li>
+									<li><a href="#">导航3555</a></li>
+									<li><a href="#">导航3556</a>
+										<ul>
+											<li><a href="#">导航35561</a></li>
+											<li><a href="#">导航35562</a></li>
+											<li><a href="#">导航35563</a></li>
+											<li><a href="#">导航35564</a></li>
+											<li><a href="#">导航35565</a></li>
+											<li><a href="#">导航35566</a></li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+							<li><a href="#">导航356</a></li>
+						</ul>
+					</li>
+					<li><a href="#">导航36</a></li>
+				</ul>
+			</li>
+			<li><a href="#">导航4</a>
+				<ul>
+					<li><a href="#">导航41</a></li>
+					<li><a href="#">导航42</a></li>
+					<li><a href="#">导航43</a></li>
+					<li><a href="#">导航44</a></li>
+					<li><a href="#">导航45</a></li>
+					<li><a href="#">导航46</a></li>
+				</ul>
+			</li>
+			<li><a href="#">导航5</a></li>
+			<li><a href="#">导航6</a>
+				<ul>
+					<li><a href="#">导航61</a>
+						<ul>
+							<li><a href="#">导航611</a></li>
+							<li><a href="#">导航612</a></li>
+							<li><a href="#">导航613</a></li>
+							<li><a href="#">导航614</a></li>
+							<li><a href="#">导航615</a></li>
+							<li><a href="#">导航616</a></li>
+						</ul>
+					</li>
+					<li><a href="#">导航62</a></li>
+					<li><a href="#">导航63</a></li>
+					<li><a href="#">导航64</a></li>
+					<li><a href="#">导航65</a></li>
+					<li><a href="#">导航66</a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

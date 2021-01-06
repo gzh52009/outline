@@ -2650,7 +2650,7 @@ javascript = ECMAScript + BOM + DOM
         ```js
             let obj = $('xxx')
             if(obj.jquery){
-                
+
             }
         ```
     * 判断jquery对象是否匹配到元素
@@ -2660,3 +2660,23 @@ javascript = ECMAScript + BOM + DOM
 
             }
         ```
+## day7-3
+
+### 复习
+* 选择器
+* jquery
+    * html()      innerHTML
+    * text()      innerText
+    * val()       value
+
+### 知识点
+* 过滤选择器
+    * :odd
+    * :even
+    * :eq
+* 过滤方法(推荐)
+    * eq()
+    * first()/last()
+    * filter()
+    * not()
+    * has() 判断是否包含
