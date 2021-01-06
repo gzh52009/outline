@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>06表格操作</title>
+    <script src="lib/jquery3.5.1.js"></script>
+    <script>
+        jQuery(function ($) {
+            /*
+                06表格操作
+                   
+             */
+
+            // $('.btnDel').click(function () {
+            //     // 获取当前tr
+            //     let $tr = $(this).closest('tr');
+            //     $tr.remove();
+            // });
+
+            // $('.btnCopy').click(function () {
+            //     // 获取当前tr
+            //     let $tr = $(this).closest('tr');
+            //    // 复制tr
+            //    let $cloneTr = $tr.clone(true);
+            //    $cloneTr.appendTo('tbody')
+            // })
+
+            $('.datalist').on('click', '.btnDel', function () {
+                // 获取当前tr
+                let $tr = $(this).closest('tr');
+                $tr.remove();
+            }).on('click', '.btnCopy', function () {
+                // 获取当前tr
+                let $tr = $(this).closest('tr');
+                // 复制tr
+                let $cloneTr = $tr.clone(true);
+                $cloneTr.appendTo('tbody')
+            }).on('click','td',function(){
+                // 编辑
+                // 获取td内容
+                let $td = $(this);
+                let idx = $td.index();
+                if(idx==0 || idx==3){
+                    return;
+                }
+                let txt = $(this).text();
+                let $input = $('<input/>').val(txt);
+                $(this).text('').append($input);
+
+                // 编辑完成
+                $input.focus().one('blur',function(){
+                   $td.html($(this).val())
+                }).one('click',function(){
+                    return false;
+                });
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <h1>06表格操作</h1>
+    <table class="datalist">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>姓名</th>
+                <th>年龄</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>郭涛</td>
+                <td>40</td>
+                <td>
+                    <button class="btnDel">删除</button>
+                    <button class="btnCopy">复制</button>
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>思聪</td>
+                <td>33</td>
+                <td>
+                    <button class="btnDel">删除</button>
+                    <button class="btnCopy">复制</button>
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>热巴</td>
+                <td>28</td>
+                <td>
+                    <button class="btnDel">删除</button>
+                    <button class="btnCopy">复制</button>
+                </td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>许晴</td>
+                <td>50</td>
+                <td>
+                    <button class="btnDel">删除</button>
+                    <button class="btnCopy">复制</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+
+</html>

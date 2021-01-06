@@ -1,0 +1,23 @@
+.price del::before,.price span::before{
+    content:'￥'
+}
+.price del{
+    margin-right:5px;
+    color:#999
+}
+.price span{
+    color:#f00
+}
+
+.shopping-cart {
+    text-align: right;
+}
+
+.shopping-cart p {
+    margin: 0;
+}
+
+.shopping-cart span {
+    padding: 0 5px;
+    color: #f00;
+}

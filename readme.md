@@ -2680,3 +2680,6 @@ javascript = ECMAScript + BOM + DOM
     * filter()
     * not()
     * has() 判断是否包含
+* jquery插件（jquery扩展）
+    * 原型方法
+    * 静态方法

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>07.ajax</title>
+    <script src="lib/jquery3.5.1.js"></script>
+    <script>
+        jQuery(function ($) {
+            /*
+               07.ajax
+                   
+             */
+
+             $.get('http://localhost:2020/api/goodslist.php',{size:5},function(data){
+                console.log('data=',data);
+             },'json');
+            //  $.post()
+            jQuery.ajax({
+                url,
+                type:'get',//post,put,delete,patch,
+                success(data){
+
+                },
+                fail(){
+
+                }
+            })
+        });
+    </script>
+</head>
+
+<body>
+    <h1>07.ajax</h1>
+</body>
+
+</html>

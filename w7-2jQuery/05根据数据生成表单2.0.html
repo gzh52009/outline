@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>根据数据生成表单</title>
+    <script src="lib/jquery3.5.1.js"></script>
+    <script>
+    jQuery(function($) {
+        /*
+            根据数据生成表单
+                遍历数据，生成相应的表单控件
+                1、生成label
+                2、根据类型生成表单控件
+                    * 其他情况        => <input type="type" name />
+                    * select         => <select><option></option></select>
+                    * checkbox/radio => <label><input type="type" name />xxx</label>
+                    * textarae       => <textarea></textarea>
+                3、写入页面
+         */
+        var data = [{
+            label: '用户名',
+            name: 'username',
+            type: 'text'
+        }, {
+            label: '密码',
+            name: 'psw',
+            type: 'password'
+        }, {
+            label: '年龄',
+            name: 'age',
+            type: 'text'
+        }, {
+            label: '学历',
+            name: 'degree',
+            type: 'select',
+            value: ['小学', '中学','大学','社会']
+        }, {
+            label: '性别',
+            name: 'gender',
+            type: 'select',
+            value: ['男', '女']   //==》['<option value="男">男</option>','<option value="女">女</option>'] ==> <option value="男">男</option><option value="女">女</option>
+        }, {
+            label: '爱好',
+            name: 'hobby',
+            type: 'checkbox',
+            value:['篮球','足球','羽毛球','爬山','购物','旅游','看美女']
+        }, {
+            label: '是否已婚',
+            name: 'married',
+            type: 'radio',
+            value:['已婚','未婚','保密']
+        }, {
+            label: '简历',
+            type:'textarea',
+            name: 'resume'
+        }];
+        // <div class="form-item">
+        // <label for=""></label>
+        // <input id="" />
+        // </div>
+        // <div class="form-item">
+        // <label for=""></label>
+        // <select><option></option></select>
+        // </div>
+        // <div class="form-item">
+        // <label for="">爱好</label>
+        // <label><input type='checkbox'/>篮球</label>
+        // <label><input type='checkbox'/>足球球</label>
+        // </div>
+        
+        
+        // 生成form表单
+        let $form = $('<form/>');
+        
+        $.each(data,(idx,item)=>{
+            let $item = $('<div/>').addClass('form-item');
+            let $label = $('<label/>').attr('for',item.name).text(item.label);
+            let $input;
+            switch(item.type){
+                case 'select':
+                    $input = $('<select/>').attr({name:item.name,id:item.name})
+                    let $options = item.value.map(item=>`<option value="${item}">${item}</option>`).join('\n');
+                    $input.append($options);
+                    break;
+                case 'textarea':
+                    $input = $('<textarea/>').attr({name:item.name,id:item.name});
+                    break;
+                case 'radio':
+                case 'checkbox':
+                    let $labelItem = item.value.map(it=>`<label><input type="${item.type}" name="${item.name}" />${it}</label>`).join('\n');
+                    $input = $('<span/>').append($labelItem);
+                    break;
+                default:
+                    $input = $('<input/>').attr({type:item.type,name:item.name,id:item.name});
+            }
+            $item.append($label,$input);
+            $item.appendTo($form);// $form.append($item)
+        });
+
+        // 把表单插入到h1后面（成为兄弟元素）
+        $('h1').after($form);// $form.insertBefore('h1');
+    });
+    </script>
+</head>
+
+<body>
+    <h1>05根据数据生成表单2.0</h1>
+</body>
+</html>
