@@ -2699,3 +2699,54 @@ javascript = ECMAScript + BOM + DOM
         ```
     * jQuery.fn.extend()： 扩展jQuery原型
     
+## day7-4
+
+### 知识点
+* 环境
+    * 开发环境 development（本地）
+    * 生产环境  production（上线）
+    * 测试环境  test
+* 构建
+    * 合并
+    * 压缩
+    * 编译
+        * ES6->ES5
+        * Sass->css
+        * Typescript->js
+        * ....
+    * 改名：
+        * jquery.js -> jquery.min.js
+    * 优化
+    * ...
+* 构建工具
+    * grunt
+    * gulp
+    * webpack
+* 准备工作
+    1. 安装NodeJS
+    2. 了解npm（随着NodeJS一起安装）
+        * 安装模块：
+            * `npm install 包名`    项目安装（每个项目需要安装一次）
+                > 项目安装一般是为了在项目的代码中使用
+            * `npm install -g 包名` 全局安装（一台电脑只需安装一次）
+                > 全局安装为了在命令行使用
+        * 初始化项目：`npm init`
+            > 会在项目根目录下创建一个`package.json`项目配置文件
+        * npm script: npm 脚本
+            * 运行脚本格式：`npm run 脚本名称`
+    3. 了解nodejs模块化
+        * 定义模块: module.exports
+        * 引入模块：require
+            * 内置模块
+            * 自定义模块
+            * 第三方模块
+    4. 了解gulp
+* 一个合格的程序员至少需要了解以下内容
+    * 显示隐藏目录和扩展名
+    * 配置环境变量
+    * 了解自己设备的配置
+* NodeJS
+    * npm
+        * 查看镜像地址：`npm config get registry`
+        * 设置国内镜像：`npm config set registry https://registry.npm.taobao.org`
+    
