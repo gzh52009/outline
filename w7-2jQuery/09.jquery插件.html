@@ -7,6 +7,8 @@
     <title>09.jquery插件</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="lib/jquery3.5.1.js"></script>
+    <script src="lib/jquery.color.js"></script>
+    <script src="lib/jquery.slide.js"></script>
 </head>
 <body>
     <h1>09.jquery插件</h1>
@@ -16,6 +18,8 @@
     <div style="background-color:#0ff;height:50px;width:100px;"></div>
     <div style="background-color:#00f;height:50px;width:100px;"></div>
     <div style="background-color:#f00;height:50px;width:100px;"></div>
+    <button class="left">slideLeft</button>
+    <button class="right">slideRight</button>
     <script>
         jQuery(function($){
             /**
@@ -23,18 +27,25 @@
                     * 原型方法
                     * 静态方法
              */
-            jQuery.prototype.color = function(color){
-                return this.filter(function(idx,el){
-                    let $div = $('<div/>').css('background-color',color);
-                    console.log($(el).css('background-color'),$div.css('background-color'))
-                    return $(el).css('background-color') == $div.css('background-color');
-                })
-            }
-            jQuery.color = function(){
+            // jQuery.prototype.color = function(color){
+            //     return this.filter(function(idx,el){
+            //         let $div = $('<div/>').css('background-color',color);
+            //         console.log($(el).css('background-color'),$div.css('background-color'))
+            //         return $(el).css('background-color') == $div.css('background-color');
+            //     })
+            // }
+            // jQuery.color = function(){
                 
-            }
+            // }
             // 获取背景颜色为红色的div
            $('div').color('rgb(255, 0, 0)')
+
+           $('.right').on('click',function(){
+               $('div').slideRight();
+           })
+           $('.left').on('click',function(){
+               $('div').slideLeft();
+           })
         })
     </script>
 </body>

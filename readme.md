@@ -2681,5 +2681,21 @@ javascript = ECMAScript + BOM + DOM
     * not()
     * has() 判断是否包含
 * jquery插件（jquery扩展）
-    * 原型方法
-    * 静态方法
+    * 原型方法: jQuery.prototype.show()
+    * 静态方法: jQuery.ajax()
+
+* 扩展方法
+    * jQuery.extend() 
+        * 扩展jquery本身
+        * 扩展对象
+        ```js
+            let target = {username:'laoxie'}
+            $.extend(target,{a:10,b:20});// 把a,b扩展到target，类似于原生Object.assign(target,...)
+
+            // 浅拷贝
+            $.extend(target,{a:10,b:20,hobby:{h1:10,h2:20}})
+            // 深拷贝
+            $.extend(true,target,{a:10,b:20,hobby:{h1:10,h2:20}})
+        ```
+    * jQuery.fn.extend()： 扩展jQuery原型
+    
