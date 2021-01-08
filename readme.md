@@ -2749,4 +2749,146 @@ javascript = ECMAScript + BOM + DOM
     * npm
         * 查看镜像地址：`npm config get registry`
         * 设置国内镜像：`npm config set registry https://registry.npm.taobao.org`
-    
+
+## day7-5
+### 复习
+* Nodejs
+    * npm
+        * 查看：npm config get registry
+        * 修改镜像源：npm config set registry https://registry.npm.taobao.org
+        * 安装
+            * npm install <packageName> : 安装一个获取多个模块
+            * npm install：安装package.json中的所有依赖模块
+            * npm install --production： 安装package.json中的dependencies
+                > node_modules
+                * --global/-g： 全局安装
+                * --save/-S  保存依赖信息到package.json中的dependencies
+                * --save-dev/-D 保存依赖信息到package.json中的devDependencies
+        * 生成package.json 
+            > npm init
+    * 模块化：commonJS
+        > 模块中的代码为局部作用域
+        * 导入：require()
+            1. 查看是否存在缓存
+            2. 判断是否为内置模块
+            3. 引入node_modules中的模块 
+            > PS：第一次引入成功后，会缓存模块
+        * 导出：module.exports
+        * 分类
+            * 内置模块：可以直接引入
+            * 自定义模块
+                * 引入时要写相对路径
+            * 第三方模块
+                1. 安装
+                2. 引入（与内置模块一致）
+* gulp
+    > gulp是一个构建工具，依靠任务来执行不同的操作
+    * 全局安装：为了在命令行中使用
+        ```bash
+            npm install -g gulp
+        ```
+    * 项目安装：为了在代码中引用
+        ```bash
+            npm i gulp
+        ```
+    * gulpAPI
+        * 引入
+            ```js
+                require('gulp');
+            ```
+        * gulp.task()   创建任务
+            > 运行gulp任务：gulp name
+        * gulp.src()    匹配文件
+            > 文件流
+            * pipe()
+        * gulp.dest()   输出文件
+    * gulp插件
+        * gulp-uglify
+        * gulp-rename
+        * 
+### 知识点
+* 应用
+    * js压缩,合并，重命名
+    ```js
+        gulp.task('compress',function(){
+            retrun gulp.src('src/**/*.js')
+            .pipe(concat('main.js'))
+            .pipe(gulp.dest('./dist/js))
+            .piep(uglify())
+            .rename({
+                suffix:'.min'
+            })
+            .pipe(gulp.dest('./dist/js'))
+        })        
+
+    ```
+    * ES6转ES5
+        > 需要插件gulp-babel，这个插件需要依赖@babel/core,@babel/preset-env
+        ```js
+            const babel = require('gulp-bable')
+            gulp.task('es625',function(){
+                return gulp.src('src/js/*.js')
+                .pipe(babel({
+                    // 插件集合
+                    presets:['@bable/preset-env'],
+                    // babel插件
+                    plugins:[]
+                }))
+                .pipe(gulp.dest('./dist/js'))
+            })
+        ```
+
+* css预处理器
+    > less,sass,stylus
+    * css的问题
+    ```css
+        <div class="box">
+            <h1></h1>
+            <div class="list">
+                <ul>
+                    <li class="first">
+                        <img>
+                        <a class="link"></a>
+                    </li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
+
+        .box h1{}
+        .box .list ul li a.link:link{color:#ff0}
+        .box .list ul li a.link:hover{color:#cc0}
+        .box .list ul li a.link:active{color:#ff0}
+        .box .list ul li a .link:visited{color:#ff0}
+    ```
+    * sass
+        ```scss
+            $mainColor:#ff0;
+            .box{
+                .list{
+                    ul{
+                        li{
+                            a.link:link{color:$mainColor}
+                            a.link:hover{color:lighten($mainColor,20%)}
+                            a.link:active{color:$mainColor}
+                            a.link:visited{color:$mainColor}
+                        }
+                    }
+                }
+            }
+        ```
+* 编译sass: gulp-sass
+    ```js
+        gulp.task('compileSass',()=>{
+            return gulp.src('src/sass/*.scss')
+            .pipe(sass({
+                outputStyle: 'compact', //nested(默认）,expanded：展开,compact：单行,compressed：压缩
+            }).on('error',sass.logError))
+            .pipe(gulp.dest('./src/css'))
+        })
+    ```
+* 监听sass文件修改，并自动编译
+    ```js
+
+
+    ```

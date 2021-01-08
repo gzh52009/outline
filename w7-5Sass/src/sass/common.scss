@@ -1,0 +1,38 @@
+/**
+    sass语法
+        * 注释：与js一致
+        * 变量
+            > 格式：$color:#f00
+            * 全局变量
+            * 局部变量
+
+*/
+// 引入变量
+@import 'var';
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    color:$defaultColor;
+}
+.datalist{
+    // 定义一个局部变量
+    $defaultColor:#666;
+    padding:10px;color:$defaultColor;
+    li{
+        border-bottom:1px dotted $defaultColor;
+        &:hover{color:$lightColor}
+    }
+}
+
+.box{
+    color:$defaultColor;
+    border: 1px solid #ddd;
+    &:hover{
+        color:$lightColor;
+    }
+}
+
+// h1-h6字体大小设置
+@for $i from 1 through 6{
+    h#{$i}{font-size:(40/$i+10)px;}
+}

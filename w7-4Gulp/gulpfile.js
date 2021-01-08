@@ -30,6 +30,8 @@
 const gulp = require('gulp');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
+const babel = require('gulp-babel');
+const concat = require('gulp-concat');
 
 // 创建gulp任务
 // gulp的构建是基于任务的，每一个操作都需要一个任务来执行
@@ -39,7 +41,7 @@ const rename = require('gulp-rename');
 //     console.log('hello gulp');
 // });
 
-// 任务：压缩js代码
+// 任务1：压缩js代码
 // 依赖：gulp-uglify
 gulp.task('compress',function(){
     // 利用gulp.src()匹配要压缩的文件，返回一个**文件流**
@@ -55,3 +57,26 @@ gulp.task('compress',function(){
 
     .pipe(gulp.dest('./dist'))
 });
+
+// 任务2：编译ES6代码为ES5代码
+// 依赖：gulp-babel, @babel/core, @babel/preset-env
+gulp.task('es625',()=>{
+    return gulp.src('src/js/*.js')
+    // 合并
+    .pipe(concat('main.js'))
+    // Es6->ES5
+    .pipe(babel({
+        presets:['@babel/preset-env']
+    }))
+    .pipe(gulp.dest('./dist/js'))
+
+    // 压缩
+    .pipe(uglify())
+
+    // 改名
+    .pipe(rename({
+        suffix: ".min",
+    }))
+
+    .pipe(gulp.dest('./dist/js'))
+})

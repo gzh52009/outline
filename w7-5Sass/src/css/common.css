@@ -1,0 +1,33 @@
+@charset "UTF-8";
+/**
+    sass语法
+        * 注释：与js一致
+        * 变量
+            > 格式：$color:#f00
+            * 全局变量
+            * 局部变量
+
+*/
+body { font-family: Arial, Helvetica, sans-serif; color: #333; }
+
+.datalist { padding: 10px; color: #666; }
+
+.datalist li { border-bottom: 1px dotted #666; }
+
+.datalist li:hover { color: #ff0; }
+
+.box { color: #333; border: 1px solid #ddd; }
+
+.box:hover { color: #ff0; }
+
+h1 { font-size: 50 px; }
+
+h2 { font-size: 30 px; }
+
+h3 { font-size: 23.33333 px; }
+
+h4 { font-size: 20 px; }
+
+h5 { font-size: 18 px; }
+
+h6 { font-size: 16.66667 px; }
