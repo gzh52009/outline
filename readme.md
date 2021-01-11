@@ -2934,3 +2934,53 @@ javascript = ECMAScript + BOM + DOM
 * 色系
     * lighten($color,$percent) $color颜色值，$percent百分比
     * darken($color,$num) $num:0-100
+* SVN: 集中式
+* git: 分布式
+    
+
+    * 概念
+        * 工作区（Working Directory）： .git所在的目录
+        * `.git`: git仓库
+            * 暂存区：（stage/index）
+            * 版本库：（repository）
+        * master/main： 主分支（默认分支）
+        * HEAD: 最新版本
+    * git本地操作
+        0. 添加或修改文件
+        1. 添加文件：添加修改到暂存区
+            > 格式：git add 
+            * 添加单个文件：`git add 文件`
+            * 添加一个目录：`git add 目录名`
+            * 添加当前目录：`git add .`
+            ```bash
+                git add ./js/home.js;
+                git add ./js/
+                git add .
+            ```
+            > PS: **添加修改**到暂存区而不是添加文件到暂存区
+        2. 提交：把暂存区的内容提交到版本库
+            > 格式：git commit -m "备注"
+            * vim:
+    * 远程仓库（公共服务器）
+        * 创建
+            * Public    共有仓库
+            * Private   私有仓库
+        * 关联本地仓库与远程仓库
+            * 最简单的方式：git clone会自动关联
+            * https关联
+                > 每次提交都要输入用户名和密码，比较麻烦
+                ```bash
+                    git remote add origin https://github.com/aaron-xie/laoxietest.git
+                ```
+            * ssh关联
+                1. 利用`ssh-keygen`命令创建公钥与私钥
+                2. 把公钥添加到服务器
+        * 同步远程与本地
+            * 推送: git push origin master
+            * 拉取与合并: git pull origin master
+                * 拉取: git fetch origin master
+                * 合并: git merge origin/master
+
+    * git常用辅助命令
+        * git status： 查看仓库当前状态
+        * git log: 显示提交日志
