@@ -6,28 +6,42 @@
             > 格式：$color:#f00
             * 全局变量
             * 局部变量
+            * 默认变量
+            * 多值变量
+                * list  类似于js中的数组
+                * map   类似与js中的对象
 
 */
-body { font-family: Arial, Helvetica, sans-serif; color: #333; }
+body { font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 1.2em; }
 
-.datalist { padding: 10px; color: #666; }
+.datalist { padding: 5px; color: #666; }
 
 .datalist li { border-bottom: 1px dotted #666; }
 
-.datalist li:hover { color: #ff0; }
+.datalist li:hover { color: #f00; }
 
-.box { color: #333; border: 1px solid #ddd; }
+.box { color: #333; border: 1px solid #ddd; padding: 10px; }
 
-.box:hover { color: #ff0; }
+.box:hover { color: #f00; }
 
-h1 { font-size: 50 px; }
+.price del::before, .price span::before { content: '￥'; }
 
-h2 { font-size: 30 px; }
+.price del { color: #999; }
 
-h3 { font-size: 23.33333 px; }
+.price span { color: #f00; }
 
-h4 { font-size: 20 px; }
+h1 { font-size: 50 px; color: #f00; }
 
-h5 { font-size: 18 px; }
+h2 { font-size: 30 px; color: #f00; }
 
-h6 { font-size: 16.66667 px; }
+h3 { font-size: 23.33333 px; color: #f00; }
+
+h4 { font-size: 20 px; color: #f00; }
+
+h5 { font-size: 18 px; color: #f00; }
+
+h6 { font-size: 16.66667 px; color: #f00; }
+
+.link { color: #f00; }
+
+.link:hover { color: #ff3333; }

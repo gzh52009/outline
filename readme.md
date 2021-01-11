@@ -2892,3 +2892,45 @@ javascript = ECMAScript + BOM + DOM
 
 
     ```
+
+## day8-1
+
+### 复习
+* gulp
+    * task()    创建任务
+    * src()     匹配文件
+    * dest()    输出文件
+    * watch()   监听文件
+* E6转ES5
+    * gulp-babel: @babel/core, @babel/preset-env
+* sass
+    * 编译sass->css: gulp-sass, node-sass/sass
+    * 特性
+        * 变量
+            * 一般用于属性值
+            * 用在属性名/选择器：#{}
+        * 嵌套
+        * 循环
+            * @for $i from 1 through 6;
+            * @for $i from 1 to 6;
+        * 导入
+        * 函数
+            * 内置函数
+            * 自定义函数
+
+逻辑思维移植
+    * 三段论
+        * 前提  金属能导电
+        * 条件  管子是金属做的
+        * 结论  管子能导电
+    * 索引值
+
+### 知识点
+* mixin: 一般用于有参数的代码复用
+* 继承：一般用于代码复用
+    * 占位符
+* 自定义函数：一般用于运算
+
+* 色系
+    * lighten($color,$percent) $color颜色值，$percent百分比
+    * darken($color,$num) $num:0-100

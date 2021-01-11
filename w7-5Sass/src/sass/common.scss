@@ -5,20 +5,40 @@
             > 格式：$color:#f00
             * 全局变量
             * 局部变量
+            * 默认变量
+            * 多值变量
+                * list  类似于js中的数组
+                * map   类似与js中的对象
 
 */
+// 覆盖默认变量
+$lightColor:#f00;
+
 // 引入变量
 @import 'var';
+
+// 全局变量
+$padding:15px;
+
+// 多值变量
+ //list类型
+ $pd: 5px 10px 20px 30px;
+ //map类型
+ $headings: (h1: 2em, h2: 1.5em, h3: 1.2em);
+
 
 body{
     font-family: Arial, Helvetica, sans-serif;
     color:$defaultColor;
+    font-size:map-get($headings,h3)
 }
 .datalist{
     // 定义一个局部变量
     $defaultColor:#666;
-    padding:10px;color:$defaultColor;
+    padding:nth($pd,1);color:$defaultColor;
     li{
+        // 在局部修改全局变量：
+        $padding:10px !global;
         border-bottom:1px dotted $defaultColor;
         &:hover{color:$lightColor}
     }
@@ -30,9 +50,59 @@ body{
     &:hover{
         color:$lightColor;
     }
+    padding:$padding
+}
+
+// <p class="price"><del>￥998</del><span>￥9.8</span></p>
+@mixin rmb{
+    &::before{
+        content:'￥'
+    }
+}
+// 继承:占位符
+%before {
+    &::before{
+        content:'￥'
+    }
+}
+
+@function widthFn($n) {  
+    @return $n * $twoWidth + ($n - 1) * $oneWidth;  
+}
+@mixin widthFn($n){
+
+} 
+
+.price{
+    del{
+        color:#999;
+        // &::before{
+        //     content:'￥'
+        // }
+        // @include rmb;
+        @extend %before;
+    }
+    span{
+        color:#f00;
+        // &::before{
+        //     content:'￥'
+        // }
+        // @include rmb;
+        @extend %before;
+    }
 }
 
 // h1-h6字体大小设置
 @for $i from 1 through 6{
-    h#{$i}{font-size:(40/$i+10)px;}
+    h#{$i}{font-size:(40/$i+10)px;color:#f00}
+}
+
+// 自定义函数
+
+$myColor:#f00;
+.link{
+    color:$myColor;
+    &:hover{
+        color:lighten($myColor,10%);
+    }
 }

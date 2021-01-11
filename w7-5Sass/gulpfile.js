@@ -7,7 +7,7 @@ const babel = require('gulp-babel');
 const concat = require('gulp-concat');
 const sass = require('gulp-sass');
 
-// 修改sass编译器（默认为：node-sass）
+// 修改sass编译器（默认为：node-sass）;
 // sass.compiler = requier('sass');
 
 // 编译Sass
