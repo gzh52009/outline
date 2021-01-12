@@ -2936,11 +2936,9 @@ javascript = ECMAScript + BOM + DOM
     * darken($color,$num) $num:0-100
 * SVN: 集中式
 * git: 分布式
-    
-
     * 概念
         * 工作区（Working Directory）： .git所在的目录
-        * `.git`: git仓库
+        * `.git`: git仓库，通过`git init`得到
             * 暂存区：（stage/index）
             * 版本库：（repository）
         * master/main： 主分支（默认分支）
@@ -2961,7 +2959,13 @@ javascript = ECMAScript + BOM + DOM
         2. 提交：把暂存区的内容提交到版本库
             > 格式：git commit -m "备注"
             * vim:
+                * 输入状态：i
+                * 退出输入状态：ESC
+                * 退出vim: shit+:
+                    * !q: 不保存退出
+                    * wq: 保存退出
     * 远程仓库（公共服务器）
+        > 工作中一般是本地服务器
         * 创建
             * Public    共有仓库
             * Private   私有仓库
@@ -2977,10 +2981,13 @@ javascript = ECMAScript + BOM + DOM
                 2. 把公钥添加到服务器
         * 同步远程与本地
             * 推送: git push origin master
+                > 一定是本地比远程版本更加新
             * 拉取与合并: git pull origin master
                 * 拉取: git fetch origin master
                 * 合并: git merge origin/master
+                > 有可能产生冲突，如果出现冲突，必须先要手动解决冲突，然后才能提交代码
 
-    * git常用辅助命令
+    * git常用命令
         * git status： 查看仓库当前状态
         * git log: 显示提交日志
+        * git init: 初始化仓库
