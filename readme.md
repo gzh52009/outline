@@ -2991,3 +2991,53 @@ javascript = ECMAScript + BOM + DOM
         * git status： 查看仓库当前状态
         * git log: 显示提交日志
         * git init: 初始化仓库
+
+
+## day8-2
+
+### 知识点
+* 过滤清单
+* 解决冲突
+* 版本回退：git reset
+    * git reset --hard HEAH^ （HEAD~10）
+    * 参数
+        * --hard:工作区、暂存区、版本库的文件同时回退
+        * --mixed（默认）：暂存区、版本库的文件回退
+        * --soft：仅仅回退版本库中的文件
+* 分支 branch
+    * 分支操作
+        * 查看：git branch
+        * 创建: git branch 分支名
+            > 在当前分支的基础上创建一个拷贝
+        * 切换: git checkout 分支名
+        * 删除：git branch -d 分支名
+        * 合并：git merge 分支名
+            > 把指定分支内容合并到当前分支
+            * git pull = git fetch + git merge
+    * 常用分支
+        * master/main   主分支（默认分支），一般用于版本发布
+        * dev           开发分支，所有程序员把代码提交到该分支
+        * release       发版前的未测试版
+        * hotfix        紧急bug处理分支
+
+* 发版
+
+* 项目上线
+    1. 项目构建
+        * 合并: 减少http请求
+            > js
+        * 压缩js,css,html: 减少文件大小
+        * 编译：
+            > sass,js
+        * 输出：dist
+            > 上线文件
+    2. 上线
+        > 把构建好的代码，放到服务器
+* 环境
+    * 开发环境：development
+        > 可调试，代码未压缩等
+        * 自测：代码提交前一定要自测
+    * 生产环境：production
+        > 压缩合并，优化等
+    * 测试环境
+        > 测试团队
