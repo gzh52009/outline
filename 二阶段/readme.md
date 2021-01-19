@@ -3031,8 +3031,13 @@ javascript = ECMAScript + BOM + DOM
             > sass,js
         * 输出：dist
             > 上线文件
-    2. 上线
+    2. 购买服务器
+        > aliyun
+    3. 上线
         > 把构建好的代码，放到服务器
+        * ftp
+        * 
+    
 * 环境
     * 开发环境：development
         > 可调试，代码未压缩等
