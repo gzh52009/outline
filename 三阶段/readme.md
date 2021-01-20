@@ -74,3 +74,77 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * nodeJS模块变量
     * __dirname 当前文件所在的路径
     * __filename
+
+## day1-3
+
+### 复习
+* 模块化开发
+    * 规范
+        * commonJS      NodeJS（后端，同步）
+        * ESModule      ES6（前端）
+            * 导出：export
+            * 导入：import
+        * AMD           require.js（前端，异步）
+        * CMD           sea.js（前端，异步）
+            * 导出：define()
+            * 导入：require()
+    * 分类
+        * 内置模块
+        * 自定义模块
+        * 第三方模块
+    * 使用
+        * 导出
+            * module.exports
+            * exports
+        * 导入: require()
+* nodeJS多版本共存工具：nvm
+    * `nvm install [version]`
+    * `nvm uninstall [version]`
+    * `nvm list`
+    * `nvm use [version]`
+* http服务器
+    > 特点：http(s)请求客户端主动发起，服务器被动响应
+    * 请求request
+    * 响应response
+    * 依赖模块
+        * http
+        * path
+        * fs
+        * url
+    * mime类型
+
+### 知识点
+* express -> Koa
+    * express实现静态资源服务器
+    ```js
+        server.use(express.static('../public'))
+    ```
+    * express中间件：middleware
+        > express中间件是一个函数
+        * 分类：
+            * 内置中间件
+                * express.static()  静态资源服务器中间件
+            * 自定义中间件
+            * 第三方中间件
+        * 使用中间件
+            * `use([path],mw1,mw2,mw3....,mwn)`
+                * path: 只有路径匹配才进入后面的中间件，如果没有配置path路径则所有请求都进入这个中间件
+            * next(): 调用next才能进入下一个中间件
+* 利用express中间件实现数据接口
+    * 规范：RESTful API
+        * 根据请求类型和路径实现不同的接口
+    * 请求类型
+        * get           查
+        * post          增
+        * put/patch     改
+        * delete        删
+    * 获取前端传入参数
+        * get请求：通过url参数传到后端，后端通过`req.query`获取
+        * 动态路由：后端通过`req.params`获取
+        * post/put/patch/delete请求：通过请求体传到后端，后端通过`req.body`获取
+            > 利用中间处理不同数据类型:body-parser
+            * urlencoded: express.urlencoded
+            * json:       express.json()
+    * 利用模块化开发思想+路由中间件实现数据接口
+        * commonJS
+        * express.Router()

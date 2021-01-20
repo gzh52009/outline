@@ -23,6 +23,8 @@ const server = http.createServer((req,res)=>{
     let extname = pathname.match(/\.\w+$/);// ['.jpg'],null
     if(extname){
         extname = extname[0].slice(1);
+    }else{
+        extname = 'txt';
     }
 
     // 读取文件内容
@@ -36,8 +38,10 @@ const server = http.createServer((req,res)=>{
         }
         console.log('content',content);
         res.writeHead(200,{'Content-Type':mine[extname] + ';charset=utf-8'})
+        // res.write(JSON.stringify({a:10,b:20}));// 不能响应js对象，需要转成json
         res.end(content);
     })
+    
 
     // req: 请求对象，保存前端发来的所有信息
     // res: 响应对象，可以用它实现所有的响应操作

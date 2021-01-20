@@ -22,7 +22,7 @@
     
 
 ### Express中间件(middleware)
->中间件是一个封装了某些处理数据功能的函数，在request或response调用之前执行，从本质上来说，一个Express应用其实就是在调用各种中间件
+>中间件是一个封装了某些处理数据功能的函数，在request或response调用之间执行，从本质上来说，一个Express应用其实就是在调用各种中间件
 
 #### 使用中间件
 格式：`app.use([path],...middlewares)`
