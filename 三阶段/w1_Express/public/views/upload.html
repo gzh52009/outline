@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片上传</title>
+</head>
+<body>
+    <h1>图片上传</h1>
+    <!-- <form action="http://localhost:2009/api/upload/avatar" method="post" enctype="multipart/form-data"> -->
+        <div>
+            <input type="file" id="avatar">
+        </div>
+        <div>
+            <input type="file" id="goods" multiple>
+        </div>
+        <button id="btnUpload">上传</button>
+    <!-- </form> -->
+    <script>
+        /**
+            *  利用ajax请求实现图片上传 
+                * FormData
+                    * 常用方法
+                        * set(key,val)     添加数据
+                        * append(key,val)   追加数据
+                        * get(key)          获取数据
+                        * getAll(key)       获取所有数据
+                        * forEach()         遍历formdata数据
+                        * has(key)          判断是否存在某个数据
+        */
+
+        const btnUpload = document.querySelector('#btnUpload');
+        const avatar = document.querySelector('#avatar');
+        const goods = document.querySelector('#goods');
+
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function(){
+
+        }
+
+        btnUpload.onclick = function(){
+            // 实例化一个FormData数据，内部可以保存所有表单数据
+            const fdata = new FormData();
+            // 头像上传：单图上传
+            fdata.set('avatar',avatar.files[0])
+            fdata.set('userid',123);
+            xhr.open('post','http://localhost:2009/api/upload/avatar',true);
+
+            // 商品图片上传：多图上传
+            // for(let i=0;i<goods.files.length;i++){
+            //     fdata.append('goods',goods.files[i]);
+            // }
+            // fdata.set('userid',123);
+            // xhr.open('post','http://localhost:2009/api/upload/goods',true);
+            xhr.send(fdata)
+        }
+
+    </script>
+</body>
+</html>

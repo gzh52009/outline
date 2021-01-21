@@ -148,3 +148,30 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 利用模块化开发思想+路由中间件实现数据接口
         * commonJS
         * express.Router()
+## day1-4
+
+### 复习
+* express(koa)
+    * 中间件middleware
+        * 内置中间件
+            * express.static()  静态资源服务器
+            * express.urlencoded()  处理请求体数据，并格式化到req.body
+            * express.json()        处理json数据，并格式化到req.body
+            * express.raw()
+            * express.Router()      实现模块化路由
+        * 自定义中间件
+        * 第三方中间件
+            * body-parser
+    * 使用：use(path,...middleware)
+* 路由
+    * 数据接口（RESTful API）
+        > 利用请求类型与路径实现不同的数据接口
+    * 模块化路由
+    * 请求类型
+        * get       查
+        * post      增
+        * put/patch 改
+        * delete    删
+### 知识点
+* 图片上传
+    * multer
