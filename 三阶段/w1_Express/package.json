@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.5",
     "express": "^4.17.1",
-    "multer": "^1.4.2"
+    "http-proxy-middleware": "^1.0.6",
+    "multer": "^1.4.2",
+    "request": "^2.88.2"
   },
   "devDependencies": {},
   "scripts": {

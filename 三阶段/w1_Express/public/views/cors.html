@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨域解决方案之CORS</title>
+</head>
+<body>
+    <h1>跨域解决方案之CORS</h1>
+    <script>
+        let xhr = new XMLHttpRequest()
+        xhr.onload = function(){
+            console.log('data=',xhr.responseText)
+        }
+        // 简单跨域
+        // xhr.open('post','http://localhost:2009/api/goods/123')
+        // xhr.send();
+
+        // 复杂跨域
+        xhr.open('post','http://localhost:2009/api/goods/123')
+        xhr.setRequestHeader('Content-Type','application/x-www-form-urlencode')
+        xhr.send();
+
+    </script>
+</body>
+</html>

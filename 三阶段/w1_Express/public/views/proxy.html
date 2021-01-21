@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨域解决方案之Proxy</title>
+</head>
+<body>
+    <h1>跨域解决方案之Proxy</h1>
+    <script>
+        /**
+            * 目标服务器有接口，但不允许访问：服务器代理
+                * 正向代理：为客户端代理
+                * 反向代理：为服务端代理
+         */
+        let xhr = new XMLHttpRequest()
+        xhr.onload = function(){
+            console.log('data=',xhr.responseText)
+        }
+        xhr.open('get','http://localhost:2009/api/offer/iq')
+        xhr.send();
+
+    </script>
+</body>
+</html>

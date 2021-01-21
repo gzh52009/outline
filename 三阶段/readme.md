@@ -174,4 +174,62 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * delete    删
 ### 知识点
 * 图片上传
-    * multer
+    * 后端：multer
+        * single(field)             单个上传，接收到的文件存入req.file
+        * array(field,maxCount)     多个上传，接收到的文件存入req.files
+    * 前端：FormData
+        * content-type:multipart/form-data
+        * set(key,val)
+        * append(key,val)
+        * get(key)
+        * getAll(key)
+        * forEach()
+        * has()
+        * keys()
+        * values()
+* 跨域
+    * 产生跨域的条件：协议、域名、端口三者不一致
+    * 为什么会有跨域限制：因为js是一门**客户端脚本语言**（在客户端执行的语言）
+    * 跨域解决方案
+        * jsonp
+            * 原理：利用script标签没有跨域限制的特点来发起请求,返回一段js代码的执行（全局函数的执行代码）
+            * 步骤
+                1. 定义全局函数
+                2. script标签发起请求，传递全局函数名
+                3. 删除script，全局函数
+        * CORS（推荐）
+            * 响应头
+                * Access-Control-Allow-Origin
+                    * 一个域名
+                    * `*`
+                * Access-Control-Allow-Methods
+                * Access-Control-Allow-Headers
+            * 复杂跨域
+                * 非GET、HEAD、POST请求。
+                * POST请求的Content-Type不是application/x-www-form-urlencoded, multipart/form-data, 或text/plain。
+                * 添加了自定义header，例如Token。
+        * 服务器代理
+            * 原理：利用服务端没有跨域限制的特点在后端向目标服务器发起请求，得到结果后响应给前端
+        * 爬虫
+            * 原理：爬取目标服务器的所有信息，然后分析过滤得到最终数据
+* 页面渲染方式
+    * 服务器渲染SSR：html结构在服务器生成并响应给前端，并渲染页面
+        > 特点：速度快，SEO友好
+        * 步骤
+            1. 请求服务器，响应完整的html结构
+            2. 浏览器渲染页面
+    * 客户端渲染BSR：从服务器请求数据到客户端生成html结构，并渲染到页面
+        > 特点：用户体验较好，局部刷新
+        * 步骤
+            1. 请求服务器，响应一个空的html结构
+            2. 浏览器渲染页面，并请求js
+            3. 执行js代码，并发起ajax请求
+            4. 接收到数据，在客户端生成html结构
+            5. 渲染页面
+* fs模块
+    * 小文件：
+        * 读取：fs.readFile()/fs.readFileSync()
+        * 写入：fs.writeFile()/fs.writeFileSync()
+    * 大文件：Stream
+        * 读取流：fs.createReadStream(path)
+        * 写入流：fs.createWriteStream(path)

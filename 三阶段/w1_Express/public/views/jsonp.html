@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨域解决方案之JSONP</title>
+</head>
+<body>
+    <h1>跨域解决方案之JSONP</h1>
+    <script>
+        // let xhr = new XMLHttpRequest()
+        // xhr.onload = function(){
+        //     console.log('data=',xhr.responseText)
+        // }
+        // xhr.open('get','http://localhost:2009/api/jsonp')
+        // xhr.send();
+
+        window.getData = function(data){
+            console.log('data=',data);
+
+            document.body.removeChild(script);
+            delete window.getData;
+        }
+
+        const script  = document.createElement('script');
+        script.src = 'http://localhost:2009/api/jsonp?callback=getData';
+        document.body.appendChild(script);
+    </script>
+</body>
+</html>

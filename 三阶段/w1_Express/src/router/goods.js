@@ -14,7 +14,7 @@ router.post('/:id',(req,res)=>{
     res.send('添加商品')
 })
 router.put('/:id',(req,res)=>{
-    res.send('添加商品')
+    res.send('修改商品')
 })
 router.delete('/:id',(req,res)=>{
     res.send('删除商品')

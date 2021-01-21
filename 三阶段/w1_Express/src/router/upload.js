@@ -16,7 +16,9 @@ let storage = multer.diskStorage({
     destination: function (req, file, cb) {
         const filePath = `../public/uploads/${file.fieldname}`;
         if (!fs.existsSync(filePath)) {
-            fs.mkdirSync(filePath)
+            fs.mkdirSync(filePath,{
+                recursive:true // 递归创建：如父级目录不存在，则一并创建
+            })
         }
         cb(null, filePath);
     },
@@ -50,7 +52,7 @@ router.post('/avatar', upload.single('avatar'), (req, res) => {
 })
 
 // 商品图片上传
-router.post('/goods', upload.array('goods'), (req, res) => {
+router.post('/goods', upload.array('goods',5), (req, res) => {
     // 图片会格式化到: req.files
     console.log('req.files', req.files);
     res.send('商品图片上传成功')
