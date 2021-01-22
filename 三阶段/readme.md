@@ -305,3 +305,23 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * 在Node中使用mongodb
     * 驱动：mongodb/mongoose
     * 增删该查的封装
+
+* 项目验收
+* 提交最新代码到github
+* 上线
+* 发邮件
+    * 发老谢：xiejinrong@1000phone.com
+    * 抄小谢：xiedongling@1000phone.com
+
+    * 邮件内容
+        * 原网站地址
+        * 上线地址
+        * github地址
+        * 页面介绍
+            * 首页
+            * 购物车
+            * 注册
+            * 登录
+        * 截图：至少3张
+        * 录视频
+* 提交项目到：http://manage.qfh5.cn/
