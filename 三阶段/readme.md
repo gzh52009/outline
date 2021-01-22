@@ -233,3 +233,25 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 大文件：Stream
         * 读取流：fs.createReadStream(path)
         * 写入流：fs.createWriteStream(path)
+
+## day1-5
+
+### 复习
+* 图片上传
+    * FormData
+    * multer
+* 跨域解决方案
+    * jsonp
+    * CORS
+    * Proxy
+    * 爬虫
+        * request
+        * cheerio
+        * 图片：爬取到本地
+        * json: 存入本地json
+            * fs.writeFile()
+
+### 知识点
+* 数据库
+    * mySQL
+    * MongoDB
