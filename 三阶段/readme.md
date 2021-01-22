@@ -254,4 +254,54 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 ### 知识点
 * 数据库
     * mySQL
+        * 增：insert into
+        * 删：delete from 
+        * 改：update set
+        * 查：select from 
     * MongoDB
+        * 增：
+            * insertOne(document)
+            * insertmany([...document])
+        * 删：
+            * deleteOne(query)
+            * deleteMany(query)
+        * 改：
+            * updateOne(query,data)
+            * updataMany(query,data)
+            * save(document)
+            ```js
+                db.user.updateOne(
+                    {username:'laoxie'},
+                    {
+                        $set:{password:123654,gender:'male'}
+                    }
+                )
+                db.goods.updateOne(
+                    {_id:xxx},
+                    {
+                        // 在原值基础上+1
+                        $inc:{hot:1}
+                    }
+                )
+            ```
+        * 查: 
+            * find(query)
+            * findOne(query)
+
+    数据类型     数据库          表/集合          数据
+    mySQL       database        table            row
+    mongoDB     database        collection       document
+
+    ```js
+        [
+            {name:'goods1',price:998,sale_price:98},
+            {name:'goods2',price:1998,imgurl:'goods2.png',addtime:324597234}
+        ]
+    ```
+* 在Node中使用mySQL
+    * 驱动：mysql模块
+        * 连接对象
+        * 连接池
+* 在Node中使用mongodb
+    * 驱动：mongodb/mongoose
+    * 增删该查的封装
