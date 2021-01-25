@@ -23,9 +23,12 @@ router.post('/reg',async (req,res)=>{
 router.get('/login',async (req,res)=>{
     const {username,password} = req.query;
 
-    const result = await mongo.find(colName,{username,password})
-    if(result.length > 0){
-        res.send(formatData())
+    const result = await mongo.find(colName,{username,password},{fields:{password:0}});
+    console.log(username,password,result)
+    if(result.total > 0){
+        res.send(formatData({
+            data:result.result[0]
+        }))
     }else{
         res.send(formatData({code:401}))
     }
@@ -44,10 +47,13 @@ router.get('/check',async (req,res)=>{
 })
 
 router.get('/list',async (req,res)=>{
+    let {page=1,size=10,sort='regtime',total} = req.query;
+    let skip = (page-1)*size;
+    let limit = size*1;
+    total = (total=='0'||total=='false') ? false : true;
+    const result = await mongo.find(colName,{},{skip,limit,sort,total})
 
-    const result = await mongo.find(colName)
-
-    res.send(formatData({data:result}))
+    res.send(formatData({data:total?result:result.result}))
 })
 
 router.patch('/changepassword',async (req,res)=>{

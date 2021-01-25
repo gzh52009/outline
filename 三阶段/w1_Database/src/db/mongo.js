@@ -120,9 +120,13 @@ async function update(colName,query,data){
    * 查：查询数据
    * @param {String} colName    集合名称
    * @param {Object} query      查询条件 
+   * @param {Object} options
+        * fields    过滤字段
+        * skip      跳过数量（用于数据分页）
+        * limit     限制数量（用于数据分页）
    * @return {Array}            返回数据结果
    */
-  async function find(colName,query={}){
+  async function find(colName,query={},{fields,skip,limit,sort}={}){
     const {db,client} = await connect()
 
     // 获取集合
@@ -134,14 +138,36 @@ async function update(colName,query,data){
     }
 
     // 操作数据库
-    let result = col.find(query)
+    let result = col.find(query,{
+        // 过滤字段
+        projection:fields
+    });
+
+    // 获取总数量
+    let count = await result.count();
+
+    // 排序
+    if(sort){ // sort='price' sort='price,1'
+        let [key,val=-1] = sort.trim().split(/\s*,\s*/);//['price'], ['price','1']
+        result = result.sort({
+            [key]:val*1
+        })
+    }
+
+    if(skip){
+        result = result.skip(skip);
+    }
+
+    if(limit){
+        result = result.limit(limit);
+    }
 
     result = await result.toArray();
 
     // 关闭连接
     client.close()
 
-    return result;
+    return {total:count,result};
     
   }
 //   const result = await find('user',{})
