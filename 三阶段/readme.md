@@ -325,3 +325,69 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 截图：至少3张
         * 录视频
 * 提交项目到：http://manage.qfh5.cn/
+
+## day2-1
+
+### 复习
+* MongoDB CRUD
+    * 增：
+        * insertOne(document)
+        * insertMany([document,...])
+    * 删
+        * deleteOne(query)
+        * deleteMany(query)
+    * 改
+        * updateOne(query,data)
+        * updateMany(query,data)
+        * save(document)
+        * 修改操作符
+            * $set: 修改
+            * $inc: 递增
+            * $push: 追加
+            * $addToSet：添加（自动去重）
+            * ...
+    * 查
+        * find(query)
+        * findOne(query)
+
+* 在NodeJS中使用Mongo
+    * 驱动：mongodb模块
+
+### 知识点
+* http/https特点
+    * 短链接：请求并响应完成，连接就会断开
+    * 客户端主动，服务器被动
+        * 客户端不断发请求：轮询
+* WebSocket
+    > HTML新特性
+    * 长连接：与服务器建立连接后不会断开
+    * 客户端
+        * 浏览器是否支持WebSocket
+        * 方法
+            * send()：向服务端推送消息
+            * close(): 在客户端断开与服务端的连接
+        * 事件
+            * open
+        ```js
+            var socket = new WebSocket('ws://localhost:1001');
+
+            // 客户端向服务器发送消息
+            socket.send('hello')
+        ```
+    * 服务器
+        > 依赖模块：ws，能主动发起请求
+        * 方法
+            * send()    向客户端发送消息
+        * 事件
+            * connection
+        ```js
+            const server = new ws.Server({
+                port:1001
+            });
+        ```
+    * 应用：多人聊天室（微信群等）
+        1. 某个客户端发送消息到服务器
+            > 客户端主动
+        2. 服务器把消息广播给所有客户端
+            > 服务器主动
+

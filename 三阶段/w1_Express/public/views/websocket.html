@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket</title>
+</head>
+<body>
+    <h1>WebSocket</h1>
+    <div id="connectStatus"></div>
+    <button id="btnSend">Say Hi!</button>
+    <button id="btnLogin">连接</button>
+    <button id="btnLogout">退出</button>
+    <script>
+        /**
+            * WebSocket 
+                * 事件
+                    * onopen： 连接服务器成功后触发
+                * 方法
+         */
+
+        const connectStatus = document.querySelector('#connectStatus');
+        const btnSend = document.querySelector('#btnSend');
+        const btnLogin = document.querySelector('#btnLogin');
+        const btnLogout = document.querySelector('#btnLogout');
+
+        //连接 socket 服务器
+        let socket = null;
+        const wsUrl = 'ws://localhost:2009'
+        
+
+        btnSend.onclick = function(){
+            if(!socket){
+                alert('请进入直播间');
+                return ;
+            };
+            socket.send('Hello')
+        }
+
+        btnLogin.onclick = function(){
+            if(socket){
+                return alert('你进入在直播间');
+            }
+            // socket = new WebSocket('ws://localhost:1001');
+            socket = new WebSocket(wsUrl);
+            
+            //监听 socket 的连接
+            socket.onopen = function(){
+                connectStatus.innerText = "服务已连接 "+wsUrl;
+            }
+
+            // 监听服务器发送的消息：message
+            socket.onmessage = (event)=>{
+                console.log('data',event.data);
+            }
+
+            // 监听断开事件：close
+            socket.onclose = function(){
+                connectStatus.innerText = '离开直播间';
+                socket = null;
+            }
+        }
+        // 退出
+        btnLogout.onclick = function(){
+            socket.close();
+        }
+    </script>
+</body>
+</html>

@@ -124,6 +124,7 @@ async function update(colName,query,data){
         * fields    过滤字段
         * skip      跳过数量（用于数据分页）
         * limit     限制数量（用于数据分页）
+        * sort      排序
    * @return {Array}            返回数据结果
    */
   async function find(colName,query={},{fields,skip,limit,sort}={}){
