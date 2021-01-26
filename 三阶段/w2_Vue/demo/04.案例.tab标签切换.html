@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04.案例-tab标签切换</title>
+    <style>
+         .tab{border:1px solid #ddd;width:600px;}
+        .tab .title{border-bottom:1px solid #ddd;}
+        .tab .title span{
+            display: inline-block;padding:10px 15px;
+        }
+        .tab .title span.active{background-color: #f90;}
+        .tab .content{padding:15px;text-align:center;}
+    </style>
+</head>
+
+<body>
+    <h1>04.案例-tab标签切换</h1>
+    <div class="app">
+        <!-- vm实例的属性才能直接在View视图中使用 -->
+        <div class="tab">
+            <div class="title">
+                <span v-for="(item,idx) in tabs" v-bind:class="{active:idx===current}" v-on:click="changeTab(idx)">{{item.name}}</span>
+            </div>
+            <div class="content">
+                <div v-for="(item,idx) of tabs" v-show="idx===current">{{item.name}}喜欢{{item.hobby}}</div>
+            </div>
+        </div>
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '.app',
+            data: {
+                tabs: [{
+                    name: 'laoxie',
+                    hobby: '写代码'
+                }, {
+                    name: 'xiaoxie',
+                    hobby: '种菜'
+                }, {
+                    name: 'tiantian',
+                    hobby: '大保健'
+                }, {
+                    name: 'jingjing',
+                    hobby: '看tiantian大保健'
+                }],
+                current:0
+            },
+            methods:{
+                // methods用于编写事件处理函数与常用方法
+                changeTab(idx){
+                    this.current = idx;
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

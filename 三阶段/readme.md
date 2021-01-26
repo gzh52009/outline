@@ -419,9 +419,47 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             * v-bind:attr    绑定到属性
         * 双向绑定
             * v-model
-                * 数据层: Model
-                * 视图层: View
+                * 数据层->视图层: setter
+                * 视图层->数据层: 事件
+            * v-model的原理：单向绑定(v-bind)+事件(v-on)
+            ```js
+                <input type="text" v-model="username" />
+                <input type="text" v-bind:value="username" v-on:input="username=$event.target.value">
+            ```
     * 指令（html属性）
-        * v-model
-        * v-text
-        * v-html
+        * v-model   双向绑定
+        * v-text    单向绑定
+        * v-html    单向绑定
+        * v-bind    属性绑定
+        * v-on      事件绑定
+        * v-for     遍历
+        * v-show    是否显示（显示隐藏）
+            > 频繁显示隐藏建议使用v-show
+        * v-if      是否显示（节点创建与销毁）
+            * v-else-if
+            * v-else
+* 架构模式
+    * MVC
+        > 耦合度高
+        * Model         数据层
+        * View          视图层
+        * Controller    控制层
+* 响应式属性
+    > 特点：监听数据的修改，并自动更新视图
+    * 原理：存储器属性getter&setter
+    * 在Vue中如何设置响应式属性
+        * 设置初始值
+        * Vue.set(target,key,val)/this.$set(): 给target添加响应式属性
+            > target不能是vue实例和data根数据对象
+
+* 属性特性
+    * 值属性（有值的属性）
+        * configurable  可配置型
+        * enumerable    可枚举性
+        * writable      可写性
+        * value
+    * 存储器属性：属性本身没有值，但可以监听到修改与读取，一般用于代理其他数据
+        * configurable 
+        * enumerable
+        * get
+        * set

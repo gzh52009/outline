@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.架构模式</title>
+</head>
+
+<body>
+    <h1>02.架构模式</h1>
+    <div id="app">
+        <!-- View视图层 -->
+        <h4>{{className}}</h4>
+        <input type="text" v-model="className" />
+    </div>
+
+    <script src="./js/vue.js"></script>
+    <script>
+        /*
+            02.架构模式
+            * MVC
+            * MVP
+            * MVVM
+                * Model
+                * View
+                * ViewModel
+        */
+        // Model数据层
+        const data = {
+            className:'GZ-H5-2009'
+        }
+        // ViewModel控制层
+        const vm = new Vue({
+            el: '#app',
+            data
+        })
+
+
+    </script>
+</body>
+
+</html>

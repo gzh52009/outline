@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.响应式属性</title>
+</head>
+<body>
+    <h1>03.响应式属性</h1>
+    <div id="app">
+        姓名：{{username}}
+        <br/>
+        成绩：{{score}}
+    </div>
+    <script src="./js/vue.js"></script>
+    <script>
+        const data = {
+            // 普通属性
+            username:'laoxie',
+            password:123456,
+            score:{
+                english:120,
+                chinese:90,
+                math:59
+            }
+        }
+
+        const vm = new Vue({
+            el:'#app',
+            // 实例化时，Vue会遍历data下所有的属性，并把他们改成响应式属性(利用Object.defineProperty()把属性变成存储器属性)（getter&setter）
+            data
+        });
+
+
+        const user = {
+            // 值属性
+            username:'xiaoxie',
+            password:123,
+            _age:18,
+
+            // 存储器属性：没有值的属性
+            // 传统写法：
+            // getter
+            get age(){
+                console.log('getter')
+                return this._age;
+            },
+            // setter
+            set age(newVal){
+                console.log('setter',newVal)
+                this._age = newVal;
+
+                // 渲染视图
+                // renderHtml()
+            }
+        }
+        // 利用Object.defineProperty()设置存储器属性
+        Object.defineProperty(user,'age',{
+            configurable:true,
+            enumerable:true,
+            get(){
+
+            },
+            set(){
+
+            }
+        })
+    </script>
+</body>
+</html>
