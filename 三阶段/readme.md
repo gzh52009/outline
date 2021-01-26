@@ -391,3 +391,37 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         2. 服务器把消息广播给所有客户端
             > 服务器主动
 
+
+## day2-2
+
+### 面试题
+* 移动端click事件穿透bug
+    * 移动端click事件有300ms左右延迟
+    * touch
+        * touchstart
+        * touchend
+        * touchmove
+    * zepto.js手势
+        * tap
+        * longtap
+        * swiper,swiperLeft,swiperRight,swiperUp,swiperDown
+
+### 知识点
+* Vue
+    * 思维转变(重要)
+        * 从**节点操作**转变成**数据操作**
+        * 把节点操作交给Vue框架去处理
+    * 数据绑定
+        * 单向绑定
+            * {{}}
+            * v-text
+            * v-html
+            * v-bind:attr    绑定到属性
+        * 双向绑定
+            * v-model
+                * 数据层: Model
+                * 视图层: View
+    * 指令（html属性）
+        * v-model
+        * v-text
+        * v-html

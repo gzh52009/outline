@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.vue的使用</title>
+</head>
+<body>
+    <h1>01.vue的使用</h1>
+    <div id="app">
+        <p v-bind:username="username">姓名：{{username}}</p>
+        <p>年龄：{{age}}</p>
+        <strong v-text="username"></strong>
+        <strong v-html="username"></strong>
+        <p><input type="text" v-model="username" /></p>
+    </div>
+    {{username}}
+    <script src="./js/vue.js"></script>
+    <script>
+        /*
+            Vue的使用
+        */
+
+        const vm = new Vue({
+            // 配置参数
+            el:'#app',//document.getElementById('app')
+            data:{
+                username:'<em>laoxie</em>',
+                age:18
+            }
+        });
+    </script>
+</body>
+</html>
