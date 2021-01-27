@@ -501,10 +501,33 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * v-if
         * v-else-if
         * v-else
-* 事件
-    * event
-    * 传参
+
 
 ### 知识点
 * computed: 计算属性
     > 核心：getter & setter
+* 实例属性&方法
+    * this.$refs: 保存所有ref属性对应的节点
+    * this.$el: 实例化时配置的el（视图对应的节点）
+    * this.$data: 实例化时配置的data
+    * this.$options: 实例化时的所有配置信息
+    * this.$set()/Vue.set()
+    * this.$$delete()/Vue.delete()
+* 事件
+    * event
+        * 默认为事件处理函数的第一个参数
+        * 如果手动传参，需要手动传递event对象
+    * 传参
+    * 修饰符：
+        * 键盘事件修饰符
+            * 复制：@keyup.ctrl.67
+        * 鼠标事件修饰符
+* 过滤器filter
+    * 定义
+        * 全局过滤器：Vue.filter(name,definition)
+        * 局部过滤器: filters
+    * 使用：|
+        * {{}}
+        * v-bind
+    * 练习
+        * 1000000 -> 1,000,000
