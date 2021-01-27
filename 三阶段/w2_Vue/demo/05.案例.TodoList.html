@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05.案例.TodoList</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>05.案例.TodoList</h1>
+        <div id="app">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="输入代办事项">
+                <div class="input-group-append">
+                    <button class="btn btn-success" type="button">添加</button>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" />全选</th>
+                        <th>#</th>
+                        <th>代办事项</th>
+                        <th>添加时间</th>
+                        <th>是否完成</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item,idx) in list" :class="{'table-success':item.complete}">
+                        <td><input type="checkbox" /></td>
+                        <td>{{idx+1}}</td>
+                        <td>{{item.todo}}</td>
+                        <td>{{item.addtime}}</td>
+                        <td>{{item.complete ? '是' : '否'}}</td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-outline-success" @click="completeItem(item.id)">完成</button>
+                            <button type="button" class="btn btn-sm btn-outline-danger" @click="removeItem(item.id)">删除</button>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="6">
+                            待办事项：{{list.length}}，完成：{{completeList.length}}，未完成：{{unCompleteList.length}}
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                list: [{
+                    id: 1,
+                    todo: '定个小目标睡一整天',
+                    complete: true,
+                    addtime: Date.now()
+                }, {
+                    id: 2,
+                    todo: '赚他一个亿津巴布韦币',
+                    complete: false,
+                    addtime: Date.now() + 3600
+                }, {
+                    id: 3,
+                    todo: '迎娶白富美，达到人生巅峰',
+                    complete: false,
+                    addtime: Date.now() + 360 * 1000
+                }],
+                current:10
+            },
+            // 计算属性：本质为getter&setter
+            // 在实例化是会自动写入实例的属性
+            // computed属性只有在依赖的数据发生改变时才会从新计算，否则从缓存中获取，一般用于优化
+            computed:{
+                completeList(){console.log('computed',6666)
+                    return this.list.filter(item=>item.complete)
+                },
+                unCompleteList:{
+                    get(){
+                        return this.list.filter(item=>!item.complete)
+                    },
+                    // set(){}
+                }
+            },
+            methods:{
+                addItem(){
+
+                },
+                completeItem(id){
+                    this.list = this.list.map(item=>{
+                        if(item.id == id){
+                            item.complete = true
+                        }
+                        return item;
+                    })
+                },
+                removeItem(id){
+                    this.list = this.list.filter(item=>item.id!=id)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

