@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07.案例.实现一个可复用的搜索组件</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+    <h1>07.案例.实现一个可复用的搜索组件</h1>
+    <div id="app">
+        <mysearch :data="h5" btn-name="搜索"></mysearch>
+        <mysearch :data="cityList" btn-name="查询"></mysearch>
+    </div>
+    <template id="mySearch">
+        <div class="search">
+			<div class="input-group">
+				<input type="search" class="form-control" v-model="search">
+				<div class="input-group-append">
+					<button class="btn btn-success">{{btnName}}</button>
+				</div>
+            </div>
+			<search-list :result="result"></search-list>
+		</div>
+    </template>
+    <template id="searchList">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-action" v-for="item in result">{{item}}</li>
+        </ul>
+    </template>
+    <script src="js/vue.js"></script>
+    <script>
+        Vue.component('mysearch',{
+            data(){
+                return {
+                    search:''
+                }
+            },
+            computed:{
+                result(){
+                    return this.data.filter(item=>new RegExp(this.search,'i').test(item))
+                }
+            },
+            // props接收父组件传入的数据，props属性会自动写入组件实例的属性
+            props:['data','btnName'],
+            template:'#mySearch',
+            components:{
+                searchList:{
+                    data(){
+                        return {
+
+                        }
+                    },
+                    props:['result'],
+                    template:'#searchList'
+                }
+            }
+        })
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                h5:['CSS','HTML','Javascript','Vue','Nodejs'],
+                cityList:['北京','上海','广州','深圳','杭州']
+            },
+            components:{
+
+            }
+        })
+    </script>
+</body>
+</html>

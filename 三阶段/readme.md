@@ -512,7 +512,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * this.$data: 实例化时配置的data
     * this.$options: 实例化时的所有配置信息
     * this.$set()/Vue.set()
-    * this.$$delete()/Vue.delete()
+    * this.$delete()/Vue.delete()
 * 事件
     * event
         * 默认为事件处理函数的第一个参数
@@ -531,3 +531,86 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * v-bind
     * 练习
         * 1000000 -> 1,000,000
+
+## day2-4
+
+### 复习
+* computed：计算属性
+    > 本质为存储器属性getter&setter
+    * 特点：自动缓存，只有在computed属性依赖的数据发生改变时才会重新执行里面的代码，否则从缓存中读取
+    ```js
+        computed:{
+            checkAll(){},
+            checkAll:{
+                get(){},
+                set(){}
+            }
+        }
+    ```
+* 实例属性&方法
+    * $el
+    * $data
+    * $refs
+    * $options
+    ```js
+        new Vue({
+            ...
+        })
+    ```
+    * $set()/Vue.set()
+    * $delete()/Vue.delete()
+* 全局方法（Vue静态方法）
+    * Vue.set()
+    * Vue.delete()
+    * Vue.filter()
+* 事件
+    > 事件绑定完整格式：v-on:事件类型.修饰符="事件处理函数"
+    * 绑定：v-on, @
+    * event
+        * 默认事件处理函数的第一个参数
+        * 如果传参，则需手动传递$event
+    * 传参
+        ```js
+            <button @click="change"></button>
+            <button @click="change(id,$event)"></button>
+        ```
+    * 修饰符
+        * 键盘事件修饰符
+        * 鼠标事件修饰符
+* 过滤器
+    * 定义
+        * 全局  Vue.filter(name,definition)
+            * definition是一个函数，第一个参数为待过滤的值，后面的为过滤器参数（可选）
+        * 局部  filters
+    * 使用：|
+        > 可以同时使用多个过滤器
+        * 在{{}}中使用
+        * 在v-bind中使用
+
+### day2-4
+* 组件化开发
+    > 封装、模块化
+    * 优点
+        * 分工更容易
+        * 维护更方便
+        * 复用
+    * 定义
+        > 组件就是Vue实例（定义一个组件可以理解为创建一个标签）
+        * 全局组件: Vue.component(name,options)
+        * 局部组件: components:{name1:options,name2:options}
+    * 使用
+        ```js
+            <组件名/>
+            <组件名></组件名>
+        ```
+    * 配置参数
+        * el        视图属性，组件配置没有
+        * template  模板属性
+        * render    渲染方法
+    * 组件通讯
+        * 父->子：props
+            1. 父组件操作：给子组件定义属性并传递数据
+            2. 子组件操作：
+                1. props接收数据
+                    > 注意大小写问题
+                2. 在组件中通过this.xxx使用

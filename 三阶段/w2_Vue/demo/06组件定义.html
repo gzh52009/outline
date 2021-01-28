@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06组件定义</title>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+    <h1>06组件定义</h1>
+    <div id="app">
+        <lxbutton></lxbutton>
+        <lxbutton></lxbutton>
+        <lxbutton></lxbutton>
+        <lxbutton></lxbutton>
+        <lxbutton></lxbutton>
+        <!-- <xiaoxie></xiaoxie> 局部组件只能在定义的组件内使用-->
+    </div>
+    <template id="lxButton">
+        <div>
+            <button @click="handle">{{name}}的按钮</button>
+            <xiaoxie></xiaoxie>
+        </div>
+    </template>
+    <script>
+        /**
+            * 定义组件就是创建一个标签 
+                * 优点
+                    * 复用
+                    * 分工
+                    * 维护
+                * 定义
+                    * 全局组件：Vue.component()
+                    * 局部组件：components
+         */
+        // 定义全局组件
+        Vue.component('lxbutton',{
+            data:function(){
+                return {
+                    name:'laoxie'
+                }
+            },
+            template:`#lxButton`,
+            computed:{},
+            methods:{
+                handle(){
+                    console.log(6666)
+                }
+            },
+            filters:{},
+            components:{
+                xiaoxie:{
+                    data(){
+                        return {
+                            name:'xiaoxie'
+                        }
+                    },
+                    template:'<div>{{name}}</div>'
+                }
+            }
+        })
+        const vm = new Vue({
+            el:'#app',
+            data:{
+                name:'Vue'
+            },
+            // 其实都应该提供template，如不提供template，Vue会自动获取el节点的outerHTML作为template
+            // template:`<div>test</div>`
+            // render(createElement){
+            //     // 渲染
+            // }
+        })
+
+        
+
+    </script>
+</body>
+</html>
