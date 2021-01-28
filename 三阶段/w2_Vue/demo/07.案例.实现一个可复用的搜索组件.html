@@ -8,9 +8,10 @@
 </head>
 <body>
     <h1>07.案例.实现一个可复用的搜索组件</h1>
-    <div id="app">
-        <mysearch :data="h5" btn-name="搜索"></mysearch>
-        <mysearch :data="cityList" btn-name="查询"></mysearch>
+    <div id="app" class="container">
+        <mysearch :data="h5" btn-name="搜索" class="mt-3"></mysearch>
+        <mysearch :data="cityList" btn-name="查询" class="mt-3"></mysearch>
+        <mysearch  btn-name="test" class="mt-3" :idx="2" age="20" a="19"></mysearch>
     </div>
     <template id="mySearch">
         <div class="search">
@@ -20,7 +21,7 @@
 					<button class="btn btn-success">{{btnName}}</button>
 				</div>
             </div>
-			<search-list :result="result"></search-list>
+			<search-list :result="result" v-show="search.length>0"></search-list>
 		</div>
     </template>
     <template id="searchList">
@@ -32,8 +33,9 @@
     <script>
         Vue.component('mysearch',{
             data(){
+                console.log('mysearch=',this);
                 return {
-                    search:''
+                    search:'',
                 }
             },
             computed:{
@@ -42,7 +44,31 @@
                 }
             },
             // props接收父组件传入的数据，props属性会自动写入组件实例的属性
-            props:['data','btnName'],
+            // props:['data','btnName'],
+            // props数据类型校验
+            // props:{
+            //     data:Array,
+            //     btnName:String
+            // },
+            props:{
+                data:{
+                    type:Array,
+                    // required:true,
+                    default:function(){
+                        // 引用数据类型，必须使用函数并返回数据
+                        return []
+                    }
+                },
+                btnName:String,
+                // 自定义校验规则
+                idx:Number,
+                age:{
+                    validator: function (value) {
+                        // 这个值必须大于等于60，否则报错
+                        return value>=18 && value<=30
+                    }
+                }
+            },
             template:'#mySearch',
             components:{
                 searchList:{
@@ -59,6 +85,7 @@
         const vm = new Vue({
             el:'#app',
             data:{
+                // h5:{a:10,b:20,c:30},
                 h5:['CSS','HTML','Javascript','Vue','Nodejs'],
                 cityList:['北京','上海','广州','深圳','杭州']
             },

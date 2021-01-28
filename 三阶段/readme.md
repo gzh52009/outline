@@ -552,6 +552,8 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * $data
     * $refs
     * $options
+    * $props
+    * $attr
     ```js
         new Vue({
             ...
@@ -611,6 +613,23 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 父->子：props
             1. 父组件操作：给子组件定义属性并传递数据
             2. 子组件操作：
-                1. props接收数据
+                1. props接收数据，接收的数据会自动称为实例的属性
                     > 注意大小写问题
+                    * 如果不接收，则props属性自动成为组件根元素的属性
+                    * props数据类型校验
+                        * 类型
+                        * 必填
+                        * 默认值
                 2. 在组件中通过this.xxx使用
+        * 子->父
+            1. 父组件操作：给子组件自定义事件，并传递父组件的方法作为事件处理函数
+            2. 子组件操作：子组件通过`this.$emit(type,data)`触发自定义事件
+
+* 模块化开发todolist
+    1. 划分组件
+    2. 定义组件
+    3. 组件通讯
+        * 父->子：props
+        * 子->父：
+
+        
