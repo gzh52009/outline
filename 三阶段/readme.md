@@ -623,6 +623,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
                 2. 在组件中通过this.xxx使用
         * 子->父
             1. 父组件操作：给子组件自定义事件，并传递父组件的方法作为事件处理函数
+                > v-on:事件="父组件方法"
             2. 子组件操作：子组件通过`this.$emit(type,data)`触发自定义事件
 
 * 模块化开发todolist
@@ -631,5 +632,60 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     3. 组件通讯
         * 父->子：props
         * 子->父：
+            * 自定义事件
+            * 把父组件函数传到子组件执行
+        * 多层级组件
+            * 逐层传递（不推荐）
+            * Bus事件总线
+                1. 定义一个父组件和子组件都能访问到的Vue实例
+                2. 接收方给Bus绑定事件，事件处理函数为接收方的方法
+                    > Bus.$on()
+                3. 发送方触发Bus事件，并传递参数
+                    > Bus.$emit()
 
-        
+## day2-5
+
+### 知识点
+* key
+    > key一定是**唯一**且**稳定**的值
+    * 在Vue中，为了提高页面性能，Vue会尽量较少节点操作（对比节点的前后状态，过滤掉一些没必要的节点操作(找出差异项)）
+        * 如过Vue无法判断前后节点的对应状态，为了提升性能，采用**复用原则**（不对节点进行创建与销毁，而是改变它的内容）
+        * diff算法
+            * 虚拟节点（VirtualDOM）：一个结构类似于真实DOM节点的js对象
+            ```js
+            // 初始状态
+                {
+                    type:'p',
+                    props:{},
+                    children:[{
+                        type:'span',
+                        props:{},
+                        children:'laoxie',
+                        key:11
+                    },{
+                        type:'strong',
+                        props:{},
+                        children:'xxx'
+                        key:12
+                    }]
+                    key:1
+                }
+
+                // 结束状态
+                {
+                    type:'p',
+                    props:{},
+                    children:[{
+                        type:'span',
+                        props:{},
+                        children:'tiantian'
+                        key:11
+                    },{
+                        type:'strong',
+                        props:{},
+                        children:'xxx'
+                        key:12
+                    }]
+                    //key:1
+                }
+            ```

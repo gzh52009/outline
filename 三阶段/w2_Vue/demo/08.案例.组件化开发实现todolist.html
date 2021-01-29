@@ -19,6 +19,7 @@
     <template id="todoList">
         <div class="container">
             <todo-form v-on:add="addItem"></todo-form>
+            <!-- <todo-content :list="list" :remove="removeItem" :complete="completeItem"></todo-content> -->
             <todo-content :list="list"></todo-content>
             <todo-status :list="list"></todo-status>
         </div>
@@ -44,21 +45,22 @@
                 </tr>
             </thead>
             <tbody>
-                <tr is="todo-item" v-for="(item,idx) in list" :item="item" :idx="idx"></tr>
+                <!-- <tr is="todo-item" v-for="(item,idx) in list" :item="item" :idx="idx" :remove="remove" :complete="complete"></tr> -->
+                <tr is="todo-item" v-for="(item,idx) in list" :key="item.id" :item="item" :idx="idx"></tr>
                 <!-- <todo-item v-for="(item,idx) in list" :item="item" :idx="idx"></todo-item> -->
             </tbody>
         </table>
     </template>
     <template id="todoItem">
-        <tr :class="{'table-success':item.complete}" @click="select(item.id)">
-            <td><input type="checkbox" v-model="item.checked" /></td>
+        <tr :class="{'table-success':item.complete}" @click="selectItem(item.id)">
+            <td><input type="checkbox"/></td>
             <td>{{idx+1}}</td>
             <td>{{item.todo}}</td>
             <!-- <td>{{formatDate(item.addtime,'YYYY/MM/DD hh:mm:ss')}}</td> -->
             <td>{{item.addtime | formatDate('YYYY/MM/DD hh:mm:ss')}}</td>
             <td>{{item.complete ? '是' : '否'}}</td>
             <td>
-                <button type="button" class="btn btn-sm btn-outline-success" @click.stop="completeItem(item.id,$event)">完成</button>
+                <button type="button" class="btn btn-sm btn-outline-success" @click.stop="completeItem(item.id)">完成</button>
                 <button type="button" class="btn btn-sm btn-outline-danger" @click.stop="removeItem(item.id)">删除</button>
             </td>
         </tr>
@@ -70,6 +72,9 @@
     </template>
     <script src="js/vue.js"></script>
     <script>
+        // 事件总线Bus
+        const Bus = new Vue();
+
         // 定义全局过滤器
         Vue.filter('formatDate',function(value,fmt='YYYY-MM-DD'){
             // vaule: 待过滤的值
@@ -141,9 +146,22 @@
                     type:Object,
                     required:true
                 },
-                idx:[Number,String]
+                idx:[Number,String],
+                // remove:Function,
+                // complete:Function,
             },
-            template:'#todoItem'
+            template:'#todoItem',
+            methods:{
+                completeItem(id){
+                    Bus.$emit('complete',id)
+                },
+                removeItem(id){
+                    Bus.$emit('remove',id)
+                },
+                selectItem(id){
+                    Bus.$emit('select',id)
+                }
+            }
         }
         const todoContent = {
             props:{
@@ -153,7 +171,9 @@
                     default(){
                         return []
                     }
-                }
+                },
+                // remove:Function,
+                // complete:Function
             },
             computed:{
                 checkAll:{
@@ -219,13 +239,13 @@
                         id:parseInt(Math.random()*10000),
                         todo,
                         complete:false,
+                        checked:false,
                         addtime:Date.now()
                     }
                     this.list.unshift(newData);
 
-                    
                 },
-                completeItem(id,e){console.log(id,e)
+                completeItem(id){
                     this.list = this.list.map(item=>{
                         if(item.id == id){
                             item.complete = true
@@ -236,7 +256,7 @@
                 removeItem(id){
                     this.list = this.list.filter(item=>item.id!=id)
                 },
-                select(id){
+                selectItem(id){
                     this.list = this.list.map(item=>{
                         if(item.id == id){
                             item.checked = !item.checked
@@ -250,6 +270,13 @@
                 todoForm,
                 todoContent,
                 todoStatus
+            },
+            // 生命周期函数
+            mounted(){
+                // <bus v-on:complete="completeItem" />
+                Bus.$on('complete',this.completeItem)
+                Bus.$on('remove',this.removeItem)
+                Bus.$on('select',this.selectItem)
             }
         })
         const vm = new Vue({
