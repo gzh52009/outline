@@ -737,3 +737,35 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 完成版=运行时+编译器
     * 运行时版本（runtime）
     * 编译器:来将模板字符串编译成为 JavaScript 渲染函数的代码
+
+* 模块化
+    * 规范
+        * CommonJS      NodeJS
+        * ESModule      ES6
+        * AMD           require.js
+        * CMD           sea.js
+    * 导出: export
+        >  export后只能跟function、class、var、let、const、default、{}
+    * 导入: import
+        > 只能静态引入
+    * 基本特点
+        * 每一个模块只加载一次， 并执行一次，再次加载同一文件，直接从内存中读取；
+        * 每一个模块内声明的变量都是局部变量， 不会污染全局作用域；
+        * 通过export导出模块，通过import导入模块
+        * ES6模块只支持静态导入和导出，只可以在模块的最外层作用域使用import和export 
+        ```js
+            let path = './home.js'
+            // commonsJS
+            const home = require('./home.js')
+            const home = require(path)
+
+            // ESModule
+            import home from './home.js'
+            //import home from path; // 不能使用动态路径
+
+            if(xxx){
+                import home from './home.js'
+            }
+        ```
+* ESLint
+    > 代码规范工具

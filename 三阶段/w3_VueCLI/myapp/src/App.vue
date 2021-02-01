@@ -2,16 +2,18 @@
   <div id="app">
     Hello Vue
     <!-- webpack会自动把<HelloWorld/>转成<hell-world/> -->
-    <HelloWorld></HelloWorld> 
+    <!-- <HelloWorld></HelloWorld>  -->
+
+    <TodoList/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TodoList from './components/TodoList/index.vue'
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    TodoList
   }
 }
 </script>

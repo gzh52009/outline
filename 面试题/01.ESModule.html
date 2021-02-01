@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.ESModule</title>
+    <!-- 传统引入 -->
+    <!-- <script type="text/javascript" src="./module/home.js"></script> -->
+</head>
+<body>
+    <h1>在浏览器端使用ESModule</h1>
+
+    <!-- 模块化引入 -->
+    <script type="module">
+        import home,{pageName} from './module/home.js';
+
+        console.log('home=',home,pageName);
+    </script>
+
+    <script type="module" src="./module/home.js"></script>
+</body>
+</html>
