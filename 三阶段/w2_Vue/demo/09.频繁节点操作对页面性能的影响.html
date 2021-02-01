@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>09.频繁节点操作对页面性能的影响</title>
+</head>
+<body>
+    <h1>09.频繁节点操作对页面性能的影响</h1>
+    <button class="btn">0</button>
+    <script>
+        // 节点操作数量         花费时间
+        // 30000                1500
+        // 20001                1300
+        // 10002                15
+        // 3                    2
+        console.time('test')
+        let btn = document.querySelector('.btn');
+        let num = btn.innerText;
+        for(let i=0;i<10000;i++){
+            num++;
+        }
+        btn.innerText = num;
+        console.timeEnd('test');
+        
+    </script>
+</body>
+</html>

@@ -689,3 +689,51 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
                     //key:1
                 }
             ```
+
+## day3-1
+
+### 复习
+* 虚拟DOM
+    > 虚拟节点（js对象）, diff算法, Vue的diff算法会对比虚拟DOM前后状态，找出差异项，然后更新差异项
+    * 节点的频繁操作会影响页面性能
+        ```js
+            btn.innerText = 10;
+            btn.innerText = 20;
+            btn.innerText = 30;
+            btn.innerText = 10;
+
+            setter(){
+
+                render()
+            }
+
+            // 创建与写入
+            let btn = document.createElement('button')
+            btn.innerText = 'xxx'
+            document.body.appendChild(btn);
+            // 销毁
+            document.body.removeChild(btn)
+        ```
+    * key
+        > 作为虚拟节点的标识，值需要唯一且稳定，建议在for循环中都添加key
+* Vue-cli： Vue脚手架
+    * 安装：
+        ```bash
+            #npm 
+            npm install -g @vue/cli
+
+            #yarn
+            yarn global add @vue/cli
+        ```
+    * 创建项目
+        ```bash
+            vue create myapp
+        ```
+    * webpack构建工具
+        * vue-loader
+* 单文件组件
+    > 后缀名为：`.vue`
+* Vue版本
+    * 完成版=运行时+编译器
+    * 运行时版本（runtime）
+    * 编译器:来将模板字符串编译成为 JavaScript 渲染函数的代码
