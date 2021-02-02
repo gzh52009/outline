@@ -716,6 +716,9 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         ```
     * key
         > 作为虚拟节点的标识，值需要唯一且稳定，建议在for循环中都添加key
+
+
+### 知识点
 * Vue-cli： Vue脚手架
     * 安装：
         ```bash
@@ -734,7 +737,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * 单文件组件
     > 后缀名为：`.vue`
 * Vue版本
-    * 完成版=运行时+编译器
+    * 完整版=运行时+编译器
     * 运行时版本（runtime）
     * 编译器:来将模板字符串编译成为 JavaScript 渲染函数的代码
 
@@ -769,3 +772,79 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         ```
 * ESLint
     > 代码规范工具
+
+## day3-2
+
+### 复习
+* vue-cli脚手架
+    > webpack
+    * vue.config.js
+* ESModule
+    * 导入
+        * import xxx from url
+        * import {xxx} from url
+        * import * as Module from url
+    * 导出
+        * export    给**模块对象**添加属性
+            * var, let, const
+            * function
+            * class
+            * default
+            * {}
+    * 应用
+        * webpack
+        * 浏览器
+        ```html
+            <script type="module">
+        ```
+
+### 知识点
+* SPA（Single Page Application）: 单页Web应用
+    > 一个应用只有一个页面index.html
+* MPA（Multiple Page Application）：多页面应用
+* vue-router
+    * 使用步骤
+        1. 安装并引入
+            ```js
+                // npm i -D vue-router
+                import VueRouter from 'vue-router'
+            ```
+        2. 使用VueRouter插件
+            ```js
+                Vue.use(VueRouter);
+            ```
+        3. 实例化路由并配置参数
+            ```js
+                const router = new VueRouter({
+                    // mode:'hash',// history
+                    routes:[
+                        {
+                            path:'/home',
+                            component:Home
+                        },
+                        {
+                            path:'/reg',
+                            component:Reg
+                        },
+                        {
+                            path:'/login',
+                            component:Login
+                        }
+                    ]
+                })
+            ```
+        4. 把路由注入根实例
+            ```js
+                new Vue({
+                    router
+                    ...
+                })
+            ```
+        5. 设置路由组件显示位置
+            > 把<router-view/>放到合适的位置
+    * 路由类型
+        > 通过路由配置的mode属性设置
+        * hash
+            > url地址有`#`
+        * history
+            > url没有`#`，更像一个网站

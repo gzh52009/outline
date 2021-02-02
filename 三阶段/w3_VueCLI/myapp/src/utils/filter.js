@@ -17,13 +17,15 @@ export function formatDate(value,fmt='YYYY-MM-DD'){
         "S": d.getMilliseconds() //毫秒 
     };
 
+    var reg
+
     // 替换年份
     if(/(Y+)/.test(fmt)){
         // 得到fmt字符串中Y字符对应的年份
         // YYYY => 2020
         // YY => 20
         // RegExp.$1 = 'YYYY'
-        var res = String(d.getFullYear()).substr(4 - RegExp.$1.length);
+        res = String(d.getFullYear()).substr(4 - RegExp.$1.length);
         //YYYY : var res = '2020'.substr(4-'YYYY'.length) => 2020
         // YY:   var res = '2020'.sbstr(4-'YY'.length)    => 20
 
@@ -34,7 +36,7 @@ export function formatDate(value,fmt='YYYY-MM-DD'){
     // 替换月、日
     for(var key in o){
         // 利用key创建正则表达式
-        var reg = new RegExp('(' + key + ')'); // new RegExp('(M+)') /(M+)/
+        reg = new RegExp('(' + key + ')'); // new RegExp('(M+)') /(M+)/
 
         // fmt='2020/MM/DD'
         if(reg.test(fmt)){
