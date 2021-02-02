@@ -72,7 +72,6 @@ async function connect(){
 
     // 关闭数据库连接
     client.close();
-
     return result;
 }
 //   create('user',{})

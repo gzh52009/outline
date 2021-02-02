@@ -848,3 +848,32 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             > url地址有`#`
         * history
             > url没有`#`，更像一个网站
+    * 全局组件
+        * <router-view/>    用于显示路由组件内容
+            * name          命名路由
+        * <router-link/>    用于路由跳转
+            * to
+                * String
+                * Object
+            * tag
+            * event
+            * replace
+            * active-class
+            * exact-active-class
+    * 路由跳转
+        > 可以通过`path`跳转，也可以通过`name`跳转
+        * 声明式导航
+        * 编程式导航
+            * $router   路由对象
+                * push()        跳转并产生浏览记录
+                * replace()     跳转但不产生浏览记录
+                * go(n)
+                * back()
+                * forward()
+            * $route    当前路由信息
+
+* Vue的UI框架
+    * element-ui    饿了么
+    * iView         腾讯
+    * ant-design    蚂蚁
+    * vantUI        有赞

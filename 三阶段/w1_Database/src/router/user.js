@@ -9,12 +9,10 @@ const colName = 'user';
 // /user/reg
 router.post('/reg',async (req,res)=>{
     const {username,password} = req.body;
-
-    const {insertedCount} = await mongo.create(colName,{username,password});
-
-    if(insertedCount>0){
+    try{
+        mongo.create(colName,{username,password});
         res.send(formatData())
-    }else{
+    }catch(err){
         res.send(formatData({code:400}))
     }
 })
