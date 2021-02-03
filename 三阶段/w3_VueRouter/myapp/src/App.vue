@@ -58,6 +58,12 @@ export default {
       current: "/home",
     };
   },
+  watch:{
+    '$route.path':function(newVal,oldVal){
+      // console.log(newVal,oldVal)
+      this.current = newVal
+    }
+  },
   methods: {
     changeMenu(index) {
       // 编程式导航
@@ -68,13 +74,37 @@ export default {
     }
   },
   components: {},
+  mounted(){
+      // 这里的代码会自动执行
+      // 获取当前路由信息
+      let {path} = this.$route;
+      this.current = path;
+  }
 };
 </script>
 
-<style>
+<style lang="scss">
 body {
   margin: 0;
 }
+
+
+
+.price{
+  del{
+    color:#999;margin-right:5px;
+    &::before{
+      content:'￥'
+    }
+  }
+  span{
+    color:#f00;
+    &::before{
+      content:'￥'
+    }
+  }
+}
+
 .menu-item {
   margin: 0 5px;
 }

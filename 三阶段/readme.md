@@ -937,3 +937,21 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
                 > 端口:80
             * https: ssl
                 > 端口：443
+
+* watch
+    * 可以监听组件实例下的所有属性（包括属性的子属性）
+    * 当监听的属性被修改时，执行相应的函数
+    ```js
+        watch:{
+            username(newVal,oldVal){
+
+            },
+            'ruleForm.username':function(newVal,oldVal){
+
+            }
+        }
+    ```
+    > 利用生命周期函数+watch实现导航高亮
+
+* 生命周期函数
+    * 

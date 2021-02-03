@@ -1,20 +1,21 @@
 const express = require('express');
 const mongo = require('../db/mongo');
-const crypto = require('crypto')
+
 const router = express.Router();
 
-const {formatData} = require('../utils')
+const {formatData,encrypto} = require('../utils')
 
 const colName = 'user';
 
 // /user/reg
 router.post('/reg',async (req,res)=>{
-    let {username,password} = req.body;console.log(username,password)
+    let {username,password} = req.body;
+    console.log('加密前',password)
 
     // 加密密码
-    const hash = crypto.createHash('sha256')
-    hash.update(password)
-    password = hash.digest('hex')
+    password = encrypto(password)
+    console.log('加密后',password)
+
     try{
         await mongo.create(colName,{username,password});
         res.send(formatData())
@@ -28,9 +29,7 @@ router.get('/login',async (req,res)=>{
     let {username,password} = req.query;
 
     // 加密密码
-    const hash = crypto.createHash('sha256')
-    hash.update(password)
-    password = hash.digest('hex')
+    password = encrypto(password)
 
     const result = await mongo.find(colName,{username,password},{fields:{password:0}});
     console.log(username,password,result)

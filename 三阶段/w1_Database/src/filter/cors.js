@@ -1,4 +1,4 @@
-const allowOrigin = ['http://localhost:8080','http://localhost:10086']
+const allowOrigin = ['http://localhost:8080','http://localhost:8081','http://localhost:10086']
 module.exports = (req,res,next)=>{
     // cors
     // res.header('Access-Control-Allow-Origin','*');

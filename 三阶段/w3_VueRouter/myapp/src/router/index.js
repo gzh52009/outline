@@ -6,6 +6,7 @@ import Reg from '../views/Reg.vue'
 import Login from '../views/Login.vue'
 import Mine from '../views/Mine.vue'
 import Discover from '../views/Discover.vue'
+import Goods from '../views/Goods.vue'
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter);
@@ -48,6 +49,10 @@ const router = new VueRouter({
             // }
         },
         {
+            path: '/goods/:id',
+            component: Goods
+        },
+        {
             path: '/mine',
             component: Mine
         },
@@ -57,10 +62,10 @@ const router = new VueRouter({
             path:'/notfound',
             component:NotFound
         },
-        {
-            path:'*',
-            redirect:'/notfound'
-        }
+        // {
+        //     path:'*',
+        //     redirect:'/notfound'
+        // }
     ]
 })
 

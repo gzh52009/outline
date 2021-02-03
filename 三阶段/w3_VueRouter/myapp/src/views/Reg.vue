@@ -25,16 +25,13 @@
   </el-form>
 </template>
 <script>
-import axios from 'axios';
 export default {
   name: "Reg",
   data() {
-      const checkUsername = function(rule, value, callback){
+      const checkUsername = (rule, value, callback)=>{
           // {data,header,...}
-          axios.get('http://localhost:2009/api/user/check',{
-              params:{
-                  username:value
-              }
+          this.$request.get('/user/check',{
+            username:value
           }).then(({data})=>{
               if(data.code === 400){
                   callback(new Error('用户名已存在'))
@@ -79,7 +76,7 @@ export default {
           // 发起ajax请求
           const {username,password} = this.ruleForm;
           console.log('username',username,password)
-          const {data} = await axios.post('http://localhost:2009/api/user/reg',{
+          const {data} = await this.$request.post('/user/reg',{
               username,
               password
           })
@@ -87,7 +84,7 @@ export default {
             //       method:'post'
             //   })
             if(data.code === 200){
-                this.$router.replace('/mine');
+                this.$router.replace('/login');
             }
         } else {
           console.log("error submit!!");
