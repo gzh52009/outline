@@ -18,6 +18,7 @@ module.exports = (req,res,next)=>{
         } else{
             next();
         }
+    }else{
+        next()
     }
-    next()
 }

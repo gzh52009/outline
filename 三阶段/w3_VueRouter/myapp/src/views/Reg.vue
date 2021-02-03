@@ -29,6 +29,20 @@ import axios from 'axios';
 export default {
   name: "Reg",
   data() {
+      const checkUsername = function(rule, value, callback){
+          // {data,header,...}
+          axios.get('http://localhost:2009/api/user/check',{
+              params:{
+                  username:value
+              }
+          }).then(({data})=>{
+              if(data.code === 400){
+                  callback(new Error('用户名已存在'))
+              }else if(data.code === 200){
+                  callback();
+              }
+          })
+      }
     return {
       ruleForm: {
         username: "",
@@ -39,10 +53,11 @@ export default {
           { required: true, message: "请输入用户名", trigger: "blur" },
           {
             min: 3,
-            max: 10,
-            message: "用户名长度必须在 3 到 10 个字符之间",
+            max: 20,
+            message: "用户名长度必须在 3 到 20 个字符之间",
             trigger: "blur",
           },
+           { validator: checkUsername, trigger: 'blur' }
         ],
         password: [
           { required: true, message: "请输入密码", trigger: "blur" },

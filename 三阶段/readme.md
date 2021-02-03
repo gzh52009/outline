@@ -850,7 +850,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             > url没有`#`，更像一个网站
     * 全局组件
         * <router-view/>    用于显示路由组件内容
-            * name          命名路由
+            * name          命名视图
         * <router-link/>    用于路由跳转
             * to
                 * String
@@ -877,3 +877,63 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * iView         腾讯
     * ant-design    蚂蚁
     * vantUI        有赞
+
+## day3-3
+
+### 复习
+* webApp分类
+    * SPA
+    * MPA
+* VueRouter
+    * 使用步骤
+        1. 安装
+        2. 引用并使用插件
+        3. 实例化并配置参数
+        4. 把实例注入Vue根实例
+        5. 设置路由组件显示位置：<router-view/>
+            > 命名视图
+        
+    * 参数
+        * mode: hash,history
+        * routes
+            * path
+            * component
+            * components
+            * name      命名路由
+    * 路由跳转
+        * 声明式导航：<router-link> 
+        * 编程式导航
+            * $router   用于跳转
+            * $route    当前路由信息
+
+    * ajax请求
+        * 原生
+            * XMLHttpRequest
+            * fetch
+        * jQuery/zeptoJS
+        * axios
+### 知识点
+* 加密知识
+    * 单向加密
+        > 不可逆过程，加密后不能解密
+        * 缺点：虽然不能解密，但可以暴力破解
+            * 字典破解
+        * 解决
+            * 限制次数
+            * 多次加密
+    * 双向加密
+        > 加密后可解密
+        * 对称加密
+            > 加密解密共用一个密钥
+            * 缺点：钥匙管理不安全
+        * 非对称机密
+            * 公钥
+            * 私钥
+            * 缺点：性能差
+        > 解决方案：使用对称加密加密数据，使用非对称加密加密密钥
+
+        * 实际应用：https
+            * http: 
+                > 端口:80
+            * https: ssl
+                > 端口：443

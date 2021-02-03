@@ -1,5 +1,6 @@
 const express = require('express');
 const mongo = require('../db/mongo');
+const crypto = require('crypto')
 const router = express.Router();
 
 const {formatData} = require('../utils')
@@ -8,9 +9,14 @@ const colName = 'user';
 
 // /user/reg
 router.post('/reg',async (req,res)=>{
-    const {username,password} = req.body;
+    let {username,password} = req.body;console.log(username,password)
+
+    // 加密密码
+    const hash = crypto.createHash('sha256')
+    hash.update(password)
+    password = hash.digest('hex')
     try{
-        mongo.create(colName,{username,password});
+        await mongo.create(colName,{username,password});
         res.send(formatData())
     }catch(err){
         res.send(formatData({code:400}))
@@ -19,7 +25,12 @@ router.post('/reg',async (req,res)=>{
 
 // /user/login
 router.get('/login',async (req,res)=>{
-    const {username,password} = req.query;
+    let {username,password} = req.query;
+
+    // 加密密码
+    const hash = crypto.createHash('sha256')
+    hash.update(password)
+    password = hash.digest('hex')
 
     const result = await mongo.find(colName,{username,password},{fields:{password:0}});
     console.log(username,password,result)
@@ -37,7 +48,7 @@ router.get('/check',async (req,res)=>{
     const {username} = req.query;
 
     const result = await mongo.find(colName,{username})
-    if(result.length > 0){
+    if(result.total>0){
         res.send(formatData({code:400}))
     }else{
         res.send(formatData())
