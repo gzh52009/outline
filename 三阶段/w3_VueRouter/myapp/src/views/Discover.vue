@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <el-row :gutter="20">
+    <div class="goodslist">
+        <el-row :gutter="20" type="flex" style="flex-wrap:wrap">
             <el-col 
             v-for="item in goodslist" 
             :key="item._id"
@@ -32,7 +32,15 @@ export default {
     },
     methods:{
         gotoDetail(id){
-            this.$router.push('/goods/'+id)
+            // /goods/:id
+            // this.$router.push('/goods/'+id)
+            this.$router.push({
+                // path:'/goods',
+                name:'goods',
+                params:{id,username:'laoxie'},
+                query:{a:10,b:20},
+                
+            })
         }
     },
     async mounted(){
@@ -42,3 +50,8 @@ export default {
     }
 }
 </script>
+<style lang="scss" scoped>
+    .goodslist{
+        img{width:100%;}
+    }
+</style>

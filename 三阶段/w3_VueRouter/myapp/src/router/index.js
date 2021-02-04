@@ -48,9 +48,21 @@ const router = new VueRouter({
             //     default:xxx
             // }
         },
+
+        // 动态路由：id可变
         {
             path: '/goods/:id',
-            component: Goods
+            component: Goods,
+            // 一般用于固定参数传递
+            meta:{c:10,d:20},
+            // props:true, // 等效于<Goods v-bind="$route.params"/>
+            // props:{age:18,username:'laoxie'}, // 等效于<Goods :age="18",username="laoxie"/>
+            props:function(route){
+                // route等效于$route
+                return route.query
+            }, // 等效于<Goods :age="18",username="laoxie"/>
+            
+            name:'goods'
         },
         {
             path: '/mine',
@@ -62,10 +74,10 @@ const router = new VueRouter({
             path:'/notfound',
             component:NotFound
         },
-        // {
-        //     path:'*',
-        //     redirect:'/notfound'
-        // }
+        {
+            path:'*',
+            redirect:'/notfound'
+        }
     ]
 })
 

@@ -954,4 +954,47 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     > 利用生命周期函数+watch实现导航高亮
 
 * 生命周期函数
-    * 
+
+## day3-4
+
+### 复习
+* 加密知识
+    * 单向
+    * 双向
+        * 对称
+        * 非对称
+        * https
+* watch
+    > 监听实例属性（包括子属性）
+* 路由传参
+    * 动态路由：$route.params
+
+
+### 知识点
+* 局部样式/组件样式
+    > 原理：属性选择器
+    * scoped： style标签添加scoped属性后，Vue单文件组件在编译时自动给标签添加`data-v-[hash]`自定义属性，然后利用css的是属性选择器实现局部样式
+* 面向对象css
+
+* 路由传参
+    * 跳转传参
+        * 动态路由
+            1. 路由配置
+            2. 跳转传参
+                * $router.push('/goods/123')
+                * $router.push({name:'goods',params:{id:123}})
+                    > 有多个变量的路由，推荐使用该方式
+            3. 接收参数: this.$route.params
+        * params
+            * 动态路由参数（刷新后依然存在）
+            * 非动态路由参数（刷新后消失）
+        * query
+            > 通过url参数传递
+    * 定义传参
+        * meta  
+        * props
+            * Object
+            * Function
+
+* 数据持久化
+    > 刷新后数据依然存在
