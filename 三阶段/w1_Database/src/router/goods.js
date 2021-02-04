@@ -59,7 +59,7 @@ router.get('/list',async (req,res)=>{
 router.get('/:id',async (req,res)=>{
     const {id} = req.params;
 
-    const {result} = await mongo.find(colName,{_id:id},{skip,limit})
+    const {result} = await mongo.find(colName,{_id:id})
     res.send(formatData({
         data:result[0]
     }))

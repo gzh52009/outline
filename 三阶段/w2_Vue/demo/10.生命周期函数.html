@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10.生命周期函数</title>
+</head>
+<body>
+    <h1>10.生命周期函数</h1>
+    <div id="app">
+        <div>{{qty}}</div>
+        <button @click="changeQty">修改qty</button>
+        <button @click="destroy">销毁</button>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        
+        const vm = new Vue({
+            name: "Lifecycle",
+            //   props:[],
+            data:{
+                qty: 10,
+            },
+            computed:{
+                total(){
+                    return this.qty*this.qty;
+                }
+            },
+            methods:{
+                changeQty(){
+                    console.log('changeQty')
+                    this.qty++;
+                },
+                destroy(){
+                    this.$destroy()
+                }
+            },
+            // 生命周期函数
+            beforeCreate() {
+                console.log("beforeCreate",this.qty,this.total);
+            },
+            created() {
+                console.log("created",this.qty,this.total);
+            },
+            beforeMount() {
+                console.log("beforeMount",this.$el.innerHTML);
+            },
+            mounted() {
+                console.log("mounted",this.$el.innerHTML);
+            },
+            beforeUpdate() {
+                console.log("beforeUpdate",this.$el.innerHTML);
+            },
+            updated() {
+                console.log("updated",this.$el.innerHTML);
+            },
+            beforeDestroy() {
+                console.log("beforeDestroy");
+            },
+
+            destroyed() {
+                console.log("destroyed");
+            },
+        })
+        vm.$mount('#app')
+    </script>
+</body>
+</html>

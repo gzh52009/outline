@@ -28,19 +28,24 @@
       
     </el-header>
     <el-main>
+      <!-- <Lifecycle v-if="show"/>
+      <button @click="show=!show">show/hide</button> -->
       <!-- router-view组件用来显示路由组件 -->
       <!-- <router-view name="header" />
       <router-view name="main" /> -->
       <router-view />
+
     </el-main>
   </el-container>
 </template>
 
 <script>
+import Lifecycle from './components/Lifecycle.vue'
 export default {
   name: "App",
   data() {
     return {
+      // show:true,
       menu: [
         {
           path: "/home",
@@ -73,7 +78,9 @@ export default {
       this.$router.push(path);
     }
   },
-  components: {},
+  components: {
+    Lifecycle
+  },
   mounted(){
       // 这里的代码会自动执行
       // 获取当前路由信息

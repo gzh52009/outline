@@ -957,6 +957,11 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
 ## day3-4
 
+### 面试题
+* 如何取消ajax请求
+    * xhr.abort()
+    * axios
+
 ### 复习
 * 加密知识
     * 单向
@@ -995,6 +1000,27 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * props
             * Object
             * Function
-
 * 数据持久化
     > 刷新后数据依然存在
+* 生命周期函数（钩子函数）
+    > 所有生命周期函数中的this指向实例
+    * 创建阶段
+        * beforeCreate()
+        * created()
+    * 挂载阶段
+        * beforeMount()
+        * mounted()
+    * 更新阶段
+        * beforeUpdate()
+        * updated
+    * 销毁阶段
+        * beforeDestroy
+        * destroyed
+* 生命周期函数执行过程
+* 每个生命周期函数中适合做什么操作
+    * created
+        * ajax请求
+    * mounted
+        * 节点操作，定时器
+    * destroyed
+        * 取消ajax请求，清除定时器等
