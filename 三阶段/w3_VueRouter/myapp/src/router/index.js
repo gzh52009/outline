@@ -8,6 +8,7 @@ import Mine from '../views/Mine.vue'
 import Discover from '../views/Discover.vue'
 import Goods from '../views/Goods.vue'
 import NotFound from '../views/NotFound.vue'
+import Cart from '../views/Cart.vue'
 
 Vue.use(VueRouter);
 
@@ -67,6 +68,10 @@ const router = new VueRouter({
         {
             path: '/mine',
             component: Mine
+        },
+        {
+            path: '/cart',
+            component: Cart
         },
 
         // 404页面

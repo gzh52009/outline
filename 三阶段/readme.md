@@ -1024,3 +1024,51 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 节点操作，定时器
     * destroyed
         * 取消ajax请求，清除定时器等
+
+## day3-5
+
+### 面试题
+* 如何取消ajax请求
+    * XMLHttpRequest
+        > xhr.abort()
+    * axios
+        1. 给请求添加表示token
+        2. 通过cancel()方法取消请求
+
+### 复习
+* 路由传参
+    * 定义路由时传参
+        * meta
+        * props
+            * Boolean   把$route.params通过props传入组件
+            * Object
+            * Function
+    * 跳转时传参
+        * 动态路由
+            > 获取：$route.params
+        * params
+            > 获取：$route.params
+        * query
+            > 获取：$route.query
+    * 数据持久化
+        > 刷新后数据依然存在
+* 生命周期函数
+    * 有哪些生命周期函数
+        * 创建阶段
+            * beforeCreate
+            * created
+        * 挂载阶段
+            * beforeMount
+            * mounted
+        * 更新阶段
+            * beforeUpdate
+            * updated
+        * 销毁阶段
+            * beforeDestroy
+            * destroyed
+    * 生命周期函数的执行过程
+    * 每个生命周期函数适合做哪些操作
+
+### 知识点
+* 插槽slot
+* vuex

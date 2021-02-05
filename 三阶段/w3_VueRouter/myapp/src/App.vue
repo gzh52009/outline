@@ -16,7 +16,16 @@
               :index="item.path"
               v-for="item in menu"
               :key="item.path"
-              >{{ item.text }}</el-menu-item
+              >
+              <el-badge :value="6" class="cart-badge" v-if="item.path==='/cart'">
+                <i :class="item.icon"></i>
+                {{ item.text }}
+              </el-badge>
+              <template v-else>
+                <i :class="item.icon"></i>
+                {{ item.text }}
+              </template>
+              </el-menu-item
             >
           </el-menu>
         </el-col>
@@ -50,14 +59,22 @@ export default {
         {
           path: "/home",
           text: "首页",
+          icon:'el-icon-s-home'
         },
         {
           path: "/discover",
           text: "发现",
+          icon:'el-icon-view'
+        },
+        {
+          path: "/cart",
+          text: "购物车",
+          icon:'el-icon-shopping-cart-2'
         },
           {
             path: "/mine",
             text: "我的",
+            icon:'el-icon-user'
           },
       ],
       current: "/home",
@@ -98,20 +115,22 @@ body {
 
 
 .price{
-  del{
+  > del{
     color:#999;margin-right:5px;
     &::before{
       content:'￥'
     }
   }
-  span{
+  > span{
     color:#f00;
     &::before{
       content:'￥'
     }
   }
 }
-
+.cart-badge{
+  sup.el-badge__content.is-fixed{top:15px;right:5px;}
+}
 .menu-item {
   margin: 0 5px;
 }
