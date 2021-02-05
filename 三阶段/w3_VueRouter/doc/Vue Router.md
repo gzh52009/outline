@@ -234,7 +234,7 @@ Vue-Router是通过插件的形式来扩展Vue的功能，所以要使用它，�
 * `router.afterEach(fn)`
     - to
     - from
-* `router.resolve(fn)`
+* `router.beforeResolve(fn)`
     * to
     * from
     * next

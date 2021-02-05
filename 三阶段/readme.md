@@ -1069,6 +1069,89 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 生命周期函数的执行过程
     * 每个生命周期函数适合做哪些操作
 
+* 组件通讯
+    * 父->子：props
+    * 子->父：
+        * 把父组件方法传到子组件执行
+        * 自定义事件
+            * v-on/$on()
+            * $emit()
+    * 兄弟
+    * 深层次组件通讯
+        * 逐层传递
+        * 事件总线 Bus/$root
+            * $on()
+            * $off()
+            * $emit()
+    * 组件层级
+        * $root     根组件
+        * $parent   父组件
+        * $children 子组件
+    * $ref
+        * 用在html元素上，得到节点
+        * 用在组件上，得到组件实例
+        > 如何在父组件调用子组件方法
+
 ### 知识点
 * 插槽slot
-* vuex
+    * `<slot/>`； 用于承载组件内容
+    * 父->子: `v-slot:插槽名称`
+        * 默认插槽：名字为default的插槽（default可以省略）
+        * 具名插槽：有名字的插槽
+            * 使用v-slot指令来显示内容
+    * 子->父：作用域插槽`v-slot:插槽名称="scope"`
+
+* VueX
+    * 解决的问题
+        * 数据共享
+        * 监听数据修改，并自动刷新组件
+    * 核心配置
+        * state     类似于组件的data
+        * getters   类似于组件中的computed
+        * mutations 唯一修改State的方式，类似于组件中的methods
+            > 触发mutation的方式：store.commit('mutation',参数)
+    * 使用步骤
+        1. 安装并引用
+            ```js
+                import Vuex from 'vuex'
+            ```
+        2. 使用Vuex插件
+            ```js
+                Vue.use(Vuex)
+            ```
+        3. 实例化Store，并配置核心参数
+            ```js
+                const store = new Vuex.Store({
+                    state,
+                    getters,
+                    mutations,
+                })
+            ```
+        4. 把store注入Vue根实例
+            ```js
+                new Vue({
+                    //..
+                    store
+                })
+            ```
+        5. 使用
+            * 获取：在组件中使用state：this.$store.state.xxx
+            * 修改：this.$store.commit('mutation',参数)
+
+* 路由守卫
+    * 全局守卫
+        > 是路由实例的方法，在路由配置文件中编写
+        * router.beforeEach(to,from,next)
+        * router.resolve(to,from,next)
+        * router.afterEach(to,from)
+    * 路由独享的守卫
+        > 在路由配置中编写
+    * 组件内守卫
+        > 在组件中编写，类似于生命周期函数
+        * beforeRouteEnter(to,from,next)
+            > 此时路由组件没有创建完毕，因此不能访问this
+        * beforeRouteUpdate(to,from,next)
+        * beforeRouteLeave(to,from,next)
+
+    * 应用：页面访问权限控制
+        > 建议在router.beforeEach()全局守卫中处理页面访问权限

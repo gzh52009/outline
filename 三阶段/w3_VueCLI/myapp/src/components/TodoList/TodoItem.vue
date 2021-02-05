@@ -9,7 +9,7 @@
     <td>{{item.addtime | formatDate('YYYY/MM/DD hh:mm:ss')}}</td>
     <td>{{ item.complete ? "是" : "否" }}</td>
     <td>
-      <button
+      <!-- <button
         type="button"
         class="btn btn-sm btn-outline-success"
         @click.stop="completeItem(item.id)"
@@ -22,12 +22,24 @@
         @click.stop="removeItem(item.id)"
       >
         删除
-      </button>
+      </button> -->
+      <TodoButton class="btn-outline-success">
+        <template v-slot:default="scope">
+          {{scope}}
+        <div>完成</div>
+        </template>
+        <template v-slot:header="scope">
+          {{scope}}
+          <span>Complete</span>
+        </template>
+        </TodoButton>
+      <TodoButton class="btn-outline-danger">删除</TodoButton>
     </td>
   </tr>
 </template>
 <script>
 import Bus from './Bus';
+import TodoButton from './TodoButton.vue'
 import {formatDate} from '../../utils/filter';
 export default {
   name: "TodoItem",
@@ -51,6 +63,9 @@ export default {
   },
   filters:{
       formatDate
+  },
+  components:{
+    TodoButton
   }
 };
 </script>
