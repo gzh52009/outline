@@ -61,9 +61,12 @@
   </div>
 </template>
 <script>
+import {mapState,mapGetters,mapMutations,mapActions} from 'vuex';
+
 export default {
   name: "Cart",
   data() {
+    console.log('Cart',this);
     return {
       active: 1,
       selection:[]
@@ -90,23 +93,43 @@ export default {
       // return this.$store.getters.totalPrice
       return this.selection.reduce((prev,item)=>prev+item.price*item.qty,0)
     },
-    goodslist(){
-      return this.$store.state.goodslist
-    }
+    // goodslist(){
+    //   return this.$store.state.cart.goodslist
+    // }
+    // 映射全局state
+    ...mapState(['username']), //等效于：goodslist:store.state.goodslist
+    // 映射命名空间下的state
+    // ...mapState('cart',['goodslist']),
+    ...mapState({
+      // goodslist:'goodslist',
+      goodslist:function(state){
+        return state.cart.goodslist;
+      }
+    }),
+    // mapGetters不支持对象属性为函数的写法
+    ...mapGetters({
+      allPrice:'totalPrice',
+    })
   },
   methods: {
-    remove({_id}) {
-      this.$store.commit('remove',{_id})
-    },
-    clear(){
-      this.$store.commit('clear')
-    },
-    changeQty(_id, qty){
-      console.log(_id, qty)
-      // this.$store.commit('changeQty',{_id,qty})
+    // remove({_id}) {
+    //   this.$store.commit('remove',{_id})
+    // },
+    // clear(){
+    //   this.$store.commit('clear')
+    // },
+    ...mapMutations(['remove','clear']),
+    // changeQty(_id, qty){
+    //   console.log(_id, qty)
+    //   // this.$store.commit('changeQty',{_id,qty})
 
-      this.$store.dispatch('changeQtyAsync',{_id,qty})
-    },
+    //   this.$store.dispatch('changeQtyAsync',{_id,qty})
+    // },
+    ...mapActions({
+      changeQty(dispatch,_id,qty){
+        dispatch('changeQtyAsync',{_id,qty})
+      }
+    }),
     goto(path){
       this.$router.push(path);
     },

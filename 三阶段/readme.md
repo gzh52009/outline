@@ -1205,5 +1205,11 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * actions           methods  
         > 一般用于异步操作，调用方式：store.dispatch(action,payload)
         1. ajax请求，并返回数据
-        2. 在action中触发mutation
-        
+        2. 在action中触发mutation 
+    * modules
+        > store模块化，默认影响state的获取，getters,mutations,actions不受影响，如果需要独立操作当前模块的getters,mutations,actions，需要设置namespaced:true
+* Vuex映射
+    * mapState      映射vuex中的state到组件的computed
+    * mapGetters    映射Vuex中的getters到组件的computed
+    * mapMutations  映射Vuex中的mutations到组件的methods
+    * mapActions    映射Vuex中的actions到组件的methods

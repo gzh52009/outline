@@ -53,7 +53,7 @@ export default {
             // 判断当前商品是否已经存在购物车中
             // 存在：数量+1
             // 否则：添加商品
-            const current = this.$store.state.goodslist.find(item=>item._id==_id)
+            const current = this.$store.state.cart.goodslist.find(item=>item._id==_id)
             if(current){
                 this.$store.commit('changeQty',{_id,qty:current.qty+1})
             }else{

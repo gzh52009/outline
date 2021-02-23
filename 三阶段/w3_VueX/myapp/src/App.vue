@@ -88,13 +88,13 @@ export default {
   },
   computed:{
     cartlength(){
-      return this.$store.state.goodslist.length
+      return this.$store.state.cart.goodslist.length
     },
     isLogin(){
       return this.$store.getters.isLogin
     },
     userInfo(){
-      return this.$store.state.userInfo;
+      return this.$store.state.user.userInfo;
     }
   },
   watch:{
