@@ -65,6 +65,13 @@ router.get('/:id',async (req,res)=>{
     }))
 });
 
+router.get('/:id/kucun',async (req,res)=>{
+    const {id} = req.params;
+    res.send(formatData({
+        data:5
+    }))
+});
+
 router.put('/:id',(req,res)=>{
     res.send('修改商品')
 })

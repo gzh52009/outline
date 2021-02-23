@@ -105,6 +105,7 @@ export default {
             size:6
         });
         this.recommendList = result;
+        console.log('Goods.$store',this.$store)
     },
     beforeRouteUpdate(to,from,next){
         console.log('to=',to)

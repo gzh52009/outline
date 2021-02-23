@@ -124,6 +124,8 @@ export default {
       // 获取当前路由信息
       let {path} = this.$route;
       this.current = path;
+
+      console.log('App.$store',this.$store)
   }
 };
 </script>

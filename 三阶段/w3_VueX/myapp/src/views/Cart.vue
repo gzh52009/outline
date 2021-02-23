@@ -25,7 +25,7 @@
             <span>{{ row.price }}</span> &times;
             <el-input-number
               size="mini"
-              :value="row.qty"
+              v-model="row.qty"
               style="width: 100px"
               @change="changeQty(row._id,$event)"
             ></el-input-number>
@@ -103,7 +103,9 @@ export default {
     },
     changeQty(_id, qty){
       console.log(_id, qty)
-      this.$store.commit('changeQty',{_id,qty})
+      // this.$store.commit('changeQty',{_id,qty})
+
+      this.$store.dispatch('changeQtyAsync',{_id,qty})
     },
     goto(path){
       this.$router.push(path);

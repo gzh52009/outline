@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import request from '../utils/request'
 
 Vue.use(Vuex);
 
@@ -53,7 +54,27 @@ const store = new Vuex.Store({
         state.userInfo = {}
         localStorage.removeItem('userInfo')
       }
+    },
+    actions:{
+      changeQtyAsync(context,payload){
+        // context 类似store的对象
+        request.get(`/goods/${payload._id}/kucun`).then((res)=>{
+          console.log('kucun',res.data);
+          let qty = payload.qty;
+          let kucun = res.data.data;
+          if(qty > kucun){
+            qty = kucun;
+            this._vm.$message({
+              message: '库存不足',
+              type: 'error'
+            });
+          }
+          context.commit('changeQty',{_id:payload._id,qty})
+        })
+      }
     }
 })
+
+console.log('store',store);
 
 export default store;

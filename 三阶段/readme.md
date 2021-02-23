@@ -1155,3 +1155,55 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
     * 应用：页面访问权限控制
         > 建议在router.beforeEach()全局守卫中处理页面访问权限
+
+## day4-2
+
+### 复习
+* vuex的作用：数据共享
+* 核心配置
+    * state             data
+    * getters           computed
+        * 参数
+            * state
+    * mutations         methods
+        > store.commit(mutation,payload)
+        * 参数
+            * state
+            * payload  
+* 使用步骤
+    1. 安装引入
+    2. 使用
+        > Vue.use()
+    3. 实例化Store
+        ```js
+            const store = new Vuex.Store({
+                // 核心配置
+            })
+        ```
+    4. 注入Vue根实例
+        > 注入后，会给Vue的所有组件添加`$store`
+    5. 使用
+        * this.$store.state
+        * this.$store.getters
+        * this.$store.commit()
+
+### 知识点
+* 核心配置
+    * state             data
+    * getters           computed
+    * mutations         methods
+        > 修改state的唯一方式
+        ```js
+            // 同步操作
+            store.commit('add',goods);
+
+            // 如果数据需要异步获取
+            axios.get('/getgoods').then(res=>{
+                store.commit('add',res.goods);
+            })
+        ```
+    * actions           methods  
+        > 一般用于异步操作，调用方式：store.dispatch(action,payload)
+        1. ajax请求，并返回数据
+        2. 在action中触发mutation
+        
