@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>11.自定义指令</title>
+    <style>
+        body{height:3000px;}
+    </style>
+</head>
+<body>
+    <h1>11.自定义指令</h1>
+    <div id="app">
+        <div v-totop:mouseover="gotoTop">返回顶部</div>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+        // 指令完整格式：v-指令名:参数.修饰符=值
+        // 全局指令：Vue.directive(name,option)
+        Vue.directive('totop',{
+            bind:function(el,binding,vNode){
+                // el: 指令所在的节点
+                // binding：指令信息
+                // 初始化时执行
+                console.log('bind=',el,binding,vNode)
+                // el.style.position = 
+                // el.style.top
+                // el.style.left
+                el.style.cssText = `position:fixed;right:20px;bottom:20px;padding:10px;border:1px solid #ddd;`
+                const type = binding.arg || 'click';
+                el['on'+ type] = function(e){
+
+                    window.scrollTo(0,0)
+                    if(typeof binding.value === 'function')
+                    binding.value();
+                    if(binding.modifiers.stop){
+                        e.stopPropagation();
+                    }
+                    if(binding.modifiers.prevent){
+                        e.preventDefault();
+                    }
+                }
+            },
+            update(el,binding,vNode){
+                // 所在组件更新时执行
+            },
+            inserted(el,binding,vNode){
+                // 元素插入页面时执行
+            }
+        })
+       const vm = new Vue({
+           el:'#app',
+        //    directives:{
+        //        totop:function(){
+                   
+        //        }
+        //    },
+        methods:{
+            gotoTop(){
+                console.log('ok')
+            }
+        }
+       })
+    </script>
+</body>
+</html>

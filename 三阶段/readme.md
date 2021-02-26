@@ -1213,3 +1213,19 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * mapGetters    映射Vuex中的getters到组件的computed
     * mapMutations  映射Vuex中的mutations到组件的methods
     * mapActions    映射Vuex中的actions到组件的methods
+
+## day4-5
+
+### 知识点
+* 组件
+    * 全局：Vue.component(name,options)
+    * 局部：components:{name:options}
+* 过滤器
+    * 全局：Vue.filter(name,definition)
+    * 局部：filters:{name:definition}
+* 指令
+    * 全局：Vue.directive(name,option)
+    * 局部：directives:{name:option}
+    ```js
+        <div v-pre>{{username}}</div>
+    ```
