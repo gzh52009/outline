@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.hash路由的原理</title>
+</head>
+<body>
+    <h1>02.hash路由的原理</h1>
+    <nav>
+        <a href="#/home">首页</a>
+        <a href="#/reg">注册</a>
+        <a href="#/login">登录</a>
+    </nav>
+    <div id="app">
+        <!-- 内容区域 -->
+    </div>
+    <script>
+        /**
+            * 02.hash路由的原理：hashchange事件
+                > 根据浏览器地址不同，页面改变成相应的内容 
+         */
+        const routes = [{
+            path:'/home',
+            content:'<div>首页</div>'
+        },{
+            path:'/reg',
+            content:'<div>注册</div>'
+        },{
+            path:'/login',
+            content:'<div>登录</div>'
+        }]
+        
+        const app = document.querySelector('#app')
+        window.onhashchange = function(){
+            // hash值的改变不会刷新页面，但会执行这里的代码
+            
+            // 获取当前hash值
+            const currentHash = location.hash.slice(1);
+
+            // 根据hash值匹配路由
+            const currentRoute = routes.find(item=>item.path===currentHash)
+
+            app.innerHTML = currentRoute.content;
+        }
+
+    </script>
+    
+</body>
+</html>

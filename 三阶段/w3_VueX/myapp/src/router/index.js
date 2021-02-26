@@ -15,7 +15,7 @@ import store from '../store'
 Vue.use(VueRouter);
 
 const router = new VueRouter({
-    // mode:'hash',
+    mode: process.env.NODE_ENV === 'development' ? 'hash' : 'history',
     routes: [
         {
             path: '/home',

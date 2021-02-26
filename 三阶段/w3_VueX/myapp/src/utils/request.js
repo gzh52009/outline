@@ -4,7 +4,7 @@
 
 import axios from 'axios';
 
-export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:2009': 'http://laoxie.com';
+export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:2009' : 'http://10.175.20.88:2009';
 
 const request = axios.create({
     baseURL: baseURL + '/api'
