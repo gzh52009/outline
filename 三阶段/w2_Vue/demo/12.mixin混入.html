@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12.mixin混入</title>
+    <style>
+        body{height:3000px;}
+    </style>
+</head>
+<body>
+    <h1>12.mixin混入</h1>
+    <div id="app">
+        <data-list></data-list>
+        <my-header></my-header>
+    </div>
+    <template id="datalist">
+        <div>
+            <h4>Datalist</h4>
+            <p>Name：{{name}}</p>
+            <p>Type:{{type}}</p>
+            
+        </div>
+    </template>
+    <template id="myHeader">
+        <div>
+            <h4>myHeader</h4>
+            <p>Name：{{name}}</p>
+            <p>Type:{{type}}</p>
+        </div>
+    </template>
+    <script src="js/vue.js"></script>
+    <script>
+        // 创建全局的mixin影响所有组件
+        Vue.mixin({
+            data(){
+                return {
+                    type:'component'
+                }
+            },
+            computed:{
+
+            },
+            mounted(){
+                console.log('name=',this.name)
+            }
+        })
+        const listMixin = {
+            data(){
+                return {
+                    datalist:[]
+                }
+            },
+            methods:{
+                getData(){
+                    return [10,20,30]
+                }
+            },
+            created(){
+                console.log('listMixin.created')
+                this.datalist = this.getData();
+            }
+        }
+        Vue.component('dataList',{
+            data(){
+                return {
+                    name:"datalist",
+                    // type:'component',
+                    datalist:100
+                }
+            },
+            template:`#datalist`,
+            // render(){
+            // },
+            mixins:[listMixin],
+            created(){
+                console.log('datalist.created',this);
+            }
+        });
+        const vm = new Vue({
+            el:'#app',
+            components:{
+                myHeader:{
+                    data(){
+                        return {
+                            name:'myHeader',
+                            // type:'component'
+                        }
+                    },
+                    template:'#myHeader'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

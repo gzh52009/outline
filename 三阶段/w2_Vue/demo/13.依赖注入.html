@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>13.依赖注入</title>
+</head>
+
+<body>
+    <h1>13.依赖注入</h1>
+    <div id="app">
+        <h4>{{name}}</h4>
+        <data-list></data-list>
+    </div>
+    <template id="datalist">
+        <div>
+            <h4>datalist</h4>
+            <!-- {{userInfo}} -->
+            {{user}}
+            <p>username: {{username}}</p>
+        </div>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            el: '#app',
+            data(){
+                return {
+                    name:'App',
+                }
+            },
+
+            // 父组件向下提供的数据
+            provide:{
+                username:'tiantian',
+                userInfo:{
+                    username:'laoxie',
+                    password:123456
+                }
+            },
+            components: {
+                'dataList': {
+                    data() {
+                        return {
+                            name: "datalist",
+                            // type:'component',
+                            datalist: 100
+                        }
+                    },
+                    template: `#datalist`,
+                    // inject:['userInfo'],
+                    inject:{
+                        user:'userInfo',
+                        username:{
+                            // from:'username',
+                            default:'jingjing'
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

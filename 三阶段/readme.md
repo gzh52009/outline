@@ -1229,3 +1229,58 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     ```js
         <div v-pre>{{username}}</div>
     ```
+* mixin混入
+    * 全局：Vue.mixin()
+    * 局部：mixins
+* provide / inject 依赖注入
+
+    ```js
+        // App.vue
+        export default {
+            data(){
+                return {}
+            },
+            // 父组件使用provide提供依赖
+            provide:{
+                userInfo:{
+                    username:'laoxie',
+                    password:123456
+                }
+            }
+            components:{
+                datalist:{
+                    data(){
+                        return {}
+                    },
+                    //inject:['userInfo'],
+                    inject:{
+                        //user:'userInfo',
+                        user:{
+                            from:'userInfo',
+                            default:{username:'游客',password:123456}
+                        }
+                    },
+                    mounted(){
+                        //this.userInfo
+                        this.user
+                    }
+                }
+            }
+        }
+    ```
+* Vue插件
+    > 插件可以是一个对象（必须提供 install 方法）。也可以是一个函数，它会被作为 install 方法。并把 Vue 作为参数传入
+
+    ```js
+        // 定义一个Vue的插件
+        const myPlugin = {
+            install(){
+
+            }
+        }
+        const myPlugin2 = function(){
+
+        }
+
+        Vue.use(myPlugin)
+    ```
