@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01.react的使用</title>
+</head>
+<body>
+    <h1>01.react的使用</h1>
+    <div id="app">
+        <!-- <div>test</div> -->
+        <!-- <div class="list"><h4>Node</h4></div> -->
+        <!-- <div class="list"><h4>Node</h4><ul><li>data1</li><li>data2</li></ul></div> -->
+    </div>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./js/browser.js"></script>
+    <script type="text/babel">
+
+        const title = <h4>Node</h4>; // React.createElement('h4',null,'Node')
+
+        console.log('title',title);
+        const username = 'laoxie'
+        const style = {color:'#f0'}
+        const userlist = ['laoxie','jingjing','tiantian']
+        const currentUser = {username:'jingjing',password:123,gender:'未知'}
+        const changeUsername = function(){
+
+        }
+        ReactDOM.render(
+            // 渲染节点
+            // React.createElement('div',null,'test')
+            // React.createElement('div',{id:'box',className:'box'},'test')
+            // React.createElement(
+            //     'div',
+            //     {className:'list'},
+            //     React.createElement('h4',null,'Node')
+            // )
+            // React.createElement(
+            //     'div',
+            //     {className:'list'},
+            //     [
+            //         React.createElement('h4',null,'Node'),
+            //         React.createElement('ul',null,[
+            //             React.createElement('li',null,'data1'),
+            //             React.createElement('li',null,'data2')
+            //         ])
+            //     ]
+            // )
+
+            
+            // JSX
+            <div className="list">
+                <h4 title={username} style={{color:'#f00'}}>用户名：{username}</h4>
+                <ul>
+                    <li>data1</li>
+                    <li>data2</li>
+                </ul>
+                <input type="text" value={username} onChange={changeUsername} />
+                <h4>用户列表</h4>
+                <ul>
+                    {
+                        // userlist.map(name=><li key={name}>{name}</li>)
+                        userlist.map(function(name){
+                            return <li key={name}>{name}</li>
+                        })
+                    }
+                </ul>
+                {JSON.stringify(currentUser)}
+            </div>
+            ,
+            // 渲染目标位置
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+</html>

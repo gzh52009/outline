@@ -1274,13 +1274,61 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     ```js
         // 定义一个Vue的插件
         const myPlugin = {
-            install(){
-
+            install(Vue){
+                Vue.golbalData = {}
+                Vue.prototype.$message = function(){
+                    
+                }
+                Vue.component('table',{})
+                Vue.component('form',{
+                    minxins:[]
+                })
+                // ...
+                Vue.mixin()
+                Vue.filter()
+                Vue.directive()
             }
         }
-        const myPlugin2 = function(){
+        const myPlugin2 = function install(Vue){
 
         }
 
-        Vue.use(myPlugin)
+        Vue.use(myPlugin);
+        Vue.use(myPlugin2);
+
+        // element-ui
+        Vue.use(ElementUI);
     ```
+
+## day5-1
+
+### 知识点：React
+* 前端三大框架
+* Angular       Google
+* React         Facebook
+* Vue           
+    * cjs   commonJS
+    * umd   通用模块
+        * AMD/CMD
+        * 全局引入
+        * commonJS
+* 引入
+    * react
+    * react-dom
+    * babel
+* JSX
+    * 不能使用关键字
+        ```js
+            <label htmlFor="username"></label><input id="username">
+        ```
+    * 属性使用驼峰
+    * 必须结束标签
+        ```js
+            <input type="text" />
+            <img src="img/xx.png" />
+        ```
+* 渲染数据的方式
+    * 单向数据绑定：{}
+    * 双向数据绑定：单向+事件
+    * 列表渲染
+    * 事件绑定
