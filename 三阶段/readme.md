@@ -1314,7 +1314,9 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * commonJS
 * 引入
     * react
-    * react-dom
+        > 创建虚拟节点：React.createElement(type,props,children)
+    * react-dom/react-native
+        > 渲染：ReactDOM.render(VNode,target)
     * babel
 * JSX
     * 不能使用关键字
@@ -1332,3 +1334,55 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 双向数据绑定：单向+事件
     * 列表渲染
     * 事件绑定
+        * 事件处理函数
+            > this指向的改变
+        * event
+            > 默认事件处理函数的最后一个参数
+        * 传参
+            > bind
+    * ref
+
+* React组件化开发
+     * 好处
+        * 复用
+        * 分工
+        * 迭代
+    * 分类
+        * 函数组件（无状态组件）
+            > 默认没有this指向
+        * 类组件（状态组件）
+            * state 状态
+                * 读取：this.state.xxx
+                * 修改：this.setState()
+                    > 遵循的原则：不修改原来的数据，而是每次设置一个新的数据, setState为异步操作
+            * 生命周期函数
+            * this
+                > render,construtor,生命周期函数中this默认指向组件实例
+    > 注意：函数组件性能更好，推荐优先使用函数组件，只有在函数组件实现不了时才考虑使用类组件
+
+    * 组件通讯
+        * 父->子：props
+            1. 父组件操作：定义props并传递数据
+            2. 子组件操作：
+                * 函数组件：props为函数的第一个参数
+                * 类组件：
+                    * constructor的第一个参数
+                    * this.props
+        * 子->父：
+            * 把父组件的函数通过props传到子组件中执行，并传递参数
+
+* 状态提升
+    > 把数据提到多个组件共同的父级
+
+* 组件刷新场景
+    1. 组件状态改变时
+    2. props数据修改时
+        > 子组件依赖父组件数据，当父组件数据修改时，子组件同样会刷新
+
+
+* event对象中target与currentTarget的区别
+    * target: 触发事件的元素
+    * currentTarget: 绑定事件的元素
+
+* 受控组件与非受控组件
+    > 表单数据受到组件state的控制

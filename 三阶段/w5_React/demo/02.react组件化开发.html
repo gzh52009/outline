@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02.react组件化开发</title>
+</head>
+<body>
+    <h1>02.react组件化开发</h1>
+    <div id="app"></div>
+    <script src="../node_modules/react/umd/react.development.js"></script>
+    <script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+    <script src="./js/browser.js"></script>
+    <script type="text/babel">
+        /*
+            react组件化开发
+                * 好处
+                    * 复用
+                    * 分工
+                    * 迭代
+                * 函数组件
+                * 类组件
+                    * 必须包含render方法
+                    * 
+
+                * 注意：函数组件性能更好，推荐优先使用函数组件，只有在函数组件实现不了时才考虑使用类组件
+
+        */
+        
+        // function App(){
+        //     return <div>Function App</div>
+        // }
+
+        class App extends React.Component{
+            constructor(){
+                super();
+
+                // 函数组件状态（数据）
+                this.state = {
+                    qty:10
+                }
+            }
+            render(){
+                return (
+                    <div>
+                        Class App
+                        <button>qty:{this.state.qty}</button>
+                    </div>
+                )
+            }
+        }
+
+
+        ReactDOM.render(
+            // 节点 
+            <App/>
+            ,
+            document.querySelector('#app')
+        )
+    </script>
+</body>
+</html>
