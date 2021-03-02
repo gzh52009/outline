@@ -1426,7 +1426,8 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 兄弟
             > 状态提升，把数据提升到他们共同的父级
         * 深层级组件通讯
-            * 逐层传递
+            * 逐层传递（不推荐）
+            * 
 
 * 组件刷新场景
     * 自身数据被修改
@@ -1456,3 +1457,57 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * ref
         * 回调函数
         * React.createRef()
+
+### 知识点
+* 通讯
+    * 父->子：props
+        > 把数据通过props传入子组件
+    * 子->父：
+        > 把方法通过props传入子组件中执行
+    * 兄弟
+        > 状态提升，把数据提升到他们共同的父级
+    * 深层级组件通讯
+        * 逐层传递（不推荐）
+        * Context
+            1. 创建 Context
+                ```js
+                    const myContext = React.createContext(defaultValue)
+                ```
+            2. 父组件 Provider
+                > 父组件共享数据，如没有设置Provider则子组件拿到的是defaultValue
+                ```js
+                    <myContext.Provider value={data}></myContext.Provider>
+                ```
+
+            3. 子组件接收
+                * 函数组件
+                    * Consumer
+                        ```js
+                            <myContext.Consumer>
+                                {
+                                    (value)=>{
+
+                                    }
+                                }
+                            </myContext.Consumer>
+                        ```
+                    * Hook
+                * 类组件
+                    * Consumer
+                    * contextType
+                        1. 给类组件设置静态属性：子组件.contextType=myContext
+                        2. 通过this.context获取数据
+                        ```js
+                            TodoForm.contextType = myContext
+
+                            // 在组件的任意位置通过this.context获取
+                        ```
+
+
+
+* 构建工具
+    * gulp
+        > 基于任务的构建工具
+    * webpack
+        > 基于配置的构建工具
+* npm script
