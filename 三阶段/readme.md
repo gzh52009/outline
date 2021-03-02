@@ -1341,6 +1341,8 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 传参
             > bind
     * ref
+        * 回调函数（推荐）
+        
 
 * React组件化开发
      * 好处
@@ -1386,3 +1388,71 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
 * 受控组件与非受控组件
     > 表单数据受到组件state的控制
+
+
+## day5-2
+
+### 复习
+* react
+    * React.createElement()
+* react-dom
+    * ReactDOM.render(vNode,target)
+* JSX
+    > 需要babel进行编译，最终会编译成React.createElement()
+    * script.type='text/babel'
+    * 规则
+        * 闭合标签
+        * 使用{}绑定数据
+        * style必须使用对象
+        * 只允许一个根元素
+        * 不能使用js关键字
+        * 属性必须使用驼峰
+* 组件
+    * 分类
+        * 函数组件（无状态组件）
+        * 类组件（状态组件）
+            * state     状态
+                * 获取：this.state.xxx
+                * 设置：
+                    * this.setState(newState,callback)
+                    * this.setState((prevState)=>({}))
+            * 生命周期
+            * this
+    * 通讯
+        * 父->子：props
+            > 把数据通过props传入子组件
+        * 子->父：
+            > 把方法通过props传入子组件中执行
+        * 兄弟
+            > 状态提升，把数据提升到他们共同的父级
+        * 深层级组件通讯
+            * 逐层传递
+
+* 组件刷新场景
+    * 自身数据被修改
+    * 父组件传入的数据被修改
+
+* 数据渲染方式
+    * 数据绑定
+        * 单向：{}
+        * 双向: 单向+事件
+    * 显示html内容
+        ```js
+            <div dangerouslySetInnerHTML={{__html:htmlContent}}>
+        ```
+    * 列表循环
+        * 常用方法
+            * map
+            * filter
+        * key
+    * 事件绑定
+        > 事件使用驼峰
+        * 事件处理函数
+            * 改变this指向(建议在初始化时改变)
+        * event
+            > 事件处理函数的最后一个参数
+        * 传参
+            > 利用bind进行传参
+    * ref
+        * 回调函数
+        * React.createRef()

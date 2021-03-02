@@ -43,7 +43,8 @@
                         complete: false,
                         checked: false,
                         addtime: Date.now() + 360 * 1000
-                    }]
+                    }],
+                    test:"<strong>abcd</strong>efg"
                 }
 
                 // 改变this指向
@@ -51,6 +52,7 @@
                 this.removeItem = this.removeItem.bind(this)
                 this.completeItem = this.completeItem.bind(this)
                 this.selectItem = this.selectItem.bind(this)
+                this.selectAll = this.selectAll.bind(this)
             }
 
             // 写在这里的方法自定称为原型方法，自定义函数默认没有this指向（this为undefined）
@@ -81,20 +83,49 @@
                 })
 
             }
-            completeItem(){
-
+            completeItem(id){
+                let {todolist} = this.state;
+                let newTodolist = todolist.map(item=>{
+                    if(item.id === id){
+                        item.complete = !item.complete
+                    }
+                    return item;
+                })
+                this.setState({
+                    todolist:newTodolist
+                })
             }
-            selectItem(){
-
+            selectItem(id){
+                let {todolist} = this.state;
+                let newTodolist = todolist.map(item=>{
+                    if(item.id === id){
+                        item.checked = !item.checked
+                    }
+                    return item;
+                })
+                this.setState({
+                    todolist:newTodolist
+                })
+            }
+            selectAll(e){
+                let {todolist} = this.state;
+                let newTodolist = todolist.map(item=>{
+                    item.checked = e.target.checked
+                    return item;
+                })
+                this.setState({
+                    todolist:newTodolist
+                })
             }
             render() {
                 console.log('TodoList=',this);
                 const {todolist} = this.state;
+                
                 return (
                     <div className="todolist container">
                         <h4>待办事项</h4>
                         <TodoForm addItem={this.addItem} />
-                        <TodoContent todolist={todolist} removeItem={this.removeItem} />
+                        <TodoContent todolist={todolist} removeItem={this.removeItem} completeItem={this.completeItem} selectItem={this.selectItem} selectAll={this.selectAll} />
                     </div>
                 )
             }
@@ -140,12 +171,15 @@
                 )
             }
         }
-        function TodoContent({todolist,removeItem}) {
+        function TodoContent({todolist,removeItem,completeItem,selectItem,selectAll}) {
+            const checkAll = todolist.every(item=>item.checked);
+            const completeList = todolist.filter(item=>item.complete);
+            const unCompleteList = todolist.filter(item=>!item.complete);
             return (
                 <table className="table">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" />全选</th>
+                            <th><input type="checkbox" checked={checkAll} onChange={selectAll} />全选</th>
                             <th>#</th>
                             <th>代办事项</th>
                             <th>添加时间</th>
@@ -156,14 +190,14 @@
                     <tbody>
                         {
                             todolist.map((item, idx) => (
-                                <tr key={item.id}>
-                                    <td><input type="checkbox" /></td>
+                                <tr key={item.id} className={item.complete ? 'table-success':''} onClick={selectItem.bind(null,item.id)}>
+                                    <td><input type="checkbox" checked={item.checked} /></td>
                                     <td>{idx + 1}</td>
                                     <td>{item.todo}</td>
                                     <td>{item.addtime}</td>
                                     <td>{item.complete ? '是' : '否'}</td>
                                     <td>
-                                        <button type="button" className="btn btn-sm btn-outline-success">完成</button>
+                                        <button type="button" className="btn btn-sm btn-outline-success" onClick={completeItem.bind(null,item.id)}>完成</button>
                                         <button type="button" className="btn btn-sm btn-outline-danger" onClick={removeItem.bind(null,item.id)}>删除</button>
                                     </td>
                                 </tr>
@@ -171,18 +205,14 @@
                         }
 
                     </tbody>
-                    {
-                        /*
+
                             <tfoot>
                                 <tr>
                                     <td colspan="6">
-                                        待办事项：{list.length}，完成：{completeList.length}，未完成：{unCompleteList.length}
+                                        待办事项：{todolist.length}，完成：{completeList.length}，未完成：{unCompleteList.length}
                                     </td>
                                 </tr>
                             </tfoot>
-                        */
-                    }
-
                 </table>
             )
         }
