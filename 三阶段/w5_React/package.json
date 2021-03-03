@@ -20,11 +20,13 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.13.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server",
-    "build": "webpack",
+    "dev": "webpack-dev-server --progress",
+    "build": "webpack --progress",
     "start": "npm run dev"
   },
   "keywords": [],

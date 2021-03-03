@@ -1502,12 +1502,56 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
                             // 在组件的任意位置通过this.context获取
                         ```
-
-
-
 * 构建工具
     * gulp
         > 基于任务的构建工具
     * webpack
         > 基于配置的构建工具
 * npm script
+
+
+## day5-3
+
+### 复习
+* Context
+    1. 创建context: React.createContext(defaultValue)
+    2. 父组件Provider共享
+        > value属性共享数据
+    3. 子组件接收
+        * 函数组件
+            * Consumer
+            * Hook
+        * 类组件
+            * Consumer
+            * contextType
+                > 给子组件设置contextType静态属性，通过this.context
+* webpack
+    * gulp与webpack的区别
+    * webpack.config.js
+    * 常用配置
+        * entry
+        * output
+        * devSever
+            > webpack-dev-server
+        * loader
+            > module.rules
+        * plugins
+    * 配置react环境
+        * react + react-dom
+        * @babel/preset-react + babel-loader + @babel/core
+        * webpack + webpack-cli + webpack-dev-server + html-webpack-plugin
+    * 配置vue环境
+        * vue
+        * vue-loader + vue-template-compiler
+        * webpack + webpack-cli + webpack-dev-server + html-webpack-plugin
+    * 常用loader
+        * babel-loader
+            > @babel/core
+        * css-loader
+        * style-loader
+        * sass-loader
+            > node-sass
+        * url-loader
+            > file-loader
+        * vue-loader
+            > vue-template-compiler

@@ -35,17 +35,22 @@ module.exports = {
         // }
     },
 
+    // 默认扩展名
+    resolve:{
+        extensions:['.js','.jsx']
+    },
+
     // 4.加载器loader
     module:{
         rules:[
             // js加载器
             {
-                test:/\.js$/,
+                test:/\.jsx?$/,
                 use:{
                     loader:'babel-loader',
                     options:{
                         presets:['@babel/preset-react'], // 插件集合
-                        // plugins:[]
+                        plugins:['@babel/plugin-proposal-class-properties']
                     }
                 }
             },
