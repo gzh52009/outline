@@ -1567,17 +1567,94 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * hash路由: `<HashRouter/>`
     * history路由: `<BrowserRouter/>`
 * 路由配置
-    * <Route/>
-    * <Redirect/>
-    * <Switch>
+    * `<Route/>`
+        * path
+        * component
+        * render
+        * exact
+    * `<Redirect/>`
+        * from
+        * to
+        * exact
+    * `<Switch/>`
 * 路由跳转（导航）
     * 声明式导航
-        * <Link>
-        * <NavLin>
+        * `<Link/>`
             * to
             * replace
+        * `<NavLink/>`
+            * to
+            * replace
+            * activeClassName
+            * activeStyle
     * 编程式导航：history,location,match
         * 跳转方式
             * history.push()    跳转并保留记录
             * history.replace() 跳转不保留记录
+            * history.back()
+            * history.forward()
+            * history.go()
         * 如何获取history对象
+            * 通过Route.component渲染组件
+                > props.history
+            * 通过`withRouter`高阶组件
+* 高阶组件HOC
+    * 特点
+        * 高阶组件是一个**纯函数**
+        * 高阶组件的参数为React组件，返回值为新组件
+        * 高阶组件是一种设计模式，类似于**装饰器模式**
+    * 定义高阶组件
+        * 方式一：属性代理
+            > 通过props传入组件需要的数据（注意：必须传递原来的props）
+            ```js
+                // 需求：获取本地存储中的用户信息
+
+                let userInfo = localStorage.getItem('userInfo');
+                try{
+                    userInfo = JSON.parse(userInfo) || {}
+                }catch(err){
+                    userInfo = {}
+                }
+                this.setState({
+                    userInfo
+                })
+
+                // 封装一个高阶组件把用户信息传入需要的组件
+                function withUser(InnerComponent){
+                    return function OuterComponent(){
+                        let userInfo = localStorage.getItem('userInfo');
+                        try{
+                            userInfo = JSON.parse(userInfo) || {}
+                        }catch(err){
+                            userInfo = {}
+                        } 
+                        return (
+                            <InnerComponent userInfo={userInfo} />
+                        )
+                    }
+                }
+
+                App = withUser(App);
+            ```
+* 纯函数: 
+    1. 不修改传入参数
+    2. 固定输入有固定输出
+    ```js
+        // sum为纯函数
+        function sum(a,b){
+            return a+b;
+        }
+        sum(1,2);//3
+        sum(1,2);//3
+
+        // 以下不是纯函数
+        function randomNumber(min,max){
+            return Math.random()*(max-min+1)+min;
+        }
+
+        function getData(url,data){
+            id(data.id){
+                data.id = ObjectId(data.id)
+            }
+        }
+    ```

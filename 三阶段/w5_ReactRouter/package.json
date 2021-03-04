@@ -9,6 +9,7 @@
   "dependencies": {
     "@babel/core": "^7.13.8",
     "@babel/preset-react": "^7.12.13",
+    "antd": "^4.13.0",
     "babel-loader": "^8.2.2",
     "bootstrap": "^4.6.0",
     "css-loader": "^5.1.1",
@@ -26,7 +27,8 @@
     "webpack-dev-server": "^3.11.2"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.13.0"
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-decorators": "^7.13.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

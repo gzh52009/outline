@@ -31,13 +31,16 @@ module.exports = {
             // js加载器
             {
                 test:/\.jsx?$/,
-                use:{
+                use:[{
                     loader:'babel-loader',
                     options:{
                         presets:['@babel/preset-react'], // 插件集合
-                        plugins:['@babel/plugin-proposal-class-properties']
+                        plugins:[
+                            ['@babel/plugin-proposal-decorators',{legacy:true}],
+                            ['@babel/plugin-proposal-class-properties',{ loose: false }]
+                        ]
                     }
-                }
+                }]
             },
             // css加载器：css-loader + style-loader
             {

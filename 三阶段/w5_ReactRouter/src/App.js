@@ -5,6 +5,11 @@ import {Route,Switch,Redirect,Link,NavLink,withRouter} from 'react-router-dom'
 import Home from './views/Home'
 import Reg from './views/Reg'
 import Login from './views/Login'
+import Mine from './views/Mine'
+
+import {withUser} from './utils/hoc';
+
+import 'antd/dist/antd.css';
 
 function App(props){
     console.log('App.props',props);
@@ -35,7 +40,7 @@ function App(props){
                 {/* 路由配置 */}
                 <Switch>
                     <Route path="/home" component={Home}/>
-                    <Route path="/mine" render={()=><div>Mine</div>}/>
+                    <Route path="/mine" component={Mine} />
                     <Route path="/reg" component={Reg}/>
                     {/* <Route path="/login" component={Login}/> */}
                     <Route path="/login">
@@ -55,6 +60,7 @@ function App(props){
     )
 }
 
-App = withRouter(App)
+// App = withRouter(App)
+App = withUser(App)
 
 export default App;
