@@ -1540,10 +1540,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * react + react-dom
         * @babel/preset-react + babel-loader + @babel/core
         * webpack + webpack-cli + webpack-dev-server + html-webpack-plugin
-    * 配置vue环境
-        * vue
-        * vue-loader + vue-template-compiler
-        * webpack + webpack-cli + webpack-dev-server + html-webpack-plugin
+    
     * 常用loader
         * babel-loader
             > @babel/core
@@ -1555,3 +1552,32 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             > file-loader
         * vue-loader
             > vue-template-compiler
+### 知识点
+* 配置vue环境
+    * vue
+    * vue-loader + vue-template-compiler
+    * webpack + webpack-cli + webpack-dev-server + html-webpack-plugin
+* 图片路径问题
+
+
+## day5-4
+
+### 知识点
+* 路由类型
+    * hash路由: `<HashRouter/>`
+    * history路由: `<BrowserRouter/>`
+* 路由配置
+    * <Route/>
+    * <Redirect/>
+    * <Switch>
+* 路由跳转（导航）
+    * 声明式导航
+        * <Link>
+        * <NavLin>
+            * to
+            * replace
+    * 编程式导航：history,location,match
+        * 跳转方式
+            * history.push()    跳转并保留记录
+            * history.replace() 跳转不保留记录
+        * 如何获取history对象
