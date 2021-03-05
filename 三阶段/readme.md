@@ -1658,3 +1658,38 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             }
         }
     ```
+* 函数柯里化
+
+
+## day5-5
+
+### 复习
+* ReactRouter
+    * 常用组件
+        * <HashRouter>/<BrowserRouter>
+        * <Route> / <Redirect> / <Switch>
+        * <Link> / <NavLink>
+    * 导航
+        * 声明式导航
+        * 编程式导航
+            > history,location,match
+            * Route.component
+            * withRouter
+* 高阶组件HOC
+    * 定义
+        > 命名规则：with
+        * 属性代理
+        * 反向继承
+            * super
+    * 应用
+        * 属性代理
+        * 公共代码封装
+        * 权限管理
+    * ES7装饰器
+        > @
+        @babel/plugin-proposal-decorators
+* ant-design
+
+### 知识点
+* fetch 
+    * 封装fetch请求

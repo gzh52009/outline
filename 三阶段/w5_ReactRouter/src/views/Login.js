@@ -10,10 +10,28 @@ const layout = {
     wrapperCol: { offset: 6, span: 16 },
   };
 
-function Login(props){
+function Login(props){console.log('Login.props',props)
     const onFinish = (values) => {
         console.log('Success:', values);
-        props.history.replace('/mine')
+        fetch('/api/login',{
+            body: JSON.stringify(values), // must match 'Content-Type' header
+            headers: {
+            'content-type': 'application/json'
+            },
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+   
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            console.log('data',data);
+            if(data.code === 200){
+                localStorage.setItem('userInfo',JSON.stringify(data.data))
+                props.history.replace('/mine')
+
+            }
+        });
       };
     return (
         <Form

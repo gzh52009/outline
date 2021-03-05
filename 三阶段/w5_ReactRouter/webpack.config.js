@@ -18,6 +18,12 @@ module.exports = {
     devServer:{
         // 配置web服务器根目录
         contentBase:path.join(__dirname,'public'),
+        proxy:{
+            '/api':{
+                target:'http://120.76.247.5:2020',
+                changeOrigin: true,
+            }
+        }
     },
 
     // 默认扩展名
