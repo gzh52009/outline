@@ -7,6 +7,7 @@ import Reg from './views/Reg'
 import Login from './views/Login'
 import Mine from './views/Mine'
 import Classlist from './views/Classlist'
+import ClassDetail from './views/ClassDetail'
 
 import { withUser } from './utils/hoc';
 import { Menu, Layout,Row,Col,Button } from 'antd';
@@ -88,6 +89,7 @@ class App extends React.Component{
                     <Switch>
                         <Route path="/home" component={Home} />
                         <Route path="/classlist" component={Classlist} />
+                        <Route path="/class/:id" component={ClassDetail} />
                         <Route path="/mine" component={Mine} />
                         <Route path="/reg" component={Reg} />
                         {/* <Route path="/login" component={Login}/> */}

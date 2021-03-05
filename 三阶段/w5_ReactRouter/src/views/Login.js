@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { Form, Input, Button, Checkbox } from 'antd';
-
+import querystring from 'querystring';
+console.log('querystring=',querystring)
 const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 16 },
@@ -33,11 +34,14 @@ function Login(props){console.log('Login.props',props)
             }
         });
       };
+
+      const query = querystring.parse(props.location.search.slice(1));
+      console.log(props.location.search,query)
     return (
         <Form
         {...layout}
         name="basic"
-        initialValues={{ remember: true }}
+        initialValues={{ remember: true,username:query.username }}
         onFinish={onFinish}
         >
         <Form.Item

@@ -1693,3 +1693,18 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 ### 知识点
 * fetch 
     * 封装fetch请求
+
+* 路由传参
+    * search
+        > 能实现数据持久化，利用querystring模块处理
+        * 获取方式：props.location.search
+    * 动态路由
+        > 能实现数据持久化，
+        * 获取方式：props.match.params
+    * state
+        > 刷新页面后数据消失
+        * 获取方式：props.location.state
+    * 自定数据
+        > 刷新页面后数据消失
+        * 获取方式：props.location
+        
