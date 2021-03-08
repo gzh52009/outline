@@ -1708,3 +1708,10 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         > 刷新页面后数据消失
         * 获取方式：props.location
         
+## day6-1
+
+### 复习
+* XMLHttpRequest与fetch
+
+### 知识点
+* webpack路径别名:resolve.alias

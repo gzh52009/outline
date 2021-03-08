@@ -28,6 +28,11 @@ module.exports = {
 
     // 默认扩展名
     resolve:{
+        alias:{
+            // 只支持绝对路径
+            '@':path.resolve('./src'),
+            '@u':path.resolve('./src/utils')
+        },
         extensions:['.js','.jsx']
     },
 
@@ -37,6 +42,10 @@ module.exports = {
             // js加载器
             {
                 test:/\.jsx?$/,
+
+                // 设置编译/不编译目录（只能使用绝对路径）
+                include:path.resolve('./src'),
+                // exclude:'./node_modules',
                 use:[{
                     loader:'babel-loader',
                     options:{
