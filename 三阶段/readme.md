@@ -1715,3 +1715,49 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
 ### 知识点
 * webpack路径别名:resolve.alias
+* 嵌套路由
+* 路由监听
+
+* React生命周期
+    * 生命周期函数（钩子函数）
+        > 搞懂2点：
+        1. 如何执行
+        2. 适合做什么操作
+    * 阶段
+        * 初始化阶段
+            * constructor
+            ```js
+                constructor(props){
+                    super(props)
+                    this.state = {}
+                }
+            ```
+        * 挂载阶段
+            * componentWillMount（不推荐，改名为：UNSAFE_*）
+            * componentDidMount
+        * 更新阶段
+            * componentWillUpate（不推荐，改名为：UNSAFE_*）
+            * componentDidUpdate
+                * prevProps     更新前的props
+                * prevState     更新前的state
+        * 销毁阶段 
+            * componentWillUnmount
+        * 特殊生命周期函数
+            * shouldComponentUpdate: 一般用于优化新能
+                * nextProps 将要改变的props
+                * nextState 将要改变的state
+            * componentWillReceiveProps(nextProps) （不推荐，改名为：UNSAFE_*）
+* React组件刷新场景
+    * props改变
+    * state改变
+    * 父组件刷新
+        > 利用PureComponent优化
+    * 强制刷新：this.forceUpdate()
+
+* React.Component与React.PureComponent
+    * PureComponent是做shouldComponentUpdate优化的组件，所以继承自它的组件不能再写shouldComponentUpdate
+
+* props类型校验
+    > 需要prop-types模块，并设置propTypes静态属性
+* props默认值
+    > 需要设置defaultProps静态属性

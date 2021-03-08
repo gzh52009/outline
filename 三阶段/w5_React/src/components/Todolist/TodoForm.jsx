@@ -60,6 +60,5 @@ class TodoForm extends React.Component{
 }
 // TodoForm.contextType = myContext;
 
-console.dir(TodoForm);
 
 export default TodoForm;

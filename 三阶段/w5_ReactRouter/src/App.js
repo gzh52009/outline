@@ -6,7 +6,7 @@ import Home from './views/Home'
 import Reg from './views/Reg'
 import Login from './views/Login'
 import Mine from './views/Mine'
-import Classlist from './views/Classlist'
+import Classlist from './views/ClassList'
 import ClassDetail from './views/ClassDetail'
 
 import { withUser } from './utils/hoc';
