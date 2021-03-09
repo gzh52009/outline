@@ -1717,6 +1717,11 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * webpack路径别名:resolve.alias
 * 嵌套路由
 * 路由监听
+    ```js
+        history.listen((location)=>{
+
+        })
+    ```
 
 * React生命周期
     * 生命周期函数（钩子函数）
@@ -1761,3 +1766,53 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     > 需要prop-types模块，并设置propTypes静态属性
 * props默认值
     > 需要设置defaultProps静态属性
+
+## day6-2
+
+### 复习
+* 生命周期
+    * 初始化阶段
+        * constructor(props)
+    * 挂载阶段
+        * UNSAFE_componentWillMount
+        * componentDidMount
+    * 更新阶段
+        * UNSAFE_componentWillUpdate(nextProps,nextState)
+        * componentDidUpdate(prevProps,prevState)
+    * 销毁阶段
+        * componentWillUnmount
+    * 特殊阶段
+        * UNSAFE_componentWillReceiveProps(nextProps)
+        * shouldComponentUpdate(nextProps,nextState)
+* 组件刷新场景
+    > 所谓刷新，其实就是执行render函数
+    * props改变
+    * state改变
+    * 父组件刷新：一般会对这种情况进行优化
+    * 强制刷新：this.foreUpdate()
+* 性能优化
+    * shouldComponentUpdate
+    * PureComponent
+* props校验
+    > prop-types
+* props默认
+### 知识点
+* redux
+    * 核心
+        * store: 数据仓库（用于存放共享数据）
+        * state: 状态（数据）
+        * reducer: 一个用于更新state的方式
+            > 是一个纯函数，接收state与action两个参数，必须返回一个新的state（不修改原来的state）
+        * action: 修改state的命令/动作
+            > 格式：{type:'login',payload}
+
+    * 使用步骤
+        1. 创建数据仓库
+            ```js
+                const {createStore} from 'redux'
+                const store = createStore(reducer,initState)
+            ```
+        2. 操作
+            * 获取state: store.getState()
+            * 修改state: store.dispatch(action)
+            * 监听state: store.subscribe(()=>{})
