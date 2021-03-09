@@ -1816,3 +1816,43 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             * 获取state: store.getState()
             * 修改state: store.dispatch(action)
             * 监听state: store.subscribe(()=>{})
+
+    ```js
+        // 安装
+        // npm i redux
+        // 引入
+        import {createStore} from 'redux'
+
+        const initState = {
+            userInfo:{}
+        }
+        const reducer = function(state,action){
+            switch(action.type){
+                case "login":
+                   return {
+                       ...state,
+                       userInfo:action.user
+                   } 
+            }
+        }
+        const store = createStore(reducer,initState);
+
+        // 修改state
+        const action = {type:"login", user:{username:'laoxie',password:123}}
+        store.dispatch(action)
+    ```
+    > 结论：react与redux是两个独立的产品，我们需要redux解决react组件数据共享问题
+    1. 多个组件能共享redux上的数据
+    2. 当数据有修改时react组件能实现刷新
+
+* withRedux高阶组件封装
+
+* react-redux桥接工具
+    * `<Provider/>`: 利用Context技术传输数据
+    * `connect()`: 利用高阶组件代理组件数据
+
+    * 使用步骤
+        1. 安装引入
+        2. 使用`<Provider>`组件共享store
+        3. 使用`connect()`高阶组件定义props数据
+        4. React组件通过props获取/修改redux数据

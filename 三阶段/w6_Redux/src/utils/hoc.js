@@ -1,5 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+import store from '@/store';
 
 export function withUser(InnerComponent){
     return function OuterComponent (props){
@@ -77,3 +78,26 @@ export function withAuth(InnerComponent){
     return OuterComponent;
 }
 
+
+const state = store.getState();
+export function withRedux(InnerComponent){
+    return class OuterComponent extends React.Component{
+        state = {
+            storeData:state
+        }
+        componentDidMount(){
+
+            store.subscribe(()=>{
+                const state = store.getState();
+                this.setState({
+                    storeData:state    
+                });
+            })
+
+        }
+        render(){
+            const {storeData}= this.state;
+            return <InnerComponent dispatch={store.dispatch} {...storeData} {...this.props} />
+        }
+    }
+}

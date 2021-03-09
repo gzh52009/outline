@@ -9,12 +9,14 @@ import Mine from './views/Mine'
 import Classlist from './views/ClassList'
 import ClassDetail from './views/ClassDetail'
 
-import { withUser } from './utils/hoc';
-import { Menu, Layout,Row,Col,Button } from 'antd';
-import { HomeOutlined, UserOutlined,UnorderedListOutlined } from '@ant-design/icons'
+import { withUser, withRedux } from './utils/hoc';
+import { Menu, Layout, Row, Col, Button } from 'antd';
+import { HomeOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons'
+import {connect} from 'react-redux';
 import 'antd/dist/antd.css';
 
-class App extends React.Component{
+@withRedux
+class App extends React.Component {
     state = {
         menu: [{
             path: '/home',
@@ -25,7 +27,7 @@ class App extends React.Component{
             path: '/classlist',
             text: '班级',
             icon: <UnorderedListOutlined />
-        }, 
+        },
         // {
         //     path: '/reg',
         //     text: '注册'
@@ -35,56 +37,78 @@ class App extends React.Component{
             text: '我的',
             icon: <UserOutlined />
         }],
-        current: '/home'
+        current: '/home',
     }
-    changeMenu = ({ item, key, keyPath, domEvent })=> {
-        console.log('changeMenu',item, key)
+    changeMenu = ({ item, key, keyPath, domEvent }) => {
+        console.log('changeMenu', item, key)
         this.props.history.push(key);
         this.setState({
-            current:key
+            current: key
         })
 
     }
-    goto = (path)=>{
-        const {history} = this.props;
+    goto = (path) => {
+        const { history } = this.props;
         history.push(path);
     }
-    UNSAFE_componentWillMount(){
-        console.log('componentDidMount=',this.props)
-        const {pathname} = this.props.location
+    UNSAFE_componentWillMount() {
+        console.log('componentDidMount=', this.props)
+        const { pathname } = this.props.location
         this.setState({
-            current:pathname
+            current: pathname
         })
     }
+    // componentDidMount(){
+    //     const userInfo = store.getState();
+    //     this.setState({
+    //         userInfo
+    //     })
+    //     store.subscribe(()=>{
+    //         const state = store.getState();
+    //         console.log('subscribe',state)
+    //         this.setState({
+    //             userInfo:state.userInfo
+    //         })
+    //     })
+
+    // }
+
     render() {
+        const { logout,user } = this.props;
+        const { menu, current } = this.state;
+
         console.log('App.props', this.props);
-        
-        const {menu,current} = this.state;
-        
         return (
             <Layout>
-                <Layout.Header style={{padding:0}}>
+                <Layout.Header style={{ padding: 0 }}>
                     <Row>
                         <Col span={16}>
                             <Menu onClick={this.changeMenu} selectedKeys={[current]} mode="horizontal" theme="dark">
-                            {
-                                menu.map(item => (
-                                    //<li key={item.path}><NavLink to={item.path} activeStyle={{color:'#f00',fontSize:20}}>{item.text}</NavLink></li>
-                                    <Menu.Item key={item.path} icon={item.icon}>
-                                        {item.text}
-                                    </Menu.Item>
-                                ))
-                            }
-                        </Menu>
+                                {
+                                    menu.map(item => (
+                                        <Menu.Item key={item.path} icon={item.icon}>
+                                            {item.text}
+                                        </Menu.Item>
+                                    ))
+                                }
+                            </Menu>
                         </Col>
-                        <Col span={8} style={{textAlign:'right'}}>
-                            <Button type="link" onClick={this.goto.bind(null,'/reg')}>注册</Button>
-                            <Button type="link" onClick={this.goto.bind(null,'/login')}>登录</Button>
+                        <Col span={8} style={{ textAlign: 'right' }}>
+                            {
+                                user.authrization ?
+                                    <Button type="link" onClick={logout}>{user.username} 退出</Button>
+                                    :
+                                    <>
+                                        <Button type="link" onClick={this.goto.bind(null, '/reg')}>注册</Button>
+                                        <Button type="link" onClick={this.goto.bind(null, '/login')}>登录</Button>
+                                    </>
+                            }
+
                         </Col>
                     </Row>
-                    
+
                 </Layout.Header>
-                <Layout.Content style={{padding:20}}>
+                <Layout.Content style={{ padding: 20 }}>
                     {/* 路由配置 */}
                     <Switch>
                         <Route path="/home" component={Home} />
@@ -109,12 +133,27 @@ class App extends React.Component{
                 </Layout.Content>
                 <Layout.Footer>Footer</Layout.Footer>
             </Layout>
-    
+
         )
     }
 }
 
 App = withRouter(App)
-// App = withUser(App)
+
+// mapStateToProps：用于定义传入组件的数据
+const mapStateToProps = function(state){
+    return {
+        user:state.userInfo
+    }
+}
+// mapDispatchToProps: 用于定义修改state的方法
+const mapDispatchToProps = function(dispatch){
+    return {
+        logout(){
+            dispatch({type:'logout'})
+        }
+    }
+}
+App = connect(mapStateToProps,mapDispatchToProps)(App)
 
 export default App;

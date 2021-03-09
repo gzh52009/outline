@@ -2,7 +2,9 @@ import React from 'react'
 
 import { Form, Input, Button, Checkbox } from 'antd';
 import querystring from 'querystring';
-console.log('querystring=',querystring)
+import { withRedux } from '../utils/hoc';
+import {connect} from 'react-redux'
+
 const layout = {
     labelCol: { span: 6 },
     wrapperCol: { span: 16 },
@@ -11,7 +13,7 @@ const layout = {
     wrapperCol: { offset: 6, span: 16 },
   };
 
-function Login(props){console.log('Login.props',props)
+function Login(props){
     const onFinish = (values) => {
         console.log('Success:', values);
         fetch('/api/login',{
@@ -28,9 +30,11 @@ function Login(props){console.log('Login.props',props)
         .then(function(data) {
             console.log('data',data);
             if(data.code === 200){
-                localStorage.setItem('userInfo',JSON.stringify(data.data))
+                
+                // props.dispatch({type:'login',user:data.data})
+                props.login(data.data)
                 props.history.replace('/mine')
-
+                
             }
         });
       };
@@ -72,4 +76,14 @@ function Login(props){console.log('Login.props',props)
         </Form>
     )
 }
+// Login = withRedux(Login)
+Login = connect(state=>{
+    return {}
+},dispatch=>{
+    return {
+        login(user){
+            dispatch({type:'login',user})
+        }
+    }
+})(Login)
 export default Login;
