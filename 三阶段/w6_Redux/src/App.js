@@ -142,8 +142,9 @@ App = withRouter(App)
 
 // mapStateToProps：用于定义传入组件的数据
 const mapStateToProps = function(state){
+    console.log('state==',state);
     return {
-        user:state.userInfo
+        user:state.user.userInfo
     }
 }
 // mapDispatchToProps: 用于定义修改state的方法

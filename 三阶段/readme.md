@@ -1856,3 +1856,80 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         2. 使用`<Provider>`组件共享store
         3. 使用`connect()`高阶组件定义props数据
         4. React组件通过props获取/修改redux数据
+
+
+## day6-3
+
+### 复习
+* redux 状态管理工具
+    * 核心
+        * store
+        * reducer: 是一个纯函数，并返回一个新的state
+        * state
+    * 使用步骤
+        ```js
+            // 1. 引入
+            import {createStore} from 'redux'
+
+            // 2. 创建
+            const reducer = function(state,action){
+                switch(action.type){
+                    case 'login':
+                        let newState = {
+                            ...state,
+                            userInfo:action.user
+                        }
+                        return newState;
+                    default:
+                        return state;
+                }
+            }
+
+            // 初始化state（模块化后，建议在各自的reducer中定义自己的初始化state）
+            const initState = {
+                userInfo:{}
+            }
+            const store = createStore(reducer,initState);
+
+            // 3. 操作：获取，修改，监听
+            // 获取最新状态
+            store.getState();
+
+            // 修改状态
+            const action = {type:'login'}
+            store.dispatch(action)
+
+            // 监听
+            store.subscribe(()=>{
+                // 当state有修改时执行这里的代码
+            })
+            store.subscribe(()=>{
+                // 当state有修改时执行这里的代码
+            })
+        ```
+    * redux与react是两个独立产品
+        > 如何连接react组件与redux
+        * 方式一：把监听代码写到react组件中，在state更新时修改组件的state（不推荐）
+            > 利用state改变刷新组件
+        * 方式二：利用高阶组件把方式一中的代码提取到高阶组件中执行
+            > 利用props改变刷新组件
+        * 方式三：react-redux桥接工具
+            > 利用Context+HOC实现
+            * `<Provider store/>`
+            * `connect(mapStateToProps,mapDispatchToProps)`
+
+## 知识点
+* redux模块化
+    * reducer模块化
+    * state模块化
+    * 合并
+        > 通过`combineReducers()`把多个reducer合并成一个大的Reducer
+
+    > 注意：模块化后，影响state的获取，但不影响修改和监听操作
+* 简化版redux
+* redux三大基本原则
+    1. 唯一数据源：整个应用只能有一个store
+    2. 只有store能改变自己的内容
+        >store.dispatch()
+    3. Reducer必须是一个纯函数
+        > 不修改传入的参数（state,action），且返回新的state
