@@ -1927,9 +1927,71 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
     > 注意：模块化后，影响state的获取，但不影响修改和监听操作
 * 简化版redux
+    > 了解redux工作流程
 * redux三大基本原则
     1. 唯一数据源：整个应用只能有一个store
     2. 只有store能改变自己的内容
         >store.dispatch()
     3. Reducer必须是一个纯函数
         > 不修改传入的参数（state,action），且返回新的state
+* Action Creator
+    > 一个用于创建action的函数
+    * bindActionCreators
+        > 会把actionCreator模块中默认导出（export default）的所有方法绑定到组件props并自动隐式调用dispatch(action)
+
+* redux中间件
+    > 中间件是一个函数
+    * 用用中间件
+        * redux-thunk
+        * redux-promise
+        * redux-saga
+    * Generator     生成器函数
+    * Iterator      迭代器
+    ```js
+        function sum(){
+
+        }
+        sum();// undefined
+        new sum();//object
+
+        async function sum(){
+
+        }
+        sum();// promise
+
+        function * sum(){
+
+        }
+        sum();//得到一个迭代器Iterator
+
+        //for...
+        //for...in
+        //for...of
+        //while
+        //do...while
+        //forEach(item=>item)
+        for(let i=0;i<arr.length;i++){
+            for(let j=0;j<arr[i].length;j++){
+                arr[i][j]
+            }
+        }
+    ```
+    * for...of
+        > for...of能遍历具有迭代特性的数据
+        * 数组/类数组
+        * 字符串
+        * Map
+        * Set
+        * ...
+        ```js
+            for(let item of [10,20,30]){
+
+            }
+
+            for(let letter of 'abcdefg'){
+
+            }
+
+
+
+        ```

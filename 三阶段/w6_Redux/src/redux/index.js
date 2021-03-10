@@ -1,4 +1,9 @@
-export function createStore(reducer,initState){
+
+export function createStore(reducer,initState,middleware){
+    if(typeof initState === 'function' && middleware===undefined){
+        middleware = initState
+        initState = undefined;
+    }
     // redux状态
     let state = initState || reducer(undefined,{type:'@init'});
 

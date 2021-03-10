@@ -4,6 +4,8 @@ import { Form, Input, Button, Checkbox } from 'antd';
 import querystring from 'querystring';
 import { withRedux } from '../utils/hoc';
 import {connect} from 'react-redux'
+import userAction from '@/store/actions/user'
+import {bindActionCreators} from 'redux';
 
 const layout = {
     labelCol: { span: 6 },
@@ -14,6 +16,7 @@ const layout = {
   };
 
 function Login(props){
+    console.log('Login.props',props);
     const onFinish = (values) => {
         console.log('Success:', values);
         fetch('/api/login',{
@@ -80,10 +83,17 @@ function Login(props){
 Login = connect(state=>{
     return {}
 },dispatch=>{
-    return {
-        login(user){
-            dispatch({type:'login',user})
-        }
-    }
+    // return {
+    //     login(user){
+    //         // dispatch({type:'login',user})
+    //         dispatch(userAction.login(user))
+    //     },
+    //     // logout(){dispatch(userAction.logout())},
+    //     // changePasswor(password){dispatch(userAction.changePassword(password))},
+    //     // changeAvatar(avatar){dispatch(userAction.changeAvatar(avatar))}
+    // }
+    // bindActionCreators会把actionCreator模块中默认导出（export default）的所有方法绑定到组件props并自动隐式调用dispatch(action)
+    // 以下代码等效于上面的代码
+    return bindActionCreators(userAction,dispatch)
 })(Login)
 export default Login;

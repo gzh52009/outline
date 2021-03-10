@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>03.生成器函数与迭代器</title>
+</head>
+<body>
+    <h1>03.生成器函数与迭代器</h1>
+
+    <script>
+        /**
+         * 03.生成器函数与迭代器
+         *  - Generator
+         *      - 返回值是一个迭代器
+         *      - return    结束并返回
+         *      - yield     暂停并返回
+         *  - Iterator
+         *      - 迭代器都有一个next()方法，用于进行迭代操作，返回一个由value,done组成的对象
+         *          - value: 迭代到当前位置时的值
+         *          - done: 迭代器是否完成迭代
+         *      - for...of: 能遍历具有迭代特性的数据
+         *           * 数组/类数组
+                     * 字符串
+                     * Map
+                     * Set
+                     * ...
+         */
+
+        function * create(){
+            console.log('start')
+            yield 10;
+            console.log('a')
+            yield 20;
+            console.log('b')
+            yield 30;
+            console.log('c')
+            return 100
+            console.log('end')
+        }
+
+        // 执行生成器函数并不会执行内部代码，而是返回一个迭代器
+        const res = create();
+
+        // console.log('res=',res);
+
+        for(let val of res){
+            console.log('val=',val);
+        }
+
+        let person = {
+            username:'jingjing',
+            age:36,
+            gender:'女'
+        }
+
+        function * createIterator(o){
+            for (var key in o) {
+				yield [key,o[key]];
+			}
+        }
+
+        Object.defineProperty(person.__proto__,Symbol.iterator,{
+            value:function(){
+                // Symbol.iterator函数需要返回一个迭代器
+                return createIterator(this);
+            }
+        })
+
+        // 结论：默认不能使用for...of遍历普通对象
+        for(let item of person){
+            console.log('item=',item)
+        }
+
+    </script>
+</body>
+</html>

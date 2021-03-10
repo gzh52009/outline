@@ -13,6 +13,7 @@ import { withUser, withRedux } from './utils/hoc';
 import { Menu, Layout, Row, Col, Button } from 'antd';
 import { HomeOutlined, UserOutlined, UnorderedListOutlined } from '@ant-design/icons'
 import {connect} from 'react-redux';
+import {logout as logoutActionCreator} from '@/store/actions/user'
 import 'antd/dist/antd.css';
 
 @withRedux
@@ -151,7 +152,8 @@ const mapStateToProps = function(state){
 const mapDispatchToProps = function(dispatch){
     return {
         logout(){
-            dispatch({type:'logout'})
+            // dispatch({type:'logout'})
+            dispatch(logoutActionCreator())
         }
     }
 }

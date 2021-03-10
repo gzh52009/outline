@@ -263,7 +263,7 @@ redux中的action仅支持原始对象（plain object），处理有副作用的
 #### 对 dispatch 改装，实现 redux 异步处理中间件 
 
 #### 常用中间件
-* redux-chunk
+* redux-thunk
 * redux-promise
 * redux-saga
     * Generator生成器函数
