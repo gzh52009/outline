@@ -2,6 +2,7 @@ import React from 'react'
 
 import TodoList from './components/Todolist'
 import Lifecycle from './components/Lifecycle'
+import Hooks from './components/Hooks'
 
 class App extends React.Component{
     constructor(props){
@@ -16,7 +17,7 @@ class App extends React.Component{
             <div>
                 App
                 {/* <TodoList/> */}
-                {
+                {/* {
                     show ? 
                     <Lifecycle data={[10,20,30]} idx="10" age={36}/>
                     :
@@ -26,7 +27,8 @@ class App extends React.Component{
                     this.setState({
                         show:!show
                     })
-                }}>显示/隐藏</button>
+                }}>显示/隐藏</button> */}
+                <Hooks/>
             </div>
         )
     }
