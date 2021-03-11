@@ -1945,8 +1945,12 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * redux-thunk
         * redux-promise
         * redux-saga
-    * Generator     生成器函数
+    * Generator     生成器函数，返回一个迭代器
+        * yield     暂停
+        * return    结束
     * Iterator      迭代器
+        * next()
+        * for...of
     ```js
         function sum(){
 
@@ -1991,7 +1995,33 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             for(let letter of 'abcdefg'){
 
             }
-
-
-
         ```
+
+## day6-4
+
+### 知识点
+* 使用redux-saga
+    > 先了解以下知识点
+    * Generator
+    * Iterator
+    
+    * 使用步骤
+        * 1. 安装引用
+
+
+* 测试
+    * 自测
+        * 单元测试：需要编写测试用例
+        * 测试框架
+        ```js
+            function sum(a,b){
+                return a+b;
+            }
+
+            QUnit.module('cal', function() {
+                QUnit.test('两个数字相加', function(assert) {
+                    assert.equal(sum(1, 1), 2, '1 + 1 = 2');
+                });
+            });
+        ```
+    * 测试团队

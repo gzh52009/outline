@@ -40,6 +40,9 @@ function Login(props){
                 
             }
         });
+        
+
+        // store.dispath({type:'LOGIN_ASYNC',username:values.username,password:values.password})
       };
 
       const query = querystring.parse(props.location.search.slice(1));
