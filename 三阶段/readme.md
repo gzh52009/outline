@@ -2039,3 +2039,46 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
         * useMemo
             > 一般用于性能优化
+
+
+## day6-5
+
+### 复习
+* 所谓的刷新
+    * 类组件: 执行render函数
+    * 函数组件：从上往下执行所有代码
+* useState
+    ```js
+        const [count1,setCount1] = useState(1)
+        const [count2,setCount2] = useState(1)
+        //setCount()修改count值后，组件会自动刷新
+
+        <button onClick={()=>{
+            setCount1(count1+1)
+            setCount2(count2+1)
+            setCount1((prev)=>prev+1)
+        }}>+1</button>
+    ```
+* useEffect
+    > 一定是在组件渲染完成后执行
+    * 默认用法
+    * 指定依赖
+    * 空依赖
+    * 返回一个函数
+* useMemo
+    * 默认用法（不推荐）
+    * 指定依赖
+    * 空依赖
+
+### 知识点
+* useCallback
+* useContext
+    * 类组件
+        * Consumer
+        * contextType
+    * 函数组件
+        * Consumer
+        * useContext
+    ```js
+        
+    ```
