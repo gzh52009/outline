@@ -2073,12 +2073,16 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 ### 知识点
 * useCallback
 * useContext
+    > 简化context获取
     * 类组件
         * Consumer
         * contextType
     * 函数组件
         * Consumer
         * useContext
-    ```js
-        
-    ```
+* useReducer
+    > 利用context+useReducer实现简化版redux的功能
+    * 封装Provider组件
+* useRef
+* useLayoutEffect
+    > useEffect的同步版本

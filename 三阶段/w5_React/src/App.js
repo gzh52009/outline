@@ -4,6 +4,8 @@ import TodoList from './components/Todolist'
 import Lifecycle from './components/Lifecycle'
 import Hooks from './components/Hooks'
 
+import Provider from './components/Hooks/store'
+
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -28,7 +30,10 @@ class App extends React.Component{
                         show:!show
                     })
                 }}>显示/隐藏</button> */}
-                <Hooks/>
+
+                <Provider>
+                    <Hooks/>
+                </Provider>
             </div>
         )
     }

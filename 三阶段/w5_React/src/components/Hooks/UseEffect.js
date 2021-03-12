@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,useEffect, useLayoutEffect} from 'react'
 
 
 function UseEffect(){
@@ -40,6 +40,12 @@ function UseEffect(){
         }
     })
 
+    // useLayoutEffect为useEffect的同步版本，在useEffect前面执行
+    useLayoutEffect(()=>{
+        console.log('useLayoutEffect')
+    })
+
+    console.log('render')
     return (
         <div className="container">
             <h4>useEffect()</h4>
