@@ -5,7 +5,7 @@
 
 import {takeEvery,takeLatest,put,call,apply} from 'redux-saga/effects'
 import request from '@/utils/request'
-import {login} from '../actions/user'
+import userAction from '../actions/user'
 
 
 // function * hello(){
@@ -33,7 +33,7 @@ function * changeQty(action){
         qty = data.kucun
     }
 
-    put({
+    yield put({
         type:'CHANGE_QTY',
         _id,
         qty
@@ -50,7 +50,7 @@ function * login({username,password}){
     //     type:'login',
     //     user:data.data
     // })
-    put(login(data.data));
+    yield put(userAction.login(data.data));
 }
 
 

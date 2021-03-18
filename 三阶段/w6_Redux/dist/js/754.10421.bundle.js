@@ -1,0 +1,1 @@
+(self.webpackChunkw5_react=self.webpackChunkw5_react||[]).push([[754],{7754:(e,n,r)=>{"use strict";r.r(n),r.d(n,{default:()=>a});var t,s,c=r(7294),l=r(5688);const a=(t=(0,l.FU)("token"),(0,l.QO)(s=t(s=class extends c.Component{render(){return console.log("Mine.render"),c.createElement("div",null,"Mine")}})||s)||s)}}]);

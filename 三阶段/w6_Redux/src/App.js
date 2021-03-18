@@ -1,13 +1,21 @@
-import React from 'react'
+import React,{lazy,Suspense} from 'react'
 
 import { Route, Switch, Redirect, Link, NavLink, withRouter } from 'react-router-dom'
 
+// 传统方式
 import Home from './views/Home'
-import Reg from './views/Reg'
-import Login from './views/Login'
-import Mine from './views/Mine'
-import Classlist from './views/ClassList'
-import ClassDetail from './views/ClassDetail'
+// import Reg from './views/Reg'
+// import Login from './views/Login'
+// import Mine from './views/Mine'
+// import Classlist from './views/ClassList'
+// import ClassDetail from './views/ClassDetail'
+
+// 路由懒加载
+const Mine = lazy(() => import("./views/Mine"));
+const Reg = lazy(() => import("./views/Reg"));
+const Login = lazy(() => import("./views/Login"));
+const Classlist = lazy(() => import("./views/Classlist"));
+const ClassDetail = lazy(() => import("./views/ClassDetail"));
 
 import { withUser, withRedux } from './utils/hoc';
 import { Menu, Layout, Row, Col, Button } from 'antd';
@@ -111,6 +119,7 @@ class App extends React.Component {
                 </Layout.Header>
                 <Layout.Content style={{ padding: 20 }}>
                     {/* 路由配置 */}
+                    <Suspense fallback={<div>loading...</div>}>
                     <Switch>
                         <Route path="/home" component={Home} />
                         <Route path="/classlist" component={Classlist} />
@@ -131,6 +140,7 @@ class App extends React.Component {
                         <Redirect from="/" to="/home" exact />
                         <Redirect to="/notfound" />
                     </Switch>
+                    </Suspense>
                 </Layout.Content>
                 <Layout.Footer>Footer</Layout.Footer>
             </Layout>

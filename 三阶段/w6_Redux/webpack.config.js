@@ -23,7 +23,10 @@ module.exports = {
                 target:'http://120.76.247.5:2020',
                 changeOrigin: true,
             }
-        }
+        },
+
+        // 服务器压缩
+        compress:true
     },
 
     // 默认扩展名
