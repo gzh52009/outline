@@ -2094,4 +2094,61 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * Day01.html
 
 ### 知识点: 小程序
+* 小程序介绍
+* 准备工作
+    * 注册
+    * 资料填写
+    * 工具下载
+* 文件类型
+    * json  配置文件
+        * app.json
+        * sitemap.json
+        * project.config.json
+        * PAGE.json
+    * wxss
+    * wxml
+    * js
+* 种类
+    * 全局
+    * 页面
+* 页面分类
+    * tabbar页面：设置在tabbar中的页面
+    * 普通页面：默认页面
 
+* wxml语法
+    * 组件
+    * 数据绑定
+        * 单向：{{}}
+        * 双向：单向+事件
+            * {{}} + bind:input
+            * model:value   简易版双向绑定
+    * 事件绑定
+        * bind/catch
+        * event
+        * 传参
+    * 列表循环
+        * wx:for
+            > 格式：wx-for="{{data}}"
+            * item  数组元素
+            * index 索引值
+        * wx:for-item   修改item名称
+        * wx:for-index  修改index名称
+        * wx:key
+            > 唯一属性名作为key值
+            * `*this` 数组元素本身
+        ```js
+            let arr1 = [{_id:1,name:'xxx'},{_id:2,name:'aaa'},{_id:3,name:'bbb'}]
+            let arr2 = [10,20,30,40]
+            // vue/react：属性值作为key值 v-for="(item,idx) in arr1" arr1.map((item,idx)=>)
+            // key -> 1,2,3
+            //小程序：属性名作为key值
+            // key-> _id
+
+        ```
+
+* js逻辑文件
+    * 应用：App()   注册一个应用，一个小程序只能有一个App
+    * 页面：Page()  注册一个页面
+        * data
+            * 绑定：写在data中的数据可直接通过`{{}}`绑定到wxml结构中
+            * 修改：this.setData()

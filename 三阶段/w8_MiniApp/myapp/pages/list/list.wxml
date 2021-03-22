@@ -1,2 +1,5 @@
 <!--pages/list/list.wxml-->
-<text>pages/list/list.wxml</text>
+<view class="container" style="height:200vh">
+    <text>pages/list/list.wxml</text>
+</view>
+<view>----------------我是有底线的-----------------</view>

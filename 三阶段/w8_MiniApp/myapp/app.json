@@ -3,14 +3,35 @@
     "pages/index/index",
     "pages/list/list",
     "pages/logs/logs",
+    "pages/test/test",
     "pages/mine/mine"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#58bc58",
     "navigationBarTitleText": "班级管理系统",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white",
+    "backgroundColor":"#f90",
+    "enablePullDownRefresh":true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar":{
+    "custom":true,
+    "position": "top",
+    "color":"#fff",
+    "selectedColor":"#ff0",
+    "backgroundColor":"#58bc58",
+    "list": [{
+      "pagePath":"pages/index/index",
+      "text":"首页",
+      "iconPath":"/img/home.png",
+      "selectedIconPath":"/img/home_active.png"
+    },{
+      "pagePath":"pages/mine/mine",
+      "text":"我的",
+      "iconPath":"/img/mine.png",
+      "selectedIconPath":"/img/mine_active.png"
+    }]
+  }
 }

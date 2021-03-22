@@ -1,11 +1,18 @@
-// pages/list/list.js
+// pages/test/test.js
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-
+   data: {
+    username:'jingjing',
+    background: ['demo-text-1', 'demo-text-2', 'demo-text-3', 'demo-text-4'],
+    indicatorDots: true,
+    vertical: false,
+    autoplay: false,
+    interval: 2000,
+    duration: 500,
+    superstar:['赵四','张飞','关羽','刘玄德']
   },
 
   /**
@@ -47,14 +54,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    console.log('onPullDownRefresh')
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-    console.log('onReachBottom')
+
   },
 
   /**
@@ -62,5 +69,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  changeUsername(event){
+    // console.log('event=',event)
+    this.setData({
+      username: event.detail.value
+    })
   }
 })

@@ -1,1 +1,7 @@
 /* pages/list/list.wxss */
+.container{
+  /* width:750rpx; */
+  /* width:100%; */
+  /* width:100vw; */
+  background-color:#f00;
+}
