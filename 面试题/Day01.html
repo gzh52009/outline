@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日面试题</title>
+    <style>
+        body{padding:30px;}
+        h1{font-size:40px;text-align: center;padding-bottom:30px;margin-bottom:50xp;border-bottom:1px solid #ddd;}
+        ol{
+            margin-top:50px;font-size:30px;line-height:2
+        }
+        ol li{
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>每日面试题--Day01</h1>
+    <ol>
+        <li>Vue的生命周期有哪些，说说父组件A和子组件B在生命周期里的执行顺序</li>
+        <li>用代码实现一个hash路由</li>
+        <li>如何让声明a变量，让(a==1&&a==2&&a==3)条件成立</li>
+        <li>列举webpack的常用配置</li>
+        <li>写出你所知道的http状态码</li>
+    </ol>
+    <script>
+        /**
+         * 如何让声明a变量，让(a==1&&a==2&&a==3)条件成立
+            * 隐式转换
+                * 先尝试执行valueOf()方法的返回值进行运算，如果无法转成数字，则调用toString()方法
+         */
+
+        let a = {
+            value:1,
+            valueOf(){
+                console.log('valueOf')
+                return this.value++;
+            },
+            toString(){
+                console.log('toString')
+                return this.value++;
+            }
+        }
+
+        if(a==1&&a==2&&a==3){
+             console.log('成立')
+        }else{
+            console.log('不成立')
+        }
+
+        // let a = 1;
+
+        // let b = true
+
+        // a+b;// 2
+        // a-b;// 0
+
+        // let c = []
+
+        // a+c; // '1'
+        // a-c;//1
+
+        // let d = {} 
+        // a+d;//1[Object Object]
+
+    </script>
+</body>
+</html>
