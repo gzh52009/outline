@@ -2116,7 +2116,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 普通页面：默认页面
 
 * wxml语法
-    * 组件
+    * 内置组件
     * 数据绑定
         * 单向：{{}}
         * 双向：单向+事件
@@ -2126,6 +2126,8 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * bind/catch
         * event
         * 传参
+        * 移动端事件类型
+        
     * 列表循环
         * wx:for
             > 格式：wx-for="{{data}}"
@@ -2152,3 +2154,46 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * data
             * 绑定：写在data中的数据可直接通过`{{}}`绑定到wxml结构中
             * 修改：this.setData()
+            * 获取：this.data.xxx
+
+
+## day8-2
+
+### 复习
+* 工具库
+    * jquery
+    * lodash
+    * underscore
+* script标签属性
+    * type
+    * src
+    * defer     推迟，延迟
+        > html渲染完成后才执行js带啊没
+    * async     异步
+        > js加载完成后立即执行js代码（不管html是否渲染完成）
+
+### 知识点
+    * wxml语法
+        * 数据绑定
+        * 事件绑定
+            * bind/catch
+            * event
+                * detail
+            * 传参
+                * 自定义属性：dataset
+        * 列表循环
+        * 条件判断
+            * wx:if             v-if/v-show
+            * wx:elif           v-else-if
+            * wx:else           v-else
+            * hidden
+    * js逻辑文件
+        * App() 注册一个应用（小程序）
+            > 在任意位置通过`getApp()`返回应用实例
+        * Page()  注册一个页面
+            * data
+            * 生命周期函数
+            * 事件函数
+            * 自定义方法
+    * 切后台
+    * 场景值

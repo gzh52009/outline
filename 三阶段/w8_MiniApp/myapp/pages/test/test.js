@@ -12,7 +12,8 @@ Page({
     autoplay: false,
     interval: 2000,
     duration: 500,
-    superstar:['赵四','张飞','关羽','刘玄德']
+    superstar:['赵四','张飞','关羽','刘玄德'],
+    show:false
   },
 
   /**
@@ -74,6 +75,18 @@ Page({
     // console.log('event=',event)
     this.setData({
       username: event.detail.value
+    })
+  },
+  displayFor(){
+    this.setData({
+      show:!this.data.show
+    })
+  },
+  goto(e){
+    console.log('e',e)
+    const {url} = e.currentTarget.dataset;
+    wx.reLaunch({
+      url
     })
   }
 })

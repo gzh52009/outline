@@ -27,6 +27,13 @@
         {
           "name": "test",
           "pathName": "pages/test/test",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "mine",
+          "pathName": "pages/mine/mine",
+          "query": "username=laoxie&role=admin",
           "scene": null
         }
       ]

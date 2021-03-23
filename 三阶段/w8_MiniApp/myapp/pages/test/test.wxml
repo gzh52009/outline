@@ -1,6 +1,6 @@
 <!--pages/test/test.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#58bc58"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#58bc58" autoplay="{{autoplay}}"
+  interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{background}}" wx:key="*this">
     <swiper-item>
       <view class="swiper-item {{item}}">{{item}}</view>
@@ -8,7 +8,7 @@
   </block>
 </swiper>
 <text>pages/test/test.wxml</text>
-<icon type="success_no_circle" color="#00f" size="50"/>
+<icon type="success_no_circle" color="#00f" size="50" />
 <view>test</view>
 <view class="title">单向绑定：</view>
 <view class="box-{{interval}}">interval：{{interval}}</view>
@@ -18,12 +18,19 @@
 <input type="text" value="{{username}}" bind:input="changeUsername" placeholder="用户名" />
 <input type="text" model:value="{{username}}" placeholder="用户名" />
 
-<view class="title">wx:for列表渲染</view>
-<block wx:for="{{superstar}}" wx:key="*this" wx:for-item="sitem" wx:for-index="sidx">
-  <view class="item">
-    <view class="username">{{sidx}} - {{sitem}}</view>
-  </view>
-  <view class="detail">
-    <text wx:for="{{sitem}}" wx:key="*this">{{sidx}}.{{index}}->{{item}}，</text>
-  </view>
-</block>
+<view hidden="{{show}}">
+  <view class="title">wx:for列表渲染</view>
+  <block wx:for="{{superstar}}" wx:key="*this" wx:for-item="sitem" wx:for-index="sidx">
+    <view class="item">
+      <view class="username">{{sidx}} - {{sitem}}</view>
+    </view>
+    <view class="detail">
+      <text wx:for="{{sitem}}" wx:key="*this">{{sidx}}.{{index}}->{{item}}，</text>
+    </view>
+  </block>
+</view>
+<button bindtap="displayFor">{{show ? '隐藏' : '显示'}}</button>
+<view>跳转页面</view>
+<button bindtap="goto" data-url="/pages/index/index">首页</button>
+<button type="primary" bindtap="goto" data-url="/pages/mine/mine">我的</button>
+<button type="warn" bindtap="goto" data-url="/pages/list/list">班级列表</button>

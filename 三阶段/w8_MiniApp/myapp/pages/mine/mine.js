@@ -1,4 +1,6 @@
 // pages/mine/mine.js
+const app = getApp();
+console.log('app=',app);
 Page({
 
   /**
@@ -12,35 +14,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('Mine.onLoad',options)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    console.log('Mine.onReady')
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log('Mine.onShow')
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
-  },
+    console.log('Mine.onHide')
+  },  
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    console.log('Mine.onUnload')
   },
 
   /**
