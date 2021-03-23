@@ -1,18 +1,48 @@
-// pages/list/list.js
+const app = getApp();
+console.log('app=',app);
+console.dir(app.request);
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    classlist:[],
+    page:1,
+    size:10,
+    hasMore:true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 请求班级列表
+    // wx.request({
+    //   url: 'http://120.76.247.5:2020/api/class',
+    //   success(res){
+    //     console.log(res.data)
+    //   }
+    // })
+    this.getData();
+    
+  },
+  async getData(){
+    let {size,page,classlist} = this.data;
+    // {code,msg,data:{total:30,result:[10]}}
+    const data = await app.request('/class',{
+      size,
+      page
+    });
+    // classlist.push(...data.data.result);
+    classlist.push(...data.data);
+    this.setData({
+      classlist,
+      hasMore:classlist.length < data.data.total
+    })
 
+    console.log('data=',data);
   },
 
   /**
@@ -55,6 +85,15 @@ Page({
    */
   onReachBottom: function () {
     console.log('onReachBottom')
+    const {page,hasMore} = this.data;
+    if(hasMore){
+      this.setData({
+        page:page+1
+      },()=>{
+        this.getData();
+
+      })
+    }
   },
 
   /**

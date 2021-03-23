@@ -11,8 +11,7 @@
     "navigationBarBackgroundColor": "#58bc58",
     "navigationBarTitleText": "班级管理系统",
     "navigationBarTextStyle": "white",
-    "backgroundColor":"#f90",
-    "enablePullDownRefresh":true
+    "backgroundColor":"#f90"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

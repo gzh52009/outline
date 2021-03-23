@@ -1,5 +1,4 @@
-<!--pages/list/list.wxml-->
-<view class="container" style="height:200vh">
-    <text>pages/list/list.wxml</text>
+<view>
+    <view class="title">班级列表</view>
+    <view class="item" wx:for="{{classlist}}" wx:key="id">{{item.city}}-{{item.category}}-{{item.name}}</view>
 </view>
-<view>----------------我是有底线的-----------------</view>
