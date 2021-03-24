@@ -13,7 +13,8 @@ Page({
     interval: 2000,
     duration: 500,
     superstar:['赵四','张飞','关羽','刘玄德'],
-    show:false
+    show:false,
+    photo:''
   },
 
   /**
@@ -88,5 +89,35 @@ Page({
     wx.reLaunch({
       url
     })
+  },
+  scanCode(e){
+    console.log(e)
+  },
+  takePhoto(){
+    const cmr = wx.createCameraContext();
+
+    cmr.takePhoto({
+      success:(res)=>{
+        wx.showToast({
+          title:'拍照成功'
+        })
+        console.log(res.tempImagePath);
+        wx.saveImageToPhotosAlbum({
+          filePath:res.tempImagePath,
+          success(){
+            wx.showToast({
+              title: '保存到相差成功',
+              icon:'none'
+            })
+          }
+        })
+        this.setData({
+          photo:res.tempImagePath
+        })
+      } 
+    })
+  },
+  startVideo(){
+
   }
 })

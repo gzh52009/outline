@@ -2197,3 +2197,18 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             * 自定义方法
     * 切后台
     * 场景值
+
+
+## day8-3
+
+### 复习
+* 用户授权
+    ```js
+        wx.getSetting()
+
+        wx.getUserInfo()
+
+        <button open-type="">登录</button>
+    ```
+### 知识点
+* 模块化

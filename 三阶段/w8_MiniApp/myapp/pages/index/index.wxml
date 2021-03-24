@@ -6,6 +6,7 @@
   </view>
   <view class="login" wx:else>
     <button open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>
-
+    <button open-type="openSetting">打开授权</button>
+    <button open-type="contact" type="primary">客服MM</button>
   </view>
 </view>

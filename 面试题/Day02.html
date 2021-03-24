@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日面试题</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>每日面试题--Day02</h1>
+    <ol>
+        <li>列举你所知道的ES6新特性</li>
+        <li>下面这段代码输出什么
+            <pre>
+                <code>
+                    var a = 1;
+                    var obj = {
+                        a:2,
+                        show:()=>{
+                            console.log(this.a)
+                        },
+                        hello(){
+                            console.log(this.a)
+                        }
+                    }
+                    var obj2 = {a:3}
+                    obj.show();
+                    obj.hello();
+                    obj.hello.apply(obj2);
+                    var newHello = obj.hello;
+                    newHello();
+                </code>
+            </pre>
+        </li>
+        <li>Vue组件中如何实现组件局部样式，原理是什么？</li>
+        <li>如何判断一个变量o是否为空对象"{}"？</li>
+        <li>假设js文件的加载需要花费10s，如何优化以下代码？
+            <pre>
+                <xmp>
+                    <html>
+                        <header>
+                            <title>优化性能</title>
+                            <script src="js/main.js"></script>
+                        </header>
+                        <body>
+                            <h4>优化性能</h4>
+                        </body>
+                    </html>
+                </xmp>
+            </pre>
+        </li>
+    </ol>
+</body>
+</html>

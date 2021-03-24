@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日面试题</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>每日面试题--Day03</h1>
+    <ol>
+        <li>写出call、apply、bind三个方法的共同点和不同点</li>
+        <li>写出js中你所知道的模块化规范以及支持的框架或语言</li>
+        <li>
+            有一个字符和对象“<xmp>str='<div><p>用户名：{{username}}</p></div><p>密码：{{password}}</p>'
+            user={username:'laoxie',password:'123456',role:'admin'}
+            </xmp>”写一个正则表达式，把对象中对应的值替换到字符中
+        </li>
+        <li>封装一个unique方法让以下代码实现数组去重
+            <pre>
+                <code>[10,20,10,15,15,30,40,10].unique() // 结果[10,20,15,30,40]</code>
+            </pre>
+        </li>
+        <li>请写出以下代码输出结果：
+            <pre>
+                <code>
+                function Foo() {
+                    getName = function(){ console.log(1); };
+                    return this;
+                }
+                Foo.getName = function(){ console.log(2);};
+                Foo.prototype.getName = function(){ console.log(3); }; 
+                var getName = function(){ console.log(4); };
+                function getName(){ console.log(5); } 
+
+                Foo.getName();
+                getName();
+                Foo().getName();
+                getName();
+                new Foo.getName();
+                new Foo().getName();
+                new new Foo().getName();
+            </code>
+        </pre>
+        </li>
+    </ol>
+</body>
+</html>

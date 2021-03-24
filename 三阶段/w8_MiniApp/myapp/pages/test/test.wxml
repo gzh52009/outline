@@ -1,5 +1,5 @@
 <!--pages/test/test.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#58bc58" autoplay="{{autoplay}}"
+<!-- <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="#58bc58" autoplay="{{autoplay}}"
   interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{background}}" wx:key="*this">
     <swiper-item>
@@ -33,4 +33,14 @@
 <view>跳转页面</view>
 <button bindtap="goto" data-url="/pages/index/index">首页</button>
 <button type="primary" bindtap="goto" data-url="/pages/mine/mine">我的</button>
-<button type="warn" bindtap="goto" data-url="/pages/list/list">班级列表</button>
+<button type="warn" bindtap="goto" data-url="/pages/list/list">班级列表</button> -->
+<view>摄像头</view>
+<camera 
+device-position="back" 
+flash="off" 
+binderror="error" 
+bindscancode="scanCode"
+style="width: 100%; height: 300px;"></camera>
+<button bind:tap="takePhoto">拍照</button>
+<button bind:tap="startVideo">录像</button>
+<image src="{{photo}}" />
