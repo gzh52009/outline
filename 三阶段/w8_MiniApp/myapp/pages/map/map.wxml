@@ -1,0 +1,6 @@
+<map longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}">
+  <cover-view>
+    <button bind:tap="getPosition">打开地图定位</button>
+
+  </cover-view>
+</map>

@@ -1,0 +1,6 @@
+<view>
+
+  组件名称：{{name}}
+  <view>{{data}}</view>
+  <button bindtap="hello">say Hi</button>
+</view>

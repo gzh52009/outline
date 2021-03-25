@@ -44,3 +44,5 @@ style="width: 100%; height: 300px;"></camera>
 <button bind:tap="takePhoto">拍照</button>
 <button bind:tap="startVideo">录像</button>
 <image src="{{photo}}" />
+
+<mylist data="{{[1,2,3]}}"/>

@@ -30,5 +30,9 @@ Page({
   },
   getUserInfo(e){
     console.log(e);
+  },
+  onShow(){
+    const tabbar = this.getTabBar();
+    tabbar.setCurrent(0)
   }
 })

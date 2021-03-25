@@ -2195,6 +2195,7 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
             * 生命周期函数
             * 事件函数
             * 自定义方法
+        * Component() 注册一个组件
     * 切后台
     * 场景值
 
@@ -2204,11 +2205,50 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 ### 复习
 * 用户授权
     ```js
-        wx.getSetting()
+        wx.getSetting()     // 获取权限列表
+        wx.openSetting()    // 打开设置界面，引导用户开启授权
+        wx.authorize()      // 提前向用户发起授权请求
 
-        wx.getUserInfo()
+        wx.getUserInfo()    // 获取用户信息
 
         <button open-type="">登录</button>
     ```
 ### 知识点
-* 模块化
+* 内置组件
+    * cover-view/cover-image
+    * camera
+    * map
+        * 定位 geolocation
+* 自定义组件
+    定义：
+        * js: Component()
+        * wxss
+        * wxml
+        * json
+    * 使用
+        * json文件中配置usingComponents
+
+
+## day8-4
+
+### 面试题
+* npm安装模块
+    * npm i xxx
+    * npm i xxx@1.2.2
+    * npm i xxx@2
+    * npm i xxx@next
+
+    * 参数
+        * --save/-S
+        * --save-dev/-D
+
+### 知识点
+* 自定义Tabbar
+    1. app.json中设置`"custom":true`
+    2. 在根目录下创建custom-tab-bar组件
+        > 文件名为index
+
+* 在微信小程序中使用npm模块
+    1. 安装
+    2. 把npm模块编译成小程序支持的模块
+    3. 引入并使用

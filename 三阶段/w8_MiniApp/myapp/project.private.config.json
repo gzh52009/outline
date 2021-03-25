@@ -35,6 +35,12 @@
           "pathName": "pages/mine/mine",
           "query": "username=laoxie&role=admin",
           "scene": null
+        },
+        {
+          "name": "map",
+          "pathName": "pages/map/map",
+          "query": "",
+          "scene": null
         }
       ]
     }

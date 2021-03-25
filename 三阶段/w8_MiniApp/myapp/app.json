@@ -4,6 +4,7 @@
     "pages/list/list",
     "pages/logs/logs",
     "pages/test/test",
+    "pages/map/map",
     "pages/mine/mine"
   ],
   "window": {
@@ -32,5 +33,16 @@
       "iconPath":"/img/mine.png",
       "selectedIconPath":"/img/mine_active.png"
     }]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "赶紧的，速度"
+    }
+  },
+  "usingComponents":{
+    "datalist":"/components/datalist/datalist"
+  },
+  "useExtendedLib": {
+    "weui": true
   }
 }

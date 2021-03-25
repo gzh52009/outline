@@ -1,3 +1,6 @@
 <!--pages/mine/mine.wxml-->
 <text>Hello Mine</text>
 <navigator url="/pages/index/index" open-type="switchTab">首页</navigator>
+
+
+<datalist data="{{['laoxie','tiantian','jingjing']}}"/>

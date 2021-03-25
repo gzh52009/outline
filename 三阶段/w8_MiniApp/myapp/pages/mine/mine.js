@@ -29,6 +29,10 @@ Page({
    */
   onShow: function () {
     console.log('Mine.onShow')
+
+    // 设置tabbar高亮
+    const tabbar = this.getTabBar();
+    tabbar.setCurrent(1)
   },
 
   /**

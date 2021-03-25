@@ -1,0 +1,1 @@
+<mp-tabbar current="{{current}}" ext-class="tabbar" list="{{menu}}" bindchange="changemenu"></mp-tabbar>
