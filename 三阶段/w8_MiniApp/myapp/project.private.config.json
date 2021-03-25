@@ -41,6 +41,12 @@
           "pathName": "pages/map/map",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "班级信息",
+          "pathName": "pages/class/class",
+          "query": "classid=5fb3939b1ae684fd77bc633e",
+          "scene": null
         }
       ]
     }

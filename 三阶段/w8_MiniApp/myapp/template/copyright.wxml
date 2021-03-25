@@ -1,0 +1,4 @@
+<view>
+    <rich-text nodes="&copy;"></rich-text>
+     版权归属，任何人不得转载
+</view>

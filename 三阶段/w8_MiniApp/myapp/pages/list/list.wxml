@@ -1,4 +1,13 @@
 <view>
-    <view class="title">班级列表</view>
-    <view class="item" wx:for="{{classlist}}" wx:key="id">{{item.city}}-{{item.category}}-{{item.name}}</view>
+    <!-- <view class="title">班级列表</view>
+    <view class="item" wx:for="{{classlist}}" wx:key="id">{{item.city}}-{{item.category}}-{{item.name}}</view> -->
+    <mp-cells ext-class="my-cells" title="班级列表">
+        <mp-cell link value="{{item.city}}-{{item.category}}-{{item.name}}" wx:for="{{classlist}}" wx:key="_id" bindtap="gotoDetail" data-classid="{{item._id}}">
+            <view slot="icon">
+                <mp-icon icon="mosaic" color="#999" />
+            </view>
+        </mp-cell>
+    </mp-cells>
+    <mp-loading type="circle" wx:if="{{hasMore}}"></mp-loading>
+    <view wx:else>-----------我是有底线的---------</view>
 </view>

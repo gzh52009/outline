@@ -1,6 +1,8 @@
+import request from '../../utils/request';console.log('request=',request);
+
 const app = getApp();
-console.log('app=',app);
-console.dir(app.request);
+
+
 
 Page({
 
@@ -10,7 +12,7 @@ Page({
   data: {
     classlist:[],
     page:1,
-    size:10,
+    size:12,
     hasMore:true
   },
 
@@ -31,18 +33,31 @@ Page({
   async getData(){
     let {size,page,classlist} = this.data;
     // {code,msg,data:{total:30,result:[10]}}
-    const data = await app.request('/class',{
+    // const data = await app.request('/class',{
+    //   size,
+    //   page
+    // });
+    // classlist.push(...data.data.result);
+
+    const {data} = await request.get('/class',{
       size,
       page
-    });
-    // classlist.push(...data.data.result);
-    classlist.push(...data.data);
+    })
+
+    classlist.push(...data.result);
     this.setData({
       classlist,
-      hasMore:classlist.length < data.data.total
+      hasMore:classlist.length < data.total
     })
 
     console.log('data=',data);
+  },
+
+  gotoDetail(e){
+    const {classid} = e.currentTarget.dataset;
+    wx.navigateTo({
+      url:'/pages/class/class?classid='+classid
+    })
   },
 
   /**
@@ -78,6 +93,15 @@ Page({
    */
   onPullDownRefresh: function () {
     console.log('onPullDownRefresh')
+    this.setData({
+      page:1,
+      size:12,
+      classlist:[],
+      hasMore:true
+    },async ()=>{
+      await this.getData();
+      wx.stopPullDownRefresh()
+    })
   },
 
   /**
@@ -91,7 +115,6 @@ Page({
         page:page+1
       },()=>{
         this.getData();
-
       })
     }
   },

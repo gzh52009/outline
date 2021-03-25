@@ -5,6 +5,7 @@
     "pages/logs/logs",
     "pages/test/test",
     "pages/map/map",
+    "pages/class/class",
     "pages/mine/mine"
   ],
   "window": {
@@ -40,7 +41,9 @@
     }
   },
   "usingComponents":{
-    "datalist":"/components/datalist/datalist"
+    "datalist":"/components/datalist/datalist",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-loading": "weui-miniprogram/loading/loading"
   },
   "useExtendedLib": {
     "weui": true

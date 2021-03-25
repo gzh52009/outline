@@ -2250,5 +2250,20 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 
 * 在微信小程序中使用npm模块
     1. 安装
-    2. 把npm模块编译成小程序支持的模块
+        * 一定要`--save`保存模块信息
+    2. 构建：把npm模块编译成小程序支持的模块
+        > 在根目录下生成`miniprogram_npm`目录
     3. 引入并使用
+
+* 模块化
+    * js模块化
+        * ESMoudle
+        * commonJS
+    * wx模块化
+        > 遵循commonJS规范
+        * <wxs></wxs>
+            * module    定义模块名称
+            * src       引入外部wxs文件
+        * wxs语法
+* wxml模板
+    > 一种比组件更简单的结构复用操作

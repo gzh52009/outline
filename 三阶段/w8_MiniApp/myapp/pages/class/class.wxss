@@ -1,0 +1,7 @@
+/* pages/class/class.wxss */
+.student{
+    flex-flow: wrap
+}
+.student button{
+    margin:10rpx 20rpx;
+}

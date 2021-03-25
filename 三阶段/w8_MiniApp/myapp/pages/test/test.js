@@ -1,4 +1,15 @@
 // pages/test/test.js
+
+const format = require('../../utils/format');
+console.log('format=',format);
+
+import format2 from '../../utils/format'
+console.log('format2',format2);
+
+// require ESModule模块，引入的是整个模块对象
+const request = require('../../utils/request').default
+console.log('request',request);
+
 Page({
 
   /**
@@ -119,5 +130,8 @@ Page({
   },
   startVideo(){
 
+  },
+  fromatDate(d){
+    return '2020-3-25';
   }
 })

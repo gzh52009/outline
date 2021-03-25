@@ -1,4 +1,8 @@
 {
-  "usingComponents": {},
-  "enablePullDownRefresh":true
+  "usingComponents": {
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell"
+  },
+  "enablePullDownRefresh":true,
+  "navigationBarTitleText":"班级列表"
 }

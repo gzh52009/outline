@@ -1,0 +1,9 @@
+<view>
+    <view class="title">
+        {{classInfo.city}} - {{classInfo.category}} - {{classInfo.name}}
+    </view>
+    <view>班级人数：{{classInfo.student.total}}</view>
+    <view class="weui-flex student">
+        <view class="weui-flex__item" wx:for="{{classInfo.student.result}}" wx:key="_id"><view class="placeholder"><button>{{item.username}}</button></view></view>
+    </view>
+</view>

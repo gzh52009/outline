@@ -1,0 +1,19 @@
+<template name="mylist">
+    <view class="title">{{title}}</view>
+    <view class="item" wx:for="{{list}}">{{index+1}} - {{item}}</view>
+</template>
+
+<template name="form">
+    <form>
+        <input />
+        <button>提交</button>
+    </form>
+</template>
+
+<wxs module="tools">
+
+</wxs>
+<view>
+    template外的代码（非模板代码）
+</view>
+<text>test</text>
