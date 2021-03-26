@@ -1,2 +1,12 @@
 <!--pages/db/db.wxml-->
 <text>pages/db/db.wxml</text>
+
+<button type="primary" bindtap="insert">插入数据到数据库</button>
+<button type="warn" bindtap="remove">删除数据</button>
+<button type="primary" bindtap="update">修改</button>
+<button type="default" bindtap="find">获取数据</button>
+<view wx:for="{{classList}}" wx:key="_id">
+{{item.name}}
+</view>
+<button type="primary" bindtap="callFn">调用云函数</button>
+

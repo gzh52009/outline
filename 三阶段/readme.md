@@ -2284,3 +2284,68 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 数据库
         * 存储文件
         * 云函数
+    * 操作云开发
+        * 小程序端（会有权限问题）
+            * 初始化
+                ```js
+                    wx.cloud.init({
+                        env:'id'
+                    })
+                ```
+            * 操作
+                * 数据库（CRUD）
+                    1. 获取数据库对象
+                        ```js
+                            const db = wx.cloud.database()
+                        ```
+                    2. 获取集合
+                        ``` js
+                            const col = db.collection(NAME)
+                        ```
+                    3. CRUD
+                        ```js
+                            // 增：添加数据
+                            col.add({
+                                data:data
+                            })
+                            
+                            
+                            // 删除
+                            col.where({}).remove()
+                            
+                            // 改
+                            col.where().update()
+
+                            // 查
+                            col.get() // 获取集合所有数据
+                            col.where(query).get(); // 根据条件获取数据
+                            col.doc(_id).get()
+                        ```
+                * 存储文件
+                * 云函数
+                    > 先把云函数部署到云端
+                    ```js
+                        wx.cloud.callFunction({
+                            name,
+                            data,// 传递到云函数的参数，参数自动写入云函数的event对象
+                        })
+                    ```
+        * 服务端操作（云函数中操作）
+            > 云函数等效于web开发中的接口，与小程序端一样，可以操作数据库，存储文件，云函数，没有权限问题
+            * 初始化
+                ```
+                    const cloud = require('wx-server-sdk');
+
+                    cloud.init({
+                        env:DYNAMIC_CURRENT_ENV
+                    })
+                ```
+            * 操作
+                * 数据库
+                * 存储文件
+                * 云函数
+
+* 小程序数据接口
+    * 自己的服务器：灵活，可控性更强
+    * 云开发：简单，门槛低
+    * 综合以上两种操作：在自己的服务器中操作云开发（利用云开发提供的Http API）
