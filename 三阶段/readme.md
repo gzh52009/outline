@@ -2267,3 +2267,20 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * wxs语法
 * wxml模板
     > 一种比组件更简单的结构复用操作
+    * 定义模板
+        * <template name />
+    * 引用模板
+        * <import src> 引入：引入动态模板
+            * <template is data />
+        * <include src> 引用静态
+
+## day8-5
+
+### 知识点
+
+* 云开发
+    * 开通
+    * 内容
+        * 数据库
+        * 存储文件
+        * 云函数

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日面试题</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>每日面试题--Day05</h1>
+    <ol>
+        <li>页面需要渲染10万条数据，应该怎么实现</li>
+        <li>说一下Vue双向数据绑定的原理</li>
+        <li>一个网站的首页要实现秒开应如何做优化（如百度移动端首页）</li>
+        <li>描述一下项目中有哪些git分支以及它们的作用</li>
+        <li>请写出以下代码输出结果：
+            <pre>
+                <code>
+                    console.log(1);
+                    setTimeout(() => {
+                        console.log(2);
+                        Promise.resolve().then(() => {
+                            console.log(3);
+                        });
+                    });
+                    new Promise((resolve, reject) => {
+                        console.log(4);
+                        resolve(5);
+                    }).then((data) => {
+                        console.log(data);
+                    });
+                    setTimeout(() => {
+                        console.log(6);
+                    });
+                    console.log(7);
+            </code>
+        </pre>
+        </li>
+    </ol>
+    <script>
+        /*
+            一个网站的首页要实现秒开应如何做优化
+            1. css与js内联，减少http请求
+            2. SSR快速响应页面内容
+            3. 缓存，把不会改变的html,css,js保存到本地存储，第一次后的访问直接从缓存中获取
+            4. 使用字体图标与小图片采用base64编码
+            5. 不在首屏的内容要异步化（懒加载）
+            */
+    </script>
+</body>
+</html>

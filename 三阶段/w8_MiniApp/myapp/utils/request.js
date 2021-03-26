@@ -1,4 +1,4 @@
-export const baseUrl = 'http://120.76.247.5:2002'
+export const baseUrl = 'https://api.qfh5.cn';//'http://120.76.247.5:2002'
 
 const request = function (url, data, options = {}) {
     return new Promise((resolve, reject) => {
