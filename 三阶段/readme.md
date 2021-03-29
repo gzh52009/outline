@@ -2408,4 +2408,15 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * http接口
 
 ### 知识点
+* 小程序开发是否需要每个平台都开发一次？
+* 能否使用Vue或React来开发小程序
 * 跨平台框架
+    * 原理：实现了一个编译器，把一份代码编译成各个平台的代码
+    * uni-app
+        * 可视化工具：hbuilderX
+        * 脚手架：vue-cli
+    * wePY
+        > 官方一款类Vue语法的框架
+    * mpvue
+        > 使用Vue来开发小程序的框架，跟Uni-app最大的区别是，mpvue每个页面都是一个vue的实例，而uni-app为一个组件
+    * taro
