@@ -1,0 +1,1 @@
+<view class="content"><view class="_h1">{{title+" Mine"}}</view><view class="_p">{{username}}</view><input data-event-opts="{{[['input',[['__set_model',['','username','$event',[]]]]]]}}" value="{{username}}" bindinput="__e"/><button data-event-opts="{{[['tap',[['handleClick',['$event']]]]]}}" bindtap="__e">点我</button></view>

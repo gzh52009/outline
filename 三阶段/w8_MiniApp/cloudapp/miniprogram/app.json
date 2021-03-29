@@ -13,6 +13,7 @@
     "pages/openapi/cloudid/cloudid",
     "pages/im/im",
     "pages/db/db",
+    "pages/file/file",
     "pages/im/room/room"
   ],
   "window": {

@@ -1,0 +1,5 @@
+<!--pages/file/file.wxml-->
+<text>pages/file/file.wxml</text>
+<camera style="width:100vw;height:20vh"></camera>
+<button bindtap="pzupload">拍照上传1</button>
+<button bindtap="xcupload">相册文件上传</button>

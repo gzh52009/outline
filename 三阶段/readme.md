@@ -2349,3 +2349,63 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * 自己的服务器：灵活，可控性更强
     * 云开发：简单，门槛低
     * 综合以上两种操作：在自己的服务器中操作云开发（利用云开发提供的Http API）
+
+
+## day9-1
+
+### 复习
+* 自己的服务器
+* 云开发
+    * 内容
+        * 数据库
+        * 云函数
+        * 存储空间
+    * 使用步骤
+        1. 开通
+            * 环境
+        2. 配置：project.config.json
+        3. 初始化: 
+            * 小程序端：`wx.cloud.init({env})`
+                > 建议在app.js中的onLoad实现初始化
+            * 服务器端：
+                ```js
+                    const cloud = require('wx-server-sdk')
+                    cloud.init({
+                        env:cloud.DYNAMIC_CURRENT_ENV
+                    })
+                ```
+        3. 操作
+            * 小程序端：`wx.cloud`
+                * 数据库
+                    ```js
+                        const db = wx.cloud.database();
+                    ```
+                * 云函数
+                    ```js
+                        // 定义
+                        exports.main = function(e){
+
+                        }
+
+                        // 调用
+                        wx.cloud.callFunction({
+                            name,
+                            data
+                        })
+                    ```
+                * 存储文件
+                    * 上传
+                    * 下载
+                    * 删除
+                    * 获取真实地址（具有有效期）
+            * 服务端：`wx-server-sdk`
+                > 没有权限问题
+                * 数据库
+                * 云函数
+                * 存储文件
+
+            > 建议：在服务端（云函数）操作数据、存储文件、其他云函数等
+* http接口
+
+### 知识点
+* 跨平台框架

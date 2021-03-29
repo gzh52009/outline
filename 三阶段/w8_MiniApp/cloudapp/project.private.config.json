@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -20,6 +21,12 @@
         {
           "name": "db",
           "pathName": "pages/db/db",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "file",
+          "pathName": "pages/file/file",
           "scene": null
         }
       ]
