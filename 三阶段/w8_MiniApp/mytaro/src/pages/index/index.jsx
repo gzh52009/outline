@@ -1,13 +1,13 @@
 import { Component } from 'react'
 import { View, Button, Text } from '@tarojs/components'
-import { observer, inject } from 'mobx-react'
+import { observer, inject } from 'mobx-react';// react-redux -> connect
 import Taro from '@tarojs/taro'
 
 import './index.scss'
 
 
-@inject('store')
-@observer
+@inject('counterStore','userStore') // 设置注入组件的数据，等效于connect(mapStateToProps)
+@observer       // 包装函数，让React组件能监听到mobox数据的改变，并自动更新组件，等效于connnect()(Index)
 class Index extends Component {
   componentWillMount () { }
 
@@ -20,22 +20,25 @@ class Index extends Component {
   componentDidHide () { }
 
   increment = () => {
-    const { counterStore } = this.props.store
-    counterStore.increment()
+    const { counterStore } = this.props
+    // counterStore.increment();
+    counterStore.counter++;
   }
 
   decrement = () => {
-    const { counterStore } = this.props.store
-    counterStore.decrement()
+    const { counterStore } = this.props
+    // counterStore.decrement()
+    counterStore.counter--;
   }
 
   incrementAsync = () => {
-    const { counterStore } = this.props.store
+    const { counterStore } = this.props
     counterStore.incrementAsync()
   }
 
   render () {
-    const { counterStore: { counter } } = this.props.store
+    console.log('props=',this.props);
+    const { counterStore: { counter } } = this.props
     return (
       <View className='index'>
         <Button onClick={this.increment}>+</Button>
@@ -47,7 +50,7 @@ class Index extends Component {
           Taro.navigateTo({
             url:'/pages/mine/mine'
           })
-        }}>我的</Button>
+        }}>我的111</Button>
       </View>
     )
   }

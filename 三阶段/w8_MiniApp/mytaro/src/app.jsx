@@ -1,13 +1,11 @@
 import { Component } from 'react'
-import { Provider } from 'mobx-react'
+import { Provider } from 'mobx-react';// react-redux
 
-import counterStore from './store/counter'
+import store from './store'
 
 import './app.scss'
 
-const store = {
-  counterStore
-}
+
 
 class App extends Component {
   componentDidMount () {}
@@ -21,7 +19,7 @@ class App extends Component {
   // this.props.children 就是要渲染的页面
   render () {
     return (
-      <Provider store={store}>
+      <Provider {...store} a="10">
         {this.props.children}
       </Provider>
     )

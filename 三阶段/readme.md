@@ -2420,3 +2420,6 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     * mpvue
         > 使用Vue来开发小程序的框架，跟Uni-app最大的区别是，mpvue每个页面都是一个vue的实例，而uni-app为一个组件
     * taro
+        > 京东出品，一款使用React来开发的框架
+
+* mobx
