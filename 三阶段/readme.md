@@ -2423,3 +2423,11 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         > 京东出品，一款使用React来开发的框架
 
 * mobx
+
+## day9-2
+
+### 知识点
+* 应用App（application）
+    * webApp
+        * 跨平台
+
