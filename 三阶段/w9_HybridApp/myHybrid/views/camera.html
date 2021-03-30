@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>摄像头接口</title>
+		<style>
+			.preview{padding:1.5em;}
+			.preview img{margin:5%;width:40%;}
+		</style>
+	</head>
+	<body>
+		<h1>摄像头接口调用</h1>
+		<div>
+			<button id="btnBack">&lt;返回</button>
+		</div>
+		<button id="btnPZ">拍照</button>
+		<button id="btnVideo">录像</button>
+		<div class="preview"></div>
+		<script>
+				document.addEventListener('plusready', function(){console.log('plusready')
+					//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+					const preview = document.querySelector('.preview');
+					const btnPZ = document.querySelector('#btnPZ');
+					const btnBack = document.querySelector('#btnBack');
+					const imgs = []
+					let index = 0;
+					const cmr = plus.camera.getCamera(1);
+					console.log('cmr',cmr);
+					btnPZ.onclick = function(){
+						// if(window.plus){
+							
+							cmr.captureImage((path)=>{
+								imgs.push(path);
+								// 把临时地址转成平台地址
+								const realPath = plus.io.convertLocalFileSystemURL(path);
+								console.log(path,realPath)
+								// const img = document.createElement('img');
+								const img = new Image();
+								img.index = index++;
+								img.src = realPath;
+								preview.appendChild(img);
+								
+								// 保存到相册
+								plus.gallery.save( path, ()=>{
+									plus.nativeUI.toast('存入相册成功')
+								});
+							});
+							
+						// }
+					}
+					
+					preview.onclick = function(e){
+						console.log(e.target.index);
+						plus.nativeUI.previewImage(imgs,{
+							current:e.target.index
+						})
+					}
+					
+					// 录像
+					btnVideo.onclick = function(){
+						cmr.startVideoCapture((path)=>{
+							const realPath = plus.io.convertLocalFileSystemURL(path);
+							console.log(path,realPath);
+							
+							const player = plus.video.createVideoPlayer('videoPlayer', {
+								src:path,
+								top:'100px',
+								left:'0px',
+								width: '100%',
+								height: '200px',
+								position: 'static'
+							})
+							plus.webview.currentWebview().append(player);
+							
+							// plus.webview.close(player);
+						})
+					}
+					
+					btnBack.onclick = function(){
+						const currentWebview = plus.webview.currentWebview();
+						currentWebview.close();
+						
+						// plus.webview.close(currentWebview)
+					}
+				});
+				
+		
+			
+		</script>
+	</body>
+</html>

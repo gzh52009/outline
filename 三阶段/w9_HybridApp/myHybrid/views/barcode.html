@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>条码接口</title>
+		<style>
+			.preview{padding:1.5em;}
+			.preview img{margin:5%;width:40%;}
+		</style>
+	</head>
+	<body>
+		<h1>条码接口调用</h1>
+		<div>
+			<button id="btnBack">&lt;返回</button>
+		</div>
+		<button id="btnScan">扫码</button>
+		<button id="btnScan2">识别图片条码</button>
+		<div class="preview"></div>
+		<script>
+				document.addEventListener('plusready', function(){console.log('plusready')
+					//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+					const preview = document.querySelector('.preview');
+					const btnBack = document.querySelector('#btnBack');
+					const btnScan = document.querySelector('#btnScan');
+					const btnScan2 = document.querySelector('#btnScan2');
+				
+					btnBack.onclick = function(){
+						const currentWebview = plus.webview.currentWebview();
+						currentWebview.close();
+					}
+					
+					// 扫码
+					const {QR,EAN13,EAN8} = plus.barcode;
+					btnScan.onclick =  function(){console.log('scan')
+						const barcode = plus.barcode.create('scancode', [QR,EAN13,EAN8], {
+							top:0,
+							left:'0px',
+							width: '100%',
+							height: '100%',
+							position: 'static'
+						});
+						
+						// 扫码识别成功后会触发onmarked 事件
+						barcode.onmarked = function(type, result){console.log('success',result)
+							// type: 条码类型
+							// result: 扫码结果
+							
+							let p = document.createElement('p')
+							p.innerHTML = `${type}: ${result}`;
+							preview.appendChild(p);
+							
+							barcode.close();
+							
+						}
+						
+						// 把扫码页面显示到当前webview
+						plus.webview.currentWebview().append(barcode);
+						
+						barcode.start();
+					}
+					
+					// 识别图片条码
+					btnScan2.onclick = function(){
+						plus.gallery.pick((path)=>{
+							plus.barcode.scan(path, (type, result, file, charset)=>{
+								let p = document.createElement('p')
+								p.innerHTML = `${type}: ${result}`;
+								preview.appendChild(p);
+								
+								plus.device.beep(1);
+								
+								plus.device.vibrate(1000)
+							},(err)=>{
+								console.log(err)
+							});
+							
+						});
+					}
+				});
+				
+			
+		</script>
+	</body>
+</html>

@@ -2430,4 +2430,20 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
 * 应用App（application）
     * webApp
         * 跨平台
-
+    * NativeApp
+        * 能调用原生api
+    * HybridApp
+        > 利用webview实现h5页面
+        * 开发模式
+            * Native工程师主导（主流）
+            * H5工程师主导
+                > 一般利用第三方框架实现Navtive工程师的工作（接口，打包）
+                * 云开发：Dcloud
+                * 本地开发：Corodova
+        * Dcloud平台开发混合应用
+            * 两个问题
+                1. 如何调用接口
+                2. 如何打包
+            * 接口调用
+                > 所有接口附在`window.plus`对象上
+            * 测试

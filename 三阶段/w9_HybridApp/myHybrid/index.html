@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>H5+接口调用示例</title>
+	
+</head>
+<body>
+	<h1>DCloud平台H5+接口调用示例</h1>
+	<ul>
+		<li class="cameraPage">摄像头接口演示</li>
+		<li class="barcodePage">扫码接口演示</li>
+	</ul>
+	<script>
+			document.addEventListener('plusready', function(){
+				// webview操作
+				const cameraPage = document.querySelector('.cameraPage')
+				const barcodePage = document.querySelector('.barcodePage')
+				
+				cameraPage.onclick =  function(){
+					// 要显示h5页面，必须先创建一个webview对象
+					const cameraWV = plus.webview.create( 'views/camera.html', 'cameraPage');
+					
+					// 显示webview
+					plus.webview.show( 'cameraPage', 'slide-in-left');
+					
+					// plus.webview.open()
+				}
+				barcodePage.onclick =  function(){
+					// 要显示h5页面，必须先创建一个webview对象
+					const barcodeWV = plus.webview.create( 'views/barcode.html', 'barcodePage');
+					
+					// 显示webview
+					plus.webview.show( 'barcodePage', 'zoom-out');
+					
+				}
+				
+			});
+	</script>
+</body>
+</html>
