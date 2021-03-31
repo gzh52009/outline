@@ -2446,4 +2446,47 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
                 2. 如何打包
             * 接口调用
                 > 所有接口附在`window.plus`对象上
+                * Camera
+                * IO
+                * NativeUI
+                * Webview
+                * Video/Audio
+                * Barcode
+                * Device
+                * Gallery
             * 测试
+                * 真机测试
+
+
+## day9-3
+
+### 知识点
+* javascript
+    ```js
+        let username = 'laoxie';
+
+        // 500行代码
+        username = 100;
+        // 500行代码
+
+        username = username.split('').reverse().join('');// 报错
+
+        let a = 10;
+        let b = 20;
+
+        // ...
+        a = '100';
+        // ...
+
+        let sum = a + b; // 30,10020
+
+        // 提示
+
+    ```
+
+    ```ts
+        let username:string = 'laoxie';
+        username = 100;//
+        
+
+    ```
