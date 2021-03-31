@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>语音识别接口</title>
+		<style>
+			.preview{padding:1.5em;}
+			.preview img{margin:5%;width:40%;}
+		</style>
+	</head>
+	<body>
+		<h1>语音识别接口调用</h1>
+		<div>
+			<button id="btnBack">&lt;返回</button>
+		</div>
+		<div>
+			<input id="keyword" />
+			<button id="btn">语音识别</button>
+		</div>
+		<script>
+				document.addEventListener('plusready', function(){console.log('plusready')
+					//console.log("所有plus api都应该在此事件发生后调用，否则会出现plus is undefined。")
+					const btnBack = document.querySelector('#btnBack');
+					const keyword = document.querySelector('#keyword');
+					const btn = document.querySelector('#btn');
+				
+					btnBack.onclick = function(){
+						const currentWebview = plus.webview.currentWebview();
+						currentWebview.close();
+					}
+					
+					// 语音识别
+					btn.onclick = function(){console.log(666)
+						plus.speech.startRecognize({
+							engine:'iFly',
+							lang:'zh-cantonese'
+						},(result)=>{
+							console.log('result',result);
+							keyword.value += result;
+						},(err)=>{
+							console.log('fail',err);
+						})
+					}
+					
+				});
+				
+			
+		</script>
+	</body>
+</html>

@@ -11,12 +11,14 @@
 	<ul>
 		<li class="cameraPage">摄像头接口演示</li>
 		<li class="barcodePage">扫码接口演示</li>
+		<li class="speechPage">语音识别接口演示</li>
 	</ul>
 	<script>
 			document.addEventListener('plusready', function(){
 				// webview操作
 				const cameraPage = document.querySelector('.cameraPage')
 				const barcodePage = document.querySelector('.barcodePage')
+				const speechPage = document.querySelector('.speechPage')
 				
 				cameraPage.onclick =  function(){
 					// 要显示h5页面，必须先创建一个webview对象
@@ -33,6 +35,14 @@
 					
 					// 显示webview
 					plus.webview.show( 'barcodePage', 'zoom-out');
+					
+				}
+				speechPage.onclick =  function(){
+					// 要显示h5页面，必须先创建一个webview对象
+					const barcodeWV = plus.webview.create( 'views/speech.html', 'speechPage');
+					
+					// 显示webview
+					plus.webview.show( 'speechPage', 'zoom-out');
 					
 				}
 				
