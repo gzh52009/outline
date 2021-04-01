@@ -2487,6 +2487,21 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
     ```ts
         let username:string = 'laoxie';
         username = 100;//
-        
-
     ```
+* typescript
+    * 类型检查
+    * 完善的提示信息
+
+    * 类型
+        > js的变量是动态类型，ts为静态类型
+        * 基本类型
+        * 引用类型
+            * 函数
+                * 参数类型
+                * 返回值类型
+            * 数组
+                * 元组
+            * 对象
+                * interface
+
+* 类型声明文件：`.d.ts`

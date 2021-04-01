@@ -79,3 +79,20 @@ const goodslist = [{
         salesQty: 20
     }];
 console.log(goodslist);
+// 三、泛型编程
+// 用变量来表示类型，类型在函数调用时才能确定
+function hello(msg) {
+    return msg;
+}
+// 泛型推论
+hello('jingjing'); // T被推论成string
+hello(100); // T被推论成number
+// 指定泛型
+hello(true);
+class Person {
+    constructor(name) {
+        this.name = name;
+    }
+}
+new Person('laoxie');
+new Person(100);
