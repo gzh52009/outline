@@ -112,8 +112,27 @@ router.beforeEach((to,from,next)=>{
     console.log('beforeEach')
     if(to.meta.requireAuth){
         // 需要登录权限的页面，先判断用户是否登录
-        if(store.getters.isLogin){
+        const {authorization} = store.state.user.userInfo;
+        if(authorization){
+            // 由于校验token可能花费一定时间，为了更友好的用户体验，普遍的做法是，先放行后校验
             next();
+            router.app.$request({
+                url:'/tokenverify',
+                headers:{
+                    'Authorization':authorization
+                }
+            }).then(({data})=>{
+                if(data.code === 401){
+                    // 退出登录，并跳转到登录页面
+                    store.commit('logout');
+                    router.push({
+                        path:'/login',
+                        query:{
+                            redirectTo:to.fullPath
+                        }
+                    })
+                }
+            })
         }else{
             router.push({
                 path:'/login',

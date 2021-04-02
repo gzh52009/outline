@@ -4,6 +4,7 @@ const mongo = require('../db/mongo');
 const router = express.Router();
 
 const {formatData,encrypto} = require('../utils')
+const token = require('../utils/token')
 
 const colName = 'user';
 
@@ -34,8 +35,12 @@ router.get('/login',async (req,res)=>{
     const result = await mongo.find(colName,{username,password},{fields:{password:0}});
     console.log(username,password,result)
     if(result.total > 0){
+        // 生成token（加密），并返回前端
+        const authorization = token.create({username,password},30)
+        let data = result.result[0];
+        data.authorization = authorization
         res.send(formatData({
-            data:result.result[0]
+            data
         }))
     }else{
         res.send(formatData({code:401}))

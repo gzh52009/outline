@@ -34,6 +34,8 @@ function encrypto(data){
      return data;
 }
 
+
+
 module.exports = {
     formatData,
     encrypto

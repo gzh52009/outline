@@ -2537,3 +2537,6 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
         * 路由拦截
         * 动态配置路由
     * 按钮级别权限控制
+* token令牌
+    * 生成token: 加密
+    * 校验token: 解密

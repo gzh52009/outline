@@ -7,6 +7,8 @@ const goodsRouter = require('./goods')
 const uploadRouter = require('./upload')
 const spiderRouter = require('./spider')
 const cors = require('../filter/cors')
+const {verify} = require('../utils/token');
+const { formatData } = require('../utils');
 
 
 // CORS跨域资源共享
@@ -28,6 +30,18 @@ router.get('/jsonp',(req,res)=>{
     let {callback} = req.query;
     let user = {username:'laoxie',password:123456,gender:'男',role:'admin'}
     res.send(`${callback}(${JSON.stringify(user)})`);
+})
+
+// 校验token
+router.get('/tokenverify',(req,res)=>{
+    // 获取token
+    const token = req.get('Authorization');
+    const result = verify(token);
+    if(result){
+        res.send(formatData())
+    }else{
+        res.send(formatData({code:401}))
+    }
 })
 
 // 服务器代理
