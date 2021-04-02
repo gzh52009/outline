@@ -14,6 +14,15 @@ import store from '../store'
 
 Vue.use(VueRouter);
 
+// const routes = [ {
+//     path: '/home',
+//     component: Home,
+//     // 命名路由
+//     name:'home'
+// }]
+
+// 剩下的路由要根据权限列表动态配置
+
 const router = new VueRouter({
     mode: process.env.NODE_ENV === 'development' ? 'hash' : 'history',
     routes: [

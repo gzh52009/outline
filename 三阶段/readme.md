@@ -2505,3 +2505,35 @@ Nodejs是2009由Ryan Dahl推出的运行在服务端的 JavaScript（类似于ja
                 * interface
 
 * 类型声明文件：`.d.ts`
+
+
+## day9-5
+
+### 面试题
+* BSR与SSR
+*  nextTick()
+    ```js
+
+
+    ```
+* keep-alive：缓存组件
+    * 解决缓存组件过多的问题
+        * include
+        * exclude
+        * max
+    * 
+* 跨域解决方案
+    * JSONP
+    * CORS
+    * 服务器代理
+    * WebSocket
+    * iframe
+        * window.postMessage(message,targetOrigin)
+        * message事件
+            * event.data
+* 权限控制
+    > 判断是否登录，判断权限列表
+    * 页面访问权限
+        * 路由拦截
+        * 动态配置路由
+    * 按钮级别权限控制

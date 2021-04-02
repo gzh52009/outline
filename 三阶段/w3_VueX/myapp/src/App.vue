@@ -48,7 +48,9 @@
       <!-- router-view组件用来显示路由组件 -->
       <!-- <router-view name="header" />
       <router-view name="main" /> -->
-      <router-view />
+      <keep-alive v-bind:include="/^H/">
+        <router-view />
+      </keep-alive>
 
     </el-main>
   </el-container>

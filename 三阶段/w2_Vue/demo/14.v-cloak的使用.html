@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>14.v-cloak的使用</title>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>14.v-cloak的使用</h1>
+    <div id="app">
+        <h2 v-cloak>Name: {{name}}</h2>
+    </div>
+    
+    <script src="js/vue.js"></script>
+    <script>
+
+        const vm = new Vue({
+            // el:'#app',
+            data(){
+                return {
+                    name:'App',
+                }
+            },
+        })
+        setTimeout(()=>{
+            vm.$mount('#app')
+        },1000)
+    </script>
+</body>
+
+</html>

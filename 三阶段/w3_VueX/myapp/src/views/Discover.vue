@@ -73,7 +73,7 @@ export default {
         this.getData();
     }
   },
-  async mounted() {
+  async mounted() {console.log('Discover.mounted')
     this.getData();
   },
   updated(){
